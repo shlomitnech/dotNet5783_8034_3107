@@ -1,8 +1,9 @@
-﻿using System;
+﻿namespace DO;
 
-public class Class1
+public struct Enums
 {
-	public Class1()
-	{
-	}
+    public enum Category {Challah, Desserts, Dips, MainCourse, Sides };
+    public enum Action  {Add, Delete, Update, get, GetList };
+    public enum Type {Product, Order, OrderItem };
+
 }
