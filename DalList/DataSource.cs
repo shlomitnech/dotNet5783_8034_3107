@@ -22,7 +22,7 @@ public class DataSource
     }
 
 void s_Initialize() //Calls the constructors to initialize the data entities
-    {
+{
         newOrder(); //function that creates a new order
         newProduct(); //function that creates a new product
         newOrderItem(); //function that creates order Items
