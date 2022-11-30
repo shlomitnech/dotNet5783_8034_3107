@@ -10,7 +10,7 @@ public class OrderItem
 	public int orderID { get; set; }
 	public double price { get; set; }
 	public int amount { get; set; }
-	public bool isDelete { get; set; }
+	public bool isDeleted { get; set; }
 
 	public override string ToString() => $@"
 	ID: {ID},

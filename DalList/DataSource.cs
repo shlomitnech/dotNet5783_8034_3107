@@ -21,12 +21,42 @@ public class DataSource
         internal static int nextOrderItemNumber { get=> ++s_nextOrderItemNumber; }
     }
 
-void s_Initialize() //Calls the constructors to initialize the data entities
-{
+    void s_Initialize() //Calls the constructors to initialize the data entities
+    {
         newOrder(); //function that creates a new order
         newProduct(); //function that creates a new product
         newOrderItem(); //function that creates order Items
     }
+    private void newOrder() //default constructor to make a new order
+    {
+        
 
+        ID = 0;
+        customerName = "";
+        customerEmail = "";
+        shippingAddress = "";
+        orderDate = DateTime.MinValue;
+        shippingDate = DateTime.MinValue;
+        DeliveryDate = DateTime.MinValue;
+        IsDeleted = false;
+    }
+    private void newProduct()
+    {
+        ID = 0;
+        name = "";
+        price = 0;
+        Category = "";
+        inStock = 0;
+        isDeleted = false;
+    }
+    private void newOrderItem()
+    {
+        ID = 0;
+        productID = 0;
+        orderID = 0;
+        price = 0;
+        amount = 0;
+        isDeleted = false;
+    }
 }
 
