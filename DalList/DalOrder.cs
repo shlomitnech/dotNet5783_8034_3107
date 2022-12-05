@@ -18,7 +18,7 @@ public class DalOrder
 
     }
 
-    public void Delete(int currentID)
+    public void DeleteOrder(int currentID)
     {
         //If there are no orders it will send an error 
         if(DataSource.orders == null)
@@ -26,7 +26,7 @@ public class DalOrder
             throw new Exception("There are no orders");
         }
 
-        Order other = Read(currentID);
+        Order other = ReadOrder(currentID);
         int index = other.ID;  //the place in the array where the order that we want to delete is
 
         //delete the order from the array and update the rest of the array
@@ -37,7 +37,7 @@ public class DalOrder
 
     }
 
-    public Order Read(int currentID, bool flag1 = DataSource.Config.debug)
+    public Order ReadOrder(int currentID, bool flag1 = DataSource.Config.debug)
     {
         int index = 0;
         bool flag2 = false;
