@@ -1,14 +1,12 @@
-﻿
-using Dal;
+﻿using Dal;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
-using System.Net.Http.Headers;
 using static DO.Enums;
-namespace Dal;
-using DO;
 
+using DO;
+namespace Dal;
 
 internal class DalTest
 {
