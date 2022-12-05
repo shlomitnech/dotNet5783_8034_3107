@@ -4,18 +4,17 @@ using DO;
 
 
 public class DalOrder
-{
-    DataSource ds = DataSource.s_Initialize();
+{ 
     public void Insert(Order current)
     {
         //If we already have 100 orders then it will send an error
-        if (DataSource.orders.Length == 100)
+        if (DataSource.orders.Length >= 100)
         {
             throw new Exception("Can't take more orders");
         }
 
         //take the instance and add it to the array
-        DataSource.orders[DataSource.orders.Length + 1] = current;
+        DataSource.orders[i + 1] = current;//i = find the 1st null ID
 
     }
 
