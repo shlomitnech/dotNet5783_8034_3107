@@ -8,23 +8,33 @@ public class DalProducts
 {
   //  DataSource ds = DataSource.s_instance;
     
-    public int AddProd(Product prod)
+    public int AddProducts(Product prod)
     {
-       if (prod.ID ==0) //the product doesn't exist
+
+        if (DataSource.products.Length >= 50)
+        {
+            throw new Exception("Too many products!");
+        }
+
+        if (prod.ID ==0) //the product doesn't exist
         {
             prod.ID = DataSource.Config.NextProductNumber; //Take the next available number
             DataSource.products; //[] the 
             return prod.ID;
         }
 
-
     }
-    public void ReadProd(Product prod) //delete a product
+    public void ReadProducts(Product prod) //delete a product
     {
 
 
     }
-    public Product UpdateProd(Product prod)
+    public void ReadListOfProducts(Product prod) //delete a product
+    {
+
+
+    }
+    public Product UpdateProducts(Product prod)
     {
 
         return prod;
