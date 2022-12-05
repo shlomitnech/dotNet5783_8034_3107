@@ -3,7 +3,7 @@
 /// The information about the specific products for the adminstrator
 /// </summary>
 
-public class Product
+public struct Product
 {
     public int ID { get; set; }
     public string name { get; set; }

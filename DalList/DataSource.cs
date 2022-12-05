@@ -46,27 +46,46 @@ public class DataSource
             myOrder.DeliveryDate = DateTime.MinValue;
             myOrder.ID = Config.nextOrderNumber;
             myOrder.IsDeleted = false;
+            orders[i] = myOrder;
 
         }
     }
     private void newProduct()
     {
-        string[] nameOfProduct = {"Challah", "Poppers", "Kugel", "Onion Dip", "Garlic Dip", "Chicken on the Bone", "Rice", "Grilled Chicken",
-                                  "Green Beans", "Broccoli", "Zucchini", "Cauliflower", "Brownies", "Chocolate Chip Cookies", "Rice Krispy Treats" };
-        for(int i = 0; i<10; i++)
+        string[] nameOfProduct = {"Challah", "Rolls", //Challah
+                                 "Onion Dip", "Garlic Dip", "Chummus", "Matbucha", //Dips
+                                 "Poppers", "Chicken", "Steak", "Veal", "Lamb", "Eggplant", "Tofu",    //Main
+                                 "Rice",  "Kugel",  "Beans", "Broccoli", "Zucchini","Cauliflower",  //Sides
+                                 "Brownies", "Cookies", "RiceKrispyTreats", "Rugelach" }; //Desserts
+        for (int i = 0; i < 10; i++)
         {
-            Product myProduct = new();
-            myProduct.name = nameOfProduct[random.Next(nameOfProduct.Length)];
-            myProduct.ID = Config.nextProductNumber;
-            myProduct.price = random.Next(25, 200);
-            myProduct.Category = (Enums.Category)random.Next(0, 5);
-            myProduct.inStock = random.Next(15, 60);
-            myProduct.isDeleted = false;
+            Product myProduct = new()
+            {
+                name = nameOfProduct[random.Next(nameOfProduct.Length)],
+                ID = Config.nextProductNumber,
+                price = random.Next(25, 200),
+                Category = (Enums.Category)random.Next(0, 5),
+                inStock = random.Next(15, 60),
+                isDeleted = false
+            };
+            product[i] = myProduct;
         }
+
     }
     private void newOrderItem()
     {
-        ///finish this
+        for (int i =0; i<40; i++)
+        {
+            OrderItem myOrderItem = new();
+            myOrderItem.ID = Config.nextOrderItemNumber;
+            int j = 0;
+            myOrderItem.productID = product[j].ID;
+            myOrderItem.price = product[j].price;
+            myOrderItem.amount = random.Next(1, 3);
+            orderItem[i] = myOrderItem;
+
+        }
+        //10 products of each product
 
     }
 }
