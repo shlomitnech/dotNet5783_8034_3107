@@ -5,10 +5,10 @@ using DO;
 
 public class DalOrder
 { 
-    public void Insert(Order current)
+    public void InsertOrder(Order current)
     {
         //If we already have 100 orders then it will send an error
-        if (DataSource.Config.NextOrderNumber >= 1100)
+        if (DataSource.Config.NextOrderNumber >= 100)
         {
             throw new Exception("Can't take more orders");
         }

@@ -8,41 +8,68 @@ public class DalProducts
 {
   //  DataSource ds = DataSource.s_instance;
     
-    public int AddProducts(Product prod)
+    public void InsertProduct(Product current)
     {
 
-        if (DataSource.products.Length >= 50)
+        //Check if the product already exists
+        for (int i = 0; i < DataSource.products.Length; i++)
         {
-            throw new Exception("Too many products!");
+            if (current.ID == DataSource.products[i].ID)
+                throw new Exception("Item already exists\n");
         }
-
-        if (prod.ID ==0) //the product doesn't exist
+        //If we already have 50 products then throw error
+        if (DataSource.products.Length >= 50) //DOES this update the order count?
         {
-            prod.ID = DataSource.Config.NextProductNumber; //Take the next available number
-            DataSource.products; //[] the 
-            return prod.ID;
+            throw new Exception("Too many products!\n");
         }
-
+        //If the product doesn't exist and there is space, insert it into products
+        {
+            DataSource.products[DataSource.Config.NextProductNumber - 1000] = current;
+        }
     }
-    public void ReadProducts(Product prod) //delete a product
+    //Read out all the products
+    public void ReadAllProducts()
     {
+        for (int i = 0; i < DataSource.products.Length; i++)
+        {
 
-
+                
+        }
     }
-    public void ReadListOfProducts(Product prod) //delete a product
+    public Product ReadProduct(int currentID)
     {
-
+        for (int i = 0; i < DataSource.products.Length; i++)
+        {
+            if (currentID == DataSource.products[i].ID) //IS THIS CORRECT?
+                return DataSource.products[i]; //return the product
+        }
+        throw new Exception("No product has that ID");
 
     }
+
     public Product UpdateProducts(Product prod)
     {
 
         return prod;
     }
-    public void DelProduct(Product prod)
+    public void DeleteProduct(int currentID)
     {
+        bool deleted = false;
+        for (int i = 0; i < DataSource.products.Length; i++ ) //run through the products until the product with this idea is found
+        {
+            if (DataSource.products[i].ID == currentID) //delete product and update the array
+            {
+                deleted = true;
+                for (int j = i; j< DataSource.products.Length; i++)
+                {
+                    DataSource.products[j] = DataSource.products[j + 1]; //Update the list
+                }
+                break;
+            }
+        }
+        if (!deleted) //if didn't find/delete the product
+          throw new Exception("The product didn't exist \n")
+
 
     }
-
-    //update
 }
