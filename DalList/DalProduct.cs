@@ -56,18 +56,18 @@ public class DalProducts
                 return;
             }
         }
-        throw new Exception("Product doesn't exist! \n")
+        throw new Exception("Product doesn't exist! \n");
 
     }
     public void DeleteProduct(int currentID)
     {
         bool deleted = false;
-        for (int i = 0; i < DataSource.products.Length; i++ ) //run through the products until the product with this idea is found
+        for (int i = 0; i < (DataSource.Config.s_nextProductNumber - 100000 - 100000); i++ ) //run through the products until the product with this idea is found
         {
             if (DataSource.products[i].ID == currentID) //delete product and update the array
             {
                 deleted = true;
-                for (int j = i; j< DataSource.products.Length; i++)
+                for (int j = i; j< (DataSource.Config.s_nextProductNumber - 100000); j++)
                 {
                     DataSource.products[j] = DataSource.products[j + 1]; //Update the list
                 }
@@ -75,7 +75,7 @@ public class DalProducts
             }
         }
         if (!deleted) //if didn't find/delete the product
-          throw new Exception("The product didn't exist \n")
+            throw new Exception("The product didn't exist \n");
 
 
     }
