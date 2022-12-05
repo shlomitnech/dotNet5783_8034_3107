@@ -94,7 +94,7 @@ internal static class DataSource
                 productID = prod.ID,
                 price = prod.price,
                 // figure out what to put here! orderID = random.Next(Config.s_)
-                amount = random.Next(1, 3),
+                amount = random.Next(3),
             };
              orderItems[i] = myOrderItem;
 

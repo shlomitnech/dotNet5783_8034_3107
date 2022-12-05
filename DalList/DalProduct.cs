@@ -6,34 +6,33 @@ namespace Dal;
 
 public class DalProducts
 {
-  //  DataSource ds = DataSource.s_instance;
     
     public void InsertProduct(Product current)
     {
 
         //Check if the product already exists
-        for (int i = 0; i < DataSource.products.Length; i++)
+        for (int i = 0; i < (DataSource.Config.s_nextProductNumber - 100000); i++)
         {
             if (current.ID == DataSource.products[i].ID)
                 throw new Exception("Item already exists\n");
         }
         //If we already have 50 products then throw error
-        if (DataSource.products.Length >= 50) //DOES this update the order count?
+        if ((DataSource.Config.s_nextProductNumber - 100000) >= 50) //DOES this update the order count?
         {
             throw new Exception("Too many products!\n");
         }
         //If the product doesn't exist and there is space, insert it into products
         {
-            DataSource.products[DataSource.Config.NextProductNumber - 1000] = current;
+            DataSource.products[DataSource.Config.NextProductNumber - 100000] = current;
         }
     }
     //Read out all the products
     public void ReadAllProducts()
     {
-        for (int i = 0; i < DataSource.products.Length; i++)
+        for (int i = 0; i < (DataSource.Config.s_nextProductNumber - 100000); i++)
         {
-
-                
+            DataSource.products[i].ToString();
+   
         }
     }
     public Product ReadProduct(int currentID)
@@ -47,10 +46,18 @@ public class DalProducts
 
     }
 
-    public Product UpdateProducts(Product prod)
+    public void UpdateProducts(Product prod)
     {
+        for (int i = 0; i < (DataSource.Config.s_nextProductNumber); i++)
+        {
+            if (prod.ID == DataSource.products[i].ID)
+            {
+                DataSource.products[i] = prod;
+                return;
+            }
+        }
+        throw new Exception("Product doesn't exist! \n")
 
-        return prod;
     }
     public void DeleteProduct(int currentID)
     {
