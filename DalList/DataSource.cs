@@ -4,56 +4,65 @@ using System.Collections.Generic;
 
 
 
-public class DataSource
+internal static class DataSource
 {
-    internal static DataSource s_instance { get; } //returns a copy of the data
     readonly static Random random = new Random(); //random number generatior
-    public Order[] orders = new Order[100];
-    public Product[] product = new Product[50];
-    public OrderItem[] orderItem = new OrderItem[200];
-    internal static class Config{
 
-        internal const int startingOrderNumber = 20;
+    internal static Order[] orders = new Order[100];
+    internal static Product[] products = new Product[50];
+    internal static OrderItem[] orderItems = new OrderItem[200];
+    internal static class Config{ //Will help us create our data list 
+
+       //Variables for the Order
+        internal const int startingOrderNumber = 1000; //Order #'s are 4 digits long 
         public static int s_nextOrderNumber = startingOrderNumber;
-        internal static int nextOrderNumber { get => ++s_nextOrderItemNumber; }
-        internal const int startingProductNumber = 10;
-        public static int s_nextProductNumber = startingProductNumber;
-        internal static int nextProductNumber { get => ++s_nextProductNumber; }
-        internal const int startingOrderItemNumber = 40;
-        public static int s_nextOrderItemNumber = startingOrderItemNumber;
-        internal static int nextOrderItemNumber { get=> ++s_nextOrderItemNumber; }
-    }
+        internal static int NextOrderNumber { get => ++s_nextOrderItemNumber; } //increases by one when called
 
-    void s_Initialize() //Calls the constructors to initialize the data entities
-    {
-        newOrder(); //function that creates a new order
-        newProduct(); //function that creates a new product
-        newOrderItem(); //function that creates order Items
+        //Variables for the Product
+        internal const int startingProductNumber = 100000; //Product #'s are 6 digits long
+        public static int s_nextProductNumber = startingProductNumber;
+        internal static int NextProductNumber { get => ++s_nextProductNumber; }
+
+        //Variables for the OrderItem
+        internal const int startingOrderItemNumber = 0;
+        public static int s_nextOrderItemNumber = startingOrderItemNumber;
+        internal static int NextOrderItemNumber { get=> ++s_nextOrderItemNumber; }
     }
-    private void newOrder() //function to initialize orders
+  //  internal static DataSource s_instance { get; } //returns a copy of the data
+
+    static DataSource() { s_Initialize(); } //default constructor called
+  
+    static void s_Initialize() //Calls the constructors to initialize the data entities
+    {
+        NewOrder(); //function that creates a new order
+        NewProduct(); //function that creates a new product
+        NewOrderItem(); //function that creates order Items
+    }
+    static private void NewOrder() //function to initialize orders
     {
         string[] customerName = { "Hudi", "Maeven", "Shana", "Michal", "Adina", "Jessica", "Avigayil", "Binny", "Shlomit", "Mordechai", "Nava", "Avigail", "Refael", "Yona", "Guy", "Joyce", "Meir", "Daniella", "Yaakovah", "Shira" };
         string[] customerEmail = { "Hudi@jct.ac.il", "Maeven@jct.ac.il", "Shana@jct.ac.il", "Michal@jct.ac.il", "Adina@jct.ac.il", "Jessica@jct.ac.il", "Avigayil@jct.ac.il", "Binny@jct.ac.il", "Shlomit@jct.ac.il", "Mordechai@jct.ac.il", "Nava@jct.ac.il", "Avigail@jct.ac.il", "Refael@jct.ac.il", "Yona@jct.ac.il", "Guy@jct.ac.il", "Joyce@jct.ac.il", "Meir@jct.ac.il", "Daniella@jct.ac.il", "Yaakovah@jct.ac.il", "Shira@jct.ac.il" };
         string[] customerAddress = { "1 apple", "2 banana", "3 carrot", "4 dumpling", "5 eel", "6 fox", "7 guava", "8 haloumi", "9 ice cream", "10 juice", "11 krispy kreme", "12 licorice", "13 meatball", "14 noodles", "15 orange", "16 papaya", "17 quince", "18 rice", "19 soupppp", "20 tisch" };
-        for(int i = 0; i<20; i++)
+        for (int i = 0; i < 20; i++)
         {
-            Order myOrder = new(); 
-            myOrder.customerName = customerName[random.Next(customerName.Length)];
-            myOrder.customerEmail = customerEmail[random.Next(customerEmail.Length)];
-            myOrder.shippingAddress = customerAddress[random.Next(customerAddress.Length)];
-            myOrder.shippingDate = DateTime.MinValue;
-            myOrder.orderDate = DateTime.MinValue;
-            myOrder.DeliveryDate = DateTime.MinValue;
-            myOrder.ID = Config.nextOrderNumber;
-            myOrder.IsDeleted = false;
+            Order myOrder = new()
+            {
+            customerName = customerName[random.Next(customerName.Length)],
+            customerEmail = customerEmail[random.Next(customerEmail.Length)],
+            shippingAddress = customerAddress[random.Next(customerAddress.Length)],
+            shippingDate = DateTime.MinValue,
+            orderDate = DateTime.MinValue,
+            DeliveryDate = DateTime.MinValue,
+            ID = Config.NextOrderNumber,
+            IsDeleted = false
+        };
             orders[i] = myOrder;
-
         }
     }
-    private void newProduct()
+   static private void NewProduct()
     {
         string[] nameOfProduct = {"Challah", "Rolls", //Challah
-                                 "Onion Dip", "Garlic Dip", "Chummus", "Matbucha", //Dips
+                                 "Onion Dip", "Garlic Dip", "Chummus", "Matbucha", "Schug", //Dips
                                  "Poppers", "Chicken", "Steak", "Veal", "Lamb", "Eggplant", "Tofu",    //Main
                                  "Rice",  "Kugel",  "Beans", "Broccoli", "Zucchini","Cauliflower",  //Sides
                                  "Brownies", "Cookies", "RiceKrispyTreats", "Rugelach" }; //Desserts
@@ -62,27 +71,29 @@ public class DataSource
             Product myProduct = new()
             {
                 name = nameOfProduct[random.Next(nameOfProduct.Length)],
-                ID = Config.nextProductNumber,
+                ID = Config.NextProductNumber,
                 price = random.Next(25, 200),
                 Category = (Enums.Category)random.Next(0, 5),
                 inStock = random.Next(15, 60),
                 isDeleted = false
             };
-            product[i] = myProduct;
+            products[i] = myProduct;
         }
 
     }
-    private void newOrderItem()
+   static private void NewOrderItem()
     {
-        for (int i =0; i<40; i++)
+        for (int i = 0; i < 40; i++)
         {
-            OrderItem myOrderItem = new();
-            myOrderItem.ID = Config.nextOrderItemNumber;
-            int j = 0;
-            myOrderItem.productID = product[j].ID;
-            myOrderItem.price = product[j].price;
-            myOrderItem.amount = random.Next(1, 3);
-            orderItem[i] = myOrderItem;
+            Product prod = products[random.Next(products,length)]
+            OrderItem myOrderItem = new()
+            {
+                ID = Config.NextOrderItemNumber,
+                productID = products[j].ID,
+                price = products[j].price,
+                amount = random.Next(1, 3),
+            };
+             orderItems[i] = myOrderItem;
 
         }
         //10 products of each product
