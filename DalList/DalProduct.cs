@@ -31,8 +31,7 @@ public class DalProducts
     {
         for (int i = 0; i < (DataSource.Config.s_nextProductNumber - 100000); i++)
         {
-            DataSource.products[i].ToString();
-   
+            Console.Write(DataSource.products[i].ToString());
         }
     }
     public Product ReadProduct(int currentID)
