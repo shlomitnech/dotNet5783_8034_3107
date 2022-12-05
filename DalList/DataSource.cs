@@ -1,8 +1,7 @@
 ﻿namespace Dal;
 using DO;
 using System.Collections.Generic;
-
-
+using System.ComponentModel.DataAnnotations;
 
 internal static class DataSource
 {
@@ -85,19 +84,18 @@ internal static class DataSource
     {
         for (int i = 0; i < 40; i++)
         {
-            Product prod = products[random.Next(products,length)]
+            Product prod = products[random.Next(products,  ];
             OrderItem myOrderItem = new()
             {
                 ID = Config.NextOrderItemNumber,
-                productID = products[j].ID,
-                price = products[j].price,
+                productID = prod.ID,
+                price = prod.price,
+                // figure out what to put here! orderID = random.Next(Config.s_)
                 amount = random.Next(1, 3),
             };
              orderItems[i] = myOrderItem;
 
         }
-        //10 products of each product
-
     }
 }
 
