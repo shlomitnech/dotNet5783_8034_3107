@@ -29,7 +29,7 @@ public class DalOrderItems
         int index = 0;
         foreach(OrderItem current in DataSource.orderItems) 
         {
-            DataSource.orderItems[index].ToString();
+            Console.WriteLine(current.ToString());
         }
 
         throw new Exception("No orderItem has that ID \n");

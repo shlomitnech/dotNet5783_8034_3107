@@ -3,7 +3,7 @@
 /// Information on the customer's cart
 /// </summary>
 
-public class OrderItem
+public struct OrderItem
 {
 	public int ID { get; set; }
 	public int productID { get; set; }

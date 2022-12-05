@@ -1,5 +1,6 @@
 ﻿
 using DO;
+using System;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Dal;
@@ -7,7 +8,7 @@ namespace Dal;
 public class DalProducts
 {
     
-    public void InsertProduct(Product current)
+    public int InsertProduct(Product current)
     {
 
         //Check if the product already exists
@@ -23,15 +24,17 @@ public class DalProducts
         }
         //If the product doesn't exist and there is space, insert it into products
         {
-            DataSource.products[DataSource.Config.NextProductNumber - 100000] = current;
+            int newID = DataSource.Config.NextProductNumber;
+            DataSource.products[newID - 100000] = current;
+            return newID;
         }
     }
     //Read out all the products
     public void ReadAllProducts()
     {
-        for (int i = 0; i < (DataSource.Config.s_nextProductNumber - 100000); i++)
+        foreach (Product current in DataSource.products)
         {
-            Console.Write(DataSource.products[i].ToString());
+            Console.WriteLine(current.ToString());
         }
     }
     public Product ReadProduct(int currentID)
