@@ -26,6 +26,9 @@ internal static class DataSource
         internal const int startingOrderItemNumber = 0;
         public static int s_nextOrderItemNumber = startingOrderItemNumber;
         internal static int NextOrderItemNumber { get=> ++s_nextOrderItemNumber; }
+
+        //Internal Static Flag
+        internal static bool debug = true;
     }
   //  internal static DataSource s_instance { get; } //returns a copy of the data
 

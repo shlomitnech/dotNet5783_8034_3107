@@ -8,13 +8,13 @@ public class DalOrder
     public void Insert(Order current)
     {
         //If we already have 100 orders then it will send an error
-        if (DataSource.orders.Length >= 100)
+        if (DataSource.Config.NextOrderNumber >= 1100)
         {
             throw new Exception("Can't take more orders");
         }
 
         //take the instance and add it to the array
-        DataSource.orders[i + 1] = current;//i = find the 1st null ID
+        DataSource.orders[DataSource.Config.NextOrderNumber - 1000] = current;
 
     }
 
@@ -37,10 +37,10 @@ public class DalOrder
 
     }
 
-    public Order Read(int currentID)
+    public Order Read(int currentID, bool flag1 = DataSource.Config.debug)
     {
         int index = 0;
-        bool flag = false;
+        bool flag2 = false;
 
         //finding the order
         for (int i = 0; i < DataSource.orders.Length; i++)
@@ -48,13 +48,13 @@ public class DalOrder
             if (DataSource.orders[i].ID == currentID)   //when the order is found
             {
                 index = i;        //keep the place of order
-                flag = true;     
+                flag2 = true;     
                 break;
             }
         }
 
         //if we went through all the orders and the ID was never found
-        if (DataSource.orders[DataSource.orders.Length].ID != currentID && !flag)
+        if (DataSource.orders[DataSource.orders.Length].ID != currentID && !flag2)
         {
             throw new Exception("Order does not exist");
         }
