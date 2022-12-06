@@ -52,9 +52,9 @@ internal static class DataSource
             customerName = customerName[random.Next(customerName.Length)],
             customerEmail = customerEmail[random.Next(customerEmail.Length)],
             shippingAddress = customerAddress[random.Next(customerAddress.Length)],
-            shippingDate = DateTime.MinValue,
-            orderDate = DateTime.MinValue,
-            DeliveryDate = DateTime.MinValue,
+            orderDate = DateTime.Now,
+            shippingDate = new DateTime(orderDate) ,
+            DeliveryDate = DateTime.Now,
             ID = Config.NextOrderNumber,
             IsDeleted = false
         };
@@ -68,35 +68,44 @@ internal static class DataSource
                                  "Poppers", "Chicken", "Steak", "Veal", "Lamb", "Eggplant", "Tofu",    //Main
                                  "Rice",  "Kugel",  "Beans", "Broccoli", "Zucchini","Cauliflower",  //Sides
                                  "Brownies", "Cookies", "RiceKrispyTreats", "Rugelach" }; //Desserts
+
+        //initialize 10 products in the array
         for (int i = 0; i < 10; i++)
         {
+            //create a new product
             Product myProduct = new()
             {
-                name = nameOfProduct[random.Next(nameOfProduct.Length)],
+                Name = nameOfProduct[random.Next(nameOfProduct.Length)],
                 ID = Config.NextProductNumber,
-                price = random.Next(25, 200),
+                Price = random.Next(25, 200),
                 Category = (Enums.Category)random.Next(0, 5),
                 inStock = random.Next(15, 60),
-                isDeleted = false
+                isDeleted = false,
             };
-            products[i] = myProduct;
+            
+            if (Config.s_nextProductNumber - 100000 < 3) myProduct.inStock = 0;   //make sure 5% is out of stock (Dr. Kelman told us to do this)
+            
+            products[i] = myProduct;  //push product into the array
         }
 
     }
    static private void NewOrderItem()
     {
+        //initialize 40 order items in the array
         for (int i = 0; i < 40; i++)
         {
-            Product prod = products[random.Next(products,  ];
+            Product prod = products[random.Next(Config.startingProductNumber, Config.s_nextProductNumber)];
             OrderItem myOrderItem = new()
             {
                 ID = Config.NextOrderItemNumber,
                 productID = prod.ID,
-                price = prod.price,
-                // figure out what to put here! orderID = random.Next(Config.s_)
-                amount = random.Next(3),
+                price = prod.Price,
+                orderID = random.Next(Config.startingOrderNumber, Config.s_nextOrderNumber),
+                amount = random.Next(3)
             };
-             orderItems[i] = myOrderItem;
+            
+            //push the order item into the array
+            orderItems[i] = myOrderItem;
 
         }
     }

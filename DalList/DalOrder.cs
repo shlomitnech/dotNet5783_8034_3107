@@ -37,7 +37,7 @@ public class DalOrder
 
     }
 
-    public Order ReadOrder(int currentID, bool flag1 = DataSource.Config.debug)
+    public Order ReadOrder(int currentID, bool flag1 = true)
     {
         int index = 0;
         bool flag2 = false;
@@ -59,6 +59,7 @@ public class DalOrder
             throw new Exception("Order does not exist");
         }
 
+        //make sure we only print the string when we call it from the main
         if (flag1)  DataSource.orders[index].ToString();
      
 
