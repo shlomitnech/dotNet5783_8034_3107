@@ -14,6 +14,7 @@ public class DalOrder
         }
         //take the instance and add it to the array
         int newID = DataSource.Config.NextOrderNumber;
+        current.ID = newID;
         DataSource.orders[newID - 1000] = current;
         return newID;
 
@@ -28,8 +29,17 @@ public class DalOrder
             throw new Exception("There are no orders");
         }
 
-        Order other = ReadOrder(currentID);
-        int index = other.ID;  //the place in the array where the order that we want to delete is
+        int index;
+
+        try      //get the index where the order we want to delete is
+        {
+            Order other = ReadOrder(currentID);
+            index = other.ID;  //the place in the array where the order that we want to delete is
+        }
+        catch(Exception)    //if order does not exist send an error
+        {
+            throw new Exception("Order does not exist");
+        }
 
         //delete the order from the array and update the rest of the array
         for(int i = index; i < DataSource.Config.s_nextOrderNumber-1000; i++)
@@ -40,51 +50,42 @@ public class DalOrder
     }
 
     public Order ReadOrder(int currentID)
-    { //I think we should change this back to be like DalProd
-      //  int index = 0;
-      //  bool flag2 = false;
-
-        //finding the order
-        /*  for (int i = 0; i < DataSource.orders.Length; i++)
-          {
-              if (DataSource.orders[i].ID == currentID)   //when the order is found
-              {
-                  index = i;        //keep the place of order
-                  flag2 = true;     
-                  break;
-              }
-          }
-
-          //if we went through all the orders and the ID was never found
-          if (DataSource.orders[DataSource.orders.Length].ID != currentID && !flag2)
-          {
-              throw new Exception("Order does not exist");
-          }
-
-        if (flag1)  DataSource.orders[index].ToString();
-     
-
-          return DataSource.orders[index];
-        */
+    { 
+        //find the order based on the identifier in the array
         for (int i = 0; i < (DataSource.Config.s_nextOrderNumber); i++)
         {
             if (currentID == DataSource.orders[i].ID) //IS THIS CORRECT?
                 return DataSource.orders[i]; //return the product
         }
-        throw new Exception("No order has that ID");
+        throw new Exception("No order has that ID");    //if we cant find order throw an exception
 
     }
 
-    public void ReadAllOrders()
+    public Order[] ReadAllOrders()
     {
+        //check that array is not empty
+        if (DataSource.orders == null) throw new Exception("There are no orders!");
+
+        /*
         foreach(Order order in DataSource.orders)
         {
             order.ToString();
+        }*/
+
+        //make a new array with only the orders we have
+        Order[] tempOrders = new Order[DataSource.Config.s_nextOrderNumber-1000];
+
+        for (int i = 0; i < tempOrders.Length; i++)
+        {
+            tempOrders[i] = DataSource.orders[i];
         }
+
+            return tempOrders;
     }
 
     public void UpdateOrders(Order current)
     {
+        /*
         for(int i = 0; i < DataSource.Config.s_nextOrderNumber-1000; i++)
         {
             if(DataSource.orders[i].ID == current.ID)
@@ -93,8 +94,20 @@ public class DalOrder
                 return;
             }
         }
+        */
 
-        throw new Exception("Order does not exist!");
+        try
+        {
+            ReadOrder(current.ID);
+        }
+        catch(Exception)
+        {
+            throw new Exception("Order does not exist!");
+        }
+
+        DataSource.orders[current.ID-1000] = current;
+
+        //throw new Exception("Order does not exist!");
     }
 
 

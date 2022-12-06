@@ -30,21 +30,27 @@ public class DalOrderItems
     {
         for (int i = 0; i < (DataSource.Config.s_nextOrderItemNumber); i++)
         {
-            if (currentID == DataSource.orderItems[i].ID) //IS THIS CORRECT?
+            if (currentID == DataSource.orderItems[i].ID) //IS THIS CORRECT? yes!
                 return DataSource.orderItems[i]; //return the product
         }
         throw new Exception("No product has that ID");
 
     }
     //Read out all the orderItems
-    public void ReadAllOrderItems()
-    { 
-        foreach(OrderItem current in DataSource.orderItems) 
+    public OrderItem[] ReadAllOrderItems()
+    {
+        //check that the array is not empty
+        if(DataSource.orderItems==null)  throw new Exception("There are currently no orderitems \n");
+
+        //put all existing order items in new array to return it
+        OrderItem[] tempItems = new OrderItem[DataSource.Config.s_nextOrderItemNumber];
+
+        for(int i = 0; i < tempItems.Length; i++)
         {
-            Console.WriteLine(current.ToString());
+            tempItems[i] = DataSource.orderItems[i];
         }
 
-        throw new Exception("No orderItem has that ID \n");
+        return tempItems;
     }
 
     public void UpdateOrderItems(OrderItem item)
