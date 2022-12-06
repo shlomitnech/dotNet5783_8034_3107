@@ -52,9 +52,9 @@ internal static class DataSource
             customerName = customerName[random.Next(customerName.Length)],
             customerEmail = customerEmail[random.Next(customerEmail.Length)],
             shippingAddress = customerAddress[random.Next(customerAddress.Length)],
-            orderDate = DateTime.Now,
-            shippingDate = new DateTime(orderDate) ,
-            DeliveryDate = DateTime.Now,
+            orderDate = DateTime.Today,
+            shippingDate = DateTime.Today.AddDays(random.Next(3)) ,
+            DeliveryDate = DateTime.Today.AddDays(random.Next(4, 10)),
             ID = Config.NextOrderNumber,
             IsDeleted = false
         };
