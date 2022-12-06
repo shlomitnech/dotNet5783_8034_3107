@@ -44,12 +44,12 @@ public class DalProducts
             tempProducts[i] = DataSource.products[i];
         }
 
-        return tempProducts;
+        return tempProducts; //returning a complete array
     }
     public Product ReadProduct(int currentID)
     {
         //iterate through the array and return the instance of the product based on the identifier that the user inputed
-        for (int i = 0; i < (DataSource.Config.s_nextProductNumber); i++)
+        for (int i = 0; i < (DataSource.Config.s_nextProductNumber-100000); i++)
         {
             if (currentID == DataSource.products[i].ID) 
                 return DataSource.products[i]; //return the product once found

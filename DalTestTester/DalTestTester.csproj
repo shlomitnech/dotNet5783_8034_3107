@@ -10,12 +10,8 @@
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 		<UseCommonOutputDirectory>true</UseCommonOutputDirectory>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <Optimize>True</Optimize>
-	</PropertyGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\DalList\DalList.csproj" />
 	  <ProjectReference Include="..\DelFacade\DelFacade.csproj" />
 	</ItemGroup>
 </Project>
-

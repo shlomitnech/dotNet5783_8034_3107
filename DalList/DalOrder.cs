@@ -17,10 +17,7 @@ public class DalOrder
         current.ID = newID;
         DataSource.orders[newID - 1000] = current;
         return newID;
-
-
     }
-
     public void DeleteOrder(int currentID)
     {
         //If there are no orders it will send an error 
@@ -50,11 +47,17 @@ public class DalOrder
     }
 
     public Order ReadOrder(int currentID)
-    { 
+    {
+        Console.WriteLine(DataSource.orders[0]);
+
+
+
         //find the order based on the identifier in the array
-        for (int i = 0; i < (DataSource.Config.s_nextOrderNumber); i++)
+        for (int i = 0; i < (DataSource.Config.s_nextOrderNumber -1000); i++)
         {
-            if (currentID == DataSource.orders[i].ID) //IS THIS CORRECT?
+            Console.WriteLine(DataSource.orders[i]);
+
+            if (currentID == DataSource.orders[i].ID) 
                 return DataSource.orders[i]; //return the product
         }
         throw new Exception("No order has that ID");    //if we cant find order throw an exception

@@ -3,10 +3,13 @@ using DO;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-internal static class DataSource
+public class DataSource
 {
     readonly static Random random = new Random(); //random number generatior
-
+    internal static DataSource s_instance { get; }
+/// <summary>
+/// Creating the inital arrays for Order, Product and OrderItem
+/// </summary>
     internal static Order[] orders = new Order[100];
     internal static Product[] products = new Product[50];
     internal static OrderItem[] orderItems = new OrderItem[200];
@@ -15,7 +18,7 @@ internal static class DataSource
        //Variables for the Order
         internal const int startingOrderNumber = 1000; //Order #'s are 4 digits long 
         public static int s_nextOrderNumber = startingOrderNumber;
-        internal static int NextOrderNumber { get => ++s_nextOrderItemNumber; } //increases by one when called
+        internal static int NextOrderNumber { get => ++s_nextOrderNumber; } //increases by one when called
 
         //Variables for the Product
         internal const int startingProductNumber = 100000; //Product #'s are 6 digits long
@@ -32,14 +35,17 @@ internal static class DataSource
     }
   //  internal static DataSource s_instance { get; } //returns a copy of the data
 
-    static DataSource() { s_Initialize(); } //default constructor called
-  
+    public DataSource() { s_Initialize(); } //default constructor called
+    static DataSource() => s_instance = new DataSource();
     static void s_Initialize() //Calls the constructors to initialize the data entities
     {
         NewOrder(); //function that creates a new order
         NewProduct(); //function that creates a new product
         NewOrderItem(); //function that creates order Items
     }
+    /// <summary>
+    /// Methods for the DataSource initialization
+    /// </summary>
     static private void NewOrder() //function to initialize orders
     {
         string[] customerName = { "Hudi", "Maeven", "Shana", "Michal", "Adina", "Jessica", "Avigayil", "Binny", "Shlomit", "Mordechai", "Nava", "Avigail", "Refael", "Yona", "Guy", "Joyce", "Meir", "Daniella", "Yaakovah", "Shira" };
@@ -57,8 +63,7 @@ internal static class DataSource
             DeliveryDate = DateTime.MinValue,
             ID = Config.NextOrderNumber,
             };
-
-            if(i<4) orders[i] = myOrder;   //the first 4 orders won't have ship dates
+            if (i<4) orders[i] = myOrder;   //the first 4 orders won't have ship dates
 
             myOrder.ShippingDate = myOrder.OrderDate.AddDays(random.Next(3, 7));    //order will ship 3-7 days after ordered
 
@@ -67,15 +72,16 @@ internal static class DataSource
             myOrder.DeliveryDate = myOrder.ShippingDate.AddDays(random.Next(7, 21));   //order will be delivered 7-21 days after shipped because this is Israel we're talking about
 
             if(i>=5 && i < 20) orders[i] = myOrder;   //all other orders will have everything initialized
+
         }
     }
    static private void NewProduct()
     {
-        string[] nameOfProduct = {"Challah", "Rolls", //Challah
-                                 "Onion Dip", "Garlic Dip", "Chummus", "Matbucha", "Schug", //Dips
-                                 "Poppers", "Chicken", "Steak", "Veal", "Lamb", "Eggplant", "Tofu",    //Main
-                                 "Rice",  "Kugel",  "Beans", "Broccoli", "Zucchini","Cauliflower",  //Sides
-                                 "Brownies", "Cookies", "RiceKrispyTreats", "Rugelach" }; //Desserts
+        string[] nameOfProduct = {"Challah", "Rolls", //Challah (0-1)
+                                 "Onion Dip", "Garlic Dip", "Chummus", "Matbucha", "Schug", //Dips (2-6)
+                                 "Poppers", "Chicken", "Steak", "Veal", "Lamb", "Eggplant", "Tofu",    //Main (7-13)
+                                 "Rice",  "Kugel",  "Beans", "Broccoli", "Zucchini","Cauliflower",  //Sides (14-19)
+                                 "Brownies", "Cookies", "RiceKrispyTreats", "Rugelach" }; //Desserts (20-23)
 
         //initialize 10 products in the array
         for (int i = 0; i < 10; i++)
@@ -86,8 +92,8 @@ internal static class DataSource
                 Name = nameOfProduct[random.Next(nameOfProduct.Length)],
                 ID = Config.NextProductNumber,
                 Price = random.Next(25, 200),
-                Category = (Enums.Category)random.Next(0, 5),
-                inStock = random.Next(15, 60),
+                Category = (Enums.Category)random.Next(0, 5), // change? to make category match ?
+                inStock = random.Next(15, 50),
                 isDeleted = false,
             };
             
@@ -95,14 +101,13 @@ internal static class DataSource
             
             products[i] = myProduct;  //push product into the array
         }
-
     }
    static private void NewOrderItem()
     {
         //initialize 40 order items in the array
         for (int i = 0; i < 40; i++)
         {
-            Product prod = products[random.Next(Config.startingProductNumber, Config.s_nextProductNumber)];
+            Product prod = products[random.Next(Config.startingProductNumber-100000, Config.s_nextProductNumber-100000)];
             OrderItem myOrderItem = new()
             {
                 ID = Config.NextOrderItemNumber,

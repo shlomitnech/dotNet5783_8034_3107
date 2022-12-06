@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using static DO.Enums;
-//namespace DalAPI;
 
 using DO;
 namespace Dal;
@@ -18,11 +17,10 @@ internal class DalTest
         Order _order = new();
         DalOrder dalord = new();
         OrderItem _orderItem = new();
-        DalOrderItems dalOrdItem = new ();
+        DalOrderItems dalOrdItem = new();
+        //DataSource _dataSource = new DataSource();
         int num1, num2;
         bool flag = true;
-        DataSource ds = new();
-        
 
         while (flag) //while user input is not 0
         {
@@ -32,34 +30,33 @@ internal class DalTest
              + "To exit the program, press 0"
            );
             num1 = Convert.ToInt32(Console.ReadLine());
-            while (num1 > 3 || num1 < 0) 
+            while (num1 > 3)
             {
                 Console.WriteLine("Please click a number 0-3");
                 num1 = Convert.ToInt32(Console.ReadLine());
-           
+
             }
             if (num1 == 0)
                 break; //leave the while loop
-            Enums.Type type = (Enums.Type)num1-1;
+            Enums.Type type = (Enums.Type)num1;
             Console.WriteLine("To add, press 1 \n"
-              + "To Update, press 2 \n"
-              + "To view one, press 3 \n"
-              + "to view the whole list, press 4 \n"
-              + "to delete, press 5 \n"
+              + "To view one, press 2 \n"
+              + "to view the whole list, press 3 \n"
+              + "to delete, press 4 \n"
               + "to exit, press 0 \n"
               );
             num2 = Convert.ToInt32(Console.ReadLine());
-            while (num2 > 5 || num2 < 0) //check for error
+            while (num2 > 4) //check for error
             {
-                Console.WriteLine("Please click a number 0-5");
-           
+                Console.WriteLine("Please click a number 0-4");
+
                 num2 = Convert.ToInt32(Console.ReadLine());
             }
 
             if (num2 == 0)
                 break;    //Leave the while loop
-   
-            Enums.Action action = (Enums.Action)num2-1;
+
+            Enums.Action action = (Enums.Action)num2;
             switch (type, action)
             {
                 case (Enums.Type.Product, Enums.Action.Add):
@@ -130,19 +127,14 @@ internal class DalTest
                 case (Enums.Type.Product, Enums.Action.GetList):
                     try
                     {
-                    Product[] productlist = dalprod.ReadAllProducts(); // call function to read all the products 
-
-                        foreach (Product pizza in productlist)
-                        {
-                            Console.WriteLine(pizza);
-                        }
+                        dalprod.ReadAllProducts(); // call function to read all the products 
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine("Error!" + ex); //print out the error 
                     }
                     break;
-                case (Enums.Type.Product, Enums.Action.Delete ):
+                case (Enums.Type.Product, Enums.Action.Delete):
                     try
                     {
                         Console.WriteLine("What is the product's ID #? \n");
@@ -159,7 +151,6 @@ internal class DalTest
                 case (Enums.Type.Order, Enums.Action.Add):
                     try
                     {
-                       
                         Console.WriteLine("Write the customers's name: \n");
                         _order.CustomerName = Console.ReadLine() ?? "";
                         Console.WriteLine("Write the customer's email: \n");
@@ -215,12 +206,7 @@ internal class DalTest
                 case (Enums.Type.Order, Enums.Action.GetList):
                     try
                     {
-                        Order[] Orderlist = dalord.ReadAllOrders(); // call function to read all the products 
-
-                        foreach (Order Shabbos in Orderlist)
-                        { 
-                            Console.WriteLine(Shabbos);
-                        }
+                        dalord.ReadAllOrders(); // call function to read all the orders 
 
                     }
                     catch (Exception ex)
@@ -302,12 +288,7 @@ internal class DalTest
                 case (Enums.Type.OrderItem, Enums.Action.GetList):
                     try
                     {
-                        OrderItem[] OrderItemList = dalOrdItem.ReadAllOrderItems(); // call function to read all the products 
-
-                        foreach (OrderItem pizza in OrderItemList)
-                        {
-                            Console.WriteLine(pizza);
-                        }
+                        dalOrdItem.ReadAllOrderItems();
                     }
                     catch (Exception ex)
                     {
@@ -317,7 +298,7 @@ internal class DalTest
                 case (Enums.Type.OrderItem, Enums.Action.Delete):
                     try
                     {
-                        Console.WriteLine("What is the ID of the orderItem your wish to delete? \n "); 
+                        Console.WriteLine("What is the ID of the orderItem your wish to delete? \n ");
                         int currID = Convert.ToInt32(Console.ReadLine());
                         dalOrdItem.DeleteOrderItem(currID);
                         //PRINT updated list?
@@ -331,7 +312,7 @@ internal class DalTest
                     break;
             }
         }
-            
+
 
 
     }
