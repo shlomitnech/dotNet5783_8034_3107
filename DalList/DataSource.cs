@@ -49,16 +49,24 @@ internal static class DataSource
         {
             Order myOrder = new()
             {
-            customerName = customerName[random.Next(customerName.Length)],
-            customerEmail = customerEmail[random.Next(customerEmail.Length)],
-            shippingAddress = customerAddress[random.Next(customerAddress.Length)],
-            orderDate = DateTime.Today,
-            shippingDate = DateTime.Today.AddDays(random.Next(3)) ,
-            DeliveryDate = DateTime.Today.AddDays(random.Next(4, 10)),
+            CustomerName = customerName[random.Next(customerName.Length)],
+            CustomerEmail = customerEmail[random.Next(customerEmail.Length)],
+            ShippingAddress = customerAddress[random.Next(customerAddress.Length)],
+            OrderDate = DateTime.Now.AddDays(random.Next(365)),
+            ShippingDate = DateTime.MinValue ,
+            DeliveryDate = DateTime.MinValue,
             ID = Config.NextOrderNumber,
-            IsDeleted = false
-        };
-            orders[i] = myOrder;
+            };
+
+            if(i<4) orders[i] = myOrder;   //the first 4 orders won't have ship dates
+
+            myOrder.ShippingDate = myOrder.OrderDate.AddDays(random.Next(3, 7));    //order will ship 3-7 days after ordered
+
+            if(i>=4 && i < 10) orders[i] = myOrder;    //the first 10 orders won't have delivery dates
+
+            myOrder.DeliveryDate = myOrder.ShippingDate.AddDays(random.Next(7, 21));   //order will be delivered 7-21 days after shipped because this is Israel we're talking about
+
+            if(i>=5 && i < 20) orders[i] = myOrder;   //all other orders will have everything initialized
         }
     }
    static private void NewProduct()
@@ -83,7 +91,7 @@ internal static class DataSource
                 isDeleted = false,
             };
             
-            if (Config.s_nextProductNumber - 100000 < 3) myProduct.inStock = 0;   //make sure 5% is out of stock (Dr. Kelman told us to do this)
+            if (i < 3) myProduct.inStock = 0;   //make sure 5% is out of stock (Dr. Kelman told us to do this)
             
             products[i] = myProduct;  //push product into the array
         }
