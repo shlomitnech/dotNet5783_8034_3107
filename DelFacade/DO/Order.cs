@@ -7,21 +7,20 @@ public struct Order
 {
 
 	public int ID { get; set; }
-	public string customerName { get; set; }
-	public string customerEmail { get; set; }
-	public string shippingAddress { get; set; }
-	public DateTime orderDate { get; set; }
-	public DateTime shippingDate { get; set; }
+	public string CustomerName { get; set; }
+	public string CustomerEmail { get; set; }
+	public string ShippingAddress { get; set; }
+	public DateTime OrderDate { get; set; }
+	public DateTime ShippingDate { get; set; }
 	public DateTime DeliveryDate { get; set; }
-	public bool IsDeleted { get; set; }
 
 	public override string ToString() => $@"
 	Item's ID : {ID},
-	Customer's Name is: {customerName},
-	Customer's email is: {customerEmail},
-	Customer's address is: {shippingAddress},
-	The order was placed on: {orderDate},
-	The order's shipping date is: {shippingDate},
+	Customer's Name is: {CustomerName},
+	Customer's email is: {CustomerEmail},
+	Customer's address is: {ShippingAddress},
+	The order was placed on: {OrderDate},
+	The order's shipping date is: {ShippingDate},
 	The order's delivery date is: {DeliveryDate}
 ";
 

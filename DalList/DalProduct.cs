@@ -39,7 +39,7 @@ public class DalProducts
     }
     public Product ReadProduct(int currentID)
     {
-        for (int i = 0; i < DataSource.products.Length; i++)
+        for (int i = 0; i < (DataSource.Config.s_nextProductNumber); i++)
         {
             if (currentID == DataSource.products[i].ID) //IS THIS CORRECT?
                 return DataSource.products[i]; //return the product

@@ -5,7 +5,7 @@ namespace Dal;
 
 public class DalOrderItems
 {
-    public void InsertOrderItem(OrderItem current )
+    public int InsertOrderItem(OrderItem current )
     {
         //Check if the order item already exists
         for (int i = 0; i < (DataSource.Config.s_nextOrderItemNumber); i++)
@@ -18,15 +18,27 @@ public class DalOrderItems
         {
             throw new Exception("Too many order items!\n");
         }
-        //If the orderItem is out of stock and there is space, insert it into products
+        //If the orderItem is not out of stock and there is space, insert it into products
         {
-            DataSource.orderItems[DataSource.Config.NextOrderNumber] = current;
+            int newID = DataSource.Config.NextOrderItemNumber;
+            DataSource.orderItems[newID] = current;
+            return newID;
+             
         }
+    }
+    public OrderItem ReadOrderItem(int currentID)
+    {
+        for (int i = 0; i < (DataSource.Config.s_nextOrderItemNumber); i++)
+        {
+            if (currentID == DataSource.orderItems[i].ID) //IS THIS CORRECT?
+                return DataSource.orderItems[i]; //return the product
+        }
+        throw new Exception("No product has that ID");
+
     }
     //Read out all the orderItems
     public void ReadAllOrderItems()
-    {
-        int index = 0;
+    { 
         foreach(OrderItem current in DataSource.orderItems) 
         {
             Console.WriteLine(current.ToString());
