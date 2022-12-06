@@ -85,7 +85,6 @@ public class DalOrder
 
     public void UpdateOrders(Order current)
     {
-        /*
         for(int i = 0; i < DataSource.Config.s_nextOrderNumber-1000; i++)
         {
             if(DataSource.orders[i].ID == current.ID)
@@ -94,20 +93,8 @@ public class DalOrder
                 return;
             }
         }
-        */
 
-        try
-        {
-            ReadOrder(current.ID);
-        }
-        catch(Exception)
-        {
-            throw new Exception("Order does not exist!");
-        }
-
-        DataSource.orders[current.ID-1000] = current;
-
-        //throw new Exception("Order does not exist!");
+        throw new Exception("Order does not exist!");
     }
 
 

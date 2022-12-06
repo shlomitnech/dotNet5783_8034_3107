@@ -25,17 +25,26 @@ public class DalProducts
         //If the product doesn't exist and there is space, insert it into products
         {
             int newID = DataSource.Config.NextProductNumber;
+            current.ID = newID;
             DataSource.products[newID - 100000] = current;
             return newID;
         }
     }
     //Read out all the products
-    public void ReadAllProducts()
+    public Product[] ReadAllProducts()
     {
-        foreach (Product current in DataSource.products)
+        //check that the array is not empty
+        if (DataSource.products == null) throw new Exception("There are no products");
+
+        //send back an array with the products
+        Product[] tempProducts = new Product[DataSource.Config.s_nextProductNumber-100000];
+
+        for(int i = 0; i < tempProducts.Length; i++)
         {
-            Console.WriteLine(current.ToString());
+            tempProducts[i] = DataSource.products[i];
         }
+
+        return tempProducts;
     }
     public Product ReadProduct(int currentID)
     {
