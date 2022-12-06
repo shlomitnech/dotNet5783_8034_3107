@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "DelFacade": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\navam\\source\\repos\\dotNet5783_8034_3107"
+    },
+    "DalTest": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\navam\\source\\repos\\dotNet5783_8034_3107\\bin\\DelFacade.dll",
+      "workingDirectory": "C:\\Users\\navam\\source\\repos\\dotNet5783_8034_3107"
+    }
+  }
+}

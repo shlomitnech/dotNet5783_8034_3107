@@ -48,17 +48,19 @@ public class DalProducts
     }
     public Product ReadProduct(int currentID)
     {
+        //iterate through the array and return the instance of the product based on the identifier that the user inputed
         for (int i = 0; i < (DataSource.Config.s_nextProductNumber); i++)
         {
-            if (currentID == DataSource.products[i].ID) //IS THIS CORRECT?
-                return DataSource.products[i]; //return the product
+            if (currentID == DataSource.products[i].ID) 
+                return DataSource.products[i]; //return the product once found
         }
-        throw new Exception("No product has that ID");
+        throw new Exception("No product has that ID");    //if pproduct is not found
 
     }
 
     public void UpdateProducts(Product prod)
     {
+        //iterate through the array to find the procuct we want to update
         for (int i = 0; i < (DataSource.Config.s_nextProductNumber); i++)
         {
             if (prod.ID == DataSource.products[i].ID)
@@ -87,7 +89,5 @@ public class DalProducts
         }
         if (!deleted) //if didn't find/delete the product
             throw new Exception("The product didn't exist \n");
-
-
     }
 }
