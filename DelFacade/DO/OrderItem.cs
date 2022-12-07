@@ -13,10 +13,10 @@ public struct OrderItem
 	public bool isDeleted { get; set; }
 
 	public override string ToString() => $@"
-	ID: {ID},
-	Product ID: {productID},
-	Order ID: {orderID},
-	Amount in Stock {amount},
-	Product Price: {price},
+	ID: {ID}
+	Product ID: {productID}
+	Order ID: {orderID}
+	Amount in Stock {amount}
+	Product Price: {price}
 	";
 }

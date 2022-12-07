@@ -41,7 +41,7 @@ internal class DalTest
             if (num1 == 0)
                 break; //leave the while loop
             Enums.Type type = (Enums.Type)num1-1;
-            Console.WriteLine("To add, press 1 \n"
+            Console.WriteLine("To ADD, press 1 \n"
               + "To UPDATE, press 2 \n"
               + "To VIEW ONE, press 3 \n"
               + "to view the WHOLE LIST, press 4 \n"

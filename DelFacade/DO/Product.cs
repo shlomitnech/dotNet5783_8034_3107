@@ -13,11 +13,11 @@ public struct Product
     public bool isDeleted { get; set; }
 
     public override string ToString() => $@"
-    ID: {ID},
-    Product Name: {Name},
-    Product Price: {Price},
-    Category: {Category},
-    Amount in Stock: {inStock},
+    ID: {ID}
+    Product Name: {Name}
+    Product Price: {Price}
+    Category: {Category}
+    Amount in Stock: {inStock}
   
 ";
 }

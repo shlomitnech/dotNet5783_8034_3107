@@ -53,7 +53,7 @@ public class DalOrder
 
 
         //find the order based on the identifier in the array
-        for (int i = 0; i < (DataSource.Config.s_nextOrderNumber -1000); i++)
+        for (int i = 0; i < (DataSource.Config.s_nextOrderNumber -999); i++)
         {
             Console.WriteLine(DataSource.orders[i]);
 
@@ -68,15 +68,8 @@ public class DalOrder
     {
         //check that array is not empty
         if (DataSource.orders == null) throw new Exception("There are no orders!");
-
-        /*
-        foreach(Order order in DataSource.orders)
-        {
-            order.ToString();
-        }*/
-
         //make a new array with only the orders we have
-        Order[] tempOrders = new Order[DataSource.Config.s_nextOrderNumber-1000];
+        Order[] tempOrders = new Order[DataSource.Config.s_nextOrderNumber-999];
 
         for (int i = 0; i < tempOrders.Length; i++)
         {
@@ -88,7 +81,7 @@ public class DalOrder
 
     public void UpdateOrders(Order current)
     {
-        for(int i = 0; i < DataSource.Config.s_nextOrderNumber-1000; i++)
+        for(int i = 0; i < DataSource.Config.s_nextOrderNumber-999; i++)
         {
             if(DataSource.orders[i].ID == current.ID)
             {
