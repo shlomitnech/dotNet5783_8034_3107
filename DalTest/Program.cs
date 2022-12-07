@@ -257,8 +257,8 @@ internal class DalTest
                 case (Enums.Type.OrderItem, Enums.Action.Add):
                     try
                     {
-                        Console.WriteLine("Write the order items's name: \n");
-                        _product.Name = Console.ReadLine() ?? "";
+                        //Console.WriteLine("Write the order items's name: \n");
+                       // _orderItem.name = Console.ReadLine() ?? "";
                         Console.WriteLine("Write the product's price \n");
                         _orderItem.price = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write the product's ID \n");
@@ -267,8 +267,9 @@ internal class DalTest
                         _orderItem.orderID = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write how many products they put in the order: \n");
                         _orderItem.amount = Convert.ToInt32(Console.ReadLine());
-                        int ordItID = dalOrdItem.InsertOrderItem(_orderItem);
+                        int ordItID = dalOrdItem.InsertOrderItem(_orderItem); 
                         Console.WriteLine("Your order Item's ID is: " + ordItID);
+
                     }
                     catch (Exception ex)
                     {
@@ -279,8 +280,8 @@ internal class DalTest
                 case (Enums.Type.OrderItem, Enums.Action.Update):
                     try
                     {
-                        Console.WriteLine("Write the order items's name: \n");
-                        _product.Name = Console.ReadLine() ?? "";
+                        Console.WriteLine("Write the order items's ID: \n");
+                        _orderItem.ID = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write the product's price \n");
                         _orderItem.price = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write the product's ID \n");
