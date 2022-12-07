@@ -40,21 +40,45 @@ internal class DalTest
             }
             if (num1 == 0)
                 break; //leave the while loop
-            Enums.Type type = (Enums.Type)num1-1;
-            Console.WriteLine("To ADD, press 1 \n"
-              + "To UPDATE, press 2 \n"
-              + "To VIEW ONE, press 3 \n"
-              + "to VIEW WHOLE LIST, press 4 \n"
-              + "to DELETE, press 5 \n"
-              + "to exit, press 0 "
-              );
-            num2 = Convert.ToInt32(Console.ReadLine());
-            while (num2 > 5 || num2 < 0) //check for error
+            Enums.Type type = (Enums.Type)num1 - 1;
+
+            if (num1 == 3)  //They asked for Order Items
             {
-                Console.WriteLine("Please click a number 0-5");
-           
+                Console.WriteLine("To ADD, press 1 \n"
+                     + "To UPDATE, press 2 \n"
+                     + "To VIEW ONE, press 3 \n"
+                     + "to VIEW WHOLE LIST, press 4 \n"
+                     + "to DELETE, press 5 \n"
+                     + "to VIEW ALL ORDER items in an order, press 6 "
+                     + "to exit, press 0 " );
                 num2 = Convert.ToInt32(Console.ReadLine());
+                while (num2 > 6 || num2 < 0) //check for error
+                {
+                    Console.WriteLine("Please click a number 0-6");
+
+                    num2 = Convert.ToInt32(Console.ReadLine());
+                }
             }
+            else //They asked for Order or Product
+            {
+                Console.WriteLine("To ADD, press 1 \n"
+                  + "To UPDATE, press 2 \n"
+                  + "To VIEW ONE, press 3 \n"
+                  + "to VIEW WHOLE LIST, press 4 \n"
+                  + "to DELETE, press 5 \n"
+                  + "to exit, press 0 "
+                  );
+
+                num2 = Convert.ToInt32(Console.ReadLine());
+                while (num2 > 5 || num2 < 0) //check for error
+                {
+                    Console.WriteLine("Please click a number 0-5");
+
+                    num2 = Convert.ToInt32(Console.ReadLine());
+                }
+
+            }
+
 
             if (num2 == 0)
                 break;    //Leave the while loop
@@ -265,7 +289,6 @@ internal class DalTest
                         _orderItem.productID = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write the order's ID? ");
                         int temp = Convert.ToInt32(Console.ReadLine());
-                        if (temp > 9999 || temp < 1000) { }
                         _orderItem.orderID = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write how many products they put in the order: ");
                         _orderItem.amount = Convert.ToInt32(Console.ReadLine());
@@ -335,7 +358,26 @@ internal class DalTest
                         Console.WriteLine("What is the ID of the orderItem your wish to delete? \n "); 
                         int currID = Convert.ToInt32(Console.ReadLine());
                         dalOrdItem.DeleteOrderItem(currID);
-                        //PRINT updated list?
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error! " + ex.Message); //print out the error 
+                    }
+                    break;
+                case (Enums.Type.OrderItem, Enums.Action.readOrder):
+                    try
+                    {
+                        Console.WriteLine("What is the ID of the order your wish to read? \n ");
+                        int ordID = Convert.ToInt32(Console.ReadLine()); //order number
+
+
+                        OrderItem[] OrderItemList = dalOrdItem.sameOrder(ordID); // call function to read all the products 
+
+                        foreach (OrderItem squash in OrderItemList)
+                        {
+                            Console.WriteLine(squash);
+                        }
 
 
                     }
@@ -344,6 +386,7 @@ internal class DalTest
                         Console.WriteLine("Error! " + ex.Message); //print out the error 
                     }
                     break;
+
             }
         }
             

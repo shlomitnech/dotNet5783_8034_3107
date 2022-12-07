@@ -87,7 +87,6 @@ public class DalOrderItems
         if (!deleted) //if didn't find/delete the product
             throw new Exception("The order item didn't exist \n");
 
-
     }
 
     public OrderItem[] sameOrder(int currID)
