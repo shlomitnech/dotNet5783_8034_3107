@@ -11,6 +11,10 @@ namespace Dal;
 
 internal class DalTest
 {
+    /// <summary>
+    /// The main menu
+    /// </summary>
+    /// <param name="args"></param>
     static void Main(string[] args)
     {
         Product _product = new();
@@ -186,8 +190,6 @@ internal class DalTest
                         Console.WriteLine("What is the product's ID #?");
                         int currID = Convert.ToInt32(Console.ReadLine());
                         dalprod.DeleteProduct(currID);
-                        //Should we then print out the updated list?
-                        //dalprod.ReadAllProducts();
                     }
                     catch (Exception ex)
                     {
@@ -270,8 +272,6 @@ internal class DalTest
                         Console.WriteLine("What is the orders's ID #? ");
                         int currID = Convert.ToInt32(Console.ReadLine());
                         dalord.DeleteOrder(currID);
-                        //Should we then print out the updated list?
-                        //dalord.ReadAllProducts();
                     }
                     catch (Exception ex)
                     {

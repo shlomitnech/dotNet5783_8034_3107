@@ -7,7 +7,12 @@ namespace Dal;
 
 public class DalProducts
 {
-    
+    /// <summary>
+    /// adding an instance to the main array
+    /// </summary>
+    /// <param name="current"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public int InsertProduct(Product current)
     {
 
@@ -30,7 +35,12 @@ public class DalProducts
             return newID;
         }
     }
-    //Read out all the products
+    
+    /// <summary>
+    /// returns all instances in the main array to be printed
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public Product[] ReadAllProducts()
     {
         //check that the array is not empty
@@ -46,6 +56,13 @@ public class DalProducts
 
         return tempProducts; //returning a complete array
     }
+
+    /// <summary>
+    /// returns the instance based on the identifier provided by the user so it can be printed
+    /// </summary>
+    /// <param name="currentID"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public Product ReadProduct(int currentID)
     {
         //iterate through the array and return the instance of the product based on the identifier that the user inputed
@@ -58,6 +75,11 @@ public class DalProducts
 
     }
 
+    /// <summary>
+    /// changes attributes of the instance
+    /// </summary>
+    /// <param name="prod"></param>
+    /// <exception cref="Exception"></exception>
     public void UpdateProducts(Product prod)
     {
         //iterate through the array to find the procuct we want to update
@@ -72,6 +94,12 @@ public class DalProducts
         throw new Exception("Product doesn't exist! \n");
 
     }
+
+    /// <summary>
+    /// removes the instance from the main array
+    /// </summary>
+    /// <param name="currentID"></param>
+    /// <exception cref="Exception"></exception>
     public void DeleteProduct(int currentID)
     {
         if (DataSource.products == null)
