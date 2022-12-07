@@ -110,7 +110,6 @@ internal class DalTest
                         _product.inStock = Convert.ToInt32(Console.ReadLine());
                         int prodsID = dalprod.InsertProduct(_product);
                         Console.WriteLine("Your product's ID is: " + prodsID);
-                        
 
                     }
                     catch (Exception ex)
