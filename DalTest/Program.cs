@@ -26,7 +26,7 @@ internal class DalTest
 
         while (flag) //while user input is not 0
         {
-            Console.WriteLine("To edit the PRODUCTS, press 1 \n"
+            Console.WriteLine("To edit PRODUCTS, press 1 \n"
              + "To edit ORDERS, press 2 \n"
              + "To edit ORDER ITEMS press 3 \n"
              + "To EXIT the program, press 0 "
@@ -75,7 +75,13 @@ internal class DalTest
                               "3 = MainCourse \n" +
                               "4 =  Sides \n" +
                               "5 =  Desserts ");
-                        _product.Category = (Enums.Category)(Convert.ToInt32(Console.ReadLine()));
+                        int cat = Convert.ToInt32(Console.ReadLine());
+                        while (cat < 1 || cat > 5)
+                        {
+                            Console.WriteLine("Please only choose a number 1-5");
+                            cat = Convert.ToInt32(Console.ReadLine());
+                        }
+                        _product.Category = (Enums.Category)(cat-1);
                         Console.WriteLine("Write how many products are in stock");
                         _product.inStock = Convert.ToInt32(Console.ReadLine());
                         int prodsID = dalprod.InsertProduct(_product);
@@ -99,13 +105,19 @@ internal class DalTest
                         _product.ID = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("What is the products price?: ");
                         _product.Price = Convert.ToDouble(Console.ReadLine());
-                        Console.WriteLine("Write the product's category number? " +
-                           "1 = Bread" +
-                           "2 = Dips" +
-                           "3 = MainCourse" +
-                           "4 =  Sides" +
-                           "5 =  Desserts ");
-                        _product.Category = (Enums.Category)(Convert.ToInt32(Console.ReadLine()));
+                        Console.WriteLine("Write the product's category number? \n" +
+                           "1 = Bread \n" +
+                           "2 = Dips \n" +
+                           "3 = MainCourse \n" +
+                           "4 =  Sides \n" +
+                           "5 =  Desserts \n ");
+                        int cat = Convert.ToInt32(Console.ReadLine());
+                        while (cat < 1 || cat > 5)
+                        {
+                            Console.WriteLine("Please only choose a number 1-5");
+                            cat = Convert.ToInt32(Console.ReadLine());
+                        }
+                        _product.Category = (Enums.Category)(cat-1);
                         Console.WriteLine("How many items are in stock? \n");
                         _product.inStock = Convert.ToInt32(Console.ReadLine());
                         dalprod.UpdateProducts(_product);

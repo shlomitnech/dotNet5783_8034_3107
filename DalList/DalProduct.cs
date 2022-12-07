@@ -74,6 +74,10 @@ public class DalProducts
     }
     public void DeleteProduct(int currentID)
     {
+        if (DataSource.products == null)
+        {
+            throw new Exception("There are no products!");
+        }
         bool deleted = false;
         for (int i = 0; i < (DataSource.countProducts); i++ ) //run through the products until the product with this idea is found
         {

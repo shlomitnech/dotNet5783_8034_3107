@@ -39,9 +39,7 @@ public class DalOrder
                 return;
             }
         }
-
         throw new Exception("Order does not exist");
-
     }
 
     public Order ReadOrder(int currentID)
