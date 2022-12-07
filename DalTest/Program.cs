@@ -82,7 +82,7 @@ internal class DalTest
                             cat = Convert.ToInt32(Console.ReadLine());
                         }
                         _product.Category = (Enums.Category)(cat-1);
-                        Console.WriteLine("Write how many products are in stock");
+                        Console.WriteLine("Write how many products are in stock?");
                         _product.inStock = Convert.ToInt32(Console.ReadLine());
                         int prodsID = dalprod.InsertProduct(_product);
                         Console.WriteLine("Your product's ID is: " + prodsID);
@@ -118,7 +118,7 @@ internal class DalTest
                             cat = Convert.ToInt32(Console.ReadLine());
                         }
                         _product.Category = (Enums.Category)(cat-1);
-                        Console.WriteLine("How many items are in stock? \n");
+                        Console.WriteLine("How many items are in stock?");
                         _product.inStock = Convert.ToInt32(Console.ReadLine());
                         dalprod.UpdateProducts(_product);
                     }
@@ -130,7 +130,7 @@ internal class DalTest
                 case (Enums.Type.Product, Enums.Action.getItem):
                     try
                     {
-                        Console.WriteLine("What is the product's ID #? \n");
+                        Console.WriteLine("What is the product's ID #?");
                         int currID = Convert.ToInt32(Console.ReadLine());
                         Product p = dalprod.ReadProduct(currID);
                         Console.WriteLine(p); //print out the information on the product
@@ -159,7 +159,7 @@ internal class DalTest
                 case (Enums.Type.Product, Enums.Action.Delete ):
                     try
                     {
-                        Console.WriteLine("What is the product's ID #? \n");
+                        Console.WriteLine("What is the product's ID #?");
                         int currID = Convert.ToInt32(Console.ReadLine());
                         dalprod.DeleteProduct(currID);
                         //Should we then print out the updated list?
@@ -174,11 +174,11 @@ internal class DalTest
                     try
                     {
                        
-                        Console.WriteLine("Write the customers's name: \n");
+                        Console.WriteLine("Write the customers's name: ");
                         _order.CustomerName = Console.ReadLine() ?? "";
-                        Console.WriteLine("Write the customer's email: \n");
+                        Console.WriteLine("Write the customer's email: ");
                         _order.CustomerEmail = Console.ReadLine() ?? "";
-                        Console.WriteLine("Write the customer's shipping address: \n");
+                        Console.WriteLine("Write the customer's shipping address: ");
                         _order.ShippingAddress = Console.ReadLine() ?? "";
                         _order.OrderDate = DateTime.Now;
                         _order.ShippingDate = DateTime.Now.AddDays(_random.Next(3, 7));
@@ -195,13 +195,13 @@ internal class DalTest
                 case (Enums.Type.Order, Enums.Action.Update):
                     try
                     {
-                        Console.WriteLine("Write the customers's name: \n");
+                        Console.WriteLine("Write the customers's name: ");
                         _order.CustomerName = Console.ReadLine() ?? "";
                         Console.WriteLine("What is the order ID?: ");
                         _order.ID = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Write the customer's email: \n");
+                        Console.WriteLine("Write the customer's email: ");
                         _order.CustomerEmail = Console.ReadLine() ?? "";
-                        Console.WriteLine("Write the customer's shipping address: \n");
+                        Console.WriteLine("Write the customer's shipping address: ");
                         _order.ShippingAddress = Console.ReadLine() ?? "";
                         dalord.UpdateOrders(_order); //update the order
                     }
@@ -229,9 +229,9 @@ internal class DalTest
                     {
                         Order[] Orderlist = dalord.ReadAllOrders(); // call function to read all the products 
 
-                        foreach (Order Shabbos in Orderlist)
+                        foreach (Order shoes in Orderlist)
                         { 
-                            Console.WriteLine(Shabbos);
+                            Console.WriteLine(shoes);
                         }
 
                     }
@@ -243,7 +243,7 @@ internal class DalTest
                 case (Enums.Type.Order, Enums.Action.Delete):
                     try
                     {
-                        Console.WriteLine("What is the orders's ID #? \n");
+                        Console.WriteLine("What is the orders's ID #? ");
                         int currID = Convert.ToInt32(Console.ReadLine());
                         dalord.DeleteOrder(currID);
                         //Should we then print out the updated list?
@@ -259,13 +259,15 @@ internal class DalTest
                     {
                         //Console.WriteLine("Write the order items's name: \n");
                        // _orderItem.name = Console.ReadLine() ?? "";
-                        Console.WriteLine("Write the product's price \n");
+                        Console.WriteLine("Write the product's price ");
                         _orderItem.price = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Write the product's ID \n");
+                        Console.WriteLine("Write the product's ID ");
                         _orderItem.productID = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Write the order's ID? \n");
+                        Console.WriteLine("Write the order's ID? ");
+                        int temp = Convert.ToInt32(Console.ReadLine());
+                        if (temp > 9999 || temp < 1000) { }
                         _orderItem.orderID = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Write how many products they put in the order: \n");
+                        Console.WriteLine("Write how many products they put in the order: ");
                         _orderItem.amount = Convert.ToInt32(Console.ReadLine());
                         int ordItID = dalOrdItem.InsertOrderItem(_orderItem); 
                         Console.WriteLine("Your order Item's ID is: " + ordItID);
@@ -280,15 +282,15 @@ internal class DalTest
                 case (Enums.Type.OrderItem, Enums.Action.Update):
                     try
                     {
-                        Console.WriteLine("Write the order items's ID: \n");
+                        Console.WriteLine("Write the order items's ID: ");
                         _orderItem.ID = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Write the product's price \n");
+                        Console.WriteLine("Write the product's price ");
                         _orderItem.price = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Write the product's ID \n");
+                        Console.WriteLine("Write the product's ID ");
                         _orderItem.productID = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Write the order's ID? \n");
+                        Console.WriteLine("Write the order's ID? ");
                         _orderItem.orderID = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Write how many products they put in the order: \n");
+                        Console.WriteLine("Write how many products they put in the order: ");
                         _orderItem.amount = Convert.ToInt32(Console.ReadLine());
                         dalOrdItem.UpdateOrderItems(_orderItem); //send to function to be updated
 
@@ -301,7 +303,7 @@ internal class DalTest
                 case (Enums.Type.OrderItem, Enums.Action.getItem):
                     try
                     {
-                        Console.WriteLine("What is the order item's ID #? \n");
+                        Console.WriteLine("What is the order item's ID #? ");
                         int currID = Convert.ToInt32(Console.ReadLine());
                         OrderItem p = dalOrdItem.ReadOrderItem(currID);
                         Console.WriteLine(p); //print out the information on the product
