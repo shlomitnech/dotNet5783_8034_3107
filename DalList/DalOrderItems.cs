@@ -8,13 +8,13 @@ public class DalOrderItems
     public int InsertOrderItem(OrderItem current )
     {
         //Check if the order item already exists
-        for (int i = 0; i < (DataSource.Config.s_nextOrderItemNumber); i++)
+        for (int i = 0; i < (DataSource.countOrderItems); i++)
         {
             if (current.ID == DataSource.orderItems[i].ID)
                 throw new Exception("Item already exists\n");
         }
         //If we already have 200 products then throw error
-        if ((DataSource.Config.s_nextOrderItemNumber) >= 200) //DOES this update the order count?
+        if ((DataSource.countOrderItems >= 200)) //DOES this update the order count?
         {
             throw new Exception("Too many order items!\n");
         }
@@ -22,13 +22,14 @@ public class DalOrderItems
         {
             int newID = DataSource.Config.NextOrderItemNumber;
             DataSource.orderItems[newID] = current;
+            DataSource.countOrderItems++;
             return newID;
              
         }
     }
     public OrderItem ReadOrderItem(int currentID)
     {
-        for (int i = 0; i < (DataSource.Config.s_nextOrderItemNumber); i++)
+        for (int i = 0; i < (DataSource.countOrderItems); i++)
         {
             if (currentID == DataSource.orderItems[i].ID) //IS THIS CORRECT? yes!
                 return DataSource.orderItems[i]; //return the product
@@ -43,7 +44,7 @@ public class DalOrderItems
         if(DataSource.orderItems==null)  throw new Exception("There are currently no orderitems \n");
 
         //put all existing order items in new array to return it
-        OrderItem[] tempItems = new OrderItem[DataSource.Config.s_nextOrderItemNumber];
+        OrderItem[] tempItems = new OrderItem[DataSource.countOrderItems];
 
         for(int i = 0; i < tempItems.Length; i++)
         {
@@ -55,7 +56,7 @@ public class DalOrderItems
 
     public void UpdateOrderItems(OrderItem item)
     {
-        for (int i = 0; i < (DataSource.Config.s_nextOrderItemNumber); i++)
+        for (int i = 0; i < (DataSource.countOrderItems); i++)
         {
             if (item.ID == DataSource.orderItems[i].ID) 
             {
@@ -69,15 +70,16 @@ public class DalOrderItems
     public void DeleteOrderItem(int currentID)
     {
         bool deleted = false;
-        for (int i = 0; i < DataSource.Config.s_nextOrderItemNumber; i++) //run through the products until the product with this idea is found
+        for (int i = 0; i < DataSource.countOrderItems; i++) //run through the products until the product with this idea is found
         {
             if (DataSource.orderItems[i].ID == currentID) //delete product and update the array
             {
                 deleted = true;
-                for (int j = i; j < DataSource.Config.s_nextOrderItemNumber; j++)
+                for (int j = i; j < DataSource.countOrderItems; j++)
                 {
                     DataSource.orderItems[j] = DataSource.orderItems[j + 1]; //Update the list
                 }
+                DataSource.countOrderItems--;
                 break;
             }
         }

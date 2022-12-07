@@ -12,13 +12,13 @@ public class DalProducts
     {
 
         //Check if the product already exists
-        for (int i = 0; i < (DataSource.Config.s_nextProductNumber - 100000); i++)
+        for (int i = 0; i < (DataSource.countProducts); i++)
         {
             if (current.Name == DataSource.products[i].Name)
                 throw new Exception("Product already exists\n");
         }
         //If we already have 50 products then throw error
-        if ((DataSource.Config.s_nextProductNumber - 100000) >= 50) 
+        if ((DataSource.countProducts) >= 50) 
         {
             throw new Exception("Too many products!\n");
         }
@@ -26,7 +26,7 @@ public class DalProducts
         {
             int newID = DataSource.Config.NextProductNumber;
             current.ID = newID;
-            DataSource.products[newID - 100000] = current; //put the product into the array
+            DataSource.products[DataSource.countProducts++] = current; //put the product into the array
             return newID;
         }
     }
@@ -37,7 +37,7 @@ public class DalProducts
         if (DataSource.products == null) throw new Exception("There are no products");
 
         //send back an array with the products
-        Product[] tempProducts = new Product[DataSource.Config.s_nextProductNumber-99999];
+        Product[] tempProducts = new Product[DataSource.countProducts];
 
         for(int i = 0; i < tempProducts.Length; i++)
         {
@@ -49,7 +49,7 @@ public class DalProducts
     public Product ReadProduct(int currentID)
     {
         //iterate through the array and return the instance of the product based on the identifier that the user inputed
-        for (int i = 0; i < (DataSource.Config.s_nextProductNumber-99999); i++)
+        for (int i = 0; i < (DataSource.countProducts); i++)
         {
             if (currentID == DataSource.products[i].ID) 
                 return DataSource.products[i]; //return the product once found
@@ -61,7 +61,7 @@ public class DalProducts
     public void UpdateProducts(Product prod)
     {
         //iterate through the array to find the procuct we want to update
-        for (int i = 0; i < (DataSource.Config.s_nextProductNumber-100000); i++)
+        for (int i = 0; i < (DataSource.countProducts); i++)
         {
             if (prod.ID == DataSource.products[i].ID)
             {
@@ -75,15 +75,16 @@ public class DalProducts
     public void DeleteProduct(int currentID)
     {
         bool deleted = false;
-        for (int i = 0; i < (DataSource.Config.s_nextProductNumber - 100000 - 100000); i++ ) //run through the products until the product with this idea is found
+        for (int i = 0; i < (DataSource.countProducts); i++ ) //run through the products until the product with this idea is found
         {
             if (DataSource.products[i].ID == currentID) //delete product and update the array
             {
                 deleted = true;
-                for (int j = i; j< (DataSource.Config.s_nextProductNumber - 100000); j++)
+                for (int j = i; j< (DataSource.countProducts); j++)
                 {
                     DataSource.products[j] = DataSource.products[j + 1]; //Update the list
                 }
+                DataSource.countProducts--;
                 break;
             }
         }

@@ -8,14 +8,14 @@ public class DalOrder
     public int InsertOrder(Order current)
     {
         //If we already have 100 orders then it will send an error
-        if (DataSource.Config.s_nextOrderNumber-1100 >= 100)
+        if (DataSource.countOrders >= 100)
         {
             throw new Exception("Can't take more orders");
         }
         //take the instance and add it to the array
         int newID = DataSource.Config.NextOrderNumber;
         current.ID = newID;
-        DataSource.orders[newID - 1000] = current;
+        DataSource.orders[DataSource.countOrders++] = current;
         return newID;
     }
     public void DeleteOrder(int currentID)
@@ -27,14 +27,15 @@ public class DalOrder
         }
 
         //delete the order from the array and update the rest of the array
-        for(int i = 0; i < DataSource.Config.s_nextOrderNumber-1000; i++)
+        for(int i = 0; i < DataSource.countOrders; i++)
         {
             if (DataSource.orders[i].ID == currentID)
             {
-                for (int j = i; j < DataSource.Config.s_nextOrderNumber - 1000; j++)
+                for (int j = i; j < DataSource.countOrders; j++)
                 { 
                     DataSource.orders[j] = DataSource.orders[j + 1];
                 }
+                DataSource.countOrders--;
                 return;
             }
         }
@@ -47,7 +48,7 @@ public class DalOrder
     {
 
         //find the order based on the identifier in the array
-        for (int i = 0; i < (DataSource.Config.s_nextOrderNumber -999); i++)
+        for (int i = 0; i < (DataSource.countOrders); i++)
         {
 
             if (currentID == DataSource.orders[i].ID) 
@@ -62,7 +63,7 @@ public class DalOrder
         //check that array is not empty
         if (DataSource.orders == null) throw new Exception("There are no orders!");
         //make a new array with only the orders we have
-        Order[] tempOrders = new Order[DataSource.Config.s_nextOrderNumber-999];
+        Order[] tempOrders = new Order[DataSource.countOrders];
 
         for (int i = 0; i < tempOrders.Length; i++)
         {
@@ -74,7 +75,7 @@ public class DalOrder
 
     public void UpdateOrders(Order current)
     {
-        for(int i = 0; i < DataSource.Config.s_nextOrderNumber-999; i++)
+        for(int i = 0; i < DataSource.countOrders; i++)
         {
             if(DataSource.orders[i].ID == current.ID)
             {

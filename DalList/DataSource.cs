@@ -12,6 +12,9 @@ public class DataSource
     internal static Order[] orders = new Order[100];
     internal static Product[] products = new Product[50];
     internal static OrderItem[] orderItems = new OrderItem[200];
+    internal static int countOrders = 20;
+    internal static int countProducts = 10;
+    internal static int countOrderItems = 40;
    // internal static DataSource s_instance { get; }
     public DataSource() { s_Initialize(); } //default constructor called
    // static DataSource() => s_instance = new DataSource();
