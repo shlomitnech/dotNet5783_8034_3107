@@ -22,7 +22,7 @@ internal class DalTest
         int num1, num2;
         bool flag = true;
         DataSource ds = new();
-        
+        Random _random = new Random();
 
         while (flag) //while user input is not 0
         {
@@ -168,7 +168,9 @@ internal class DalTest
                         _order.CustomerEmail = Console.ReadLine() ?? "";
                         Console.WriteLine("Write the customer's shipping address: \n");
                         _order.ShippingAddress = Console.ReadLine() ?? "";
-                        // ADD DATE TIME!!!!
+                        _order.OrderDate = DateTime.Now;
+                        _order.ShippingDate = DateTime.Now.AddDays(_random.Next(3, 7));
+                        _order.DeliveryDate = DateTime.Now.AddDays(_random.Next(8, 21));
                         int ordID = dalord.InsertOrder(_order);
                         Console.WriteLine("Your product's ID is: " + ordID);
                     }
@@ -189,10 +191,6 @@ internal class DalTest
                         _order.CustomerEmail = Console.ReadLine() ?? "";
                         Console.WriteLine("Write the customer's shipping address: \n");
                         _order.ShippingAddress = Console.ReadLine() ?? "";
-                        //_order.ShippingAddress = Console.ReadLine() ?? "";
-
-
-                        // ADD DATE TIMES!!!!
                         dalord.UpdateOrders(_order); //update the order
                     }
                     catch (Exception ex)

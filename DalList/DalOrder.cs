@@ -26,23 +26,20 @@ public class DalOrder
             throw new Exception("There are no orders");
         }
 
-        int index;
-
-        try      //get the index where the order we want to delete is
-        {
-            Order other = ReadOrder(currentID);
-            index = other.ID;  //the place in the array where the order that we want to delete is
-        }
-        catch(Exception)    //if order does not exist send an error
-        {
-            throw new Exception("Order does not exist");
-        }
-
         //delete the order from the array and update the rest of the array
-        for(int i = index; i < DataSource.Config.s_nextOrderNumber-1000; i++)
+        for(int i = 0; i < DataSource.Config.s_nextOrderNumber-1000; i++)
         {
-            DataSource.orders[i] = DataSource.orders[i+1];
+            if (DataSource.orders[i].ID == currentID)
+            {
+                for (int j = i; j < DataSource.Config.s_nextOrderNumber - 1000; j++)
+                { 
+                    DataSource.orders[j] = DataSource.orders[j + 1];
+                }
+                return;
+            }
         }
+
+        throw new Exception("Order does not exist");
 
     }
 
@@ -81,8 +78,6 @@ public class DalOrder
         {
             if(DataSource.orders[i].ID == current.ID)
             {
-                current.ShippingDate = DataSource.orders[i].ShippingDate;
-                
                 DataSource.orders[i] = current;
                 return;
             }
