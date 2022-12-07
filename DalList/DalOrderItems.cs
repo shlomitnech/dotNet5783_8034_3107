@@ -21,8 +21,8 @@ public class DalOrderItems
         //If the orderItem is not out of stock and there is space, insert it into products
         {
             int newID = DataSource.Config.NextOrderItemNumber;
-            DataSource.orderItems[newID] = current;
-            DataSource.countOrderItems++;
+            current.ID = newID;
+            DataSource.orderItems[DataSource.countOrderItems++] = current;
             return newID;
              
         }
@@ -34,6 +34,7 @@ public class DalOrderItems
             if (currentID == DataSource.orderItems[i].ID) //IS THIS CORRECT? yes!
                 return DataSource.orderItems[i]; //return the product
         }
+        
         throw new Exception("No product has that ID");
 
     }
