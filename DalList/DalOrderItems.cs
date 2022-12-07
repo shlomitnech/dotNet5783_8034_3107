@@ -19,8 +19,16 @@ public class DalOrderItems
             if(current.orderID == DataSource.orders[i].ID)
                 ifOrderExists = true;
 
-            if(current.productID == DataSource.products[i].ID)
+            if (current.productID == DataSource.products[i].ID)
+            {
                 ifProductExists = true;
+                if (DataSource.products[i].inStock - (current.amount) < 0)// find out how many are in stock and see if there are enough
+                {
+                    throw new Exception("There are not enough in stock");
+                }
+                else
+                    DataSource.products[i].inStock = (DataSource.products[i].inStock - current.amount);//update the stock count
+            }
         }
 
         //If the order or product does not exist it will throw an exception
@@ -30,6 +38,7 @@ public class DalOrderItems
         //If we already have 200 products then throw error
         if ((DataSource.countOrderItems >= 200)) //DOES this update the order count?
             throw new Exception("Too many order items!\n");
+
 
         //If the orderItem is not out of stock and there is space, insert it into products
         {
@@ -70,9 +79,32 @@ public class DalOrderItems
 
     public void UpdateOrderItems(OrderItem item)
     {
+        bool ifOrderExists = false;
+        bool ifProductExists = false;
+        for (int i = 0; i < (DataSource.countOrderItems); i++) //check that the order and product chosen exists!
+        {
+            if (item.orderID == DataSource.orders[i].ID)
+                ifOrderExists = true;
+
+            if (item.productID == DataSource.products[i].ID)
+            {
+                ifProductExists = true;
+                if ((DataSource.products[i].inStock - ((item.amount))) < 0)// find out how many are in stock and see if there are enough
+                {
+                    throw new Exception("There are not enough in stock");
+                }
+                else
+                    DataSource.products[i].inStock = (DataSource.products[i].inStock - item.amount);//update the stock count
+            }
+        }
+       
+        //If the order or product does not exist it will throw an exception
+        if (!ifOrderExists) throw new Exception("order does not exist");
+        if (!ifProductExists) throw new Exception("product does not exist");
+
         for (int i = 0; i < (DataSource.countOrderItems); i++)
         {
-            if (item.ID == DataSource.orderItems[i].ID) 
+            if (item.ID == DataSource.orderItems[i].ID)
             {
                 DataSource.orderItems[i] = item;
                 return;
