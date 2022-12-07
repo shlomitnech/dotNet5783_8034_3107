@@ -26,10 +26,10 @@ internal class DalTest
 
         while (flag) //while user input is not 0
         {
-            Console.WriteLine("To edit the products, press 1 \n"
-             + "To edit orders, press 2 \n"
-             + "To edit order items press 3 \n"
-             + "To exit the program, press 0"
+            Console.WriteLine("To edit the PRODUCTS, press 1 \n"
+             + "To edit ORDERS, press 2 \n"
+             + "To edit ORDER ITEMS press 3 \n"
+             + "To EXIT the program, press 0"
            );
             num1 = Convert.ToInt32(Console.ReadLine());
             while (num1 > 3 || num1 < 0) 
@@ -42,11 +42,11 @@ internal class DalTest
                 break; //leave the while loop
             Enums.Type type = (Enums.Type)num1-1;
             Console.WriteLine("To add, press 1 \n"
-              + "To Update, press 2 \n"
-              + "To view one, press 3 \n"
-              + "to view the whole list, press 4 \n"
-              + "to delete, press 5 \n"
-              + "to exit, press 0 \n"
+              + "To UPDATE, press 2 \n"
+              + "To VIEW ONE, press 3 \n"
+              + "to view the WHOLE LIST, press 4 \n"
+              + "to DELETE, press 5 \n"
+              + "to exit, press 0 "
               );
             num2 = Convert.ToInt32(Console.ReadLine());
             while (num2 > 5 || num2 < 0) //check for error
@@ -70,16 +70,17 @@ internal class DalTest
                         Console.WriteLine("Write the product's price \n");
                         _product.Price = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write the product's category number? " +
-                              "1 = Bread" +
-                              "2 = Dips" +
-                              "3 = MainCourse" +
-                              "4 =  Sides" +
+                              "1 = Bread \n" +
+                              "2 = Dips \n" +
+                              "3 = MainCourse \n" +
+                              "4 =  Sides \n" +
                               "5 =  Desserts \n");
                         _product.Category = (Enums.Category)(Convert.ToInt32(Console.ReadLine()));
                         Console.WriteLine("Write how many products are in stock");
                         _product.inStock = Convert.ToInt32(Console.ReadLine());
                         int prodsID = dalprod.InsertProduct(_product);
                         Console.WriteLine("Your product's ID is: " + prodsID);
+                        
 
                     }
                     catch (Exception ex)
