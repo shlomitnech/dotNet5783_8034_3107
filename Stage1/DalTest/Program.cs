@@ -21,8 +21,8 @@ internal class DalTest
         DalOrderItems dalOrdItem = new ();
         int num1, num2;
         bool flag = true;
-        DataSource ds = new(); //to enable DataSource to call its constructors
-        Random _random = new Random(); //to make random times/variables in the main
+        DataSource ds = new();
+        Random _random = new Random();
 
         while (flag) //while user input is not 0
         {
@@ -44,7 +44,7 @@ internal class DalTest
             Console.WriteLine("To ADD, press 1 \n"
               + "To UPDATE, press 2 \n"
               + "To VIEW ONE, press 3 \n"
-              + "to VIEW WHOLE LIST, press 4 \n"
+              + "to view the WHOLE LIST, press 4 \n"
               + "to DELETE, press 5 \n"
               + "to exit, press 0 "
               );
@@ -220,7 +220,7 @@ internal class DalTest
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error!" + ex.Message); //print out the error 
+                        Console.WriteLine("Error! " + ex.Message); //print out the error 
                     }
                     break;
 
@@ -251,7 +251,7 @@ internal class DalTest
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error!" + ex.Message); //print out the error 
+                        Console.WriteLine("Error! " + ex.Message); //print out the error 
                     }
                     break;
                 case (Enums.Type.OrderItem, Enums.Action.Add):
@@ -332,8 +332,6 @@ internal class DalTest
                         Console.WriteLine("What is the ID of the orderItem your wish to delete? \n "); 
                         int currID = Convert.ToInt32(Console.ReadLine());
                         dalOrdItem.DeleteOrderItem(currID);
-                        //PRINT updated list?
-
 
                     }
                     catch (Exception ex)
