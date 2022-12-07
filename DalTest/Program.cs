@@ -49,7 +49,7 @@ internal class DalTest
                      + "To VIEW ONE, press 3 \n"
                      + "to VIEW WHOLE LIST, press 4 \n"
                      + "to DELETE, press 5 \n"
-                     + "to VIEW ALL ORDER items in an order, press 6 "
+                     + "to VIEW ALL ORDER items in an order, press 6 \n"
                      + "to exit, press 0 " );
                 num2 = Convert.ToInt32(Console.ReadLine());
                 while (num2 > 6 || num2 < 0) //check for error
@@ -287,7 +287,6 @@ internal class DalTest
                         _orderItem.price = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write the product's ID ");
                         _orderItem.productID = Convert.ToInt32(Console.ReadLine());
-                        _orderItem.orderID = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write how many products they put in the order: ");
                         _orderItem.amount = Convert.ToInt32(Console.ReadLine());
                         int ordItID = dalOrdItem.InsertOrderItem(_orderItem); 

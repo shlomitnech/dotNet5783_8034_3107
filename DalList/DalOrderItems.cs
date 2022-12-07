@@ -16,10 +16,10 @@ public class DalOrderItems
             if (current.ID == DataSource.orderItems[i].ID)
                 throw new Exception("Item already exists\n");
 
-            if(current.orderID == DataSource.orderItems[i].orderID)
+            if(current.orderID == DataSource.orders[i].ID)
                 ifOrderExists = true;
 
-            if(current.productID == DataSource.orderItems[i].productID)
+            if(current.productID == DataSource.products[i].ID)
                 ifProductExists = true;
         }
 
