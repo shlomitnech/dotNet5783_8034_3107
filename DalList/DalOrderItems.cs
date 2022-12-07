@@ -90,5 +90,32 @@ public class DalOrderItems
 
     }
 
+    public OrderItem[] sameOrder(int currID)
+    {
+        int count1 = 0;
+        int count2 = 0;
+
+        for(int i = 0; i < DataSource.countOrderItems; i++)
+        {
+            if(DataSource.orderItems[i].orderID == currID)
+            {
+                count1++;
+            }
+        }
+
+        if (count1 == 0) throw new Exception("There are no products in this order");
+        
+        OrderItem[] tempSameOrder = new OrderItem[count1];
+
+        for(int i = 0; i<DataSource.countOrderItems; i++)
+        {
+            if (DataSource.orderItems[i].orderID == currID)
+            {
+                tempSameOrder[count2++] = DataSource.orderItems[i];
+            }
+        }
+
+        return tempSameOrder;
+    }
 
 }
