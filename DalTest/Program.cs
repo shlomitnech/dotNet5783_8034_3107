@@ -65,16 +65,16 @@ internal class DalTest
                 case (Enums.Type.Product, Enums.Action.Add):
                     try
                     {
-                        Console.WriteLine("Write the product's name: \n");
+                        Console.WriteLine("Write the product's name:");
                         _product.Name = Console.ReadLine() ?? "";
-                        Console.WriteLine("Write the product's price \n");
+                        Console.WriteLine("Write the product's price ");
                         _product.Price = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write the product's category number? " +
                               "1 = Bread \n" +
                               "2 = Dips \n" +
                               "3 = MainCourse \n" +
                               "4 =  Sides \n" +
-                              "5 =  Desserts \n");
+                              "5 =  Desserts ");
                         _product.Category = (Enums.Category)(Convert.ToInt32(Console.ReadLine()));
                         Console.WriteLine("Write how many products are in stock");
                         _product.inStock = Convert.ToInt32(Console.ReadLine());
@@ -85,7 +85,7 @@ internal class DalTest
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error!" + ex.Message); //print out the error to the screen
+                        Console.WriteLine("Error! " + ex.Message); //print out the error to the screen
                     }
                     break;
 
@@ -98,7 +98,7 @@ internal class DalTest
                         Console.WriteLine("What is the products ID?: ");
                         _product.ID = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("What is the products price?: ");
-                        _product.Price = Convert.ToInt32(Console.ReadLine());
+                        _product.Price = Convert.ToDouble(Console.ReadLine());
                         Console.WriteLine("Write the product's category number? " +
                            "1 = Bread" +
                            "2 = Dips" +
@@ -112,7 +112,7 @@ internal class DalTest
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error!" + ex.Message); //print out the error to the screen
+                        Console.WriteLine("Error! " + ex.Message); //print out the error to the screen
                     }
                     break;
                 case (Enums.Type.Product, Enums.Action.getItem):
@@ -125,7 +125,7 @@ internal class DalTest
                     }
                     catch (Exception ex)
                     {
-                       Console.WriteLine("Error!" + ex.Message); //print out the error 
+                       Console.WriteLine("Error! " + ex.Message); //print out the error 
                     }
                     break;
 
@@ -141,7 +141,7 @@ internal class DalTest
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error!" + ex.Message); //print out the error 
+                        Console.WriteLine("Error! " + ex.Message); //print out the error 
                     }
                     break;
                 case (Enums.Type.Product, Enums.Action.Delete ):
@@ -155,7 +155,7 @@ internal class DalTest
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error!" + ex.Message); //print out the error 
+                        Console.WriteLine("Error! " + ex.Message); //print out the error 
                     }
                     break;
                 case (Enums.Type.Order, Enums.Action.Add):
@@ -174,7 +174,7 @@ internal class DalTest
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error!" + ex.Message); //print out the error 
+                        Console.WriteLine("Error! " + ex.Message); //print out the error 
                     }
                     break;
 
@@ -197,7 +197,7 @@ internal class DalTest
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error!" + ex.Message); //print out the error 
+                        Console.WriteLine("Error! " + ex.Message); //print out the error 
                     }
                     break;
                 case (Enums.Type.Order, Enums.Action.getItem):
@@ -227,7 +227,7 @@ internal class DalTest
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error!" + ex.Message); //print out the error 
+                        Console.WriteLine("Error! " + ex.Message); //print out the error 
                     }
                     break;
                 case (Enums.Type.Order, Enums.Action.Delete):
@@ -262,7 +262,7 @@ internal class DalTest
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error!" + ex.Message); //print out the error 
+                        Console.WriteLine("Error! " + ex.Message); //print out the error 
                     }
                     break;
 
@@ -284,7 +284,7 @@ internal class DalTest
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error!" + ex.Message); //print out the error 
+                        Console.WriteLine("Error! " + ex.Message); //print out the error 
                     }
                     break;
                 case (Enums.Type.OrderItem, Enums.Action.getItem):
@@ -313,7 +313,7 @@ internal class DalTest
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error!" + ex.Message); //print out the error 
+                        Console.WriteLine("Error! " + ex.Message); //print out the error 
                     }
                     break;
                 case (Enums.Type.OrderItem, Enums.Action.Delete):
@@ -328,7 +328,7 @@ internal class DalTest
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error!" + ex.Message); //print out the error 
+                        Console.WriteLine("Error! " + ex.Message); //print out the error 
                     }
                     break;
             }
