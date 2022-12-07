@@ -183,13 +183,13 @@ internal class DalTest
                     {
                         Console.WriteLine("Write the customers's name: \n");
                         _order.CustomerName = Console.ReadLine() ?? "";
-                        Console.WriteLine("What is the customer ID?: ");
+                        Console.WriteLine("What is the order ID?: ");
                         _order.ID = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write the customer's email: \n");
                         _order.CustomerEmail = Console.ReadLine() ?? "";
                         Console.WriteLine("Write the customer's shipping address: \n");
                         _order.ShippingAddress = Console.ReadLine() ?? "";
-                        _order.ShippingAddress = Console.ReadLine() ?? "";
+                        //_order.ShippingAddress = Console.ReadLine() ?? "";
 
 
                         // ADD DATE TIMES!!!!
