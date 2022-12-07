@@ -29,7 +29,7 @@ internal class DalTest
             Console.WriteLine("To edit the PRODUCTS, press 1 \n"
              + "To edit ORDERS, press 2 \n"
              + "To edit ORDER ITEMS press 3 \n"
-             + "To EXIT the program, press 0"
+             + "To EXIT the program, press 0 "
            );
             num1 = Convert.ToInt32(Console.ReadLine());
             while (num1 > 3 || num1 < 0) 
