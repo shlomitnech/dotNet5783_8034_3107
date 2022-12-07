@@ -54,7 +54,7 @@ public class DalProducts
             if (currentID == DataSource.products[i].ID) 
                 return DataSource.products[i]; //return the product once found
         }
-        throw new Exception("No product has that ID");    //if pproduct is not found
+        throw new Exception("No product has that ID");    //if product is not found
 
     }
 

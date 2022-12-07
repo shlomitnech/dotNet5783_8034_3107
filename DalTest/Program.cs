@@ -94,6 +94,7 @@ internal class DalTest
                     {
                         Console.WriteLine("What is the products name?: ");
                         _product.Name = Console.ReadLine() ?? "";
+                        
                         Console.WriteLine("What is the products ID?: ");
                         _product.ID = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("What is the products price?: ");
@@ -115,16 +116,16 @@ internal class DalTest
                     }
                     break;
                 case (Enums.Type.Product, Enums.Action.getItem):
-                    try
+                   // try
                     {
                         Console.WriteLine("What is the product's ID #? \n");
                         int currID = Convert.ToInt32(Console.ReadLine());
                         Product p = dalprod.ReadProduct(currID);
                         Console.WriteLine(p); //print out the information on the product
                     }
-                    catch (Exception ex)
+                   // catch (Exception ex)
                     {
-                        Console.WriteLine("Error!" + ex); //print out the error 
+                      //  Console.WriteLine("Error!" + ex); //print out the error 
                     }
                     break;
 
