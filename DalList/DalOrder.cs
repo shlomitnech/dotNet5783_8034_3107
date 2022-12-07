@@ -48,14 +48,10 @@ public class DalOrder
 
     public Order ReadOrder(int currentID)
     {
-        Console.WriteLine(DataSource.orders[0]);
-
-
 
         //find the order based on the identifier in the array
         for (int i = 0; i < (DataSource.Config.s_nextOrderNumber -999); i++)
         {
-            Console.WriteLine(DataSource.orders[i]);
 
             if (currentID == DataSource.orders[i].ID) 
                 return DataSource.orders[i]; //return the product
@@ -85,6 +81,8 @@ public class DalOrder
         {
             if(DataSource.orders[i].ID == current.ID)
             {
+                current.ShippingDate = DataSource.orders[i].ShippingDate;
+                
                 DataSource.orders[i] = current;
                 return;
             }
