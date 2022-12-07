@@ -5,6 +5,12 @@ namespace Dal;
 
 public class DalOrderItems
 {
+    /// <summary>
+    /// Inserts a new Order Item to the main array
+    /// </summary>
+    /// <param name="current"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public int InsertOrderItem(OrderItem current )
     {
         bool ifOrderExists = false;
@@ -49,6 +55,13 @@ public class DalOrderItems
              
         }
     }
+
+    /// <summary>
+    /// Takes the ID and returns the insance so it can be printed
+    /// </summary>
+    /// <param name="currentID"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public OrderItem ReadOrderItem(int currentID)
     {
         for (int i = 0; i < (DataSource.countOrderItems); i++)
@@ -60,7 +73,12 @@ public class DalOrderItems
         throw new Exception("No product has that ID");
 
     }
-    //Read out all the orderItems
+
+    /// <summary>
+    /// Returns only the existing instances of Orders Items to be printed to the screen
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public OrderItem[] ReadAllOrderItems()
     {
         //check that the array is not empty
@@ -77,6 +95,11 @@ public class DalOrderItems
         return tempItems;
     }
 
+    /// <summary>
+    /// Changes the info of an existing instance
+    /// </summary>
+    /// <param name="item"></param>
+    /// <exception cref="Exception"></exception>
     public void UpdateOrderItems(OrderItem item)
     {
         bool ifOrderExists = false;
@@ -113,6 +136,12 @@ public class DalOrderItems
         throw new Exception("Order item doesn't exist! \n");
 
     }
+
+    /// <summary>
+    /// Deletes the chosen instance
+    /// </summary>
+    /// <param name="currentID"></param>
+    /// <exception cref="Exception"></exception>
     public void DeleteOrderItem(int currentID)
     {
         bool deleted = false;
@@ -134,6 +163,12 @@ public class DalOrderItems
 
     }
 
+    /// <summary>
+    /// Sends back the instances with the given order ID
+    /// </summary>
+    /// <param name="currID"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public OrderItem[] sameOrder(int currID)
     {
         int count1 = 0;

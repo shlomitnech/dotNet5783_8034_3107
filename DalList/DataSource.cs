@@ -5,10 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 public class DataSource
 {
-    readonly static Random random = new Random(); //random number generatio
-/// <summary>
-/// Creating the inital arrays for Order, Product and OrderItem
-/// </summary>
+    readonly static Random random = new Random(); //random number generater
     internal static Order[] orders = new Order[100];
     internal static Product[] products = new Product[50];
     internal static OrderItem[] orderItems = new OrderItem[200];
@@ -17,7 +14,10 @@ public class DataSource
     internal static int countOrderItems = 40;
    // internal static DataSource s_instance { get; }
     public DataSource() { s_Initialize(); } //default constructor called
-   // static DataSource() => s_instance = new DataSource();
+    
+    /// <summary>
+    /// Class that defines auto incremental IDs for all data entities
+    /// </summary>
     internal static class Config{ //Will help us create our data list 
 
        //Variables for the Order
@@ -38,7 +38,6 @@ public class DataSource
         //Internal Static Flag
         internal static bool debug = true;
     }
-  //  internal static DataSource s_instance { get; } //returns a copy of the data
 
     static void s_Initialize() //Calls the constructors to initialize the data entities
     {

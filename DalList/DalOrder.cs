@@ -5,6 +5,12 @@ using DO;
 
 public class DalOrder
 { 
+    /// <summary>
+    /// Adds an instance to the main array
+    /// </summary>
+    /// <param name="current"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public int InsertOrder(Order current)
     {
         //If we already have 100 orders then it will send an error
@@ -18,6 +24,12 @@ public class DalOrder
         DataSource.orders[DataSource.countOrders++] = current;
         return newID;
     }
+
+    /// <summary>
+    /// deletes an instace from the main array
+    /// </summary>
+    /// <param name="currentID"></param>
+    /// <exception cref="Exception"></exception>
     public void DeleteOrder(int currentID)
     {
         //If there are no orders it will send an error 
@@ -42,6 +54,12 @@ public class DalOrder
         throw new Exception("Order does not exist");
     }
 
+    /// <summary>
+    /// returns the instance with the provided identifier
+    /// </summary>
+    /// <param name="currentID"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public Order ReadOrder(int currentID)
     {
 
@@ -56,6 +74,11 @@ public class DalOrder
 
     }
 
+    /// <summary>
+    /// Sends back the instances in the main array so it can be printed 
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public Order[] ReadAllOrders()
     {
         //check that array is not empty
@@ -71,6 +94,11 @@ public class DalOrder
             return tempOrders;
     }
 
+    /// <summary>
+    /// changes attributes of the instance
+    /// </summary>
+    /// <param name="current"></param>
+    /// <exception cref="Exception"></exception>
     public void UpdateOrders(Order current)
     {
         for(int i = 0; i < DataSource.countOrders; i++)
