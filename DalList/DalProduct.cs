@@ -1,11 +1,10 @@
-﻿
-using DO;
-using System;
-using System.Security.Cryptography.X509Certificates;
-
+﻿using DO;
+using System.Security.Cryptography;
+using System.Threading;
+using DalApi;
 namespace Dal;
 
-public class DalProducts
+public class DalProducts : IProduct
 {
     /// <summary>
     /// adding an instance to the main array
@@ -13,29 +12,32 @@ public class DalProducts
     /// <param name="current"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public int InsertProduct(Product current)
+    public int Add(Product current) //this is out of order
     {
 
+        //If we already have 50 products then it will send an error
+        if (DataSource.products.Count >= 50)
+        {
+            throw new Exception("Can't take more orders");
+        }
+        /*
+        int index = DataSource.products.FindIndex(x => x.ID == current.ID);
         //Check if the product already exists
-        for (int i = 0; i < (DataSource.countProducts); i++)
-        {
-            if (current.Name == DataSource.products[i].Name)
-                throw new Exception("Product already exists\n");
-        }
-        //If we already have 50 products then throw error
-        if ((DataSource.countProducts) >= 50) 
-        {
-            throw new Exception("Too many products!\n");
-        }
-        //If the product doesn't exist and there is space, insert it into products
-        {
-            int newID = DataSource.Config.NextProductNumber;
-            current.ID = newID;
-            DataSource.products[DataSource.countProducts++] = current; //put the product into the array
-            return newID;
-        }
+        if (index != -1)
+            throw new Exception("Product already exists\n");
+        */
+        //take the instance and add it to the list
+        int newID = DataSource.Config.NextProductNumber;
+        current.ID = newID;
+        DataSource.products.Add(current);
+        return newID;
+
+ 
+ 
+
+  
     }
-    
+
     /// <summary>
     /// returns all instances in the main array to be printed
     /// </summary>
@@ -49,7 +51,7 @@ public class DalProducts
         //send back an array with the products
         Product[] tempProducts = new Product[DataSource.countProducts];
 
-        for(int i = 0; i < tempProducts.Length; i++)
+        for (int i = 0; i < tempProducts.Length; i++)
         {
             tempProducts[i] = DataSource.products[i];
         }
@@ -63,16 +65,12 @@ public class DalProducts
     /// <param name="currentID"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public Product ReadProduct(int currentID)
+    public Product Get(int currentID)
     {
-        //iterate through the array and return the instance of the product based on the identifier that the user inputed
-        for (int i = 0; i < (DataSource.countProducts); i++)
-        {
-            if (currentID == DataSource.products[i].ID) 
-                return DataSource.products[i]; //return the product once found
-        }
-        throw new Exception("No product has that ID");    //if product is not found
-
+        Product thisProd = DataSource.products.Find(x=> x.ID == currentID);
+        if (thisProd.ID != currentID)
+           throw new Exception("No product has that ID");    //if product is not found
+        return thisProd;
     }
 
     /// <summary>
@@ -80,7 +78,7 @@ public class DalProducts
     /// </summary>
     /// <param name="prod"></param>
     /// <exception cref="Exception"></exception>
-    public void UpdateProducts(Product prod)
+    public void Update(Product prod)
     {
         //iterate through the array to find the procuct we want to update
         for (int i = 0; i < (DataSource.countProducts); i++)
@@ -100,27 +98,17 @@ public class DalProducts
     /// </summary>
     /// <param name="currentID"></param>
     /// <exception cref="Exception"></exception>
-    public void DeleteProduct(int currentID)
+    public void Delete(int currentID)
     {
-        if (DataSource.products == null)
-        {
-            throw new Exception("There are no products!");
-        }
-        bool deleted = false;
-        for (int i = 0; i < (DataSource.countProducts); i++ ) //run through the products until the product with this idea is found
-        {
-            if (DataSource.products[i].ID == currentID) //delete product and update the array
-            {
-                deleted = true;
-                for (int j = i; j< (DataSource.countProducts); j++)
-                {
-                    DataSource.products[j] = DataSource.products[j + 1]; //Update the list
-                }
-                DataSource.countProducts--;
-                break;
-            }
-        }
-        if (!deleted) //if didn't find/delete the product
-            throw new Exception("The product didn't exist \n");
+        //delete the product from the array and update the rest of the array
+
+        int index = DataSource.products.FindIndex(x => x.ID == currentID); // Is this correct?
+
+        if (index == -1) // Item doesn't exist
+            throw new Exception("Order does not exist");
+
+        DataSource.products.RemoveAt(index);
+
+        return;
     }
 }

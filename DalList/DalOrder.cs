@@ -1,9 +1,11 @@
-﻿namespace Dal;
-using DO;
+﻿using DO;
+using System.Security.Cryptography;
+using System.Threading;
+using System.Threading;
+using DalApi;
+namespace Dal;
 
-
-
-public class DalOrder
+public class DalOrder : IOrder
 { 
     /// <summary>
     /// Adds an instance to the main array
@@ -11,17 +13,17 @@ public class DalOrder
     /// <param name="current"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public int InsertOrder(Order current)
+    public int Add(Order current)
     {
         //If we already have 100 orders then it will send an error
-        if (DataSource.countOrders >= 100)
+        if (DataSource.orders.Count >= 100)
         {
             throw new Exception("Can't take more orders");
         }
         //take the instance and add it to the array
         int newID = DataSource.Config.NextOrderNumber;
         current.ID = newID;
-        DataSource.orders[DataSource.countOrders++] = current;
+        DataSource.orders.Add(current);
         return newID;
     }
 
@@ -30,28 +32,18 @@ public class DalOrder
     /// </summary>
     /// <param name="currentID"></param>
     /// <exception cref="Exception"></exception>
-    public void DeleteOrder(int currentID)
+    public void Delete(int currentID)
     {
-        //If there are no orders it will send an error 
-        if(DataSource.orders == null)
-        {
-            throw new Exception("There are no orders");
-        }
-
         //delete the order from the array and update the rest of the array
-        for(int i = 0; i < DataSource.countOrders; i++)
-        {
-            if (DataSource.orders[i].ID == currentID)
-            {
-                for (int j = i; j < DataSource.countOrders; j++)
-                { 
-                    DataSource.orders[j] = DataSource.orders[j + 1];
-                }
-                DataSource.countOrders--;
-                return;
-            }
-        }
-        throw new Exception("Order does not exist");
+
+        int index = DataSource.orders.FindIndex(x => x.ID == currentID); // Is this correct?
+
+        if (index == -1) // Item doesn't exist
+            throw new Exception("Order does not exist");
+
+        DataSource.orders.RemoveAt(index);    
+
+        return;
     }
 
     /// <summary>
@@ -60,18 +52,12 @@ public class DalOrder
     /// <param name="currentID"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public Order ReadOrder(int currentID)
+    public Order Get(int currentID)
     {
-
-        //find the order based on the identifier in the array
-        for (int i = 0; i < (DataSource.countOrders); i++)
-        {
-
-            if (currentID == DataSource.orders[i].ID) 
-                return DataSource.orders[i]; //return the product
-        }
-        throw new Exception("No order has that ID");    //if we cant find order throw an exception
-
+        Order thisOrd = DataSource.orders.Find(x => x.ID == currentID);
+        if (thisOrd.ID != currentID)
+            throw new Exception("No product has that ID");    //if product is not found
+        return thisOrd;
     }
 
     /// <summary>
@@ -99,9 +85,9 @@ public class DalOrder
     /// </summary>
     /// <param name="current"></param>
     /// <exception cref="Exception"></exception>
-    public void UpdateOrders(Order current)
+    public void Update(Order current)
     {
-        for(int i = 0; i < DataSource.countOrders; i++)
+        for(int i = 0; i < DataSource.orders.Count; i++)
         {
             if(DataSource.orders[i].ID == current.ID)
             {

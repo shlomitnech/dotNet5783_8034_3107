@@ -6,13 +6,13 @@ using System.ComponentModel.DataAnnotations;
 public class DataSource
 {
     readonly static Random random = new Random(); //random number generater
-    internal static Order[] orders = new Order[100];
-    internal static Product[] products = new Product[50];
-    internal static OrderItem[] orderItems = new OrderItem[200];
-    internal static int countOrders = 20;
-    internal static int countProducts = 10;
-    internal static int countOrderItems = 40;
-   // internal static DataSource s_instance { get; }
+    internal static List<Order> orders { get; set; } = new List<Order>();
+    internal static List<Product> products { get; set; } = new List<Product>();
+    internal static List<OrderItem> orderItems { get; set; } = new List<OrderItem>();
+//    internal static int countOrders = 20;
+//  internal static int countProducts = 10;
+//  internal static int countOrderItems = 40;
+   // internal static DataSource s_instance { get; } This caused double ...
     public DataSource() { s_Initialize(); } //default constructor called
     
     /// <summary>
@@ -65,15 +65,18 @@ public class DataSource
             DeliveryDate = DateTime.MinValue,
             ID = Config.NextOrderNumber,
             };
-            if (i<4) orders[i] = myOrder;   //the first 4 orders won't have ship dates
+            if (i<4) orders.Add(myOrder); ;   //the first 4 orders won't have ship dates
 
             myOrder.ShippingDate = myOrder.OrderDate.AddDays(random.Next(3, 7));    //order will ship 3-7 days after ordered
 
-            if(i>=4 && i < 10) orders[i] = myOrder;    //the first 10 orders won't have delivery dates
+            if(i>=4 && i < 10) orders.Add(myOrder); ;    //the first 10 orders won't have delivery dates
 
             myOrder.DeliveryDate = myOrder.ShippingDate.AddDays(random.Next(7, 21));   //order will be delivered 7-21 days after shipped because this is Israel we're talking about
 
-            if(i>=5 && i < 20) orders[i] = myOrder;   //all other orders will have everything initialized
+            if(i>=5 && i < 20) orders.Add(myOrder);   //all other orders will have everything initialized
+
+
+
 
         }
     }
@@ -99,9 +102,9 @@ public class DataSource
                 isDeleted = false,
             };
             
-            if (i < 3) myProduct.inStock = 0;   //make sure 5% is out of stock (Dr. Kelman told us to do this)
+            if (i < 3) myProduct.inStock = 0;   //make sure 5% is out of stock (Guy Kelman told us to do this)
             
-            products[i] = myProduct;  //push product into the array
+            products.Add(myProduct);  //push product into the array
         }
     }
    static private void NewOrderItem()
@@ -109,18 +112,18 @@ public class DataSource
         //initialize 40 order items in the array
         for (int i = 0; i < 40; i++)
         {
-            Product prod = products[random.Next(0, countProducts)];
-            OrderItem myOrderItem = new()
+            Product prod = products[random.Next(products.Count)];
+            orderItems.Add(  
+                new OrderItem
             {
                 ID = Config.NextOrderItemNumber,
                 productID = prod.ID,
                 price = prod.Price,
                 orderID = random.Next(Config.startingOrderNumber, Config.s_nextOrderNumber),
                 amount = random.Next(3)
-            };
+            });
             
-            //push the order item into the array
-            orderItems[i] = myOrderItem;
+       
 
         }
     }

@@ -1,9 +1,10 @@
 ﻿using DO;
 using System.Security.Cryptography;
-
+using System.Threading;
+using DalApi;
 namespace Dal;
 
-public class DalOrderItems
+public class DalOrderItems : IOrderItem
 {
     /// <summary>
     /// Inserts a new Order Item to the main array
@@ -17,7 +18,7 @@ public class DalOrderItems
         bool ifProductExists = false;
 
         //Check if the order item already exists, and if the order id exists and product id exists
-        for (int i = 0; i < (DataSource.countOrderItems); i++)
+        for (int i = 0; i < (DataSource.orderItems.Count); i++)
         {
             if (current.ID == DataSource.orderItems[i].ID)
                 throw new Exception("Item already exists\n");
@@ -62,15 +63,14 @@ public class DalOrderItems
     /// <param name="currentID"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public OrderItem ReadOrderItem(int currentID)
+    public OrderItem Get(int currentID)
     {
-        for (int i = 0; i < (DataSource.countOrderItems); i++)
-        {
-            if (currentID == DataSource.orderItems[i].ID) //IS THIS CORRECT? yes!
-                return DataSource.orderItems[i]; //return the product
+
+         OrderItem thisOrdItem = DataSource.orderItems.Find(x => x.ID == currentID);
+         if (thisOrdItem.ID != currentID)
+            throw new Exception("No product has that ID");    //if product is not found
+         return thisOrdItem;
         }
-        
-        throw new Exception("No product has that ID");
 
     }
 
@@ -144,23 +144,15 @@ public class DalOrderItems
     /// <exception cref="Exception"></exception>
     public void DeleteOrderItem(int currentID)
     {
-        bool deleted = false;
-        for (int i = 0; i < DataSource.countOrderItems; i++) //run through the products until the product with this idea is found
-        {
-            if (DataSource.orderItems[i].ID == currentID) //delete product and update the array
-            {
-                deleted = true;
-                for (int j = i; j < DataSource.countOrderItems; j++)
-                {
-                    DataSource.orderItems[j] = DataSource.orderItems[j + 1]; //Update the list
-                }
-                DataSource.countOrderItems--;
-                break;
-            }
-        }
-        if (!deleted) //if didn't find/delete the product
-            throw new Exception("The order item didn't exist \n");
+       //delete the order from the array and update the rest of the array
 
+        int index = DataSource.orderItems.FindIndex(x => x.ID == currentID); // Is this correct?
+
+         if (index == -1) // Item doesn't exist
+                throw new Exception("Product does not exist");
+
+         DataSource.products.RemoveAt(index);
+         return;
     }
 
     /// <summary>
