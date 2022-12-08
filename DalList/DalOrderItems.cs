@@ -2,9 +2,11 @@
 using System.Security.Cryptography;
 using System.Threading;
 using DalApi;
+using System.Runtime.CompilerServices;
+
 namespace Dal;
 
-public class DalOrderItems : IOrderItem
+public class DalOrderItems : IOrderItem //change to be internal?
 {
     /// <summary>
     /// Inserts a new Order Item to the main array
@@ -12,48 +14,29 @@ public class DalOrderItems : IOrderItem
     /// <param name="current"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public int InsertOrderItem(OrderItem current )
+    public int Add(OrderItem item ) //FIX THIS TO WORK WITH LISTTT
     {
-        bool ifOrderExists = false;
-        bool ifProductExists = false;
+        bool isOrder = DataSource.orders.Exists(x => x.ID == item.orderID); //see if the order exists
+        if (!isOrder) throw new Exception("order does not exist");
+        int productIndex = DataSource.products.FindIndex(x => x.ID == item.productID);//see if the product exists
+        if (productIndex < 0) throw new EntityNotFound("Product does not exist");
 
-        //Check if the order item already exists, and if the order id exists and product id exists
-        for (int i = 0; i < (DataSource.orderItems.Count); i++)
-        {
-            if (current.ID == DataSource.orderItems[i].ID)
-                throw new Exception("Item already exists\n");
+        //Check the Product Stock Count
+        if (DataSource.products[productIndex].inStock - item.amount < 0)
+            throw new EntityNotFound("There are not enough in stock");
+        // else
+        //      DataSource.products[productIndex].inStock = (DataSource.products[productIndex].inStock - item.amount); //update the stock
 
-            if(current.orderID == DataSource.orders[i].ID)
-                ifOrderExists = true;
-
-            if (current.productID == DataSource.products[i].ID)
-            {
-                ifProductExists = true;
-                if (DataSource.products[i].inStock - (current.amount) < 0)// find out how many are in stock and see if there are enough
-                {
-                    throw new Exception("There are not enough in stock");
-                }
-                else
-                    DataSource.products[i].inStock = (DataSource.products[i].inStock - current.amount);//update the stock count
-            }
-        }
-
-        //If the order or product does not exist it will throw an exception
-        if (!ifOrderExists) throw new Exception("order does not exist");
-        if (!ifProductExists) throw new Exception("product does not exist");
-        
         //If we already have 200 products then throw error
-        if ((DataSource.countOrderItems >= 200)) //DOES this update the order count?
-            throw new Exception("Too many order items!\n");
-
+        if ((DataSource.orderItems.Count >= 200)) 
+            throw new EntityNotFound("Too many order items!\n");
 
         //If the orderItem is not out of stock and there is space, insert it into products
         {
             int newID = DataSource.Config.NextOrderItemNumber;
-            current.ID = newID;
-            DataSource.orderItems[DataSource.countOrderItems++] = current;
-            return newID;
-             
+            item.ID = newID;
+            DataSource.orderItems.Add(item);
+            return newID;  
         }
     }
 
@@ -66,20 +49,19 @@ public class DalOrderItems : IOrderItem
     public OrderItem Get(int currentID)
     {
 
-         OrderItem thisOrdItem = DataSource.orderItems.Find(x => x.ID == currentID);
-         if (thisOrdItem.ID != currentID)
+        OrderItem thisOrdItem = DataSource.orderItems.Find(x => x.ID == currentID);
+        if (thisOrdItem.ID != currentID)
             throw new Exception("No product has that ID");    //if product is not found
-         return thisOrdItem;
-        }
-
+        return thisOrdItem;
     }
+    
 
     /// <summary>
     /// Returns only the existing instances of Orders Items to be printed to the screen
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public OrderItem[] ReadAllOrderItems()
+    public OrderItem[] GetAll()
     {
         //check that the array is not empty
         if(DataSource.orderItems==null)  throw new Exception("There are currently no orderitems \n");
@@ -93,6 +75,7 @@ public class DalOrderItems : IOrderItem
         }
 
         return tempItems;
+    
     }
 
     /// <summary>
@@ -100,40 +83,23 @@ public class DalOrderItems : IOrderItem
     /// </summary>
     /// <param name="item"></param>
     /// <exception cref="Exception"></exception>
-    public void UpdateOrderItems(OrderItem item)
+    public void Update(OrderItem item)
     {
-        bool ifOrderExists = false;
-        bool ifProductExists = false;
-        for (int i = 0; i < (DataSource.countOrderItems); i++) //check that the order and product chosen exists!
-        {
-            if (item.orderID == DataSource.orders[i].ID)
-                ifOrderExists = true;
+        int indexItem = DataSource.orderItems.FindIndex(x => x.ID == item.ID);
+        if (indexItem < 0) { throw new EntityNotFound("Order Item does not exist!"); }
+        bool isOrder = DataSource.orders.Exists(x => x.ID == item.orderID); //see if the order exists
+        if (!isOrder) throw new Exception("order does not exist");
+        int productIndex = DataSource.products.FindIndex(x => x.ID == item.productID);//see if the product exists
+        if (productIndex < 0) throw new EntityNotFound("Product does not exist");
 
-            if (item.productID == DataSource.products[i].ID)
-            {
-                ifProductExists = true;
-                if ((DataSource.products[i].inStock - ((item.amount))) < 0)// find out how many are in stock and see if there are enough
-                {
-                    throw new Exception("There are not enough in stock");
-                }
-                else
-                    DataSource.products[i].inStock = (DataSource.products[i].inStock - item.amount);//update the stock count
-            }
-        }
-       
-        //If the order or product does not exist it will throw an exception
-        if (!ifOrderExists) throw new Exception("order does not exist");
-        if (!ifProductExists) throw new Exception("product does not exist");
+        //Check the Product Stock Count
+        if (DataSource.products[productIndex].inStock - item.amount < 0)
+            throw new EntityNotFound("There are not enough in stock");
+       // else
+      //      DataSource.products[productIndex].inStock = (DataSource.products[productIndex].inStock - item.amount); //update the stock
 
-        for (int i = 0; i < (DataSource.countOrderItems); i++)
-        {
-            if (item.ID == DataSource.orderItems[i].ID)
-            {
-                DataSource.orderItems[i] = item;
-                return;
-            }
-        }
-        throw new Exception("Order item doesn't exist! \n");
+        //If everything is good, update the item
+        DataSource.orderItems[indexItem] = item;
 
     }
 
@@ -142,7 +108,7 @@ public class DalOrderItems : IOrderItem
     /// </summary>
     /// <param name="currentID"></param>
     /// <exception cref="Exception"></exception>
-    public void DeleteOrderItem(int currentID)
+    public void Delete(int currentID)
     {
        //delete the order from the array and update the rest of the array
 

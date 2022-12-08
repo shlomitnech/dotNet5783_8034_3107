@@ -12,8 +12,9 @@ namespace DalApi
         T Delete(T item);
         T Update(T item);
         T Get(T item);
+        IEnumerable<T> GetAll(Func<T, bool>? filter = null);
+
     }
-    //IEnumerable<T> GetAll(Func<T, bool>? filter = null);
-    //T GetByFilter(Func<T?, bool>? filter);
+    //  T GetByFilter(Func<T?, bool>? filter);
 }
 

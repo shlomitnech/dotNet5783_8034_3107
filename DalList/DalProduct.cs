@@ -18,7 +18,7 @@ public class DalProducts : IProduct
         //If we already have 50 products then it will send an error
         if (DataSource.products.Count >= 50)
         {
-            throw new Exception("Can't take more orders");
+            throw new EntityNotFound("Can't take more orders");
         }
         /*
         int index = DataSource.products.FindIndex(x => x.ID == current.ID);
@@ -31,10 +31,6 @@ public class DalProducts : IProduct
         current.ID = newID;
         DataSource.products.Add(current);
         return newID;
-
- 
- 
-
   
     }
 
@@ -43,20 +39,21 @@ public class DalProducts : IProduct
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public Product[] ReadAllProducts()
-    {
+    public Product[] GetAll() //!!!!!!!!!!!!!!!!!!!!!
+    { /*
         //check that the array is not empty
         if (DataSource.products == null) throw new Exception("There are no products");
 
         //send back an array with the products
-        Product[] tempProducts = new Product[DataSource.countProducts];
+    
+        List<Product> tempProducts = new ];
 
         for (int i = 0; i < tempProducts.Length; i++)
         {
             tempProducts[i] = DataSource.products[i];
         }
 
-        return tempProducts; //returning a complete array
+        return tempProducts; //returning a complete array*/
     }
 
     /// <summary>
@@ -80,17 +77,10 @@ public class DalProducts : IProduct
     /// <exception cref="Exception"></exception>
     public void Update(Product prod)
     {
-        //iterate through the array to find the procuct we want to update
-        for (int i = 0; i < (DataSource.countProducts); i++)
-        {
-            if (prod.ID == DataSource.products[i].ID)
-            {
-                DataSource.products[i] = prod;
-                return;
-            }
-        }
-        throw new Exception("Product doesn't exist! \n");
-
+        int index = DataSource.products.FindIndex(x => x.ID == prod.ID);
+        if (index == -1) //item doesn't exist
+            throw new EntityNotFound("The product does not exist");
+        DataSource.products[index] = prod;
     }
 
     /// <summary>
@@ -108,7 +98,5 @@ public class DalProducts : IProduct
             throw new Exception("Order does not exist");
 
         DataSource.products.RemoveAt(index);
-
-        return;
     }
 }

@@ -4,8 +4,8 @@ using System.Threading;
 using System.Threading;
 using DalApi;
 namespace Dal;
-
-public class DalOrder : IOrder
+ 
+public class DalOrder : IOrder //change to be internal?
 { 
     /// <summary>
     /// Adds an instance to the main array
@@ -18,7 +18,7 @@ public class DalOrder : IOrder
         //If we already have 100 orders then it will send an error
         if (DataSource.orders.Count >= 100)
         {
-            throw new Exception("Can't take more orders");
+            throw new EntityNotFound("Can't take more orders");
         }
         //take the instance and add it to the array
         int newID = DataSource.Config.NextOrderNumber;
@@ -39,7 +39,7 @@ public class DalOrder : IOrder
         int index = DataSource.orders.FindIndex(x => x.ID == currentID); // Is this correct?
 
         if (index == -1) // Item doesn't exist
-            throw new Exception("Order does not exist");
+            throw new EntityNotFound("Order does not exist");
 
         DataSource.orders.RemoveAt(index);    
 
@@ -59,15 +59,15 @@ public class DalOrder : IOrder
             throw new Exception("No product has that ID");    //if product is not found
         return thisOrd;
     }
-
     /// <summary>
     /// Sends back the instances in the main array so it can be printed 
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public Order[] ReadAllOrders()
+    public IEnumerable<Order> GetAll() //!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
     {
-        //check that array is not empty
+        /*
+        //check that list is not empty
         if (DataSource.orders == null) throw new Exception("There are no orders!");
         //make a new array with only the orders we have
         Order[] tempOrders = new Order[DataSource.countOrders];
@@ -78,6 +78,7 @@ public class DalOrder : IOrder
         }
 
             return tempOrders;
+        */
     }
 
     /// <summary>
@@ -87,16 +88,10 @@ public class DalOrder : IOrder
     /// <exception cref="Exception"></exception>
     public void Update(Order current)
     {
-        for(int i = 0; i < DataSource.orders.Count; i++)
-        {
-            if(DataSource.orders[i].ID == current.ID)
-            {
-                DataSource.orders[i] = current;
-                return;
-            }
-        }
-
-        throw new Exception("Order does not exist!");
+        int index = DataSource.orders.FindIndex(x => x.ID == current.ID);
+        if (index == -1) //item doesn't exist
+            throw new EntityNotFound("Order does not exist!");
+        DataSource.orders[index] = current;
     }
 
 

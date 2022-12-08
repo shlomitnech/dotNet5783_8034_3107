@@ -8,10 +8,13 @@ namespace DO
 {
     public class EntityNotFound : Exception
     {
-        public EntityNotFound() { }
+        public EntityNotFound() : base() { }
+        public EntityNotFound(string message) : base(message) { }
+  
 
-        
-      
+
+
+
     }
     public class IdentifierMissing : Exception
     {

@@ -82,8 +82,6 @@ internal class DalTest
                 }
 
             }
-
-
             if (num2 == 0)
                 break;    //Leave the while loop
    
@@ -112,7 +110,7 @@ internal class DalTest
                         _product.Category = (Enums.Category)(cat-1);
                         Console.WriteLine("Write how many products are in stock?");
                         _product.inStock = Convert.ToInt32(Console.ReadLine());
-                        int prodsID = dalprod.InsertProduct(_product);
+                        int prodsID = dalprod.Add(_product);
                         Console.WriteLine("Your product's ID is: " + prodsID);
 
                     }
@@ -147,7 +145,7 @@ internal class DalTest
                         _product.Category = (Enums.Category)(cat-1);
                         Console.WriteLine("How many items are in stock?");
                         _product.inStock = Convert.ToInt32(Console.ReadLine());
-                        dalprod.UpdateProducts(_product);
+                        dalprod.Update(_product);
                     }
                     catch (Exception ex)
                     {
@@ -159,7 +157,7 @@ internal class DalTest
                     {
                         Console.WriteLine("What is the product's ID #?");
                         int currID = Convert.ToInt32(Console.ReadLine());
-                        Product p = dalprod.ReadProduct(currID);
+                        Product p = dalprod.Get(currID);
                         Console.WriteLine(p); //print out the information on the product
                     }
                     catch (Exception ex)
@@ -171,7 +169,7 @@ internal class DalTest
                 case (Enums.Type.Product, Enums.Action.GetList):
                     try
                     {
-                    Product[] productlist = dalprod.ReadAllProducts(); // call function to read all the products 
+                    Product[] productlist = dalprod.GetAll(); // call function to read all the products 
 
                         foreach (Product pizza in productlist)
                         {
@@ -188,7 +186,7 @@ internal class DalTest
                     {
                         Console.WriteLine("What is the product's ID #?");
                         int currID = Convert.ToInt32(Console.ReadLine());
-                        dalprod.DeleteProduct(currID);
+                        dalprod.Delete(currID);
                     }
                     catch (Exception ex)
                     {
@@ -208,7 +206,7 @@ internal class DalTest
                         _order.OrderDate = DateTime.Now;
                         _order.ShippingDate = DateTime.Now.AddDays(_random.Next(3, 7));
                         _order.DeliveryDate = DateTime.Now.AddDays(_random.Next(8, 21));
-                        int ordID = dalord.InsertOrder(_order);
+                        int ordID = dalord.Add(_order);
                         Console.WriteLine("Your product's ID is: " + ordID);
                     }
                     catch (Exception ex)
@@ -228,7 +226,7 @@ internal class DalTest
                         _order.CustomerEmail = Console.ReadLine() ?? "";
                         Console.WriteLine("Write the customer's shipping address: ");
                         _order.ShippingAddress = Console.ReadLine() ?? "";
-                        dalord.UpdateOrders(_order); //update the order
+                        dalord.Update(_order); //update the order
                     }
                     catch (Exception ex)
                     {
@@ -240,7 +238,7 @@ internal class DalTest
                     {
                         Console.WriteLine("What is the order ID #? \n");
                         int currID = Convert.ToInt32(Console.ReadLine());
-                        Order p = dalord.ReadOrder(currID);
+                        Order p = dalord.Get(currID);
                         Console.WriteLine(p); //print out the information on the product
                     }
                     catch (Exception ex)
@@ -252,11 +250,11 @@ internal class DalTest
                 case (Enums.Type.Order, Enums.Action.GetList):
                     try
                     {
-                        Order[] Orderlist = dalord.ReadAllOrders(); // call function to read all the products 
+                       // Order[] Orderlist = dalord.GetAll(); // call function to read all the products 
 
-                        foreach (Order shoes in Orderlist)
+                     //   foreach (Order shoes in Orderlist)
                         { 
-                            Console.WriteLine(shoes);
+                      //      Console.WriteLine(shoes);
                         }
 
                     }
@@ -270,7 +268,7 @@ internal class DalTest
                     {
                         Console.WriteLine("What is the orders's ID #? ");
                         int currID = Convert.ToInt32(Console.ReadLine());
-                        dalord.DeleteOrder(currID);
+                        dalord.Delete(currID);
                     }
                     catch (Exception ex)
                     {
@@ -288,7 +286,7 @@ internal class DalTest
                         _orderItem.productID = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write how many products they put in the order: ");
                         _orderItem.amount = Convert.ToInt32(Console.ReadLine());
-                        int ordItID = dalOrdItem.InsertOrderItem(_orderItem); 
+                        int ordItID = dalOrdItem.Add(_orderItem); 
                         Console.WriteLine("Your order Item's ID is: " + ordItID);
 
                     }
@@ -311,7 +309,7 @@ internal class DalTest
                         _orderItem.orderID = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write how many products they put in the order: ");
                         _orderItem.amount = Convert.ToInt32(Console.ReadLine());
-                        dalOrdItem.UpdateOrderItems(_orderItem); //send to function to be updated
+                        dalOrdItem.Update(_orderItem); //send to function to be updated
 
                     }
                     catch (Exception ex)
@@ -324,7 +322,7 @@ internal class DalTest
                     {
                         Console.WriteLine("What is the order item's ID #? ");
                         int currID = Convert.ToInt32(Console.ReadLine());
-                        OrderItem p = dalOrdItem.ReadOrderItem(currID);
+                        OrderItem p = dalOrdItem.Get(currID);
                         Console.WriteLine(p); //print out the information on the product
                     }
                     catch (Exception ex)
@@ -336,11 +334,11 @@ internal class DalTest
                 case (Enums.Type.OrderItem, Enums.Action.GetList):
                     try
                     {
-                        OrderItem[] OrderItemList = dalOrdItem.ReadAllOrderItems(); // call function to read all the products 
+                      //  OrderItem[] OrderItemList = dalOrdItem.GetAll(); // call function to read all the products 
 
-                        foreach (OrderItem pizza in OrderItemList)
+                      //  foreach (OrderItem pizza in OrderItemList)
                         {
-                            Console.WriteLine(pizza);
+                      //      Console.WriteLine(pizza);
                         }
                     }
                     catch (Exception ex)
@@ -353,7 +351,7 @@ internal class DalTest
                     {
                         Console.WriteLine("What is the ID of the orderItem your wish to delete? \n "); 
                         int currID = Convert.ToInt32(Console.ReadLine());
-                        dalOrdItem.DeleteOrderItem(currID);
+                        dalOrdItem.Delete(currID);
 
                     }
                     catch (Exception ex)
