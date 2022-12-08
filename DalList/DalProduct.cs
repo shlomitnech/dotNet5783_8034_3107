@@ -4,7 +4,7 @@ using System.Threading;
 using DalApi;
 namespace Dal;
 
-public class DalProducts : IProduct
+public class DalProduct : IProduct
 {
     /// <summary>
     /// adding an instance to the main array

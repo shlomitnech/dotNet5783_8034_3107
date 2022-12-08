@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace Dal;
 
-public class DalOrderItems : IOrderItem //change to be internal?
+public class DalOrderItem : IOrderItem //change to be internal?
 {
     /// <summary>
     /// Inserts a new Order Item to the main array

@@ -18,11 +18,11 @@ internal class DalTest
     static void Main(string[] args)
     {
         Product _product = new();
-        DalProducts dalprod = new();
+        DalProduct dalprod = new();
         Order _order = new();
         DalOrder dalord = new();
         OrderItem _orderItem = new();
-        DalOrderItems dalOrdItem = new ();
+        DalOrderItem dalOrdItem = new ();
         int num1, num2;
         bool flag = true;
         DataSource ds = new(); //to enable DataSource to call its constructors
@@ -169,7 +169,7 @@ internal class DalTest
                 case (Enums.Type.Product, Enums.Action.GetList):
                     try
                     {
-                    Product[] productlist = dalprod.GetAll(); // call function to read all the products 
+                    IEnumerable<Product> productlist = DalList.Instance.Product.GetAll(); // call function to read all the products 
 
                         foreach (Product pizza in productlist)
                         {
@@ -250,12 +250,9 @@ internal class DalTest
                 case (Enums.Type.Order, Enums.Action.GetList):
                     try
                     {
-                       // Order[] Orderlist = dalord.GetAll(); // call function to read all the products 
+                        IEnumerable<Order> Orderlist = DalList.Instance.Order.GetAll(); // call function to read all the products
 
-                     //   foreach (Order shoes in Orderlist)
-                        { 
-                      //      Console.WriteLine(shoes);
-                        }
+                       foreach (Order shoes in Orderlist) { Console.WriteLine(shoes); }
 
                     }
                     catch (Exception ex)
@@ -334,11 +331,12 @@ internal class DalTest
                 case (Enums.Type.OrderItem, Enums.Action.GetList):
                     try
                     {
-                      //  OrderItem[] OrderItemList = dalOrdItem.GetAll(); // call function to read all the products 
+                        IEnumerable<OrderItem> OrderItemList = DalList.Instance.OrderItem.GetAll(); // call function to read all the products 
 
-                      //  foreach (OrderItem pizza in OrderItemList)
+
+                        foreach (OrderItem pizza in OrderItemList)
                         {
-                      //      Console.WriteLine(pizza);
+                           Console.WriteLine(pizza);
                         }
                     }
                     catch (Exception ex)
@@ -365,15 +363,14 @@ internal class DalTest
                         Console.WriteLine("What is the ID of the order your wish to read? \n ");
                         int ordID = Convert.ToInt32(Console.ReadLine()); //order number
 
+                     // FIX THIS ->>>   IEnumerable<OrderItem> OrderItemList = DalList.Instance.OrderItem.GetAll; // call function to read all the products 
 
-                        OrderItem[] OrderItemList = dalOrdItem.sameOrder(ordID); // call function to read all the products 
+                     //   OrderItem[] OrderItemList = dalOrdItem.sameOrder(ordID); // call function to read all the products 
 
-                        foreach (OrderItem squash in OrderItemList)
+                      //  foreach (OrderItem squash in OrderItemList)
                         {
-                            Console.WriteLine(squash);
+                        //    Console.WriteLine(squash);
                         }
-
-
                     }
                     catch (Exception ex)
                     {

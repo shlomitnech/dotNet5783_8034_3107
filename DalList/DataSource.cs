@@ -9,9 +9,6 @@ public class DataSource
     internal static List<Order> orders { get; set; } = new List<Order>();
     internal static List<Product> products { get; set; } = new List<Product>();
     internal static List<OrderItem> orderItems { get; set; } = new List<OrderItem>();
-//    internal static int countOrders = 20;
-//  internal static int countProducts = 10;
-//  internal static int countOrderItems = 40;
    // internal static DataSource s_instance { get; } This caused double ...
     public DataSource() { s_Initialize(); } //default constructor called
     
