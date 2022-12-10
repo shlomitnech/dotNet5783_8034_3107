@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using static DO.Enums;
-//namespace DalAPI;
+namespace DalAPI;
 
 using DO;
-namespace Dal;
 
 internal class DalTest
 {

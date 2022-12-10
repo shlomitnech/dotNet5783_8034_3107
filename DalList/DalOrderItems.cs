@@ -54,29 +54,25 @@ public class DalOrderItem : IOrderItem //change to be internal?
             throw new Exception("No product has that ID");    //if product is not found
         return thisOrdItem;
     }
-    
+
 
     /// <summary>
     /// Returns only the existing instances of Orders Items to be printed to the screen
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public OrderItem[] GetAll()
+    public IEnumerable<OrderItem> GetAll(Func<OrderItem, bool>? filter)
     {
-        //check that the array is not empty
-        if(DataSource.orderItems==null)  throw new Exception("There are currently no orderitems \n");
 
-        //put all existing order items in new array to return it
-        OrderItem[] tempItems = new OrderItem[DataSource.countOrderItems];
-
-        for(int i = 0; i < tempItems.Length; i++)
+        if (filter == null)
         {
-            tempItems[i] = DataSource.orderItems[i];
-        }
+            //   return from v in DataSource.orders
 
-        return tempItems;
-    
+        }
+        throw new Exception("There are no orders!");
+
     }
+
 
     /// <summary>
     /// Changes the info of an existing instance
@@ -127,8 +123,9 @@ public class DalOrderItem : IOrderItem //change to be internal?
     /// <param name="currID"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public OrderItem[] sameOrder(int currID)
-    {
+   // public OrderItem[] sameOrder(int currID)
+  //  {
+        /*
         int count1 = 0;
         int count2 = 0;
 
@@ -151,8 +148,20 @@ public class DalOrderItem : IOrderItem //change to be internal?
                 tempSameOrder[count2++] = DataSource.orderItems[i];
             }
         }
+        */
+        // return tempSameOrder;
+  //  }
 
-        return tempSameOrder;
+    public OrderItem GetByFilter(Func<OrderItem, bool>? filter)
+    {
+        foreach (OrderItem ord in DataSource.orderItems)
+        {
+            //  if (ord.IsDeleted == false && filter(o))
+            {
+                return ord;
+            }
+        }
+        throw new Exception("Does not exist\n");
     }
 
 }

@@ -31,37 +31,39 @@ public class DalProduct : IProduct
         current.ID = newID;
         DataSource.products.Add(current);
         return newID;
-  
     }
-
     /// <summary>
     /// returns all instances in the main array to be printed
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public Product[] GetAll() //!!!!!!!!!!!!!!!!!!!!!
-    { /*
-        //check that the array is not empty
-        if (DataSource.products == null) throw new Exception("There are no products");
-
-        //send back an array with the products
-    
-        List<Product> tempProducts = new ];
-
-        for (int i = 0; i < tempProducts.Length; i++)
+    public IEnumerable<Product> GetAll(Func<Product, bool>? filter) 
+    {  
+        if (filter == null)
         {
-            tempProducts[i] = DataSource.products[i];
+         //   return from v in DataSource.orders       
         }
-
-        return tempProducts; //returning a complete array*/
+            throw new Exception("There are no orders!");
+}
+public Product GetByFilter(Func<Product, bool>? filter)
+    {
+        foreach (Product prod in DataSource.products)
+        {
+            //  if (ord.IsDeleted == false && filter(o))
+            {
+                return prod;
+            }
+        }
+        throw new Exception("Does not exist\n");
     }
 
-    /// <summary>
-    /// returns the instance based on the identifier provided by the user so it can be printed
-    /// </summary>
-    /// <param name="currentID"></param>
-    /// <returns></returns>
-    /// <exception cref="Exception"></exception>
+
+/// <summary>
+/// returns the instance based on the identifier provided by the user so it can be printed
+/// </summary>
+/// <param name="currentID"></param>
+/// <returns></returns>
+/// <exception cref="Exception"></exception>
     public Product Get(int currentID)
     {
         Product thisProd = DataSource.products.Find(x=> x.ID == currentID);

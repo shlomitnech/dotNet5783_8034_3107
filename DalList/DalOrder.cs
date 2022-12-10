@@ -3,6 +3,8 @@ using System.Security.Cryptography;
 using System.Threading;
 using System.Threading;
 using DalApi;
+using System;
+
 namespace Dal;
  
 public class DalOrder : IOrder //change to be internal?
@@ -64,18 +66,17 @@ public class DalOrder : IOrder //change to be internal?
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<Order> GetAll(Func<Order?, bool>? filter) 
+    public IEnumerable<Order> GetAll(Func<Order, bool>? filter) 
     {
         
         if (filter == null)
         {
-            return from v in DataSource.orders
+         //   return from v in DataSource.orders
                   
         }
-            throw new Exception("There are no orders!");
-  
-        
+            throw new Exception("There are no orders!"); 
     }
+
 
     /// <summary>
     /// changes attributes of the instance
@@ -88,6 +89,17 @@ public class DalOrder : IOrder //change to be internal?
         if (index == -1) //item doesn't exist
             throw new EntityNotFound("Order does not exist!");
         DataSource.orders[index] = current;
+    }
+    public Order GetByFilter(Func<Order, bool>? filter)
+    {
+        foreach (Order ord in DataSource.orders)
+        {
+          //  if (ord.IsDeleted == false && filter(o))
+            {
+                return ord;
+            }
+        }
+        throw new Exception("Does not exist\n");
     }
 
 

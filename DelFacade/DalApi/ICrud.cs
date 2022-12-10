@@ -8,10 +8,12 @@ namespace DalApi;
 
 public interface ICrud<T> where T : struct
 {
-    T Add(T item);
-    T Delete(T item);
-    T Update(T item);
-    T Get(T item);
+    int Add(T item);
+    void Delete(int id);
+    void Update(T item);
+    T Get(int id);
+
+   
 
     IEnumerable<T> GetAll(Func<T, bool>? filter = null);
     T GetByFilter(Func<T, bool>? filter);
