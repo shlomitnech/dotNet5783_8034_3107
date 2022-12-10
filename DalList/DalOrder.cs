@@ -64,21 +64,17 @@ public class DalOrder : IOrder //change to be internal?
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<Order> GetAll() //!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+    public IEnumerable<Order> GetAll(Func<Order?, bool>? filter) 
     {
-        /*
-        //check that list is not empty
-        if (DataSource.orders == null) throw new Exception("There are no orders!");
-        //make a new array with only the orders we have
-        Order[] tempOrders = new Order[DataSource.countOrders];
-
-        for (int i = 0; i < tempOrders.Length; i++)
+        
+        if (filter == null)
         {
-            tempOrders[i] = DataSource.orders[i];
+            return from v in DataSource.orders
+                  
         }
-
-            return tempOrders;
-        */
+            throw new Exception("There are no orders!");
+  
+        
     }
 
     /// <summary>
