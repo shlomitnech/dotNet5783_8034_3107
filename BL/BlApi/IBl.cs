@@ -7,7 +7,7 @@ using BO;
 namespace BlApi;
 
 
-public interface IB1
+public interface IBl
 {
     public ICart Cart { get; }
     public IOrder Order { get; }
