@@ -14,10 +14,21 @@ namespace BlImplementation;
 
 internal class Order : BlApi.IOrder
 {
-    readonly private static IDal DOList = Kitchen.Get();
+    readonly private static IDal DOs = Kitchen.Get();
     public IEnumerable<OrderForList?> GetAllOrderForLists() //returns the order list (for the manager to see)
     {
-        IEnumerable<DO.Order?> ords = DOList.Order.GetAll();
+        IEnumerable<DO.Order?> ords = DOs.Order.GetAll();
+        IEnumerable<DO.OrderItem?> ordItems = DOs.OrderItem.GetAll();
+        return from DO.Order ord in ords
+               select new BO.OrderForList
+               {
+                   ID = ord?.ID ?? throw new BO.EntityNotFound
+
+               }
+
+        
+
+
     }
     public BO.Order GetBOOrder(int id) //get the Order ID, check it and return the order using the DO order, orderItem and product
     {

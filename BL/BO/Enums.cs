@@ -8,7 +8,10 @@ namespace BO;
 
 public class Enums
 {
-
+    public enum Category { Bread, Dips, MainCourse, Sides, Desserts, Other };
+    public enum OrderStatus {JustPlace, Processing, Shipped, Arrived, Recieved };
+    public enum Action {Add, Delete, Update, GetList };
+    public enum Type {Cart, Order, Product };
 
 }
 

@@ -13,7 +13,6 @@ public class Exceptions : Exception
     public Exceptions(string message, Exception innerException) : base(message, innerException) { }
     protected Exceptions(SerializationInfo info, StreamingContext context) : base(info, context) { }
     public override string ToString() => base.ToString();
-
 }
 
 [Serializable]
@@ -26,12 +25,12 @@ public class IdExistException : Exception
 }
 
 [Serializable]
-public class IdNotExistException : Exception
+public class EntityNotFound : Exception
 {
-    public IdNotExistException() : base() { }
-    public IdNotExistException(string message) : base(message) { }
-    public IdNotExistException(string message, Exception inner) : base(message, inner) { }
-    protected IdNotExistException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+    public EntityNotFound() : base() { }
+    public EntityNotFound(string message) : base(message) { }
+    public EntityNotFound(string message, Exception inner) : base(message, inner) { }
+    protected EntityNotFound(SerializationInfo info, StreamingContext context) : base(info, context) { }
 }
 
 [Serializable]
