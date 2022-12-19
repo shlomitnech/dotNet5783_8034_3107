@@ -10,6 +10,7 @@ namespace BlImplementation;
 
 internal class Product : BlApi.IProduct
 {
+    readonly private static IDal DOList = DalApi.Kitchen.Get();
     public IEnumerable<ProductForList?> GetProductForList()
     {
 
@@ -27,6 +28,14 @@ internal class Product : BlApi.IProduct
     }
     public void AddProduct(BO.Product prod) //gets a BO product, and adds it to DO product
     {
+        DO.Product p = new DO.Product();
+        p.ID = 0;
+        p.Name = prod.Name;
+        p.Price = prod.Price;
+        p.inStock = prod.inStock;
+        p.Category = (DO.Enums.Category)prod.Category;
+
+        p.ID = DOList.Product.Add(p);
 
     }
     public void DeleteProduct(int id) //check in every order that DO product is deleted 
@@ -35,6 +44,14 @@ internal class Product : BlApi.IProduct
     }
     public void UpdateProduct(BO.Product prod) //Get BO product, and update the DO product
     {
+        DO.Product tempProduct = new DO.Product();
+        tempProduct.ID = prod.ID;
+        tempProduct.Name = prod.Name;
+        tempProduct.Price = prod.Price;
+        tempProduct.inStock = prod.inStock;
+        tempProduct.Category = (DO.Enums.Category)prod.Category;
+
+        DOList.Products.Update(tempProduct);
 
     }
 
