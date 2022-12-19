@@ -19,11 +19,20 @@ internal class Product : BlApi.IProduct
          //returns the product list (for the manager to see)
     public BO.Product ManagerProduct(int id) //returns a BO product of DO product with id
     {
-        BO.Product p = new BO.Product();
+        BO.Product prod1 = new BO.Product();
+        DO.Product prod2 = new DO.Product();
 
+        prod2 = DOList.Product.Get(id);
 
+        throw new Exception(NotDeleted);
 
-        return p;
+        prod1.ID = id;
+        prod1.Name = prod2.Name;
+        prod1.Price = prod2.Price;
+        prod1.Category = (BO.Enums.Category)prod2.Category;
+        prod1.inStock = prod2.inStock;
+
+        return prod1;
         
     }
     public void AddProduct(BO.Product prod) //gets a BO product, and adds it to DO product
