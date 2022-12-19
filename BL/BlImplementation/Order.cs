@@ -22,7 +22,8 @@ internal class Order : BlApi.IOrder
         return from DO.Order ord in ords
                select new BO.OrderForList
                {
-                   ID = ord?.ID ?? throw new BO.EntityNotFound
+                   ID = ord?.ID ?? throw new BO.EntityNotFound()
+
 
                }
 
