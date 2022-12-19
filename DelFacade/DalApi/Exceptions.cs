@@ -4,25 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DO
+namespace DalApi
 {
+    public class Exceptions : Exception
+    {
+        public Exceptions() : base() { }
+        public Exceptions(string message) : base(message) { }
+
+    }
     public class EntityNotFound : Exception
     {
         public EntityNotFound() : base() { }
         public EntityNotFound(string message) : base(message) { }
-  
-
-
 
 
     }
     public class IdentifierMissing : Exception
     {
-        public IdentifierMissing() 
+        public IdentifierMissing()
         { }
-
-
-
     }
     public class Duplicates : Exception
     {
