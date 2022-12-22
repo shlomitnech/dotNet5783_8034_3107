@@ -112,18 +112,18 @@ internal class Program
                     break;
 
                 case BO.Enums.Type.Cart:
-                { 
-                    Console.WriteLine("To add to the cart, press 1 \n" +
-                        "To update a cart, press 2 \n" +
-                        "To place an order, press 3 \n" +
-                    "To return to the main menu, press 0 \n");
-                    num2 = 0;
-                    System.Int32.TryParse(Console.ReadLine(), out num2);
-                    while (num2 > 5 || num2 < 0)
                     {
-                        Console.WriteLine("Please click a number 0-5");
-                        num2 = Convert.ToInt32(Console.ReadLine());
-                    }
+                        Console.WriteLine("To add to the cart, press 1 \n" +
+                            "To update a cart, press 2 \n" +
+                            "To place an order, press 3 \n" +
+                        "To return to the main menu, press 0 \n");
+                        num2 = 0;
+                        System.Int32.TryParse(Console.ReadLine(), out num2);
+                        while (num2 > 5 || num2 < 0)
+                        {
+                            Console.WriteLine("Please click a number 0-5");
+                            num2 = Convert.ToInt32(Console.ReadLine());
+                        }
                         switch (num2)
                         {
                             case 0:
@@ -133,7 +133,10 @@ internal class Program
 
                                 break;
                         }
-            }
+                        break;
+
+
+                    }
 
             }
 
