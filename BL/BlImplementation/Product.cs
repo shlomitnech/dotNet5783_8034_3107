@@ -60,7 +60,7 @@ internal class Product : BlApi.IProduct
         tempProduct.inStock = prod.inStock;
         tempProduct.Category = (DO.Enums.Category)prod.Category;
 
-        DOList.Products.Update(tempProduct);
+        DOList.Product.Update(tempProduct);
 
     }
 

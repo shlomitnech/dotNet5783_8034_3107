@@ -18,8 +18,8 @@ internal class Order : BlApi.IOrder
     readonly private static IDal DOs = DalApi.Kitchen.Get();
     public IEnumerable<OrderForList?> GetAllOrderForLists() //returns the order list (for the manager to see)
     {
-        IEnumerable<DO.Order?> ords = DOs.Order.GetAll(); 
-        IEnumerable<DO.OrderItem?> ordItems = DOs.OrderItem.GetAll();
+        IEnumerable<DO.Order> ords = DOs.Order.GetAll(); 
+        IEnumerable<DO.OrderItem> ordItems = DOs.OrderItem.GetAll();
         return from DO.Order? food in ords
                select new BO.OrderForList
                {
