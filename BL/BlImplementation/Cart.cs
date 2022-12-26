@@ -7,16 +7,18 @@ using System.Threading.Tasks;
 using BlApi;
 namespace BlImplementation;
 
-internal class Cart : BlApi.ICart
+internal class Cart : ICart
 {
-    public BO.Cart AddToCart(BO.Cart cart, int id) //check if the product is in the cart, if not add it from DO product if it is in stock
+    public Cart AddToCart(Cart cart, int id) //check if the product is in the cart, if not add it from DO product if it is in stock
     {
 
     }
-    public BO.Cart UpdateCart(BO.Cart cart, int id, int newAmount)//update the cart to have more or less products and the total price
+    public Cart UpdateCart(Cart cart, int id, int newAmount) //update the cart to have more or less products and the total price
     {
+
     }
     public void MakeOrder(Cart cart, string CustomerName, string Customeremail, string customerAddress) //approve the items in the cart and make the real order
     {
+
     }
 }
