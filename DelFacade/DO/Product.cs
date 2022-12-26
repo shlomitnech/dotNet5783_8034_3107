@@ -6,9 +6,9 @@
 public struct Product
 {
     public int ID { get; set; }
-    public string Name { get; set; }
-    public double Price { get; set; }
-    public Enums.Category Category { get; set; }
+    public string? Name { get; set; }
+    public double? Price { get; set; }
+    public Enums.Category? Category { get; set; }
     public int inStock { get; set; }    
     public bool isDeleted { get; set; }
 

@@ -10,10 +10,18 @@ namespace BlImplementation;
 
 internal class Product : BlApi.IProduct
 {
-    readonly private static IDal DOList = DalApi.Kitchen.Get();
-    public IEnumerable<ProductForList?> GetProductForList()
+    readonly private static IDal Dos = DalApi.Kitchen.Get(); 
+    public IEnumerable<ProductForList?> GetProductForList() //returns the product list (for the manager to see)
     {
-
+        return from DO.Product? food in Dos.Product.GetAll()
+               where food != null
+               select new ProductForList
+               {
+                   ID = food.Value.ID,
+                   Name = food?.Name,
+                   Price = (double)food?.Price,
+                   Category = (Enums.Category)food?.Category
+               };
 
     }
          //returns the product list (for the manager to see)
@@ -21,30 +29,31 @@ internal class Product : BlApi.IProduct
     {
         BO.Product prod1 = new BO.Product();
         DO.Product prod2 = new DO.Product();
-
-        prod2 = DOList.Product.Get(id);
-
-        throw new Exception(NotDeleted);
-
-        prod1.ID = id;
-        prod1.Name = prod2.Name;
-        prod1.Price = prod2.Price;
-        prod1.Category = (BO.Enums.Category)prod2.Category;
-        prod1.inStock = prod2.inStock;
-
-        return prod1;
-        
+        prod2 = Dos.Product.Get(id); // put the product with this ID into prod2
+        if (true) //if it isn't deleted!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        {
+            prod1.ID = id;
+            prod1.Name = prod2.Name;
+            prod1.Price = prod2.Price;
+            prod1.Category = (Enums.Category?)prod2.Category;
+            prod1.InStock = prod2.inStock;
+        }
+        throw new Exception();
     }
     public void AddProduct(BO.Product prod) //gets a BO product, and adds it to DO product
     {
+        if (prod.Name == "" || prod.Price <= 0 || prod.InStock < 0 || prod.Category < 0 || prod.Category > Enums.Category.Other )
+        {
+            throw new IncorrectInput("Invalid Input");
+        }
         DO.Product p = new DO.Product();
         p.ID = 0;
         p.Name = prod.Name;
         p.Price = prod.Price;
-        p.inStock = prod.inStock;
-        p.Category = (DO.Enums.Category)prod.Category;
+        p.inStock = prod.InStock;
+        p.Category = (DO.Enums.Category?)prod.Category;
 
-        p.ID = DOList.Product.Add(p);
+        p.ID = Dos.Product.Add(p);
 
     }
     public void DeleteProduct(int id) //check in every order that DO product is deleted 
@@ -53,14 +62,18 @@ internal class Product : BlApi.IProduct
     }
     public void UpdateProduct(BO.Product prod) //Get BO product, and update the DO product
     {
-        DO.Product tempProduct = new DO.Product();
-        tempProduct.ID = prod.ID;
-        tempProduct.Name = prod.Name;
-        tempProduct.Price = prod.Price;
-        tempProduct.inStock = prod.inStock;
-        tempProduct.Category = (DO.Enums.Category)prod.Category;
+        if (prod.Name == "" || prod.Price <= 0 || prod.InStock < 0 || prod.Category < 0 || prod.Category > Enums.Category.Other)
+        {
+            throw new IncorrectInput("Invalid input");
+        }
+        DO.Product p = new DO.Product();
+        p.ID = prod.ID;
+        p.Name = prod.Name;
+        p.Price = prod.Price;
+        p.inStock = prod.InStock;
+        p.Category = (DO.Enums.Category?)prod.Category;
 
-        DOList.Product.Update(tempProduct);
+        p.ID = Dos.Product.Update(p);
 
     }
 
