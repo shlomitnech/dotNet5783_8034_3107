@@ -61,12 +61,12 @@ public class DalOrderItem : IOrderItem //change to be internal?
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<OrderItem> GetAll(Func<OrderItem, bool>? filter)
+    public IEnumerable<OrderItem> GetAll()
     {
 
-        if (filter == null)
+        if (DataSource.orderItems != null)
         {
-            //   return from v in DataSource.orders
+            return DataSource.orderItems;
 
         }
         throw new Exception("There are no orders!");

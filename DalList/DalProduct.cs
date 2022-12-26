@@ -37,11 +37,11 @@ public class DalProduct : IProduct
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<Product> GetAll(Func<Product, bool>? filter) 
+    public IEnumerable<Product> GetAll() 
     {  
-        if (filter == null)
+        if (DataSource.products != null)
         {
-         //   return from v in DataSource.orders       
+            return DataSource.products;     
         }
             throw new Exception("There are no orders!");
 }
