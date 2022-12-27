@@ -86,9 +86,9 @@ internal class Product : BlApi.IProduct
                      {
                          ID = latkes.ID,
                          Name = latkes.Name,
-                         Price = (double)latkes.Price,
-                         Amount = latkes.inStock,
-                         Category = (BO.Enums.Category)latkes.Category
+                         Price = (double)latkes?.Price,
+                         Amount = latkes?.inStock,
+                         Category = (BO.Enums.Category)latkes?.Category
                      };
 
         foreach (ProductItem item in potato)
