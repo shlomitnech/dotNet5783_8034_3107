@@ -9,8 +9,10 @@ namespace DalApi;
 
 public static class Kitchen
 {
+    /*
     public static IDal? Get()
     {
+
         string dalType = s_dalName
             ?? throw new Exceptions($"DAL name is not extracted from the configuration");
         string dal = s_dalPackages[dalType]
@@ -32,5 +34,5 @@ public static class Kitchen
                    .GetValue(null) as IDal
             ?? throw new Exceptions($"Class {dal} is not singleton or Instance property not found");
     }
-
+    */
 }

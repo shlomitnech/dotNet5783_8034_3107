@@ -164,4 +164,8 @@ public class DalOrderItem : IOrderItem //change to be internal?
         throw new Exception("Does not exist\n");
     }
 
+    public IEnumerable<OrderItem> GetAll(Func<OrderItem, bool>? filter = null)
+    {
+        throw new NotImplementedException();
+    }
 }

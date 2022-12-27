@@ -101,4 +101,9 @@ public Product GetByFilter(Func<Product, bool>? filter)
 
         DataSource.products.RemoveAt(index);
     }
+
+    public IEnumerable<Product> GetAll(Func<Product, bool>? filter = null)
+    {
+        throw new NotImplementedException();
+    }
 }

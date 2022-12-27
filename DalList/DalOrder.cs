@@ -102,5 +102,8 @@ public class DalOrder : IOrder //change to be internal?
         throw new Exception("Does not exist\n");
     }
 
-
+    public IEnumerable<Order> GetAll(Func<Order, bool>? filter = null)
+    {
+        throw new NotImplementedException();
+    }
 }

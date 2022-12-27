@@ -12,7 +12,7 @@ public class Cart
     public string? CustomerEmail { get; set;}
     public string? CustomerAddress { get; set;}
     public List<BO.OrderItem> Items { get; set; }
-    public double TotalPrice { get; set; }
+    public double? TotalPrice { get; set; }
 
     public override string ToString() => $@"
 	Customer's Name is: {CustomerName}

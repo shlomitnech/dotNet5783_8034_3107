@@ -63,7 +63,7 @@ internal class Program
                         case 1:
                             try
                             {
-                                IEnumerable<BO.ProductForList?> pr = bl.Product.GetProductForList;
+                                IEnumerable<BO.ProductForList?> pr = bl.Product.GetProductForList();
 
                                 foreach (ProductForList? f in pr)
                                 {
@@ -293,7 +293,7 @@ internal class Program
                                 amt = ReadFromUser();
                                 try
                                 {
-                                    cart = UpdateCart(cart, id, amt); //update the cart to have more or less products and the total price
+                                    cart = bl.Cart.UpdateCart(cart, id, amt); //update the cart to have more or less products and the total price
                                 }
                                 catch (EntityNotFound err)
                                 {
