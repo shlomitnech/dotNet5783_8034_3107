@@ -277,7 +277,7 @@ internal class DalTest
                         Console.WriteLine("Write the order's ID? ");
                         _orderItem.orderID = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write the product's price ");
-                        _orderItem.price = Convert.ToInt32(Console.ReadLine());
+                        _orderItem.Price = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write the product's ID ");
                         _orderItem.productID = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write how many products they put in the order: ");
@@ -298,7 +298,7 @@ internal class DalTest
                         Console.WriteLine("Write the order items's ID: ");
                         _orderItem.ID = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write the product's price ");
-                        _orderItem.price = Convert.ToInt32(Console.ReadLine());
+                        _orderItem.Price = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write the product's ID ");
                         _orderItem.productID = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Write the order's ID? ");
