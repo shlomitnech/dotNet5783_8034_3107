@@ -81,8 +81,7 @@ internal class Product : BlApi.IProduct
     public IEnumerable<ProductItem?> GetCatalog()
     {
          
-         
-         
+        
          
     }
 
