@@ -45,7 +45,7 @@ public class DalProduct : IProduct
         }
             throw new Exception("There are no orders!");
 }
-public Product GetByFilter(Func<Product, bool>? filter)
+/*public Product GetByFilter(Func<Product, bool>? filter)
     {
         foreach (Product prod in DataSource.products)
         {
@@ -55,7 +55,7 @@ public Product GetByFilter(Func<Product, bool>? filter)
             }
         }
         throw new Exception("Does not exist\n");
-    }
+    }*/
 
 
 /// <summary>
@@ -67,7 +67,7 @@ public Product GetByFilter(Func<Product, bool>? filter)
     public Product Get(int currentID)
     {
         Product thisProd = DataSource.products.Find(x=> x.ID == currentID);
-        if (thisProd.ID != currentID)
+        if (thisProd.ID == 0)
            throw new Exception("No product has that ID");    //if product is not found
         return thisProd;
     }
@@ -102,8 +102,8 @@ public Product GetByFilter(Func<Product, bool>? filter)
         DataSource.products.RemoveAt(index);
     }
 
-    public IEnumerable<Product> GetAll(Func<Product, bool>? filter = null)
+   /* public IEnumerable<Product> GetAll(Func<Product, bool>? filter = null)
     {
         throw new NotImplementedException();
-    }
+    }*/
 }

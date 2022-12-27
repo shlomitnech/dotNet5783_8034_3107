@@ -15,8 +15,8 @@ public interface ICrud<T> where T : struct
 
    
 
-    IEnumerable<T> GetAll(Func<T, bool>? filter = null);
-    T GetByFilter(Func<T, bool>? filter);
+    //IEnumerable<T> GetAll(Func<T, bool>? filter = null);
+    //T GetByFilter(Func<T, bool>? filter);
 
 }
 
