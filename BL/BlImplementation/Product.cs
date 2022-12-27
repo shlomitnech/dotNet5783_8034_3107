@@ -73,14 +73,17 @@ internal class Product : BlApi.IProduct
         p.inStock = prod.InStock;
         p.Category = (DO.Enums.Category?)prod.Category;
 
-        p.ID = Dos.Product.Update(p);
+        Dos.Product.Update(p);
 
     }
 
     //The Customer Functions
     public IEnumerable<ProductItem?> GetCatalog()
     {
-
+         
+         
+         
+         
     }
 
 }

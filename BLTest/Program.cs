@@ -7,7 +7,7 @@ using System.Net.Http.Headers;
 
 internal class Program
 {
-    static IBl bl = new BL();
+    static IBl bl = new Bl();
     static void Main(string[] args)
     {
         Cart? cart = new Cart() { Items = new List<BO.OrderItem?>() }; //create a new cart
@@ -15,6 +15,7 @@ internal class Program
         BO.Order? order = new();
         int num1;
         int num2;
+        int id;
         while (true)
         {
             Console.WriteLine("Choose a category: " +
@@ -59,6 +60,14 @@ internal class Program
                             Console.WriteLine("You've chosen to stop editing!");
                             break;
                         case 1:
+                            try
+                            {
+
+                            }
+                            catch (BO.EntityNotFound err)
+                            {
+                                Console.WriteLine(err.Message);
+                            }
                             break;
 
                         case 2:
@@ -130,8 +139,22 @@ internal class Program
                                 Console.WriteLine("You've chosen to stop editing!");
                                 break;
                             case 1:
-
+                                Console.WriteLine("Please enter the product ID: ");
+                                id = ReadFromUser();
+                                try
+                                {
+                                    cart = bl.Cart.AddToCart(cart, id);
+                                }
+                                catch (Exception err)
+                                {
+                                    Console.WriteLine(err.Message);
+                                }
                                 break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+
                         }
                         break;
 
@@ -144,6 +167,16 @@ internal class Program
 
         }
 
+
+    }
+    static int ReadFromUser()
+    {
+        int num;
+        while (!System.Int32.TryParse(Console.ReadLine(), out num))
+        {
+            Console.WriteLine("Please put an integer value in \n");
+        }
+        return num;
     }
 
 }
