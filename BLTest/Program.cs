@@ -4,6 +4,7 @@ using BO;
 using BlImplementation;
 using System;
 using System.Net.Http.Headers;
+using System.Collections.Generic;
 
 internal class Program
 {
@@ -62,7 +63,12 @@ internal class Program
                         case 1:
                             try
                             {
+                                IEnumerable<BO.ProductForList?> pr = bl.Product.GetProductForList;
 
+                                foreach (ProductForList? f in pr)
+                                {
+                                    Console.WriteLine(f);
+                                }
                             }
                             catch (BO.EntityNotFound err)
                             {
@@ -71,14 +77,85 @@ internal class Program
                             break;
 
                         case 2:
+                            Console.WriteLine("What is the product ID? ");
+                            id = ReadFromUser();
+                            try
+                            {
+                                Console.WriteLine(bl.Product.ManagerProduct(id));
+                            }
+                            catch (EntityNotFound err)
+                            {
+                                Console.WriteLine(err.Message);
+                            }
                             break;
                         case 3:
+                            Console.WriteLine("What is the product's name? ");
+                            string n =  Console.ReadLine() ?? "";
+                            Console.WriteLine("What is the product's category number? ");
+                            int categ = ReadFromUser();
+                            product.Name = n;
+                            product.Category = (BO.Enums.Category)categ;
+                            Console.WriteLine("What is the stock?");
+                            product.InStock = ReadFromUser();
+                            Console.WriteLine("What is the price of the product? ");
+                            product.Price = ReadFromUser();
+                            try
+                            {
+                                bl.Product.AddProduct(product);
+                            }
+                            catch (IdExistException err)
+                            {
+                                Console.WriteLine(err.Message);
+                            }
+
                             break;
                         case 4:
+                            Console.WriteLine("What is the product's ID? ");
+                            id = ReadFromUser();
+                            try
+                            {
+                                bl.Product.DeleteProduct(id);
+                            }
+                            catch (EntityNotFound err)
+                            {
+                                Console.WriteLine(err.Message);
+                            }
+
                             break;
                         case 5:
+                            Console.WriteLine("What is the product's name? ");
+                            n = Console.ReadLine() ?? "";
+                            Console.WriteLine("What is the product's category number? ");
+                            categ = ReadFromUser();
+                            product.Name = n;
+                            product.Category = (BO.Enums.Category)categ;
+                            Console.WriteLine("What is the stock?");
+                            product.InStock = ReadFromUser();
+                            Console.WriteLine("What is the price of the product? ");
+                            product.Price = ReadFromUser();
+                            try
+                            {
+                                bl.Product.UpdateProduct(product);
+                            }
+                            catch (IdExistException err)
+                            {
+                                Console.WriteLine(err.Message);
+                            }
                             break;
                         case 6:
+                            try
+                            {
+                                IEnumerable<BO.ProductItem?> pr = bl.Product.GetCatalog();
+
+                                foreach (ProductItem? f in pr)
+                                {
+                                    Console.WriteLine(f);
+                                }
+                            }
+                            catch (BO.EntityNotFound err)
+                            {
+                                Console.WriteLine(err.Message);
+                            }
                             break;
 
 
@@ -87,7 +164,7 @@ internal class Program
                     break;
 
                 case BO.Enums.Type.Order:
-                    Console.WriteLine("To read all the lists of products, press 1 \n" +
+                    Console.WriteLine("To read all the lists of orders, press 1 \n" +
                         "To get info of orders, press 2 \n" +
                         "To update the order ship date, press 3 \n" +
                         "To update the order delivery date, press 4 \n" +
@@ -106,18 +183,76 @@ internal class Program
                             Console.WriteLine("You've chosen to stop editing!");
                             break;
                         case 1:
+                            try
+                            {
+                                IEnumerable<BO.OrderForList?> shopping = bl.Order.GetAllOrderForList();
+                                foreach (OrderForList? f in shopping)
+                                {
+                                    Console.WriteLine(f);
+                                }
+
+                            }
+                            catch (Exception err)
+                            {
+                                Console.WriteLine(err.Message);
+                            }
                             break;
                         case 2:
+                            Console.WriteLine("What is the order ID? \n");
+                                id = ReadFromUser();
+                            try
+                            {
+                                Console.WriteLine(bl.Order.GetBOOrder(id));
+
+                            }
+                            catch (Exception err)
+                            {
+                                Console.WriteLine(err.Message);
+                            }
                             break;
-                        case 3:
+                        case 3: //to update the shpping update
+                            Console.WriteLine("What is the order ID? \n");
+                            id = ReadFromUser();
+
+                            try
+                            {
+                                Console.WriteLine(bl.Order.ShipUpdate);
+
+                            }
+                            catch (Exception err)
+                            {
+                                Console.WriteLine(err.Message);
+                            }
                             break;
-                        case 4:
+                        case 4: //to update the delivery date
+                            Console.WriteLine("What is the order ID? \n");
+                            id = ReadFromUser();
+
+                            try
+                            {
+                                Console.WriteLine(bl.Order.DeliveryUpdate);
+
+                            }
+                            catch (Exception err)
+                            {
+                                Console.WriteLine(err.Message);
+                            }
                             break;
-                        case 5:
+                        case 5: //to track an order
+                            Console.WriteLine("What is the order ID? \n");
+                            id = ReadFromUser();
+
+                            try
+                            {
+                                Console.WriteLine(bl.Order.GetOrderTracking);
+
+                            }
+                            catch (Exception err)
+                            {
+                                Console.WriteLine(err.Message);
+                            }
                             break;
                     }
-
-
                     break;
 
                 case BO.Enums.Type.Cart:
@@ -151,8 +286,37 @@ internal class Program
                                 }
                                 break;
                             case 2:
+                                int amt;
+                                Console.WriteLine("Please enter the product ID: ");
+                                id = ReadFromUser();
+                                Console.WriteLine("What is the amount you would like to place in the cart?: ");
+                                amt = ReadFromUser();
+                                try
+                                {
+                                    cart = UpdateCart(cart, id, amt); //update the cart to have more or less products and the total price
+                                }
+                                catch (EntityNotFound err)
+                                {
+                                    Console.WriteLine(err.Message);
+                                }
+
                                 break;
                             case 3:
+                                Console.WriteLine("What is the Customer's Name? ");
+                                string n = Console.ReadLine() ?? "";
+                                Console.WriteLine("What is the Customer's email? ");
+                                string em = Console.ReadLine() ?? "";
+                                Console.WriteLine("What is the shipping address? ");
+                                string ship = Console.ReadLine() ?? "";
+                                try
+                                {
+                                    bl.Cart.MakeOrder(cart, n, em, ship);
+                                    Console.WriteLine("The Cart has been made");
+                                }
+                                catch (Exception err)
+                                {
+                                    Console.WriteLine(err.Message);
+                                }
                                 break;
 
                         }
