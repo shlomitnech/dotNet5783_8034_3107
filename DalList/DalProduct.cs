@@ -37,16 +37,16 @@ public class DalProduct : IProduct
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<Product> GetAll() 
-    {  
+    public IEnumerable<Product> GetAll()
+    {
         if (DataSource.products != null)
         {
-            return DataSource.products;     
+            return DataSource.products;
         }
-            throw new Exception("There are no orders!");
-}
+        throw new Exception("There are no orders!");
+    }
     /*
-public Product GetByFilter(Func<Product, bool>? filter)
+ public Product GetByFilter(Func<Product, bool>? filter)
     {
         foreach (Product prod in DataSource.products)
         {
@@ -59,17 +59,17 @@ public Product GetByFilter(Func<Product, bool>? filter)
     }
     */
 
-/// <summary>
-/// returns the instance based on the identifier provided by the user so it can be printed
-/// </summary>
-/// <param name="currentID"></param>
-/// <returns></returns>
-/// <exception cref="Exception"></exception>
+    /// <summary>
+    /// returns the instance based on the identifier provided by the user so it can be printed
+    /// </summary>
+    /// <param name="currentID"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public Product Get(int currentID)
     {
-        Product thisProd = DataSource.products.Find(x=> x.ID == currentID);
+        Product thisProd = DataSource.products.Find(x => x.ID == currentID);
         if (thisProd.ID != currentID)
-           throw new Exception("No product has that ID");    //if product is not found
+            throw new Exception("No product has that ID");    //if product is not found
         return thisProd;
     }
 
@@ -102,5 +102,6 @@ public Product GetByFilter(Func<Product, bool>? filter)
 
         DataSource.products.RemoveAt(index);
     }
+}
 
  
