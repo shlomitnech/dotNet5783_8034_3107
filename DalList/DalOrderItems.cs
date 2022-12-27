@@ -151,21 +151,18 @@ public class DalOrderItem : IOrderItem //change to be internal?
         */
         // return tempSameOrder;
   //  }
-
-    public OrderItem GetByFilter(Func<OrderItem, bool>? filter)
-    {
-        foreach (OrderItem ord in DataSource.orderItems)
-        {
+  
+   // public OrderItem GetByFilter(Func<OrderItem, bool>? filter)
+    //{
+     //   foreach (OrderItem ord in DataSource.orderItems)
+      //  {
             //  if (ord.IsDeleted == false && filter(o))
-            {
-                return ord;
-            }
-        }
-        throw new Exception("Does not exist\n");
-    }
+       //     {
+         //       return ord;
+           // }
+        ///}
+       // throw new Exception("Does not exist\n");
+    //}
+    //*/
 
-    public IEnumerable<OrderItem> GetAll(Func<OrderItem, bool>? filter = null)
-    {
-        throw new NotImplementedException();
-    }
 }

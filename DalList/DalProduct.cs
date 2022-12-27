@@ -45,6 +45,7 @@ public class DalProduct : IProduct
         }
             throw new Exception("There are no orders!");
 }
+    /*
 public Product GetByFilter(Func<Product, bool>? filter)
     {
         foreach (Product prod in DataSource.products)
@@ -56,7 +57,7 @@ public Product GetByFilter(Func<Product, bool>? filter)
         }
         throw new Exception("Does not exist\n");
     }
-
+    */
 
 /// <summary>
 /// returns the instance based on the identifier provided by the user so it can be printed
@@ -102,8 +103,4 @@ public Product GetByFilter(Func<Product, bool>? filter)
         DataSource.products.RemoveAt(index);
     }
 
-    public IEnumerable<Product> GetAll(Func<Product, bool>? filter = null)
-    {
-        throw new NotImplementedException();
-    }
-}
+ 

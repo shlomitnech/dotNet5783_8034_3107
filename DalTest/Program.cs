@@ -16,7 +16,7 @@ internal class DalTest
     /// <param name="args"></param>
     static void Main(string[] args)
     {
-        /*
+        
         Product _product = new();
         DalProduct dalprod = new();
         Order _order = new();
@@ -380,7 +380,7 @@ internal class DalTest
 
             }
         }
-            */
+           
 
 
     }

@@ -6,9 +6,9 @@ using DalApi;
 using System;
 
 namespace Dal;
- 
+
 public class DalOrder : IOrder //change to be internal?
-{ 
+{
     /// <summary>
     /// Adds an instance to the main array
     /// </summary>
@@ -43,7 +43,7 @@ public class DalOrder : IOrder //change to be internal?
         if (index == -1) // Item doesn't exist
             throw new EntityNotFound("Order does not exist");
 
-        DataSource.orders.RemoveAt(index);    
+        DataSource.orders.RemoveAt(index);
 
         return;
     }
@@ -66,15 +66,15 @@ public class DalOrder : IOrder //change to be internal?
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<Order> GetAll() 
+    public IEnumerable<Order> GetAll()
     {
-        
+
         if (DataSource.orders != null)
         {
             return DataSource.orders;
-                  
+
         }
-            throw new Exception("There are no orders!"); 
+        throw new Exception("There are no orders!");
     }
 
 
@@ -90,20 +90,14 @@ public class DalOrder : IOrder //change to be internal?
             throw new EntityNotFound("Order does not exist!");
         DataSource.orders[index] = current;
     }
-    public Order GetByFilter(Func<Order, bool>? filter)
-    {
-        foreach (Order ord in DataSource.orders)
-        {
-          //  if (ord.IsDeleted == false && filter(o))
-            {
-                return ord;
-            }
-        }
-        throw new Exception("Does not exist\n");
-    }
-
-    public IEnumerable<Order> GetAll(Func<Order, bool>? filter = null)
-    {
-        throw new NotImplementedException();
-    }
+    // public Order GetByFilter(Func<Order, bool>? filter)
+    // {
+    //   foreach (Order ord in DataSource.orders)
+    // {
+    //  if (ord.IsDeleted == false && filter(o))
+    //   {
+    //         return ord;
+    // / }
+    //
+    //throw new Exception("Does not exist\n");
 }
