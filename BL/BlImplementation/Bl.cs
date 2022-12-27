@@ -12,5 +12,5 @@ sealed public class Bl : IBl
     public IOrder Order => new Order(); 
     public IProduct Product => new Product();
 
-    IOrder IBl.Product => throw new NotImplementedException();
+  //  IOrder IBl.Product => throw new NotImplementedException();
 }
