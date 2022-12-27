@@ -12,11 +12,11 @@ public interface ICrud<T> where T : struct
     void Delete(int id);
     void Update(T item);
     T Get(int id);
-
+    IEnumerable<T> GetAll();
    
 
-    IEnumerable<T> GetAll(Func<T, bool>? filter = null);
-    T GetByFilter(Func<T, bool>? filter);
+  //  IEnumerable<T> GetAll(Func<T, bool>? filter = null);
+    //T GetByFilter(Func<T, bool>? filter);
 
 }
 
