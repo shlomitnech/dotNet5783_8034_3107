@@ -18,8 +18,8 @@ public class Product
     public override string ToString() => $@"
 	The product's ID is: {ID}
     The product's name is: {Name}
-    The product's price is: {Price}
     The product's category is: {Category}
+    The product's price is: {Price}
     The products stock is: {InStock}
 ";
 }

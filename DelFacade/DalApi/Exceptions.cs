@@ -16,8 +16,6 @@ namespace DalApi
     {
         public EntityNotFound() : base() { }
         public EntityNotFound(string message) : base(message) { }
-
-
     }
     public class IdentifierMissing : Exception
     {

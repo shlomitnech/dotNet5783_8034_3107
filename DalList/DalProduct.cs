@@ -41,11 +41,24 @@ public class DalProduct : IProduct
     {
         if (DataSource.products != null)
         {
-            return DataSource.products;
+            return from v in DataSource.products
+                   where v.isDeleted == false
+                   select v;
         }
         throw new Exception("There are no orders!");
     }
+
     /*
+     *         if (filter == null)//select whole list
+        {
+            return from v in _ds.productList
+                   where v?.IsDeleted == false
+                   select v;
+        }
+        return from v in _ds.productList//select with filter
+               where v?.IsDeleted == false && filter(v)
+               select v;
+    }
  public Product GetByFilter(Func<Product, bool>? filter)
     {
         foreach (Product prod in DataSource.products)
@@ -93,13 +106,11 @@ public class DalProduct : IProduct
     /// <exception cref="Exception"></exception>
     public void Delete(int currentID)
     {
-        //delete the product from the array and update the rest of the array
-
         int index = DataSource.products.FindIndex(x => x.ID == currentID); // Is this correct?
 
         if (index == -1) // Item doesn't exist
             throw new Exception("Order does not exist");
-
+       
         DataSource.products.RemoveAt(index);
     }
 }

@@ -5,12 +5,14 @@ using BlImplementation;
 using System;
 using System.Net.Http.Headers;
 using System.Collections.Generic;
+using Dal;
 
 internal class Program
 {
     static IBl bl = new Bl();
     static void Main(string[] args)
     {
+        DataSource ds = new(); //to enable DataSource to call its constructors
         Cart? cart = new Cart() { Items = new List<BO.OrderItem?>() }; //create a new cart
         BO.Product? product = new();
         BO.Order? order = new();
@@ -321,17 +323,9 @@ internal class Program
 
                         }
                         break;
-
-
                     }
-
             }
-
-
-
         }
-
-
     }
     static int ReadFromUser()
     {

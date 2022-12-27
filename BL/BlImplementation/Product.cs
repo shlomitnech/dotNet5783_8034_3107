@@ -7,6 +7,8 @@ using BlApi;
 using BO;
 using DalApi;
 using Dal;
+using System.Collections;
+
 namespace BlImplementation;
 
 internal class Product : BlApi.IProduct
@@ -23,7 +25,7 @@ internal class Product : BlApi.IProduct
                    Price = (double?)food?.Price,
                    Category = (Enums.Category?)food?.Category
                };
-
+        throw new BO.Exceptions("List is empty");
     }
          //returns the product list (for the manager to see)
     public BO.Product ManagerProduct(int id) //returns a BO product of DO product with id
@@ -38,14 +40,15 @@ internal class Product : BlApi.IProduct
             prod1.Price = prod2.Price;
             prod1.Category = (Enums.Category?)prod2.Category;
             prod1.InStock = prod2.inStock;
+            return prod1;
         }
-        throw new Exception();
+        throw new BO.EntityNotFound("The product doesn't exist");
     }
     public void AddProduct(BO.Product prod) //gets a BO product, and adds it to DO product
     {
         if (prod.Name == "" || prod.Price <= 0 || prod.InStock < 0 || prod.Category < 0 || prod.Category > Enums.Category.Other )
         {
-            throw new IncorrectInput("Invalid Input");
+            throw new BO.IncorrectInput("Invalid Input");
         }
         DO.Product p = new DO.Product();
         p.ID = 0;
@@ -58,9 +61,7 @@ internal class Product : BlApi.IProduct
 
     }
     public void DeleteProduct(int id) //check in every order that DO product is deleted 
-    {
-
-    }
+    {    }
     public void UpdateProduct(BO.Product prod) //Get BO product, and update the DO product
     {
         if (prod.Name == "" || prod.Price <= 0 || prod.InStock < 0 || prod.Category < 0 || prod.Category > Enums.Category.Other)
@@ -81,9 +82,8 @@ internal class Product : BlApi.IProduct
     //The Customer Functions
     public IEnumerable<ProductItem?> GetCatalog()
     {
-        var potato = from latkes in Dos?.Product.GetAll()
-                     where Dos?.Product.GetAll() != null
-                     select new ProductItem()
+        var prodList = from latkes in Dos?.Product.GetAll() //send the list of products to prodList
+                     select new ProductItem() //make a new product item for each product
                      {
                          ID = latkes.ID,
                          Name = latkes.Name,
@@ -92,14 +92,20 @@ internal class Product : BlApi.IProduct
                          Category = (BO.Enums.Category?)latkes.Category
                      };
 
-        foreach (ProductItem item in potato)
+        foreach (ProductItem item in prodList)
         {
-            if (item.Amount > 0)
+
+            //  if (item.Amount > 0)
+            {
                 item.InStock = true;
-            item.InStock = false;
+            }
+            //   else
+            {
+            //    item.InStock = false;
+            }
         }
 
-        return potato;
+        return prodList;
     }
 
 }
