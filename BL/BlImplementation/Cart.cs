@@ -11,7 +11,7 @@ namespace BlImplementation;
 
 internal class Cart : ICart
 {
-    readonly private static IDal Dos = DalApi.Get();
+    readonly private static IDal Dos = ();
     public BO.Cart AddToCart(BO.Cart cart, int id) //check if the product is in the cart, if not add it from DO product if it is in stock
     {
         int index = cart.Items.FindIndex(x => x != null && x.ID == id);
@@ -63,7 +63,6 @@ internal class Cart : ICart
             throw new BO.UnfoundException("Incorrect Input");
         }
 
-        DO.OrderItem ori = new();//create order item
         foreach (BO.OrderItem item in cart.Items)
         {
             DO.Product p = new DO.Product();
