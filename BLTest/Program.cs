@@ -21,7 +21,7 @@ internal class Program
         int id;
         while (true)
         {
-            Console.WriteLine("Choose a category: " +
+            Console.WriteLine("Choose a category: \n" +
                 "To edit PRODUCTS, press 1 \n"
             + "To edit ORDERS, press 2 \n"
             + "To edit CART press 3 \n"
@@ -125,6 +125,8 @@ internal class Program
 
                             break;
                         case 5:
+                            Console.WriteLine("What is the ID? ");
+                            product.ID = ReadFromUser();
                             Console.WriteLine("What is the product's name? ");
                             n = Console.ReadLine() ?? "";
                             Console.WriteLine("What is the product's category number? ");
