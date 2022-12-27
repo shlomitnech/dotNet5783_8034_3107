@@ -64,11 +64,11 @@ public class DataSource
             };
             if (i<4) orders.Add(myOrder); ;   //the first 4 orders won't have ship dates
 
-            myOrder.ShippingDate = myOrder.OrderDate.AddDays(random.Next(3, 7));    //order will ship 3-7 days after ordered
+            myOrder.ShippingDate = myOrder.OrderDate?.AddDays(random.Next(3, 7));    //order will ship 3-7 days after ordered
 
             if(i>=4 && i < 10) orders.Add(myOrder); ;    //the first 10 orders won't have delivery dates
 
-            myOrder.DeliveryDate = myOrder.ShippingDate.AddDays(random.Next(7, 21));   //order will be delivered 7-21 days after shipped because this is Israel we're talking about
+            myOrder.DeliveryDate = myOrder.ShippingDate?.AddDays(random.Next(7, 21));   //order will be delivered 7-21 days after shipped because this is Israel we're talking about
 
             if(i>=5 && i < 20) orders.Add(myOrder);   //all other orders will have everything initialized
 
@@ -115,7 +115,7 @@ public class DataSource
             {
                 ID = Config.NextOrderItemNumber,
                 productID = prod.ID,
-                price = prod.Price,
+                Price = (double)prod.Price,
                 orderID = random.Next(Config.startingOrderNumber, Config.s_nextOrderNumber),
                 amount = random.Next(3)
             });

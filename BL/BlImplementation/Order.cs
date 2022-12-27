@@ -19,8 +19,8 @@ internal class Order : BlApi.IOrder
     static IDal? Dos = new DalList();
     public IEnumerable<OrderForList?> GetAllOrderForList() //calls get of DO order list, gets items for each order, and build BO orderItem list
     {
-            IEnumerable<DO.Order> ords = DOs.Order.GetAll();
-            IEnumerable<DO.OrderItem> ordItems = DOs.OrderItem.GetAll();
+            IEnumerable<DO.Order> ords = Dos.Order.GetAll();
+            IEnumerable<DO.OrderItem> ordItems = Dos.OrderItem.GetAll();
             return from DO.Order? food in ords
                    select new BO.OrderForList
                    {
@@ -28,7 +28,7 @@ internal class Order : BlApi.IOrder
                        CustomerName = food?.CustomerName,
                        Status = GetStatus(food.Value),
                        AmountOfItems = ordItems.Select(ordItems => ordItems.ID == food?.ID).Count(), //go through the orderItems and see the count
-                       TotalPrice = (double)ordItems.Sum(ordItems => ordItems.price)
+                       TotalPrice = (double)ordItems.Sum(ordItems => ordItems.Price)
 
                    };
 
@@ -44,13 +44,13 @@ internal class Order : BlApi.IOrder
         {
             throw new BO.EntityNotFound();
         }
-       DO.Order ord = DOs.Order.Get(id);
+       DO.Order ord = Dos.Order.Get(id);
        double tot = 0;//add up the total price
-       foreach(DO.OrderItem apple in DOs.OrderItem.GetAll())
+       foreach(DO.OrderItem apple in Dos.OrderItem.GetAll())
         {
             if (apple.ID == id) 
             {
-                tot += apple.price;
+                tot += apple.Price;
             }
         }
         
@@ -74,7 +74,7 @@ internal class Order : BlApi.IOrder
     }
     public BO.Order ShipUpdate(int id) //gets an order number, check if it exists and update the date in Do order, return the BO order that was shipped
     {
-        DO.Order order1 = DOs.Order.Get(id); //get the order ID from the DO folder
+        DO.Order order1 = Dos.Order.Get(id); //get the order ID from the DO folder
         if (order1.ID == id)
         {
             DO.Order order2 = new()
@@ -87,13 +87,13 @@ internal class Order : BlApi.IOrder
                 ShippingDate = DateTime.Now,
                 DeliveryDate = null
             };
-            DOs.Order.Update(order2);
+            Dos.Order.Update(order2);
             double tot = 0;//add up the total price
-            foreach (DO.OrderItem apple in DOs.OrderItem.GetAll())
+            foreach (DO.OrderItem apple in Dos.OrderItem.GetAll())
             {
                 if (apple.ID == id)
                 {
-                    tot += apple.price;
+                    tot += apple.Price;
                 }
             }
             return new BO.Order
@@ -115,7 +115,7 @@ internal class Order : BlApi.IOrder
 
     public BO.Order DeliveryUpdate(int id) //get the order number, update the delivery status in DO order, and return BO order that was delivered
     {
-        DO.Order order1 = DOs.Order.Get(id); //get the order ID from the DO folder
+        DO.Order order1 = Dos.Order.Get(id); //get the order ID from the DO folder
         if (order1.ID == id)
         {
             DO.Order order2 = new()
@@ -128,13 +128,13 @@ internal class Order : BlApi.IOrder
                 ShippingDate = order1.ShippingDate,
                 DeliveryDate = DateTime.Now
             };
-            DOs.Order.Update(order2);
+            Dos.Order.Update(order2);
             double tot = 0;//add up the total price
-            foreach (DO.OrderItem apple in DOs.OrderItem.GetAll())
+            foreach (DO.OrderItem apple in Dos.OrderItem.GetAll())
             {
                 if (apple.ID == id)
                 {
-                    tot += apple.price;
+                    tot += apple.Price;
                 }
             }
             return new BO.Order
@@ -157,7 +157,7 @@ internal class Order : BlApi.IOrder
     {
         OrderTracking ordtrack = new();
         ordtrack.Tracking = new();
-        foreach (DO.Order? list in DOs.Order.GetAll()) //iterate through all the orders in DO
+        foreach (DO.Order? list in Dos.Order.GetAll()) //iterate through all the orders in DO
         {
             if (list?.ID == ord) // if the item has the same id 
             {
