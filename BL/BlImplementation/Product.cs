@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using BlApi;
 using BO;
 using DalApi;
+using Dal;
 namespace BlImplementation;
 
 internal class Product : BlApi.IProduct
 {
-    readonly private static IDal Dos = DalApi.Kitchen.Get(); 
+    static IDal? Dos = new DalList();
     public IEnumerable<ProductForList?> GetProductForList() //returns the product list (for the manager to see)
     {
         return from DO.Product? food in Dos.Product.GetAll()
@@ -19,8 +20,8 @@ internal class Product : BlApi.IProduct
                {
                    ID = food.Value.ID,
                    Name = food?.Name,
-                   Price = (double)food?.Price,
-                   Category = (Enums.Category)food?.Category
+                   Price = (double?)food?.Price,
+                   Category = (Enums.Category?)food?.Category
                };
 
     }
@@ -73,22 +74,22 @@ internal class Product : BlApi.IProduct
         p.inStock = prod.InStock;
         p.Category = (DO.Enums.Category?)prod.Category;
 
-        Dos.Product.Update(p);
+        Dos?.Product.Update(p);
 
     }
 
     //The Customer Functions
     public IEnumerable<ProductItem?> GetCatalog()
     {
-        var potato = from latkes in Dos.Product.GetAll()
-                     where latkes != null
+        var potato = from latkes in Dos?.Product.GetAll()
+                     where Dos?.Product.GetAll() != null
                      select new ProductItem()
                      {
                          ID = latkes.ID,
                          Name = latkes.Name,
-                         Price = (double)latkes?.Price,
-                         Amount = latkes?.inStock,
-                         Category = (BO.Enums.Category)latkes?.Category
+                         Price = (double?)latkes.Price,
+                         Amount = latkes.inStock,
+                         Category = (BO.Enums.Category?)latkes.Category
                      };
 
         foreach (ProductItem item in potato)

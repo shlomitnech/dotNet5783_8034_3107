@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using BlApi;
 using BO;
 using DalApi;
+using Dal;
 using DO;
 namespace BlImplementation;
 
 internal class Cart : ICart
 {
-    readonly private static IDal Dos = ();
+    static IDal? Dos = new DalList();
     public BO.Cart AddToCart(BO.Cart cart, int id) //check if the product is in the cart, if not add it from DO product if it is in stock
     {
         int index = cart.Items.FindIndex(x => x != null && x.ID == id);

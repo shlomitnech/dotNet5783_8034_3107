@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 using BlApi;
 using BO;
 using DalApi;
+using Dal;
 using DO;
 
 namespace BlImplementation;
 
 internal class Order : BlApi.IOrder
 {
-    readonly private static IDal DOs = DalApi.Kitchen.Get();
+    static IDal? Dos = new DalList();
     public IEnumerable<OrderForList?> GetAllOrderForList() //calls get of DO order list, gets items for each order, and build BO orderItem list
     {
             IEnumerable<DO.Order> ords = DOs.Order.GetAll();
