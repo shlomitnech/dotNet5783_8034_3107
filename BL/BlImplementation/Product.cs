@@ -80,9 +80,25 @@ internal class Product : BlApi.IProduct
     //The Customer Functions
     public IEnumerable<ProductItem?> GetCatalog()
     {
-         
-        
-         
+        var potato = from latkes in Dos.Product.GetAll()
+                     where latkes != null
+                     select new ProductItem()
+                     {
+                         ID = latkes.ID,
+                         Name = latkes.Name,
+                         Price = (double)latkes.Price,
+                         Amount = latkes.inStock,
+                         Category = (BO.Enums.Category)latkes.Category
+                     };
+
+        foreach (ProductItem item in potato)
+        {
+            if (item.Amount > 0)
+                item.InStock = true;
+            item.InStock = false;
+        }
+
+        return potato;
     }
 
 }
