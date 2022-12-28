@@ -157,7 +157,7 @@ internal class Order : BlApi.IOrder
     {
         OrderTracking ordtrack = new();
         ordtrack.Tracking = new();
-        foreach (DO.Order? list in Dos.Order.GetAll()) //iterate through all the orders in DO
+        foreach (DO.Order? list in Dos.Order.GetAll().Select(v => (DO.Order?)v)) //iterate through all the orders in DO
         {
             if (list?.ID == ord) // if the item has the same id 
             {

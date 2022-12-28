@@ -13,7 +13,7 @@ namespace BlImplementation;
 
 internal class Product : BlApi.IProduct
 {
-    static IDal? Dos = new DalList();
+    readonly static IDal? Dos = new DalList();
     public IEnumerable<ProductForList?> GetProductForList() //returns the product list (for the manager to see)
     {
         return from DO.Product? food in Dos.Product.GetAll()
@@ -50,12 +50,14 @@ internal class Product : BlApi.IProduct
         {
             throw new BO.IncorrectInput("Invalid Input");
         }
-        DO.Product p = new DO.Product();
-        p.ID = 0;
-        p.Name = prod.Name;
-        p.Price = prod.Price;
-        p.inStock = prod.InStock;
-        p.Category = (DO.Enums.Category?)prod.Category;
+        DO.Product p = new DO.Product
+        {
+            ID = 0,
+            Name = prod.Name,
+            Price = prod.Price,
+            inStock = prod.InStock,
+            Category = (DO.Enums.Category?)prod.Category
+        };
 
         p.ID = Dos.Product.Add(p);
         return p.ID;
@@ -71,12 +73,14 @@ internal class Product : BlApi.IProduct
         {
             throw new IncorrectInput("Invalid input");
         }
-        DO.Product p = new DO.Product();
-        p.ID = prod.ID;
-        p.Name = prod.Name;
-        p.Price = prod.Price;
-        p.inStock = prod.InStock;
-        p.Category = (DO.Enums.Category?)prod.Category;
+        DO.Product p = new DO.Product
+        {
+            ID = prod.ID,
+            Name = prod.Name,
+            Price = prod.Price,
+            inStock = prod.InStock,
+            Category = (DO.Enums.Category?)prod.Category
+        };
 
         Dos?.Product.Update(p);
 

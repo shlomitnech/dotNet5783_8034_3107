@@ -15,12 +15,12 @@ namespace BlImplementation;
 
 internal class Cart : ICart
 {
-    static IDal Dos = new DalList();
-    static IBl blay = new Bl();
+    readonly static IDal Dos = new DalList();
+    readonly static IBl blay = new Bl();
     public BO.Cart AddToCart(BO.Cart cart, int id, int amount) //check if the product is in the cart, if not add it from DO product if it is in stock
     {
         int index = cart.Items.FindIndex(x => x != null && x.ID == id);
-        DO.Product p = new DO.Product();
+        DO.Product p = new();
         p = Dos.Product.Get(id);
         if (amount < 0) throw new BO.IncorrectInput();
         if (p.inStock < 1) throw new BO.Exceptions("Product in unavailable");
@@ -32,7 +32,7 @@ internal class Cart : ICart
             return cart;
         }
 
-        BO.OrderItem item = new BO.OrderItem()
+        BO.OrderItem item = new()
         {
             ID = id,
             Price = p.Price,
@@ -40,7 +40,7 @@ internal class Cart : ICart
             ProductID = p.ID
         };
 
-        cart.Items.Add(item);
+        cart.Items?.Add(item);
         cart.TotalPrice = CalculateTotalPrice(cart);
         return cart;
     }
@@ -71,9 +71,9 @@ internal class Cart : ICart
         cart.CustomerName = n;
         cart.CustomerEmail = em;
         cart.CustomerAddress = add;
-        DO.Product product = new DO.Product();
-        DO.Order order = new DO.Order(); // create an instance of order
-        BO.Order orderBO = new BO.Order();
+        DO.Product product;
+        DO.Order order = new(); // create an instance of order
+        BO.Order orderBO = new();
         int ordID = Dos.Order.Add(order); // adding a new order to the list (this is the new order)
         order.OrderDate = DateTime.Now;
         orderBO.ID = ordID;
@@ -88,7 +88,7 @@ internal class Cart : ICart
         int quantity = 0;
         foreach (BO.OrderItem? item in cart.Items)
         {
-            orderBO.Items.Add(item);
+            orderBO.Items?.Add(item);
             quantity++;
         }
         try
@@ -96,7 +96,7 @@ internal class Cart : ICart
             foreach (BO.OrderItem it in cart.Items)
             {
                 int quant = it.Amount;
-                DO.OrderItem item = new DO.OrderItem();
+                DO.OrderItem item = new();
                 item.productID = it.ProductID;
                 item.orderID = ordID;
                 product = Dos.Product.Get(it.ProductID);
@@ -116,13 +116,13 @@ internal class Cart : ICart
     public List<string> GetItemNames(BO.Cart cart)
     {
         int prodId;
-        DO.Product product = new DO.Product(); 
-        List<string> list = new List<string>();
-        foreach (BO.OrderItem item in cart.Items)
+        DO.Product product = new(); 
+        List<string> list = new();
+        foreach (BO.OrderItem item in cart.Items) //find all the products in the cart
         {
             prodId = item.ID;
             product = Dos.Product.Get(prodId);
-            list.Add(product.Name);
+            list?.Add(product.Name);
         }
         return list;
 
@@ -138,7 +138,7 @@ internal class Cart : ICart
     }
 
 
-    public double? CalculateTotalPrice(BO.Cart cart)
+    static public double? CalculateTotalPrice(BO.Cart cart)
     {
         double? totalPrice = 0;
         

@@ -298,9 +298,10 @@ internal class Program
                                 List<string> list = bl.Cart.GetItemNames(cart);
                                 foreach (string item in list)
                                 {
-                                    Console.Write(item);
+                                    Console.WriteLine(item);
                                     Console.WriteLine("\n");
                                 }
+                               
                                 
                                 break;
                             case 3: //to update
