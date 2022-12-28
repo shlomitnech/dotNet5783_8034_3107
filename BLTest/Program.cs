@@ -171,7 +171,7 @@ internal class Program
                         "To view an order, press 2 \n" +
                         "(Manger)To update the order ship date, press 3 \n" +
                         "(Manager)To update the order delivery date, press 4 \n" +
-                        "To track an order, press 5 \n" +
+           
                         "To return to the main menu, press 0 \n");
                     num2 = 0;
                     System.Int32.TryParse(Console.ReadLine(), out num2);
@@ -243,20 +243,20 @@ internal class Program
                                 Console.WriteLine(err.Message);
                             }
                             break;
-                        case 5: //to track an order
-                            Console.WriteLine("What is the order ID? \n");
-                            id = ReadFromUser();
+                       // case 5: //to track an order
+                         //   Console.WriteLine("What is the order ID? \n");
+                           // id = ReadFromUser();
 
-                            try
-                            {
-                                Console.WriteLine(bl.Order.GetOrderTracking);
+                         //   try
+                           // {
+                             //   Console.WriteLine(bl.Order.GetOrderTracking);
 
-                            }
-                            catch (Exception err)
-                            {
-                                Console.WriteLine(err.Message);
-                            }
-                            break;
+                      //      }
+                    //        catch (Exception err)
+                        //    {
+                            //    Console.WriteLine(err.Message);
+                          //  }
+                            //break;
                     }
                     break;
 
