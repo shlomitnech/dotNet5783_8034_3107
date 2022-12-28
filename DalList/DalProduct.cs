@@ -106,13 +106,20 @@ public class DalProduct : IProduct
     /// <exception cref="Exception"></exception>
     public void Delete(int currentID)
     {
-        int index = DataSource.products.FindIndex(x => x.ID == currentID); // Is this correct?
-
-        if (index == -1) // Item doesn't exist
-            throw new Exception("Order does not exist");
-       
-        DataSource.products.RemoveAt(index);
+        int index = -1;
+        foreach (DO.Product prod in DataSource.products)
+        {
+            if (prod.ID == currentID)
+            {
+                index = DataSource.products.IndexOf(prod); // save the index of the product with the matching ID#
+                break;
+            }
+        }
+        DO.Product DelProd = DataSource.products[index]; // save the product in the found index
+        DataSource.products.Remove(DelProd); // remove the product
+  
     }
+
 }
 
  

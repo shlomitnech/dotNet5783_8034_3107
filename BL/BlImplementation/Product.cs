@@ -61,7 +61,9 @@ internal class Product : BlApi.IProduct
 
     }
     public void DeleteProduct(int id) //check in every order that DO product is deleted 
-    {    }
+    {
+        Dos.Product.Delete(id);//delete product
+    }
     public void UpdateProduct(BO.Product prod) //Get BO product, and update the DO product
     {
         if (prod.Name == "" || prod.Price <= 0 || prod.InStock < 0 || prod.Category < 0 || prod.Category > Enums.Category.Other)
@@ -89,22 +91,23 @@ internal class Product : BlApi.IProduct
                          Name = latkes.Name,
                          Price = (double?)latkes.Price,
                          Amount = latkes.inStock,
-                         Category = (BO.Enums.Category?)latkes.Category
+                         Category = (BO.Enums.Category?)latkes.Category,
+                         InStock = (latkes.inStock> 0)
                      };
-
+        /*
         foreach (ProductItem item in prodList)
         {
 
-            //  if (item.Amount > 0)
+            if (item.Amount > 0)
             {
                 item.InStock = true;
             }
-            //   else
+            else
             {
-            //    item.InStock = false;
+              item.InStock = false;
             }
         }
-
+        */
         return prodList;
     }
 

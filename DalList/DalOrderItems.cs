@@ -106,15 +106,17 @@ public class DalOrderItem : IOrderItem //change to be internal?
     /// <exception cref="Exception"></exception>
     public void Delete(int currentID)
     {
-       //delete the order from the array and update the rest of the array
-
-        int index = DataSource.orderItems.FindIndex(x => x.ID == currentID); // Is this correct?
-
-         if (index == -1) // Item doesn't exist
-                throw new Exception("Product does not exist");
-
-         DataSource.products.RemoveAt(index);
-         return;
+        int index = -1;
+        foreach (DO.OrderItem ordi in DataSource.orderItems)
+        {
+            if (ordi.ID == currentID)
+            {
+                index = DataSource.orderItems.IndexOf(ordi); // save the index of the product with the matching ID#
+                break;
+            }
+        }
+        DO.OrderItem DeleteOrderItem = DataSource.orderItems[index]; // save the product in the found index
+        DataSource.orderItems.Remove(DeleteOrderItem); // remove the product
     }
 
     /// <summary>
