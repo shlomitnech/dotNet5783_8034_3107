@@ -167,10 +167,10 @@ internal class Program
                     break;
 
                 case BO.Enums.Type.Order:
-                    Console.WriteLine("To read all the lists of orders, press 1 \n" +
-                        "To get info of orders, press 2 \n" +
-                        "To update the order ship date, press 3 \n" +
-                        "To update the order delivery date, press 4 \n" +
+                    Console.WriteLine("To read all the orders, press 1 \n" +
+                        "To view an order, press 2 \n" +
+                        "(Manger)To update the order ship date, press 3 \n" +
+                        "(Manager)To update the order delivery date, press 4 \n" +
                         "To track an order, press 5 \n" +
                         "To return to the main menu, press 0 \n");
                     num2 = 0;
@@ -261,8 +261,10 @@ internal class Program
                 case BO.Enums.Type.Cart:
                     {
                         Console.WriteLine("To add to the cart, press 1 \n" +
-                            "To update a cart, press 2 \n" +
-                            "To place an order, press 3 \n" +
+                            "To view cart, press 2 \n" +
+                            "To update cart, press 3 \n" +
+                            "To delete cart, press 4 \n" +
+                            "To place an order, press 5 \n" +
                         "To return to the main menu, press 0 \n");
                         num2 = 0;
                         System.Int32.TryParse(Console.ReadLine(), out num2);
@@ -276,7 +278,7 @@ internal class Program
                             case 0:
                                 Console.WriteLine("You've chosen to stop editing!");
                                 break;
-                            case 1:
+                            case 1: //to add to
                                 int amt;
                                 Console.WriteLine("Please enter the product ID: ");
                                 id = ReadFromUser();
@@ -291,14 +293,24 @@ internal class Program
                                     Console.WriteLine(err.Message);
                                 }
                                 break;
-                            case 2:
+                            case 2: //to view
+                                Console.WriteLine(cart);
+                                List<string> list = bl.Cart.GetItemNames(cart);
+                                foreach (string item in list)
+                                {
+                                    Console.Write(item);
+                                    Console.WriteLine("\n");
+                                }
+                                
+                                break;
+                            case 3: //to update
                                 Console.WriteLine("Please enter the product ID: ");
                                 id = ReadFromUser();
                                 Console.WriteLine("What is the amount you would like to place in the cart?: ");
                                 amt = ReadFromUser();
                                 try
                                 {
-                                    cart = bl.Cart.UpdateCart(cart, id, amt); //update the cart to have more or less products and the total price
+                                    bl.Cart.UpdateCart(cart, id, amt); //update the cart to have more or less products and the total price
                                 }
                                 catch (EntityNotFound err)
                                 {
@@ -306,7 +318,10 @@ internal class Program
                                 }
 
                                 break;
-                            case 3:
+                            case 4: //to delete
+                                bl.Cart.DeleteCart(cart);
+                                break;
+                            case 5:
                                 Console.WriteLine("What is the Customer's Name? ");
                                 string n = Console.ReadLine() ?? "";
                                 Console.WriteLine("What is the Customer's email? ");

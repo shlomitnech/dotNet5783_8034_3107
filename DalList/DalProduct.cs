@@ -118,6 +118,7 @@ public class DalProduct : IProduct
         DO.Product DelProd = DataSource.products[index]; // save the product in the found index
         DataSource.products.Remove(DelProd); // remove the product
   
+
     }
 
 }

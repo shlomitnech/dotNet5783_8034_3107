@@ -112,8 +112,31 @@ internal class Cart : ICart
         {
             throw new Exception("ERROR! ");
         }
-  
     }
+    public List<string> GetItemNames(BO.Cart cart)
+    {
+        int prodId;
+        DO.Product product = new DO.Product(); 
+        List<string> list = new List<string>();
+        foreach (BO.OrderItem item in cart.Items)
+        {
+            prodId = item.ID;
+            product = Dos.Product.Get(prodId);
+            list.Add(product.Name);
+        }
+        return list;
+
+    }
+    public void DeleteCart(BO.Cart mycart)
+    {
+        mycart.CustomerName = "";
+        mycart.CustomerEmail = "";
+        mycart.CustomerAddress = "";
+        mycart.Items.Clear();
+        mycart.TotalPrice = 0;
+
+    }
+
 
     public double? CalculateTotalPrice(BO.Cart cart)
     {
