@@ -89,7 +89,7 @@ internal class Program
                                 Console.WriteLine(err.Message);
                             }
                             break;
-                        case 3: 
+                        case 3: //add a product
                             Console.WriteLine("What is the product's name? ");
                             string n =  Console.ReadLine() ?? "";
                             Console.WriteLine("What is the product's category number? ");
@@ -103,7 +103,6 @@ internal class Program
                             try
                             {
                                 Console.WriteLine("Your new product ID is: " + bl.Product.AddProduct(product));
-                               
                             }
                             catch (IdExistException err)
                             {
@@ -111,7 +110,7 @@ internal class Program
                             }
 
                             break;
-                        case 4:
+                        case 4: //delete a proudct
                             Console.WriteLine("What is the product's ID? ");
                             id = ReadFromUser();
                             try
