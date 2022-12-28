@@ -219,8 +219,10 @@ internal class Program
 
                             try
                             {
-                                Console.WriteLine(bl.Order.ShipUpdate);
-
+                      
+                                Console.WriteLine("Enter the updated shipping date: \n");
+                                DateTime date = DateTime.Parse(Console.ReadLine());
+                                Console.WriteLine("The updated order is: \n" + bl.Order.ShipUpdate(id, date));
                             }
                             catch (Exception err)
                             {

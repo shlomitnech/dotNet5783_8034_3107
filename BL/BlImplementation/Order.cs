@@ -72,22 +72,28 @@ internal class Order : BlApi.IOrder
        throw new BO.EntityNotFound();
 
     }
-    public BO.Order ShipUpdate(int id) //gets an order number, check if it exists and update the date in Do order, return the BO order that was shipped
+    public BO.Order ShipUpdate(int id, DateTime date) //gets an order number, check if it exists and update the date in Do order, return the BO order that was shipped
     {
         DO.Order order1 = Dos.Order.Get(id); //get the order ID from the DO folder
+        BO.Order order2 = GetBOOrder(id); //get the order from BO
+
         if (order1.ID == id)
         {
-            DO.Order order2 = new()
+            DO.Order order3 = new()
             {
                 ID = id,
                 CustomerName = order1.CustomerName,
                 CustomerEmail = order1.CustomerEmail,
                 ShippingAddress = order1.ShippingAddress,
                 OrderDate = order1.OrderDate,
-                ShippingDate = DateTime.Now,
+                ShippingDate = date,
                 DeliveryDate = null
             };
-            Dos.Order.Update(order2);
+            Dos.Order.Update(order3);
+            order2.ShipDate = date;
+            order2.Status = GetStatus(order1);
+            return order2;
+            /*
             double tot = 0;//add up the total price
             foreach (DO.OrderItem apple in Dos.OrderItem.GetAll())
             {
@@ -108,17 +114,20 @@ internal class Order : BlApi.IOrder
                 Status = GetStatus(order2),
                 TotalPrice = tot,
             };
-
+            */
         }
         throw new BO.EntityNotFound();
+
     }
 
-    public BO.Order DeliveryUpdate(int id) //get the order number, update the delivery status in DO order, and return BO order that was delivered
+    public BO.Order DeliveryUpdate(int id, DateTime date) //get the order number, update the delivery status in DO order, and return BO order that was delivered
     {
         DO.Order order1 = Dos.Order.Get(id); //get the order ID from the DO folder
+        BO.Order order2 = GetBOOrder(id); //get the order from BO
+
         if (order1.ID == id)
         {
-            DO.Order order2 = new()
+            DO.Order temporder = new()
             {
                 ID = id,
                 CustomerName = order1.CustomerName,
@@ -126,9 +135,13 @@ internal class Order : BlApi.IOrder
                 ShippingAddress = order1.ShippingAddress,
                 OrderDate = order1.OrderDate,
                 ShippingDate = order1.ShippingDate,
-                DeliveryDate = DateTime.Now
+                DeliveryDate = date
             };
-            Dos.Order.Update(order2);
+            Dos.Order.Update(temporder);
+            order2.DeliveryDate = date;
+            order2.Status = GetStatus(order1);
+            return order2;
+            /*
             double tot = 0;//add up the total price
             foreach (DO.OrderItem apple in Dos.OrderItem.GetAll())
             {
@@ -149,6 +162,7 @@ internal class Order : BlApi.IOrder
                 Status = GetStatus(order1),
                 TotalPrice = tot,
             };
+            */
 
         }
         throw new BO.EntityNotFound();
