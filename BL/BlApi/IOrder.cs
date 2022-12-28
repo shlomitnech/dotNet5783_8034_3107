@@ -15,6 +15,7 @@ public interface IOrder
     public Order DeliveryUpdate(int id); //get the order number, update the delivery status in DO order, and return BO order that was delivered
     public OrderTracking GetOrderTracking(int ord); //get order number, check it and print the string of dates and status in DO orders
     public IEnumerable<OrderForList?> GetAllOrderForList();//calls get of DO order list, gets items for each order, and build BO orderItem list
+    public Enums.OrderStatus GetStatus(DO.Order order);
 
 
 }

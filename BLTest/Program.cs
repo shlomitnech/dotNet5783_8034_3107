@@ -16,8 +16,7 @@ internal class Program
         Cart? cart = new Cart() { Items = new List<BO.OrderItem?>() }; //create a new cart
         BO.Product? product = new();
         BO.Order? order = new();
-        int num1;
-        int num2;
+        int num1, num2;
         int id;
         while (true)
         {
@@ -35,7 +34,7 @@ internal class Program
             }
             if (num1 == 0)
             {
-                Console.WriteLine("You've chosen to stop editing!");
+                Console.WriteLine("You've chosen to close the program!");
                 break; //leave the while loop
             }
             num1--;
@@ -43,11 +42,11 @@ internal class Program
             switch (choice)
             {
                 case BO.Enums.Type.Product:
-                    Console.WriteLine("To read all the lists from product manger, press 1 \n" +
-                        "To get info of products for the manager press 2 \n" +
-                        "To add a product press 3 \n" +
-                        "To delete a product, press 4 \n" +
-                        "To update a product, press 5 \n" +
+                    Console.WriteLine("To read all the lists, press 1 \n" +
+                        "(Manager)To view a product, press 2 \n" +
+                        "(Manager)To add a product press 3 \n" +
+                        "(Manager)To delete a product, press 4 \n" +
+                        "(Manger) To update a product, press 5 \n" +
                         "To get the catalog for a customer, press 6 \n" +
                         "To return to the main menu, press 0 \n");
                     num2 = 0;
@@ -62,7 +61,7 @@ internal class Program
                         case 0:
                             Console.WriteLine("You've chosen to stop editing!");
                             break;
-                        case 1:
+                        case 1: //to view the whole list
                             try
                             {
                                 IEnumerable<BO.ProductForList?> pr = bl.Product.GetProductForList();
@@ -78,7 +77,7 @@ internal class Program
                             }
                             break;
 
-                        case 2:
+                        case 2: //to view a product
                             Console.WriteLine("What is the product ID? ");
                             id = ReadFromUser();
                             try
@@ -90,7 +89,7 @@ internal class Program
                                 Console.WriteLine(err.Message);
                             }
                             break;
-                        case 3:
+                        case 3: 
                             Console.WriteLine("What is the product's name? ");
                             string n =  Console.ReadLine() ?? "";
                             Console.WriteLine("What is the product's category number? ");
@@ -103,7 +102,8 @@ internal class Program
                             product.Price = ReadFromUser();
                             try
                             {
-                                bl.Product.AddProduct(product);
+                                Console.WriteLine("Your new product ID is: " + bl.Product.AddProduct(product));
+                               
                             }
                             catch (IdExistException err)
                             {
@@ -278,11 +278,14 @@ internal class Program
                                 Console.WriteLine("You've chosen to stop editing!");
                                 break;
                             case 1:
+                                int amt;
                                 Console.WriteLine("Please enter the product ID: ");
                                 id = ReadFromUser();
+                                Console.WriteLine("What is the amount you would like to place in the cart?: ");
+                                amt = ReadFromUser();
                                 try
                                 {
-                                    cart = bl.Cart.AddToCart(cart, id);
+                                    cart = bl.Cart.AddToCart(cart, id, amt);
                                 }
                                 catch (Exception err)
                                 {
@@ -290,7 +293,6 @@ internal class Program
                                 }
                                 break;
                             case 2:
-                                int amt;
                                 Console.WriteLine("Please enter the product ID: ");
                                 id = ReadFromUser();
                                 Console.WriteLine("What is the amount you would like to place in the cart?: ");

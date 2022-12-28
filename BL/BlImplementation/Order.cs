@@ -33,7 +33,7 @@ internal class Order : BlApi.IOrder
                    };
 
     }
-    private BO.Enums.OrderStatus GetStatus (DO.Order order)
+    public BO.Enums.OrderStatus GetStatus (DO.Order order)
     {
         return order.DeliveryDate != null? BO.Enums.OrderStatus.Recieved : order.ShippingDate != null ?
             BO.Enums.OrderStatus.Shipped : BO.Enums.OrderStatus.JustPlaced;

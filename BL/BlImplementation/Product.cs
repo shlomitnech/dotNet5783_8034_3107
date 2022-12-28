@@ -33,7 +33,7 @@ internal class Product : BlApi.IProduct
         BO.Product prod1 = new BO.Product();
         DO.Product prod2 = new DO.Product();
         prod2 = Dos.Product.Get(id); // put the product with this ID into prod2
-        if (true) //if it isn't deleted!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (true) 
         {
             prod1.ID = id;
             prod1.Name = prod2.Name;
@@ -44,7 +44,7 @@ internal class Product : BlApi.IProduct
         }
         throw new BO.EntityNotFound("The product doesn't exist");
     }
-    public void AddProduct(BO.Product prod) //gets a BO product, and adds it to DO product
+    public int AddProduct(BO.Product prod) //gets a BO product, and adds it to DO product
     {
         if (prod.Name == "" || prod.Price <= 0 || prod.InStock < 0 || prod.Category < 0 || prod.Category > Enums.Category.Other )
         {
@@ -58,6 +58,7 @@ internal class Product : BlApi.IProduct
         p.Category = (DO.Enums.Category?)prod.Category;
 
         p.ID = Dos.Product.Add(p);
+        return p.ID;
 
     }
     public void DeleteProduct(int id) //check in every order that DO product is deleted 
@@ -94,20 +95,6 @@ internal class Product : BlApi.IProduct
                          Category = (BO.Enums.Category?)latkes.Category,
                          InStock = (latkes.inStock> 0)
                      };
-        /*
-        foreach (ProductItem item in prodList)
-        {
-
-            if (item.Amount > 0)
-            {
-                item.InStock = true;
-            }
-            else
-            {
-              item.InStock = false;
-            }
-        }
-        */
         return prodList;
     }
 
