@@ -16,7 +16,7 @@ internal class Product : BlApi.IProduct
     readonly static IDal? Dos = new DalList();
     public IEnumerable<ProductForList?> GetProductForList() //returns the product list (for the manager to see)
     {
-        return from DO.Product? food in Dos.Product.GetAll()
+        return from DO.Product? food in Dos!.Product.GetAll()
                where food != null
                select new ProductForList
                {
@@ -32,7 +32,7 @@ internal class Product : BlApi.IProduct
     {
         BO.Product prod1 = new BO.Product();
         DO.Product prod2 = new DO.Product();
-        prod2 = Dos.Product.Get(id); // put the product with this ID into prod2
+        prod2 = Dos!.Product.Get(id); // put the product with this ID into prod2
         if (true) 
         {
             prod1.ID = id;
@@ -59,13 +59,13 @@ internal class Product : BlApi.IProduct
             Category = (DO.Enums.Category?)prod.Category
         };
 
-        p.ID = Dos.Product.Add(p);
+        p.ID = Dos!.Product.Add(p);
         return p.ID;
 
     }
     public void DeleteProduct(int id) //check in every order that DO product is deleted 
     {
-        Dos.Product.Delete(id);//delete product
+        Dos!.Product.Delete(id);//delete product
     }
     public void UpdateProduct(BO.Product prod) //Get BO product, and update the DO product
     {
@@ -89,7 +89,7 @@ internal class Product : BlApi.IProduct
     //The Customer Functions
     public IEnumerable<ProductItem?> GetCatalog()
     {
-        var prodList = from latkes in Dos?.Product.GetAll() //send the list of products to prodList
+        var prodList = from latkes in Dos!.Product.GetAll() //send the list of products to prodList
                      select new ProductItem() //make a new product item for each product
                      {
                          ID = latkes.ID,

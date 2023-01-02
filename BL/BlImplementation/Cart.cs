@@ -19,7 +19,7 @@ internal class Cart : ICart
     readonly static IBl blay = new Bl();
     public BO.Cart AddToCart(BO.Cart cart, int id, int amount) //check if the product is in the cart, if not add it from DO product if it is in stock
     {
-        int index = cart.Items.FindIndex(x => x != null && x.ID == id);
+        int index = cart.Items!.FindIndex(x => x != null && x.ID == id);
         DO.Product p = new();
         p = Dos.Product.Get(id);
         if (amount < 0) throw new BO.IncorrectInput();
@@ -27,8 +27,8 @@ internal class Cart : ICart
         if (p.inStock < amount) throw new BO.Exceptions("There aren't enough in stock!");
         if (index != -1)
         {
-            cart.Items[index].Amount = amount;
-            cart.TotalPrice += (cart.Items[index].Price*amount);
+            cart.Items[index]!.Amount = amount;
+            cart.TotalPrice += (cart.Items[index]!.Price*amount);
             return cart;
         }
 
@@ -46,7 +46,7 @@ internal class Cart : ICart
     }
     public BO.Cart UpdateCart(BO.Cart cart, int id, int newAmount) //update the cart to have more or less products and the total price
     {
-        int index = cart.Items.FindIndex(x => x != null && x.ID == id);
+        int index = cart.Items!.FindIndex(x => x != null && x.ID == id);
 
         DO.Product p = new DO.Product();
         p = Dos.Product.Get(id);
@@ -55,7 +55,7 @@ internal class Cart : ICart
         if (index == -1) throw new BO.EntityNotFound("Order does not exist");
         if (newAmount > p.inStock) throw new Exception("Product in unavailable");
 
-        cart.Items[index].Amount = newAmount;
+        cart.Items[index]!.Amount = newAmount;
         cart.TotalPrice = CalculateTotalPrice(cart);
 
         return cart;
@@ -84,18 +84,18 @@ internal class Cart : ICart
         orderBO.ShipDate = order.ShippingDate;
         orderBO.DeliveryDate = order.DeliveryDate;
         orderBO.Status = blay.Order.GetStatus(order); 
-        orderBO.TotalPrice = (double)cart?.TotalPrice;
+        orderBO.TotalPrice = (double?)cart!.TotalPrice;
         int quantity = 0;
-        foreach (BO.OrderItem? item in cart.Items)
+        foreach (BO.OrderItem? item in cart.Items!)
         {
             orderBO.Items?.Add(item);
             quantity++;
         }
         try
         {
-            foreach (BO.OrderItem it in cart.Items)
+            foreach (BO.OrderItem? it in cart.Items!)
             {
-                int quant = it.Amount;
+                int quant = it!.Amount;
                 DO.OrderItem item = new();
                 item.productID = it.ProductID;
                 item.orderID = ordID;
@@ -118,11 +118,11 @@ internal class Cart : ICart
         int prodId;
         DO.Product product = new(); 
         List<string> list = new();
-        foreach (BO.OrderItem item in cart.Items) //find all the products in the cart
+        foreach (BO.OrderItem? item in cart.Items!) //find all the products in the cart
         {
-            prodId = item.ID;
+            prodId = item!.ID;
             product = Dos.Product.Get(prodId);
-            list?.Add(product.Name);
+            list?.Add(product.Name!);
         }
         return list;
 
@@ -132,7 +132,7 @@ internal class Cart : ICart
         mycart.CustomerName = "";
         mycart.CustomerEmail = "";
         mycart.CustomerAddress = "";
-        mycart.Items.Clear();
+        mycart.Items!.Clear();
         mycart.TotalPrice = 0;
 
     }
@@ -142,9 +142,9 @@ internal class Cart : ICart
     {
         double? totalPrice = 0;
         
-        foreach(var gogo in cart.Items)
+        foreach(var gogo in cart.Items!)
         {
-            totalPrice += (gogo.Amount* gogo.Price);
+            totalPrice += (gogo!.Amount* gogo.Price);
         }
 
         return totalPrice;
