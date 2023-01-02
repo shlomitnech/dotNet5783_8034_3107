@@ -7,9 +7,9 @@ public struct Order
 {
 
 	public int ID { get; set; }
-	public string CustomerName { get; set; }
-	public string CustomerEmail { get; set; }
-	public string ShippingAddress { get; set; }
+	public string? CustomerName { get; set; }
+	public string? CustomerEmail { get; set; }
+	public string? ShippingAddress { get; set; }
 	public DateTime? OrderDate { get; set; }
     public DateTime? ShippingDate { get; set; }
 	public DateTime? DeliveryDate { get; set; }

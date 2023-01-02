@@ -8,7 +8,7 @@ public struct OrderItem
 	public int ID { get; set; }
 	public int productID { get; set; }
 	public int orderID { get; set; }
-	public double Price { get; set; }
+	public double? Price { get; set; }
 	public int amount { get; set; }
 	//public bool isDeleted { get; set; }
 

@@ -84,7 +84,7 @@ internal class Cart : ICart
         orderBO.ShipDate = order.ShippingDate;
         orderBO.DeliveryDate = order.DeliveryDate;
         orderBO.Status = blay.Order.GetStatus(order); 
-        orderBO.TotalPrice = (double)cart.TotalPrice;
+        orderBO.TotalPrice = (double)cart?.TotalPrice;
         int quantity = 0;
         foreach (BO.OrderItem? item in cart.Items)
         {

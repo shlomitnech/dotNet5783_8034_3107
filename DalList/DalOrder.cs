@@ -67,12 +67,12 @@ public class DalOrder : IOrder //change to be internal?
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<Order> GetAll()
+    public IEnumerable<Order?> GetAll()
     {
 
         if (DataSource.orders != null)
         {
-            return DataSource.orders;
+            return (IEnumerable<Order?>)DataSource.orders;
 
         }
         throw new Exception("There are no orders!");

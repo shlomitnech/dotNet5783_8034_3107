@@ -115,7 +115,7 @@ public class DataSource
             {
                 ID = Config.NextOrderItemNumber,
                 productID = prod.ID,
-                Price = (double)prod.Price,
+                Price = (double?)prod.Price,
                 orderID = random.Next(Config.startingOrderNumber, Config.s_nextOrderNumber),
                 amount = random.Next(3)
             });

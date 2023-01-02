@@ -37,13 +37,13 @@ public class DalProduct : IProduct
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<Product> GetAll()
+    public IEnumerable<Product?> GetAll()
     {
         if (DataSource.products != null)
         {
-            return from v in DataSource.products
+            return (IEnumerable<Product?>)(from v in DataSource.products
                    where v.isDeleted == false
-                   select v;
+                   select v);
         }
         throw new Exception("There are no orders!");
     }

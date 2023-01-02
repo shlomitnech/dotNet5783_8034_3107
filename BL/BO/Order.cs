@@ -18,7 +18,7 @@ public class Order
     public DateTime? ShipDate { get; set; }
     public DateTime? DeliveryDate { get; set; }
     public List<BO.OrderItem?>? Items { get; set; }
-    public double TotalPrice { get; set; }
+    public double? TotalPrice { get; set; }
 
     public override string ToString() => $@"
 	Orders's ID is: {ID},

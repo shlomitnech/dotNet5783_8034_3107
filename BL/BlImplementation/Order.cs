@@ -19,16 +19,16 @@ internal class Order : BlApi.IOrder
     static IDal? Dos = new DalList();
     public IEnumerable<OrderForList?> GetAllOrderForList() //calls get of DO order list, gets items for each order, and build BO orderItem list
     {
-            IEnumerable<DO.Order> ords = Dos.Order.GetAll();
-            IEnumerable<DO.OrderItem> ordItems = Dos.OrderItem.GetAll();
+            IEnumerable<DO.Order?> ords = Dos.Order.GetAll();
+            IEnumerable<DO.OrderItem?> ordItems = Dos.OrderItem.GetAll();
             return from DO.Order? food in ords
                    select new BO.OrderForList
                    {
                        ID = food?.ID ?? throw new BO.EntityNotFound(),
                        CustomerName = food?.CustomerName,
                        Status = GetStatus(food.Value),
-                       AmountOfItems = ordItems.Select(ordItems => ordItems.ID == food?.ID).Count(), //go through the orderItems and see the count
-                       TotalPrice = (double)ordItems.Sum(ordItems => ordItems.Price)
+                       AmountOfItems = ordItems.Select(ordItems => ordItems?.ID == food?.ID).Count(), //go through the orderItems and see the count
+                       TotalPrice = (double)ordItems.Sum(ordItems => ordItems?.Price)
 
                    };
 
@@ -45,7 +45,7 @@ internal class Order : BlApi.IOrder
             throw new BO.EntityNotFound();
         }
        DO.Order ord = Dos.Order.Get(id);
-       double tot = 0;//add up the total price
+       double? tot = 0;//add up the total price
        foreach(DO.OrderItem apple in Dos.OrderItem.GetAll())
         {
             if (apple.ID == id) 
