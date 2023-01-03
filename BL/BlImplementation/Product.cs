@@ -89,17 +89,33 @@ internal class Product : BlApi.IProduct
     //The Customer Functions
     public IEnumerable<ProductItem?> GetCatalog()
     {
-        var prodList = from latkes in Dos!.Product.GetAll() //send the list of products to prodList
-                     select new ProductItem() //make a new product item for each product
-                     {
-                         ID = latkes.ID,
-                         Name = latkes.Name,
-                         Price = (double?)latkes.Price,
-                         Amount = latkes.inStock,
-                         Category = (BO.Enums.Category?)latkes.Category,
-                         InStock = (latkes.inStock> 0)
-                     };
-        return prodList;
+        /* IEnumerable<Product?> prodList = from latkes in Dos!.Product.GetAll() //send the list of products to prodList
+                        where latkes.isNotNull();
+                        select new ProductItem() //make a new product item for each product
+                      {
+                          ID = latkes.ID,
+                          Name = latkes.Name,
+                          Price = (double?)latkes.Price,
+                          Amount = latkes.inStock,
+                          Category = (BO.Enums.Category?)latkes.Category,
+                          InStock = (latkes.inStock> 0)
+                      };
+         return prodList;*/
+
+        return from DO.Product? prods in Dos!.Product.GetAll()
+               where prods != null
+               select new ProductItem()
+               {
+                   ID = prods.Value.ID,
+                   Name = prods?.Name,
+                   Price = (double?)prods?.Price,
+                   Amount = prods.Value.inStock,
+                   Category = (BO.Enums.Category?)prods?.Category,
+                   InStock = (prods?.inStock > 0)
+               };
+
     }
+
+
 
 }
