@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BO;
 
 namespace WpfApp1
 {
@@ -20,9 +22,15 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static IBl bl = new();
         public MainWindow()
         {
             InitializeComponent();
+
+    
+
         }
+        private void ShowCategoryButton_Click(object sender, RoutedEventArgs e) => new().Show();
+
     }
-}
+}  

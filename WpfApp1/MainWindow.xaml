@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Button Content="View the List" HorizontalAlignment="Left" Margin="196,124,0,0" VerticalAlignment="Top" Foreground="#FF163BD0" IsDefault="True"/>
 
-    </Grid>
 </Window>
+  
