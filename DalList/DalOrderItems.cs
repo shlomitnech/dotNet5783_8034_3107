@@ -39,7 +39,6 @@ public class DalOrderItem : IOrderItem //change to be internal?
             return newID;  
         }
     }
-
     /// <summary>
     /// Takes the ID and returns the insance so it can be printed
     /// </summary>
@@ -48,13 +47,11 @@ public class DalOrderItem : IOrderItem //change to be internal?
     /// <exception cref="Exception"></exception>
     public OrderItem Get(int currentID)
     {
-
         OrderItem thisOrdItem = DataSource.orderItems.Find(x => x.ID == currentID);
         if (thisOrdItem.ID != currentID)
             throw new Exception("No product has that ID");    //if product is not found
         return thisOrdItem;
     }
-
     /// <summary>
     /// Returns only the existing instances of Orders Items to be printed to the screen
     /// </summary>
@@ -69,10 +66,7 @@ public class DalOrderItem : IOrderItem //change to be internal?
 
         }
         throw new Exception("There are no orders!");
-
     }
-
-
     /// <summary>
     /// Changes the info of an existing instance
     /// </summary>

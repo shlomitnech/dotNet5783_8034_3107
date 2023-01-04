@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BO;
 using BlApi;
+using BlImplementation;
 
 namespace WpfApp1
 {
@@ -23,18 +24,19 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        BlApi.IBl? bl = BlApi.;
+        static IBl bl = new Bl();
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void ToOtherWindow_Click(object sender, RoutedEventArgs e)
-        {
-            new ListView(bl!).ShowDialog();
-            Close();//close this window
-        }
+       // private void ToOtherWindow_Click(object sender, RoutedEventArgs e)
+      //  {
+           // new ListView(bl!).ShowDialog();
+         //   Close();//close this window
+    //    }
 
- 
+        private void ShowProductButton_Click(object sender, RoutedEventArgs e) => new ListView().Show();
     }
 }  
