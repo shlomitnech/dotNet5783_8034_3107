@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlApi;
+using BlImplementation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,19 +21,16 @@ namespace PL
     /// </summary>
     public partial class ListView : Window
     {
+        static IBl bl = new Bl();
+
         public ListView()
         {
             InitializeComponent();
         }
 
-        private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void InitializeComponent()
         {
-
-        }
-
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            throw new NotImplementedException();
         }
     }
 }
