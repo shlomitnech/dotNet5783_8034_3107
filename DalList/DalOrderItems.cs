@@ -55,13 +55,12 @@ public class DalOrderItem : IOrderItem //change to be internal?
         return thisOrdItem;
     }
 
-
     /// <summary>
     /// Returns only the existing instances of Orders Items to be printed to the screen
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<OrderItem?> GetAll()
+    public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? filter)
     {
 
         if (DataSource.orderItems != null)
@@ -154,17 +153,19 @@ public class DalOrderItem : IOrderItem //change to be internal?
         // return tempSameOrder;
   //  }
   
-   // public OrderItem GetByFilter(Func<OrderItem, bool>? filter)
-    //{
-     //   foreach (OrderItem ord in DataSource.orderItems)
-      //  {
-            //  if (ord.IsDeleted == false && filter(o))
-       //     {
-         //       return ord;
-           // }
-        ///}
-       // throw new Exception("Does not exist\n");
-    //}
-    //*/
+    public OrderItem GetByFilter(Func<OrderItem?, bool>? filter)
+    {
+        if (filter == null) throw new ArgumentNullException(nameof(filter));
+
+        foreach (OrderItem ord in DataSource.orderItems)
+        {
+            if (filter!(ord))
+            {
+                return ord;
+            }
+        }
+        throw new Exception("Does not exist\n");
+    }
+
 
 }

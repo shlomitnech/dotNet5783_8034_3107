@@ -67,7 +67,7 @@ public class DalOrder : IOrder //change to be internal?
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<Order?> GetAll()
+    public IEnumerable<Order?> GetAll(Func<Order?, bool> ? filter)
     {
 
         if (DataSource.orders != null)
@@ -91,14 +91,23 @@ public class DalOrder : IOrder //change to be internal?
             throw new EntityNotFound("Order does not exist!");
         DataSource.orders[index] = current;
     }
-    // public Order GetByFilter(Func<Order, bool>? filter)
-    // {
-    //   foreach (Order ord in DataSource.orders)
-    // {
-    //  if (ord.IsDeleted == false && filter(o))
-    //   {
-    //         return ord;
-    // / }
-    //
-    //throw new Exception("Does not exist\n");
+    /// <summary>
+    /// Get's an entity using a filter
+    /// </summary>
+    /// <param name="filter"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
+    public static Order GetByFilter(Func<Order?, bool>? filter)
+    {
+        if (filter == null) throw new ArgumentNullException(nameof(filter));
+        foreach (Order ord in DataSource.orders)
+        {
+            if (filter!(ord))
+            {
+                return ord;
+            }
+        }
+        throw new Exception("Does not exist\n");
+
+    }
 }

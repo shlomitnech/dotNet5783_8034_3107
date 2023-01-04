@@ -37,7 +37,7 @@ public class DalProduct : IProduct
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<Product?> GetAll()
+    public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter)
     {
         if (DataSource.products != null)
         {
@@ -59,18 +59,19 @@ public class DalProduct : IProduct
                where v?.IsDeleted == false && filter(v)
                select v;
     }
- public Product GetByFilter(Func<Product, bool>? filter)
+    */
+ public Product GetByFilter(Func<Product?, bool>? filter)
     {
+        if (filter == null) throw new ArgumentNullException(nameof(filter));
         foreach (Product prod in DataSource.products)
         {
-            //  if (ord.IsDeleted == false && filter(o))
             {
                 return prod;
             }
         }
         throw new Exception("Does not exist\n");
     }
-    */
+    
 
     /// <summary>
     /// returns the instance based on the identifier provided by the user so it can be printed

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,11 +13,9 @@ public interface ICrud<T> where T : struct
     void Delete(int id);
     void Update(T item);
     T Get(int id);
-    IEnumerable<T?> GetAll();
-   
+    public IEnumerable<T?> GetAll(Func<T?, bool>? filter);
+    T GetByFilter(Func<T?, bool>? filter);
 
-  //  IEnumerable<T> GetAll(Func<T, bool>? filter = null);
-    //T GetByFilter(Func<T, bool>? filter);
 
 }
 
