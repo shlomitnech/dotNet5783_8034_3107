@@ -30,7 +30,8 @@ namespace WpfApp1
     
 
         }
-        private void ShowCategoryButton_Click(object sender, RoutedEventArgs e) => new().Show();
 
+        private void Button_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
+ 
     }
 }  

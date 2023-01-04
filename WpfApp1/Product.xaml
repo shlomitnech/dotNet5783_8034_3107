@@ -26,7 +26,8 @@ VerticalAlignment="Stretch" Width="auto">
             </Grid.ColumnDefinitions >
         </Grid>
         <Grid/>
-        <ComboBox Name="CategorySelector" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
+        <ComboBox Name="CategorySelector" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"
+>
             <Label  Grid.Column = "0"/>
         </ComboBox>
         <ListView Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}">
