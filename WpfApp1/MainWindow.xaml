@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Button Content="View the List" HorizontalAlignment="Left" Margin="196,124,0,0" VerticalAlignment="Top" Foreground="#FF163BD0" IsDefault="True" Click="Button_Click"/>
+    <Button x:Name="adminButton" Content="ADMIN" HorizontalAlignment="Left" Margin="318,203,0,0" VerticalAlignment="Top" Height="50" Width="167" Click="Button_Click" FontFamily="Bernard MT Condensed" FontSize="24"/>
 
 </Window>
   
