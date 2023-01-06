@@ -43,7 +43,7 @@
 
 
         <Label Content="Category" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="73" Width="192" FontFamily="Ploni 1.1 AAA U-Bold" FontSize="36" Grid.RowSpan="2"/>
-        <ComboBox  Name="CategorySelector" Margin="221,70,265,510" SelectionChanged="CategorySelector_SelectionChanged" BorderThickness="0,0,0,0"  MouseDoubleClick="ComboMouseDoubleClick"/>
+        <ComboBox  Name="CategorySelector" Margin="221,70,265,510" SelectionChanged="CategorySelector_SelectionChanged" BorderThickness="0,0,0,0" />
 
     </Grid>
 </Window>
