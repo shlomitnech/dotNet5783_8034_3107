@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using BO;
 using BlApi;
 using BlImplementation;
+using PL;
 
 namespace WpfApp1
 {
@@ -37,6 +38,7 @@ namespace WpfApp1
          //   Close();//close this window
     //    }
 
-        private void ShowProductButton_Click(object sender, RoutedEventArgs e) => new ListView().Show();
+        private void Button_Click(object sender, RoutedEventArgs e) => new ProductListView().Show();
+ 
     }
 }  

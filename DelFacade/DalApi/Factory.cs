@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-
+/*
 namespace DalApi;
 namespace DalApi;
 using System.Reflection;
@@ -32,3 +32,4 @@ public static class Factory
     }
 }
 
+*/

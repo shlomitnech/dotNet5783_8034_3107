@@ -100,7 +100,8 @@ internal class Product : BlApi.IProduct
                           Category = (BO.Enums.Category?)latkes.Category,
                           InStock = (latkes.inStock> 0)
                       };
-         return prodList;*/
+         return prodList;/*
+        /*
 
         return from DO.Product? prods in Dos!.Product.GetAll()
                where prods != null
@@ -113,9 +114,10 @@ internal class Product : BlApi.IProduct
                    Category = (BO.Enums.Category?)prods?.Category,
                    InStock = (prods?.inStock > 0)
                };
-
     }
-
+        */
+        throw new Exception();
+    }
 
 
 }

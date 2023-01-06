@@ -97,7 +97,7 @@ public class DalOrder : IOrder //change to be internal?
     /// <param name="filter"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public static Order GetByFilter(Func<Order?, bool>? filter)
+    public Order GetByFilter(Func<Order?, bool>? filter)
     {
         if (filter == null) throw new ArgumentNullException(nameof(filter));
         foreach (Order ord in DataSource.orders)
