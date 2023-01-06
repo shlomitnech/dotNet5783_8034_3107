@@ -67,17 +67,19 @@ public class DalOrder : IOrder //change to be internal?
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<Order?> GetAll(Func<Order?, bool> ? filter)
+    public IEnumerable<Order?> GetAll(Func<Order?, bool>? filter)
     {
 
-        if (DataSource.orders != null)
+        if (filter == null)//select whole list
         {
             return (IEnumerable<Order?>)DataSource.orders;
 
         }
+        
+
+
         throw new Exception("There are no orders!");
     }
-
 
     /// <summary>
     /// changes attributes of the instance
@@ -97,7 +99,7 @@ public class DalOrder : IOrder //change to be internal?
     /// <param name="filter"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public Order GetByFilter(Func<Order?, bool>? filter)
+    Order ICrud<Order>.GetByFilter(Func<Order?, bool>? filter)
     {
         if (filter == null) throw new ArgumentNullException(nameof(filter));
         foreach (Order ord in DataSource.orders)
@@ -110,4 +112,5 @@ public class DalOrder : IOrder //change to be internal?
         throw new Exception("Does not exist\n");
 
     }
+
 }

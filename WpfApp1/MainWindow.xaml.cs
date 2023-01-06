@@ -37,7 +37,7 @@ namespace WpfApp1
          //   Close();//close this window
     //    }
 
-        private void Button_Click(object sender, RoutedEventArgs e) => new ProductListView().Show();
+        private void Button_Click(object sender, RoutedEventArgs e) => new ViewTheList().Show();
  
     }
 }  

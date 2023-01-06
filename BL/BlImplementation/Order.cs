@@ -93,28 +93,7 @@ internal class Order : BlApi.IOrder
             order2.ShipDate = date;
             order2.Status = GetStatus(order1);
             return order2;
-            /*
-            double tot = 0;//add up the total price
-            foreach (DO.OrderItem apple in Dos.OrderItem.GetAll())
-            {
-                if (apple.ID == id)
-                {
-                    tot += apple.Price;
-                }
-            }
-            return new BO.Order
-            {
-                ID = id,
-                CustomerName = order1.CustomerName,
-                CustomerEmail = order1.CustomerEmail,
-                CustomerAddress = order1.ShippingAddress,
-                ShipDate = order1.OrderDate,
-                OrderDate = order1.OrderDate,
-                DeliveryDate = order1.DeliveryDate,
-                Status = GetStatus(order2),
-                TotalPrice = tot,
-            };
-            */
+   
         }
         throw new BO.EntityNotFound();
 

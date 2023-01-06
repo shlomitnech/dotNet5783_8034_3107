@@ -7,7 +7,16 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Button x:Name="adminButton" Content="ADMIN" HorizontalAlignment="Left" Margin="318,203,0,0" VerticalAlignment="Top" Height="50" Width="167" Click="Button_Click" FontFamily="Bernard MT Condensed" FontSize="24"/>
+    <Button x:Name="adminButton" Content="ADMIN" HorizontalAlignment="Left" Margin="182,91,0,0" VerticalAlignment="Top" Height="250" Width="441" Click="Button_Click" FontFamily="Bernard MT Condensed" FontSize="24" Foreground="#FF3B6BE2" RenderTransformOrigin="0.257,0.082">
+        <Button.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform Angle="-0.28"/>
+                <TranslateTransform X="-0.281" Y="0.363"/>
+            </TransformGroup>
+        </Button.RenderTransform>
+    </Button>
 
 </Window>
   

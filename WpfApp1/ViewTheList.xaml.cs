@@ -17,20 +17,30 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for ListView.xaml
+    /// Interaction logic for ViewTheList.xaml
     /// </summary>
-    public partial class ListView : Window
+    public partial class ViewTheList : Window
     {
-        static IBl bl = new Bl();
-
-        public ListView()
+        private IBl bl = new Bl();
+        public ViewTheList()
         {
             InitializeComponent();
         }
 
-        private void InitializeComponent()
+ 
+        private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            throw new NotImplementedException();
+
+        }
+
+        private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
