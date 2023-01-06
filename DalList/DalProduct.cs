@@ -37,15 +37,15 @@ public class DalProduct : IProduct
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter)
-    {
-        if (DataSource.products != null)
-        {
-            return (IEnumerable<Product?>)(from v in DataSource.products
-                   where v.isDeleted == false
+    public IEnumerable<Product?> GetAll()
+    {//Func<Product?, bool>? filter
+     // if (DataSource.products != null)
+     // {
+        return (IEnumerable<Product?>)(from v in DataSource.products
+                   //where v != null
                    select v);
-        }
-        throw new Exception("There are no orders!");
+       // }
+      //  throw new Exception("There are no orders!");
     }
 
     /*
