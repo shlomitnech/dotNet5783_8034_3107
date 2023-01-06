@@ -25,8 +25,16 @@ namespace PL
         public ViewTheList()
         {
             InitializeComponent();
+            try
+            {
+                ItemListView.ItemsSource = bl.Product.GetProductForList(); //return the product list from BO
+            }
+            catch(BO.Exceptions ex)
+            {
+                new Exception(ex.Message); //Change this!!!
+            }
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category))
         }
-
  
         private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
