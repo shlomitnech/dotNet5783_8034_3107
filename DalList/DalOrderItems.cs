@@ -63,11 +63,9 @@ public class DalOrderItem : IOrderItem //change to be internal?
         {
             return (IEnumerable<OrderItem?>)DataSource.orderItems;
         }
-        return from v in DataSource.orderItems//select with filter
-               where filter(v) ?
-               select v;
+     
 
-        //throw new Exception("There are no orders!");
+        throw new Exception("There are no orders!");
     }
     /// <summary>
     /// Changes the info of an existing instance

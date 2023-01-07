@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using BlImplementation;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,8 +36,7 @@ namespace PL
             }
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
         }
- 
-        private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BO.Enums.Category cat = (BO.Enums.Category)ItemListView.SelectedItem; //save the category that was picked
             if (cat == BO.Enums.Category.NoCategory)
@@ -54,9 +54,23 @@ namespace PL
                                        select pro;
         }
 
-        private void AddButton(object sender, RoutedEventArgs e)
+        private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if(ItemListView.SelectedItems is ProductForList prod)
+            {
+                //newWindow....show dialog 
+            }
+            ItemListView.ItemsSource = bl.Product.GetProductForList();
 
         }
+
+        private void AddButton(object sender, RoutedEventArgs e)
+        {
+            //show dialog for the window
+            ItemListView.ItemsSource = bl.Product.GetProductForList(); //print all the products
+
+        }
+
+
     }
 }
