@@ -33,20 +33,28 @@ namespace PL
             {
                 new Exception(ex.Message); //Change this!!!
             }
-            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category))
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
         }
  
         private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            BO.Enums.Category cat = (BO.Enums.Category)ItemListView.SelectedItem; //save the category that was picked
+            if (cat == BO.Enums.Category.NoCategory)
+            {
+                ItemListView.ItemsSource = bl.Product.GetProductForList();//get the whole list 
 
+            }
+            if (cat is BO.Enums.Category c)//get the category selected
+            {
+                ItemListView.ItemsSource = bl.Product.GetProductForList().Select(x => x!.Category == c);//print the list of the filtered items
+
+            }
+            ItemListView.ItemsSource = from pro in bl.Product.GetProductForList()
+                                       where pro.Category == cat
+                                       select pro;
         }
 
-        private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AddButton(object sender, RoutedEventArgs e)
         {
 
         }

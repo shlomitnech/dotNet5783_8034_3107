@@ -29,8 +29,12 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Add" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="Button_Click"/>
-
+        <Button x:Name="btnAdd" Content="Add Product" FontSize="20" Background="#FFA1D5FD" FontWeight="Bold" FontStyle="Italic"
+                Width="157" Grid.Row="2" HorizontalAlignment="Left" Padding="5" Click="AddButton" Margin="34,22,0,94">
+            <Button.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
+            </Button.BorderBrush>
+        </Button>
 
 
     </Grid>
