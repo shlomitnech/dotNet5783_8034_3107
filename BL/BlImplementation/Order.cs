@@ -19,7 +19,7 @@ internal class Order : BlApi.IOrder
     static IDal? Dos = new DalList();
     public IEnumerable<OrderForList?> GetAllOrderForList() //calls get of DO order list, gets items for each order, and build BO orderItem list
     {
-            IEnumerable<DO.Order?> ords = Dos!.Order.GetAll();
+        IEnumerable<DO.Order?> ords = Dos!.Order.GetAll();
             IEnumerable<DO.OrderItem?> ordItems = Dos.OrderItem.GetAll();
             return from DO.Order? food in ords
                    select new BO.OrderForList
@@ -29,7 +29,6 @@ internal class Order : BlApi.IOrder
                        Status = GetStatus(food.Value),
                        AmountOfItems = ordItems.Select(ordItems => ordItems?.ID == food?.ID).Count(), //go through the orderItems and see the count
                        TotalPrice = (double)ordItems.Sum(ordItems => ordItems?.Price)!
-
                    };
 
     }

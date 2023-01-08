@@ -59,13 +59,13 @@ public class DalOrderItem : IOrderItem //change to be internal?
     /// <exception cref="Exception"></exception>
     public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? filter)
     {
-        if (DataSource.orderItems != null)
+        if (filter == null)//select whole list
         {
             return (IEnumerable<OrderItem?>)DataSource.orderItems;
         }
-     
-
-        throw new Exception("There are no orders!");
+        (IEnumerable<OrderItem?>)(from v in DataSource.orderItems//select with filter
+                                  where filter(v)
+                                  select v);
     }
     /// <summary>
     /// Changes the info of an existing instance

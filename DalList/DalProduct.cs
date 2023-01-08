@@ -37,30 +37,18 @@ public class DalProduct : IProduct
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<Product?> GetAll()
-    {//Func<Product?, bool>? filter
-     // if (DataSource.products != null)
-     // {
-        return (IEnumerable<Product?>)(from v in DataSource.products
-                   //where v != null
-                   select v);
-       // }
-      //  throw new Exception("There are no orders!");
+    public IEnumerable<Order?> GetAll(Func<Product?, bool>? filter)
+    {
+        if (filter == null)//select whole list
+        {
+            return (IEnumerable<Order?>)DataSource.products;
+        }
+        return (IEnumerable<Order?>)(from v in DataSource.products//select with filter
+                                     where filter!(v)
+                                     select v);
     }
 
-    /*
-     *         if (filter == null)//select whole list
-        {
-            return from v in _ds.productList
-                   where v?.IsDeleted == false
-                   select v;
-        }
-        return from v in _ds.productList//select with filter
-               where v?.IsDeleted == false && filter(v)
-               select v;
-    }
-    */
- public Product GetByFilter(Func<Product?, bool>? filter)
+    public Product GetByFilter(Func<Product?, bool>? filter)
     {
         if (filter == null) throw new ArgumentNullException(nameof(filter));
         foreach (Product prod in DataSource.products)
