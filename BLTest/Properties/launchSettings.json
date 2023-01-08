@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BLTest": {
+      "commandName": "Project"
+    },
+    "PL": {
+      "commandName": "Project"
+    }
+  }
+}

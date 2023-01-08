@@ -67,7 +67,7 @@ public class DalOrder : IOrder //change to be internal?
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<Order?> GetAll(Func<Order?, bool>? filter)
+    public IEnumerable<Order?> GetAll(Func<Order?, bool>? filter = null)
     {
         if (filter == null)//select whole list
         {
@@ -76,6 +76,9 @@ public class DalOrder : IOrder //change to be internal?
         return (IEnumerable<Order?>)(from v in DataSource.orders//select with filter
                where filter!(v)
                select v);
+
+
+        throw new Exception("There are no orders!");
     }
 
     /// <summary>
