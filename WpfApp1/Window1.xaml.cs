@@ -46,17 +46,27 @@ namespace PL
 
         private void tid_TextChanged(object sender, TextChangedEventArgs e)
         {
+            e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);//only gets numbers for id
 
         }
 
         private void tname_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (tname != null && tname.Text != "")
+            {
+                prod.Name = tname.Text;
+            }
         }
 
         private void tprice_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (tprice != null && tprice.Text != "")
+            {
+                if (int.TryParse(tprice.Text, out int val))
+                {
+                    prod.Price = val;
+                }
+            }
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -66,17 +76,60 @@ namespace PL
 
         private void tinstock_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (tinstock != null && tinstock.Text != "")
+            {
+                if (int.TryParse(tinstock.Text, out int val))
+                {
+                    prod.InStock = val;
+                }
+            }
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                bl!.Product.AddProduct(prod);//add product to BO
+            }
+            catch (BO.IncorrectInput ex)//IncorrectInput error on the screen 
+            {
+                new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
+             
+            }
+            catch (BO.IdExistException ex)//IdExistException error on the screen 
+            {
+                new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
+         
+            }
+           //POP up the messages below
+            tid.Text = "Enter ID";
+            tname.Text = "Enter Name";
+            tprice.Text = "Enter Price";
+            tinstock.Text = "Enter Amount";
+            Close();
         }
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                bl!.Product.UpdateProduct(p);//add product to BO
+            }
+            catch (BO.IncorrectInput ex)//IncorrectInput error on the screen 
+            {
+                new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
+            }
+            catch (BO.IdNotExistException ex)//IdExistException error on the screen 
+            {
+                new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
 
+            }
+            //POP up the messages below
+            tid.Text = "Enter ID";
+            tname.Text = "Enter Name";
+            tprice.Text = "Enter Price";
+            tinstock.Text = "Enter Amount";
+            Close();
         }
     }
 }
