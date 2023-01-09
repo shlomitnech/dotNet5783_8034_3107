@@ -45,15 +45,9 @@ public class DalProduct : IProduct
         // return DataSource.productList.ToList(); //-- this was the entire function!!!
     }
 
-    public Product GetByFilter(Func<Product?, bool>? filter)
+    public Product GetByFilter(Func<Product?, bool>? filter = null)
     {
-        if (filter == null) throw new ArgumentNullException(nameof(filter));
-        foreach (Product prod in DataSource.products)
-        {
-            {
-                return prod;
-            }
-        }
+      
         throw new Exception("Does not exist\n");
     }
     
@@ -64,7 +58,7 @@ public class DalProduct : IProduct
     /// <param name="currentID"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public Product Get(int currentID)
+    public Product? Get(int currentID)
     {
         DO.Product? prod = DataSource.products.Find(x => x?.ID == currentID); // find an order with a matching ID
         if (prod == null)
@@ -79,9 +73,9 @@ public class DalProduct : IProduct
     /// </summary>
     /// <param name="prod"></param>
     /// <exception cref="Exception"></exception>
-    public void Update(Product prod)
+    public void Update(Product? prod)
     {
-        int index = DataSource.products.FindIndex(x => x?.ID == prod.ID);
+        int index = DataSource.products.FindIndex(x => x?.ID == prod?.ID);
         if (index == -1) //item doesn't exist
             throw new EntityNotFound("The product does not exist");
         DataSource.products[index] = prod;
@@ -95,9 +89,9 @@ public class DalProduct : IProduct
     public void Delete(int currentID)
     {
         int index = -1;
-        foreach (DO.Product prod in DataSource.products)
+        foreach (DO.Product? prod in DataSource.products)
         {
-            if (prod.ID == currentID)
+            if (prod?.ID == currentID)
             {
                 index = DataSource.products.IndexOf(prod); // save the index of the product with the matching ID#
                 break;

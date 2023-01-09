@@ -15,16 +15,16 @@ namespace BlImplementation;
 
 internal class Cart : ICart
 {
-    readonly static IDal Dos = new DalList();
-    readonly static IBl blay = new Bl();
+    readonly static IDal? Dos = new DalList();
+    readonly static IBl? blay = new Bl();
     public BO.Cart AddToCart(BO.Cart cart, int id, int amount) //check if the product is in the cart, if not add it from DO product if it is in stock
     {
         int index = cart.Items!.FindIndex(x => x != null && x.ID == id);
-        DO.Product p = new();
-        p = Dos.Product.Get(id);
+        DO.Product? p = new();
+        p = (DO.Product?)Dos!.Product.Get(id);
         if (amount < 0) throw new BO.IncorrectInput();
-        if (p.inStock < 1) throw new BO.Exceptions("Product in unavailable");
-        if (p.inStock < amount) throw new BO.Exceptions("There aren't enough in stock!");
+        if (p?.inStock < 1) throw new BO.Exceptions("Product in unavailable");
+        if (p?.inStock < amount) throw new BO.Exceptions("There aren't enough in stock!");
         if (index != -1)
         {
             cart.Items[index]!.Amount = amount;
@@ -32,12 +32,12 @@ internal class Cart : ICart
             return cart;
         }
 
-        BO.OrderItem item = new()
+        BO.OrderItem? item = new()
         {
             ID = id,
-            Price = p.Price,
+            Price = p?.Price,
             Amount = amount,
-            ProductID = p.ID
+            ProductID = (int)p?.ID
         };
 
         cart.Items?.Add(item);
@@ -48,12 +48,12 @@ internal class Cart : ICart
     {
         int index = cart.Items!.FindIndex(x => x != null && x.ID == id);
 
-        DO.Product p = new DO.Product();
-        p = Dos.Product.Get(id);
+        DO.Product? p = new DO.Product();
+        p = (DO.Product?)Dos!.Product.Get(id);
 
-        if (p.inStock < 1) throw new Exception("Product in unavailable");
+        if (p?.inStock < 1) throw new Exception("Product in unavailable");
         if (index == -1) throw new BO.EntityNotFound("Order does not exist");
-        if (newAmount > p.inStock) throw new Exception("Product in unavailable");
+        if (newAmount > p?.inStock) throw new Exception("Product in unavailable");
 
         cart.Items[index]!.Amount = newAmount;
         cart.TotalPrice = CalculateTotalPrice(cart);
@@ -71,10 +71,10 @@ internal class Cart : ICart
         cart.CustomerName = n;
         cart.CustomerEmail = em;
         cart.CustomerAddress = add;
-        DO.Product product;
+        DO.Product? product;
         DO.Order order = new(); // create an instance of order
         BO.Order orderBO = new();
-        int ordID = Dos.Order.Add(order); // adding a new order to the list (this is the new order)
+        int ordID = Dos!.Order.Add(order); // adding a new order to the list (this is the new order)
         order.OrderDate = DateTime.Now;
         orderBO.ID = ordID;
         orderBO.CustomerName = order.CustomerName;
@@ -83,7 +83,7 @@ internal class Cart : ICart
         orderBO.PaymentDate = order.OrderDate;
         orderBO.ShipDate = order.ShippingDate;
         orderBO.DeliveryDate = order.DeliveryDate;
-        orderBO.Status = blay.Order.GetStatus(order); 
+        orderBO.Status = blay!.Order.GetStatus(order); 
         orderBO.TotalPrice = (double?)cart!.TotalPrice;
         int quantity = 0;
         foreach (BO.OrderItem? item in cart.Items!)
@@ -99,8 +99,8 @@ internal class Cart : ICart
                 DO.OrderItem item = new();
                 item.productID = it.ProductID;
                 item.orderID = ordID;
-                product = Dos.Product.Get(it.ProductID);
-                if (product.inStock < quant)
+                product = (DO.Product?)Dos!.Product.Get(it.ProductID);
+                if (product?.inStock < quant)
                 {
                     throw new BO.Exceptions("Not enough are in stock! ");
                 }
@@ -116,13 +116,13 @@ internal class Cart : ICart
     public List<string> GetItemNames(BO.Cart cart)
     {
         int prodId;
-        DO.Product product = new(); 
+        DO.Product? product = new(); 
         List<string> list = new();
         foreach (BO.OrderItem? item in cart.Items!) //find all the products in the cart
         {
-            prodId = item!.ID;
-            product = Dos.Product.Get(prodId);
-            list?.Add(product.Name!);
+            prodId = (int)item!.ID;
+            product = Dos!.Product.Get(prodId);
+            list?.Add(product?.Name!);
         }
         return list;
 

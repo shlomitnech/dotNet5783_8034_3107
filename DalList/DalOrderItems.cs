@@ -8,6 +8,7 @@ namespace Dal;
 
 public class DalOrderItem : IOrderItem //change to be internal?
 {
+
     /// <summary>
     /// Inserts a new Order Item to the main array
     /// </summary>
@@ -35,9 +36,9 @@ public class DalOrderItem : IOrderItem //change to be internal?
             throw new EntityNotFound();
         }
         int counter = 0;
-        foreach (DO.OrderItem item2 in DataSource.orderItems)
+        foreach (DO.OrderItem? item2 in DataSource.orderItems)
         {
-            if (item2.orderID == item.orderID)
+            if (item2?.orderID == item.orderID)
                 counter++;
         }
         if (counter > 4)
@@ -57,10 +58,10 @@ public class DalOrderItem : IOrderItem //change to be internal?
     /// <param name="currentID"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public OrderItem Get(int currentID)
+    public OrderItem? Get(int currentID)
     {
-        OrderItem thisOrdItem = DataSource.orderItems.Find(x => x.ID == currentID);
-        if (thisOrdItem.ID != currentID)
+        OrderItem? thisOrdItem = DataSource.orderItems.Find(x => x?.ID == currentID);
+        if (thisOrdItem?.ID != currentID)
             throw new Exception("No product has that ID");    //if product is not found
         return thisOrdItem;
     }
@@ -79,23 +80,23 @@ public class DalOrderItem : IOrderItem //change to be internal?
     /// </summary>
     /// <param name="item"></param>
     /// <exception cref="Exception"></exception>
-    public void Update(OrderItem item)
+    public void Update(OrderItem? item)
     {
-        int indexItem = DataSource.orderItems.FindIndex(x => x?.ID == item.ID);
+        int indexItem = DataSource.orderItems!.FindIndex(x => x?.ID == item?.ID);
         if (indexItem < 0) { throw new EntityNotFound("Order Item does not exist!"); }
-        bool isOrder = DataSource.orders.Exists(x => x.ID == item.orderID); //see if the order exists
+        bool isOrder = DataSource.orders.Exists(x => x?.ID == item?.orderID); //see if the order exists
         if (!isOrder) throw new Exception("order does not exist");
-        int productIndex = DataSource.products.FindIndex(x => x.ID == item.productID);//see if the product exists
+        int productIndex = DataSource.products.FindIndex(x => x?.ID == item?.productID);//see if the product exists
         if (productIndex < 0) throw new EntityNotFound("Product does not exist");
 
         //Check the Product Stock Count
-        if (DataSource.products[productIndex].inStock - item.amount < 0)
+        if (DataSource.products[productIndex]?.inStock - item?.amount < 0)
             throw new EntityNotFound("There are not enough in stock");
        // else
       //      DataSource.products[productIndex].inStock = (DataSource.products[productIndex].inStock - item.amount); //update the stock
 
         //If everything is good, update the item
-        DataSource.orderItems[indexItem] = item;
+        DataSource.orderItems![indexItem] = (OrderItem?)item;
 
     }
 
@@ -107,9 +108,9 @@ public class DalOrderItem : IOrderItem //change to be internal?
     public void Delete(int currentID)
     {
         int index = -1;
-        foreach (DO.OrderItem ordi in DataSource.orderItems)
+        foreach (DO.OrderItem? ordi in DataSource.orderItems)
         {
-            if (ordi.ID == currentID)
+            if (ordi?.ID == currentID)
             {
                 index = DataSource.orderItems.IndexOf(ordi); // save the index of the product with the matching ID#
                 break;
@@ -154,19 +155,11 @@ public class DalOrderItem : IOrderItem //change to be internal?
         // return tempSameOrder;
   //  }
   
-    public OrderItem GetByFilter(Func<OrderItem?, bool>? filter)
+    public OrderItem GetByFilter(Func<OrderItem?, bool>? filter = null)
     {
-        if (filter == null) throw new ArgumentNullException(nameof(filter));
-
-        foreach (OrderItem ord in DataSource.orderItems)
-        {
-            if (filter!(ord))
-            {
-                return ord;
-            }
-        }
+        
         throw new Exception("Does not exist\n");
     }
 
-
+   
 }
