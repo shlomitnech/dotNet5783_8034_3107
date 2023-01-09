@@ -81,7 +81,7 @@ public class DalOrderItem : IOrderItem //change to be internal?
     /// <exception cref="Exception"></exception>
     public void Update(OrderItem item)
     {
-        int indexItem = DataSource.orderItems.FindIndex(x => x.ID == item.ID);
+        int indexItem = DataSource.orderItems.FindIndex(x => x?.ID == item.ID);
         if (indexItem < 0) { throw new EntityNotFound("Order Item does not exist!"); }
         bool isOrder = DataSource.orders.Exists(x => x.ID == item.orderID); //see if the order exists
         if (!isOrder) throw new Exception("order does not exist");
@@ -115,7 +115,7 @@ public class DalOrderItem : IOrderItem //change to be internal?
                 break;
             }
         }
-        DO.OrderItem DeleteOrderItem = DataSource.orderItems[index]; // save the product in the found index
+        DO.OrderItem DeleteOrderItem = (OrderItem)DataSource.orderItems[index]!; // save the product in the found index
         DataSource.orderItems.Remove(DeleteOrderItem); // remove the product
     }
 
