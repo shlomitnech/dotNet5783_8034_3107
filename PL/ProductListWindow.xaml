@@ -18,21 +18,21 @@
                 <ColumnDefinition Width="398*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="81*"/>
-                <RowDefinition Height="353*"/>
+                <RowDefinition Height="51*"/>
+                <RowDefinition Height="383*"/>
                 <RowDefinition Height="Auto"/>
 
             </Grid.RowDefinitions>
             <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,19" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="229*"/>
+                    <ColumnDefinition Width="560*"/>
                 </Grid.ColumnDefinitions >
-                <ComboBox Name="CategorySelector" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="62" Margin="394,0,0,0" SelectionChanged="CategorySelector_SelectionChanged" />
-                <Label Name="Description" Content="Product:" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial Black" FontWeight="Bold" FontSize="23" Width="400"
-                   Background="#FFCECECE" FontStyle="Italic" Height="62" HorizontalContentAlignment="Center"/>
+                <ComboBox Name="CategorySelector" VerticalAlignment="Center" Height="62" Margin="208,0,0,0" SelectionChanged="CategorySelector_SelectionChanged" Grid.ColumnSpan="2" />
+                <Label Name="Description" Content="Select Category:" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Arial Black" FontWeight="Bold" FontSize="20" Width="203"
+                   Background="#FFCECECE" FontStyle="Italic" Height="52" HorizontalContentAlignment="Center"/>
             </Grid>
-            <ListView x:Name="ProductsListView" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ProductsListView_SelectionChanged" Margin="0,3,0,0" MouseDoubleClick="DoubleClickEvent" SelectedItem="" Grid.Row="1">
+            <ListView x:Name="ProductsListView" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ProductsListView_SelectionChanged" Margin="0,3,398,0" MouseDoubleClick="DoubleClickEvent" SelectedItem="" Grid.Row="1" Grid.ColumnSpan="2">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>
@@ -40,7 +40,7 @@
                 </ListView.View>
             </ListView>
 
-            <Button Content="Add" HorizontalAlignment="Left" Margin="10,242,0,0" Grid.Row="1" VerticalAlignment="Top" Height="101" Width="278" FontSize="48" FontFamily="Cascadia Code SemiBold" Background="#FFF2F800"/>
+            <Button Content="Add" HorizontalAlignment="Left" Margin="10,242,0,0" Grid.Row="1" VerticalAlignment="Top" Height="67" Width="278" FontSize="48" FontFamily="Cascadia Code SemiBold" Background="#FFF2F800"/>
         </Grid>
 
     </Grid>

@@ -33,7 +33,7 @@ namespace PL
             if (productCategory is BO.Enums.Category cat)
             {
                 //show the filtered list
-                ProductsListView.ItemsSource = bl?.Product.GetProductForList()?.Select(x => x.Category == cat);
+                ProductsListView.ItemsSource = bl?.Product.GetProductForList()?.Select(x => x!.Category == cat);
 
 
             }
@@ -52,8 +52,8 @@ namespace PL
             if (ProductsListView.SelectedItem is BO.ProductForList productForList)
             {
                 BO.Product prod = new BO.Product();
-          //      prod = bl.Product.GetProductForList(productForList.ID);
-         //       new ProductWindow(prod).ShowDialog();
+               prod = bl.Product.GetProductForList(productForList.ID);
+               new ProductWindow(prod).ShowDialog();
             }
             ProductsListView.ItemsSource = bl?.Product.GetProductForList(); // update list view after add
         }
