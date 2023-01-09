@@ -31,13 +31,13 @@
                Height="40" Width="167" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" FontFamily="Arial Black" Margin="10,0,0,0"/>
         <ComboBox Name="CategoryBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="234" Height="32" SelectionChanged="ComboBox_SelectionChanged"/>
         <TextBox Name="tid" Grid.Column="1" FontSize="20" MaxLength="6" HorizontalAlignment="Left" Margin="10,0,0,10" TextWrapping="Wrap" Text="Enter Product ID" VerticalAlignment="Bottom" Width="234" Height="40"
-                 PreviewTextInput="tid_previewtextinput" TextChanged="tid_TextChanged" PreviewMouseDown="tid_PreviewMouseDown" MouseMove="ScrollID"/>
+                 PreviewTextInput="tid_previewtextinput" TextChanged="tid_TextChanged" PreviewMouseDown="tid_PreviewMouseDown"/>
         <TextBox Name="tname" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Enter Name of Product" VerticalAlignment="Center" Width="234" Height="40" 
-                 PreviewTextInput="tname_previewtextinput"  TextChanged="tname_TextChanged" PreviewMouseDown="tname_PreviewMouseDown" MouseMove="ScrollName" />
+                 PreviewTextInput="tname_previewtextinput"  TextChanged="tname_TextChanged" PreviewMouseDown="tname_PreviewMouseDown" />
         <TextBox Name="tprice" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Enter Price of Product" VerticalAlignment="Center" Width="234" Height="40" 
-                 PreviewTextInput="tprice_previewtextinput" TextChanged="tprice_TextChanged" PreviewMouseDown="tprice_PreviewMouseDown" MouseMove="ScrollPrice"/>
+                 PreviewTextInput="tprice_previewtextinput" TextChanged="tprice_TextChanged" PreviewMouseDown="tprice_PreviewMouseDown"/>
         <TextBox Name="tinstock" Grid.Column="1" FontSize="20" MaxLength="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" TextWrapping="Wrap" Text="Enter the amount in stock" VerticalAlignment="Center" Width="234" Height="40"
-                 PreviewTextInput="tinstock_previewtextinput" TextChanged="tinstock_TextChanged" PreviewMouseDown="tinstock_PreviewMouseDown" MouseMove="ScrollStokc"/>
+                 PreviewTextInput="tinstock_previewtextinput" TextChanged="tinstock_TextChanged" PreviewMouseDown="tinstock_PreviewMouseDown"/>
         <Button Name="addButton" Content="Add Product" FontSize="27" 
                 HorizontalAlignment="Left" Margin="10,10,0,6" Grid.Row="5" Width="234" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Click="addButton_Click" Grid.Column="1" FontFamily="Arial">
             <Button.BorderBrush>
@@ -47,7 +47,7 @@
         <Label x:Name="l2_Copy" Content="ID:" FontSize="27" FontStyle="Italic" FontWeight="DemiBold"
             Height="40" Width="116" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,12,0,0" RenderTransformOrigin="-1.796,0.475" FontFamily="Arial Black"/>
         <Button x:Name="updateButton_Copy" Content="Update Product" FontSize="27" FontStyle="Italic" 
-            HorizontalAlignment="Left" Margin="10,80,0,-64" Grid.Row="5" Width="214" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Click="updateButton_Click" Grid.Column="1" FontFamily="Arial Narrow">
+            HorizontalAlignment="Left" Margin="20,80,0,-64" Grid.Row="5" Width="214" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Click="updateButton_Click" Grid.Column="1" FontFamily="Arial Narrow">
             <Button.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
             </Button.BorderBrush>

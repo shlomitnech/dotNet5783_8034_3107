@@ -1,4 +1,4 @@
-﻿/*namespace BLTest;
+﻿namespace BLTest;
 using BlApi;
 using BO;
 using BlImplementation;
@@ -26,7 +26,7 @@ internal class Program
             + "To edit CART press 3 \n"
             + "To EXIT the program, press 0 ");
             num1 = 0;
-            System.Int32.TryParse(Console.ReadLine(), out num1);
+            Int32.TryParse(Console.ReadLine(), out num1);
             while (num1 > 3 || num1 < 0)
             {
                 Console.WriteLine("Please click a number 0-3");
@@ -358,4 +358,4 @@ internal class Program
         return num;
     }
 
-}*/
+}
