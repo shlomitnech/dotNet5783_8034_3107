@@ -23,5 +23,15 @@ namespace PL
         {
             InitializeComponent();
         }
+
+        private void name_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        private void name_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
