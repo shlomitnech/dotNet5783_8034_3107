@@ -20,28 +20,29 @@ public class DalProduct : IProduct
         {
             throw new EntityNotFound("Can't take more orders");
         }
-        /*
-        int index = DataSource.products.FindIndex(x => x.ID == current.ID);
-        //Check if the product already exists
-        if (index != -1)
-            throw new Exception("Product already exists\n");
-        */
-        //take the instance and add it to the list
-        int newID = DataSource.Config.NextProductNumber;
-        current.ID = newID;
+
         DataSource.products.Add(current);
-        return newID;
+        return current.ID;
     }
     /// <summary>
     /// returns all instances in the main array to be printed
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter = null)
+    public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter)
     {
+        if (filter == null)//select whole list
+        {
+            return from prod in DataSource.products
+                   where prod != null
+                   select prod;
+        }
+        return from myProd in DataSource.products//select with filter
+               let v = myProd != null
+               where v && filter(myProd)
+               select myProd;
 
-          return (IEnumerable<Product?>)DataSource.products.ToList();
- 
+        // return DataSource.productList.ToList(); //-- this was the entire function!!!
     }
 
     public Product GetByFilter(Func<Product?, bool>? filter)
@@ -65,10 +66,12 @@ public class DalProduct : IProduct
     /// <exception cref="Exception"></exception>
     public Product Get(int currentID)
     {
-        Product thisProd = DataSource.products.Find(x => x.ID == currentID);
-        if (thisProd.ID != currentID)
-            throw new Exception("No product has that ID");    //if product is not found
-        return thisProd;
+        DO.Product? prod = DataSource.products.Find(x => x?.ID == currentID); // find an order with a matching ID
+        if (prod == null)
+        {
+            throw new EntityNotFound();
+        }
+        return prod;
     }
 
     /// <summary>
@@ -78,7 +81,7 @@ public class DalProduct : IProduct
     /// <exception cref="Exception"></exception>
     public void Update(Product prod)
     {
-        int index = DataSource.products.FindIndex(x => x.ID == prod.ID);
+        int index = DataSource.products.FindIndex(x => x?.ID == prod.ID);
         if (index == -1) //item doesn't exist
             throw new EntityNotFound("The product does not exist");
         DataSource.products[index] = prod;
@@ -100,7 +103,7 @@ public class DalProduct : IProduct
                 break;
             }
         }
-        DO.Product DelProd = DataSource.products[index]; // save the product in the found index
+        DO.Product DelProd = (Product)DataSource.products[index]!; // save the product in the found index
         DataSource.products.Remove(DelProd); // remove the product
   
 

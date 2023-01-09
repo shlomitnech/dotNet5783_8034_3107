@@ -1,13 +1,28 @@
-﻿namespace DO;
+﻿using System.Net;
+
+namespace DO;
 /// <summary>
 /// The customer's information and order information
 /// </summary>
 
 public struct Order
 {
+    public static int orderCounter = 1000;
 
-	public int ID { get; set; }
-	public string? CustomerName { get; set; }
+    public Order()
+    {
+
+        CustomerName = "";
+		CustomerEmail = "";
+        ShippingAddress = "";
+        OrderDate = DateTime.MinValue;
+        ShippingDate = DateTime.MinValue;
+        DeliveryDate = DateTime.MinValue;
+    }
+
+
+    public int ID { get; set; } = orderCounter++;
+    public string? CustomerName { get; set; } 
 	public string? CustomerEmail { get; set; }
 	public string? ShippingAddress { get; set; }
 	public DateTime? OrderDate { get; set; }

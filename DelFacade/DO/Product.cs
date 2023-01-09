@@ -5,12 +5,21 @@
 
 public struct Product
 {
-    public int ID { get; set; }
+    public static int productCounter = 100000;
+
+    public Product()
+    {
+        Name = "";
+        Price = 0;
+        inStock = 0;
+        Category = Enums.Category.other;
+    }
+
+    public int ID { get; init; } = productCounter++;
     public string? Name { get; set; }
     public double? Price { get; set; }
     public Enums.Category? Category { get; set; }
     public int inStock { get; set; }    
-    public bool isDeleted { get; set; }
 
     public override string ToString() => $@"
     ID: {ID}

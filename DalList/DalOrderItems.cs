@@ -14,29 +14,41 @@ public class DalOrderItem : IOrderItem //change to be internal?
     /// <param name="current"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public int Add(OrderItem item ) //FIX THIS TO WORK WITH LISTTT
+    public int Add(OrderItem item ) 
     {
-        bool isOrder = DataSource.orders.Exists(x => x.ID == item.orderID); //see if the order exists
-        if (!isOrder) throw new Exception("order does not exist");
-        int productIndex = DataSource.products.FindIndex(x => x.ID == item.productID);//see if the product exists
-        if (productIndex < 0) throw new EntityNotFound("Product does not exist");
-
-        //Check the Product Stock Count
-        if (DataSource.products[productIndex].inStock - item.amount < 0)
-            throw new EntityNotFound("There are not enough in stock");
-        // else
-        //      DataSource.products[productIndex].inStock = (DataSource.products[productIndex].inStock - item.amount); //update the stock
-
-        //If we already have 200 products then throw error
-        if ((DataSource.orderItems.Count >= 200)) 
-            throw new EntityNotFound("Too many order items!\n");
-
-        //If the orderItem is not out of stock and there is space, insert it into products
+        if (item.ID == 0)
         {
-            int newID = DataSource.Config.NextOrderItemNumber;
-            item.ID = newID;
+            OrderItem myItem = new OrderItem();
+            //item.ID = OrderItem.itemCounter++;
+            myItem.productID = item.productID;
+            myItem.productID = item.productID;
+            myItem.productID = item.productID;
+            myItem.productID = item.productID;
             DataSource.orderItems.Add(item);
-            return newID;  
+            return item.ID;
+        }
+
+        // case 2: Order item already exists, throw an exception
+        int index = DataSource.orderItems.IndexOf(item);
+        if (index != -1)
+        {
+            throw new EntityNotFound();
+        }
+        int counter = 0;
+        foreach (DO.OrderItem item2 in DataSource.orderItems)
+        {
+            if (item2.orderID == item.orderID)
+                counter++;
+        }
+        if (counter > 4)
+        {
+            throw new Exception();
+        }
+        else
+        // Order item is initialized but it's not in the list yet
+        {
+            DataSource.orderItems.Add(item);
+            return item.ID;
         }
     }
     /// <summary>

@@ -22,7 +22,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLTest", "BLTest\BLTest.csp
 		{D44741E0-DF64-4EBC-AD00-F5E0145256B5} = {D44741E0-DF64-4EBC-AD00-F5E0145256B5}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL", "WpfApp1\PL.csproj", "{75212387-3D33-4ED2-B1AA-1A8D79BC7DB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "PL\PL.csproj", "{6DED0445-0C60-4057-B4A1-B2856D973E69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,10 +54,10 @@ Global
 		{4525D924-FA1B-4CCA-970A-E6057D4CB267}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4525D924-FA1B-4CCA-970A-E6057D4CB267}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4525D924-FA1B-4CCA-970A-E6057D4CB267}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75212387-3D33-4ED2-B1AA-1A8D79BC7DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75212387-3D33-4ED2-B1AA-1A8D79BC7DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75212387-3D33-4ED2-B1AA-1A8D79BC7DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75212387-3D33-4ED2-B1AA-1A8D79BC7DB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DED0445-0C60-4057-B4A1-B2856D973E69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DED0445-0C60-4057-B4A1-B2856D973E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DED0445-0C60-4057-B4A1-B2856D973E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DED0445-0C60-4057-B4A1-B2856D973E69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

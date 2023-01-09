@@ -5,7 +5,17 @@
 
 public struct OrderItem
 {
-	public int ID { get; set; }
+    public static int itemCounter = 0;
+
+    public OrderItem()
+    {
+        ID = 0;
+        productID = 0;
+		orderID = 0;
+        Price = 0;
+        amount = 0;
+    }
+	public int ID { get; set; } = itemCounter++;
 	public int productID { get; set; }
 	public int orderID { get; set; }
 	public double? Price { get; set; }

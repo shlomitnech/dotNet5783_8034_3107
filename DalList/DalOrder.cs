@@ -9,6 +9,8 @@ namespace Dal;
 
 public class DalOrder : IOrder //change to be internal?
 {
+    readonly static Random random = new Random(); // readonly static field for generating random numbers
+
     /// <summary>
     /// Adds an instance to the main array
     /// </summary>
@@ -17,16 +19,31 @@ public class DalOrder : IOrder //change to be internal?
     /// <exception cref="Exception"></exception>
     public int Add(Order current)
     {
+        current.OrderDate = DateTime.Now - new TimeSpan(random.NextInt64(10L * 1000L * 3600L * 24L * 100L));
+        current.ShippingDate = current.OrderDate + new TimeSpan(random.NextInt64(10L * 1000L * 3600L * 24L * 100L)); // add a random time interval to the order date to get the shipping date
+        current.DeliveryDate = current.ShippingDate + new TimeSpan(random.NextInt64(10L * 1000L * 3600L * 24L * 100L)); // add a random time interval to the shipping date to get the delivery date
+        if (current.ID == 0)
+        {
+            Order order = new Order();
+            order.CustomerName = current.CustomerName;
+            order.CustomerEmail = current.CustomerEmail;
+            order.ShippingAddress = current.ShippingAddress;
+            order.OrderDate = current.OrderDate;
+            order.ShippingDate = current.ShippingDate;
+            order.DeliveryDate = current.DeliveryDate;
+            DataSource.orders.Add(order);
+            return order.ID;         
+        }
         //If we already have 100 orders then it will send an error
         if (DataSource.orders.Count >= 100)
         {
             throw new EntityNotFound("Can't take more orders");
         }
+        int index = DataSource.orders.FindIndex(x => x?.ID == current.ID); // find the order with a matching ID as the inputted order
+
         //take the instance and add it to the array
-        int newID = DataSource.Config.NextOrderNumber;
-        current.ID = newID;
         DataSource.orders.Add(current);
-        return newID;
+        return current.ID;
     }
 
     /// <summary>
@@ -57,10 +74,12 @@ public class DalOrder : IOrder //change to be internal?
     /// <exception cref="Exception"></exception>
     public Order Get(int currentID)
     {
-        Order thisOrd = DataSource.orders.Find(x => x.ID == currentID);
-        if (thisOrd.ID != currentID)
-            throw new Exception("No product has that ID");    //if product is not found
-        return thisOrd;
+        DO.Order? ord = DataSource.orders.Find(x => x?.ID == currentID); // find an order with a matching ID
+        if (ord == null)
+        {
+            throw new EntityNotFound();
+        }
+        return ord;
     }
     /// <summary>
     /// Sends back the instances in the main array so it can be printed 

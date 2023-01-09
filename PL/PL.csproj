@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net6.0-windows</TargetFramework>
@@ -11,14 +10,7 @@
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 		<UseCommonOutputDirectory>true</UseCommonOutputDirectory>
 	</PropertyGroup>
-
 	<ItemGroup>
-		<None Remove="cartBtn.jpg" />
-		<None Remove="errorIcon.png" />
+	  <ProjectReference Include="..\BL\BL.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\BL\BL.csproj" />
-	</ItemGroup>
-
 </Project>

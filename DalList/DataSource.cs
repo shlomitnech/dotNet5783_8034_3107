@@ -6,31 +6,16 @@ using System.ComponentModel.DataAnnotations;
 public class DataSource
 {
     readonly static Random random = new Random(); //random number generater
-    internal static List<Order> orders { get; set; } = new List<Order>();
-    internal static List<Product> products { get; set; } = new List<Product>();
-    internal static List<OrderItem> orderItems { get; set; } = new List<OrderItem>();
-    internal static DataSource? s_instance { get; } //This caused double ...
+    internal static List<Product?> products { get; set; } = new List<Product?> { }; // creating a list of Products
+    internal static List<Order?> orders { get; set; } = new List<Order?> { }; // creating a list of Orders
+    internal static List<OrderItem?> orderItems { get; set; } = new List<OrderItem?> { }; // creating a list of OrderItems
+
     public DataSource() { s_Initialize(); } //default constructor called
     
     /// <summary>
     /// Class that defines auto incremental IDs for all data entities
     /// </summary>
     internal static class Config{ //Will help us create our data list 
-
-       //Variables for the Order
-        internal const int startingOrderNumber = 1000; //Order #'s are 4 digits long starting with the first instance of it being called
-        public static int s_nextOrderNumber = startingOrderNumber;
-        internal static int NextOrderNumber { get => ++s_nextOrderNumber; } //increases by one when called
-
-        //Variables for the Product
-        internal const int startingProductNumber = (100000); //Product #'s are 6 digits long after the first next call
-        public static int s_nextProductNumber = startingProductNumber;
-        internal static int NextProductNumber { get => ++s_nextProductNumber; }
-
-        //Variables for the OrderItem
-        internal const int startingOrderItemNumber = 0;
-        public static int s_nextOrderItemNumber = startingOrderItemNumber;
-        internal static int NextOrderItemNumber { get=> ++s_nextOrderItemNumber; }
 
         //Internal Static Flag
         internal static bool debug = true;
@@ -60,7 +45,6 @@ public class DataSource
             OrderDate = DateTime.Now.AddDays(random.Next(365)),
             ShippingDate = DateTime.MinValue ,
             DeliveryDate = DateTime.MinValue,
-            ID = Config.NextOrderNumber,
             };
             if (i<4) orders.Add(myOrder); ;   //the first 4 orders won't have ship dates
 
@@ -92,11 +76,9 @@ public class DataSource
             Product myProduct = new()
             {
                 Name = nameOfProduct[random.Next(nameOfProduct.Length)],
-                ID = Config.NextProductNumber,
                 Price = random.Next(25, 200),
                 Category = (Enums.Category)random.Next(0, 5), // change? to make category match ?
                 inStock = random.Next(15, 50),
-                isDeleted = false,
             };
             
             if (i < 3) myProduct.inStock = 0;   //make sure 5% is out of stock (Guy Kelman told us to do this)
@@ -109,19 +91,16 @@ public class DataSource
         //initialize 40 order items in the array
         for (int i = 0; i < 40; i++)
         {
-            Product prod = products[random.Next(products.Count)];
-            orderItems.Add(  
+            Product prod = (Product)products[random.Next(products.Count)]!; 
+            Order ord = (Order)orders[random.Next(orders.Count)]!; 
+            orderItems.Add(
                 new OrderItem
-            {
-                ID = Config.NextOrderItemNumber,
-                productID = prod.ID,
-                Price = (double?)prod.Price,
-                orderID = random.Next(Config.startingOrderNumber, Config.s_nextOrderNumber),
-                amount = random.Next(3)
-            });
-            
-       
-
+                {
+                    productID = prod.ID,
+                    orderID = ord.ID,
+                    Price = prod.Price,
+                    amount = random.Next(5)
+                });
         }
     }
 }

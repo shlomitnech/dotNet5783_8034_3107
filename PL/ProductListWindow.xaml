@@ -7,7 +7,43 @@
         mc:Ignorable="d"
         Title="ProductListWindow" Height="450" Width="800">
     <Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="346,183,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="700*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Name="MainGrid" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="391*"/>
+                <ColumnDefinition Width="398*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="81*"/>
+                <RowDefinition Height="353*"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+            <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,19" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions >
+                <ComboBox Name="CategorySelector" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="62" Margin="394,0,0,0" SelectionChanged="CategorySelector_SelectionChanged" />
+                <Label Name="Description" Content="Product:" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial Black" FontWeight="Bold" FontSize="23" Width="400"
+                   Background="#FFCECECE" FontStyle="Italic" Height="62" HorizontalContentAlignment="Center"/>
+            </Grid>
+            <ListView x:Name="ProductsListView" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ProductsListView_SelectionChanged" Margin="0,3,0,0" MouseDoubleClick="DoubleClickEvent" SelectedItem="" Grid.Row="1">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <Button Content="Add" HorizontalAlignment="Left" Margin="10,242,0,0" Grid.Row="1" VerticalAlignment="Top" Height="101" Width="278" FontSize="48" FontFamily="Cascadia Code SemiBold" Background="#FFF2F800"/>
+        </Grid>
 
     </Grid>
 </Window>
+
+    
