@@ -37,15 +37,11 @@ public class DalProduct : IProduct
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<Order?> GetAll(Func<Product?, bool>? filter)
+    public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter = null)
     {
-        if (filter == null)//select whole list
-        {
-            return (IEnumerable<Order?>)DataSource.products;
-        }
-        return (IEnumerable<Order?>)(from v in DataSource.products//select with filter
-                                     where filter!(v)
-                                     select v);
+
+          return (IEnumerable<Product?>)DataSource.products.ToList();
+ 
     }
 
     public Product GetByFilter(Func<Product?, bool>? filter)
