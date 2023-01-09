@@ -33,15 +33,15 @@ internal class Product : BlApi.IProduct
          //returns the product list (for the manager to see)
     public BO.Product ManagerProduct(int id) //returns a BO product of DO product with id
     {
-        BO.Product prod1 = new BO.Product();
-        DO.Product prod2 = new DO.Product();
+        BO.Product? prod1 = new BO.Product();
+        DO.Product? prod2 = new DO.Product();
         prod2 = Dos!.Product.Get(id); // put the product with this ID into prod2
         if (true) 
         {
             prod1.ID = id;
-            prod1.Name = prod2.Name;
-            prod1.Price = prod2.Price;
-            prod1.Category = (Enums.Category?)prod2.Category;
+            prod1.Name = prod2?.Name;
+            prod1.Price = prod2?.Price;
+            prod1.Category = (Enums.Category?)prod2?.Category;
             prod1.InStock = prod2.inStock;
             return prod1;
         }

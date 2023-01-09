@@ -99,7 +99,7 @@ internal class Cart : ICart
                 DO.OrderItem item = new();
                 item.productID = it.ProductID;
                 item.orderID = ordID;
-                product = (DO.Product?)Dos!.Product.Get(it.ProductID);
+                product = Dos!.Product.Get(it.ProductID);
                 if (product?.inStock < quant)
                 {
                     throw new BO.Exceptions("Not enough are in stock! ");

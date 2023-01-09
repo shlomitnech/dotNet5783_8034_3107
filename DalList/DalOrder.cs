@@ -43,7 +43,7 @@ public class DalOrder : IOrder //change to be internal?
 
         //take the instance and add it to the array
         DataSource.orders.Add(current);
-        return current.ID;
+        return current!.ID;
     }
 
     /// <summary>
