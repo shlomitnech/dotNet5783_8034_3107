@@ -1,8 +1,5 @@
 {
   "profiles": {
-    "BLTest": {
-      "commandName": "Project"
-    },
     "PL": {
       "commandName": "Project",
       "workingDirectory": "C:\\Users\\navam\\source\\repos\\dotNet5783_8034_3107\\WpfApp1"

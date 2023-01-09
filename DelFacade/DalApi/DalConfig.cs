@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DalApi;
+/*namespace DalApi;
 using System.Xml.Linq;
 
 internal class DalConfig
@@ -21,6 +21,7 @@ internal class DalConfig
                 ?? throw new DalConfigException("<dal-packages> element is missing");
                 s_dalPackages = packages.ToDictionary(p => "" + p.Name, p => p.Value);
             }
-        */
+        
     }
 }
+*/
