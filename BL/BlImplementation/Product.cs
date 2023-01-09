@@ -35,7 +35,7 @@ internal class Product : BlApi.IProduct
     {
         BO.Product prod1 = new BO.Product();
         DO.Product prod2 = new DO.Product();
-        prod2 = Dos!.Product.Get(id); // put the product with this ID into prod2
+        prod2 = (DO.Product)Dos?.Product.Get(id)!; // put the product with this ID into prod2
         if (true) 
         {
             prod1.ID = id;

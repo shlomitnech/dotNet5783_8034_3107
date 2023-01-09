@@ -10,6 +10,7 @@ using Dal;
 using DO;
 using System.Net;
 using System.Xml.Linq;
+using BO;
 
 namespace BlImplementation;
 
@@ -37,7 +38,7 @@ internal class Cart : ICart
             ID = id,
             Price = p?.Price,
             Amount = amount,
-            ProductID = (int)p?.ID
+            ProductID = (int)p?.ID!
         };
 
         cart.Items?.Add(item);
@@ -71,7 +72,7 @@ internal class Cart : ICart
         cart.CustomerName = n;
         cart.CustomerEmail = em;
         cart.CustomerAddress = add;
-        DO.Product? product;
+        DO.Product product;
         DO.Order order = new(); // create an instance of order
         BO.Order orderBO = new();
         int ordID = Dos!.Order.Add(order); // adding a new order to the list (this is the new order)
@@ -99,8 +100,8 @@ internal class Cart : ICart
                 DO.OrderItem item = new();
                 item.productID = it.ProductID;
                 item.orderID = ordID;
-                product = (DO.Product?)Dos!.Product.Get(it.ProductID);
-                if (product?.inStock < quant)
+                product = (DO.Product)Dos!.Product.Get(it.ProductID)!;
+                if (product.inStock < quant)
                 {
                     throw new BO.Exceptions("Not enough are in stock! ");
                 }

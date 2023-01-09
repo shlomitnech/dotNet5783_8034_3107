@@ -9,6 +9,7 @@ namespace DalApi
 {
     public interface IProduct : ICrud<Product>
     {
+        void Update(Product? product);
     }
 }
 

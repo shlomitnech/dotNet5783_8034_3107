@@ -157,7 +157,7 @@ internal class DalTest
                     {
                         Console.WriteLine("What is the product's ID #?");
                         int currID = Convert.ToInt32(Console.ReadLine());
-                        Product p = dalprod.Get(currID);
+                        Product p = (Product)dalprod.Get(currID)!;
                         Console.WriteLine(p); //print out the information on the product
                     }
                     catch (Exception ex)
@@ -238,7 +238,7 @@ internal class DalTest
                     {
                         Console.WriteLine("What is the order ID #? \n");
                         int currID = Convert.ToInt32(Console.ReadLine());
-                        Order p = dalord.Get(currID);
+                        Order p = (Order)dalord.Get(currID)!;
                         Console.WriteLine(p); //print out the information on the product
                     }
                     catch (Exception ex)
