@@ -1,4 +1,4 @@
-﻿namespace BLTest;
+﻿/*namespace BLTest;
 using BlApi;
 using BO;
 using BlImplementation;
@@ -358,4 +358,4 @@ internal class Program
         return num;
     }
 
-}
+}*/

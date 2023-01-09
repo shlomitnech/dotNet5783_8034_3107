@@ -1,4 +1,4 @@
-﻿using Dal;
+﻿/*using Dal;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -384,4 +384,4 @@ internal class DalTest
 
 
     }
-}
+}*/
