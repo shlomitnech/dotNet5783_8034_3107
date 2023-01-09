@@ -32,9 +32,9 @@ internal class Order : BlApi.IOrder
                    };
 
     }
-    public BO.Enums.OrderStatus GetStatus (DO.Order order)
+    public BO.Enums.OrderStatus GetStatus (DO.Order? order)
     {
-        return order.DeliveryDate != null? BO.Enums.OrderStatus.Recieved : order.ShippingDate != null ?
+        return order?.DeliveryDate != null? BO.Enums.OrderStatus.Recieved : order?.ShippingDate != null ?
             BO.Enums.OrderStatus.Shipped : BO.Enums.OrderStatus.JustPlaced;
     }
     public BO.Order GetBOOrder(int id) //get the Order ID, check it and return the order using the DO order, orderItem and product
@@ -43,7 +43,7 @@ internal class Order : BlApi.IOrder
         {
             throw new BO.EntityNotFound();
         }
-       DO.Order ord = Dos!.Order.Get(id);
+       DO.Order? ord = Dos!.Order.Get(id);
        double? tot = 0;//add up the total price
        foreach(DO.OrderItem? apple in Dos!.OrderItem.GetAll())
         {
@@ -53,17 +53,17 @@ internal class Order : BlApi.IOrder
             }
         }
         
-       if(ord.ID == id) //if the id exists
+       if(ord?.ID == id) //if the id exists
        {
             return new BO.Order
             {
                 ID = id,
-                CustomerAddress = ord.ShippingAddress,
-                CustomerEmail = ord.CustomerEmail,
-                CustomerName = ord.CustomerName,
-                OrderDate = ord.OrderDate,
-                ShipDate = ord.ShippingDate,
-                DeliveryDate = ord.DeliveryDate,
+                CustomerAddress = ord?.ShippingAddress,
+                CustomerEmail = ord?.CustomerEmail,
+                CustomerName = ord?.CustomerName,
+                OrderDate = ord?.OrderDate,
+                ShipDate = ord?.ShippingDate,
+                DeliveryDate = ord?.DeliveryDate,
                 Status = GetStatus(ord),
                 TotalPrice = tot,
             };
@@ -73,18 +73,18 @@ internal class Order : BlApi.IOrder
     }
     public BO.Order ShipUpdate(int id, DateTime date) //gets an order number, check if it exists and update the date in Do order, return the BO order that was shipped
     {
-        DO.Order order1 = Dos!.Order.Get(id); //get the order ID from the DO folder
+        DO.Order? order1 = Dos!.Order.Get(id); //get the order ID from the DO folder
         BO.Order order2 = GetBOOrder(id); //get the order from BO
 
-        if (order1.ID == id)
+        if (order1?.ID == id)
         {
             DO.Order order3 = new()
             {
                 ID = id,
-                CustomerName = order1.CustomerName,
-                CustomerEmail = order1.CustomerEmail,
-                ShippingAddress = order1.ShippingAddress,
-                OrderDate = order1.OrderDate,
+                CustomerName = order1?.CustomerName,
+                CustomerEmail = order1?.CustomerEmail,
+                ShippingAddress = order1?.ShippingAddress,
+                OrderDate = order1?.OrderDate,
                 ShippingDate = date,
                 DeliveryDate = null
             };
@@ -100,19 +100,19 @@ internal class Order : BlApi.IOrder
 
     public BO.Order DeliveryUpdate(int id, DateTime date) //get the order number, update the delivery status in DO order, and return BO order that was delivered
     {
-        DO.Order order1 = Dos!.Order.Get(id); //get the order ID from the DO folder
+        DO.Order? order1 = Dos!.Order.Get(id); //get the order ID from the DO folder
         BO.Order order2 = GetBOOrder(id); //get the order from BO
 
-        if (order1.ID == id)
+        if (order1?.ID == id)
         {
             DO.Order temporder = new()
             {
                 ID = id,
-                CustomerName = order1.CustomerName,
-                CustomerEmail = order1.CustomerEmail,
-                ShippingAddress = order1.ShippingAddress,
-                OrderDate = order1.OrderDate,
-                ShippingDate = order1.ShippingDate,
+                CustomerName = order1?.CustomerName,
+                CustomerEmail = order1?.CustomerEmail,
+                ShippingAddress = order1?.ShippingAddress,
+                OrderDate = order1?.OrderDate,
+                ShippingDate = order1?.ShippingDate,
                 DeliveryDate = date
             };
             Dos.Order.Update(temporder);
