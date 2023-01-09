@@ -250,7 +250,7 @@ internal class DalTest
                 case (Enums.Type.Order, Enums.Action.GetList):
                     try
                     {
-                        IEnumerable<Order> Orderlist = DalList.Instance.Order.GetAll(); // call function to read all the products
+                        IEnumerable<Order> Orderlist = (IEnumerable<Order>)DalList.Instance.Order.GetAll(); // call function to read all the products
 
                         foreach (Order shoes in Orderlist) { Console.WriteLine(shoes); }
 
@@ -331,7 +331,7 @@ internal class DalTest
                 case (Enums.Type.OrderItem, Enums.Action.GetList):
                     try
                     {
-                        IEnumerable<OrderItem> OrderItemList = DalList.Instance.OrderItem.GetAll(); // call function to read all the products 
+                        IEnumerable<OrderItem> OrderItemList = (IEnumerable<OrderItem>)DalList.Instance.OrderItem.GetAll(); // call function to read all the products 
 
 
                         foreach (OrderItem pizza in OrderItemList)
@@ -380,8 +380,5 @@ internal class DalTest
 
             }
         }
-
-
-
     }
 }
