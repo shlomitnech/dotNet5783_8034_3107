@@ -45,11 +45,11 @@ internal class Order : BlApi.IOrder
         }
        DO.Order ord = Dos!.Order.Get(id);
        double? tot = 0;//add up the total price
-       foreach(DO.OrderItem apple in Dos.OrderItem.GetAll())
+       foreach(DO.OrderItem? apple in Dos!.OrderItem.GetAll())
         {
-            if (apple.ID == id) 
+            if (apple?.ID == id) 
             {
-                tot += apple.Price;
+                tot += apple?.Price;
             }
         }
         
