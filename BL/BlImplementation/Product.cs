@@ -39,9 +39,9 @@ internal class Product : BlApi.IProduct
         if (true) 
         {
             prod1.ID = id;
-            prod1.Name = prod2?.Name;
-            prod1.Price = prod2?.Price;
-            prod1.Category = (Enums.Category?)prod2?.Category;
+            prod1.Name = prod2.Name;
+            prod1.Price = prod2.Price;
+            prod1.Category = (Enums.Category?)prod2.Category;
             prod1.InStock = prod2.inStock;
             return prod1;
         }
