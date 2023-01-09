@@ -57,10 +57,10 @@ public class DalOrderItem : IOrderItem //change to be internal?
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? filter =null)
+    public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? filter = null)
     {
         return (IEnumerable<OrderItem?>)DataSource.orderItems.ToList();
-      
+
     }
     /// <summary>
     /// Changes the info of an existing instance

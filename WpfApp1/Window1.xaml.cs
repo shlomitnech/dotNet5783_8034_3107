@@ -71,7 +71,7 @@ namespace PL
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            prod.Category = (BO.Enums.Category)CategoryBox.SelectedItem;
         }
 
         private void tinstock_TextChanged(object sender, TextChangedEventArgs e)
@@ -130,6 +130,26 @@ namespace PL
             tprice.Text = "Enter Price";
             tinstock.Text = "Enter Amount";
             Close();
+        }
+
+        private void tid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            tid.Clear();
+        }
+
+        private void tname_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            tname.Clear();
+        }
+
+        private void tprice_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            tprice.Clear();
+        }
+
+        private void tinstock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            tinstock.Clear();
         }
     }
 }
