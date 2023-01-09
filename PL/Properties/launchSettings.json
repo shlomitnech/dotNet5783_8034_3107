@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "PL": {
+      "commandName": "Project",
+      "nativeDebugging": true,
+      "sqlDebugging": false,
+      "jsWebView2Debugging": false
+    },
+    "Profile 1": {
+      "commandName": "Executable",
+      "nativeDebugging": true
+    }
+  }
+}

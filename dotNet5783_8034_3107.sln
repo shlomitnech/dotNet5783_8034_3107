@@ -24,6 +24,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLTest", "BLTest\BLTest.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL", "WpfApp1\PL.csproj", "{75212387-3D33-4ED2-B1AA-1A8D79BC7DB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL(real)", "PL(real)\PL(real).csproj", "{8F4391AD-1E9C-4F68-9EEC-38BCAE4D00E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,10 @@ Global
 		{75212387-3D33-4ED2-B1AA-1A8D79BC7DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75212387-3D33-4ED2-B1AA-1A8D79BC7DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75212387-3D33-4ED2-B1AA-1A8D79BC7DB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F4391AD-1E9C-4F68-9EEC-38BCAE4D00E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F4391AD-1E9C-4F68-9EEC-38BCAE4D00E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F4391AD-1E9C-4F68-9EEC-38BCAE4D00E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F4391AD-1E9C-4F68-9EEC-38BCAE4D00E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
