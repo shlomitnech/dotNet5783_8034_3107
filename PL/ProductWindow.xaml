@@ -31,14 +31,23 @@
         <Label Name="lable5" Content="Stock:" FontSize="27" FontWeight="Bold"
                Height="40" Width="116" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Margin="10,0,0,0" />
 
-        <ComboBox Name ="CategoryBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="294" Height="40" SelectionChanged="SelectCategory_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Please select a category" SelectedItem="" FontSize="21" />
-        <TextBox Name="ID" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="214" Height="40" IsReadOnly="True"/>
+        <ComboBox Name ="CategoryBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="294" Height="40" SelectionChanged="SelectCategory_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Please select a category" SelectedItem="" FontSize="21" >
+            <ListView x:Name="ProductsListView" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ComboBox>
+        <TextBox Name="ID" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="214" Height="40" IsReadOnly="True"
+                 />
         <TextBox Name="name1" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Enter Name" VerticalAlignment="Center" Width="214" Height="40"
                  PreviewTextInput="name1_previewtextinput" TextChanged="name1_TextChanged" PreviewMouseDown="name1_PreviewMouseDown"/>
         <TextBox Name="price" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Enter Price" VerticalAlignment="Center" Width="214" Height="40"
-                 PreviewMouseDown="price_PreviewMouseDown"/>
+                 PreviewMouseDown="price_PreviewMouseDown" TextChanged="price_TextChanged"/>
         <TextBox Name="instock1" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" TextWrapping="Wrap" Text="Enter Amount" VerticalAlignment="Center" Width="198" Height="40"
-                 PreviewTextInput="instock1_previewtextinput" PreviewMouseDown="instock1_PreviewMouseDown"/>
+                 PreviewTextInput="instock1_previewtextinput" PreviewMouseDown="instock1_PreviewMouseDown" TextChanged="instock1_TextChanged"/>
 
         <Button Name="addProduct" Content="Add Product" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Margin="22,27,0,-18" Padding="5" Click="AddProduct_Click" FontSize="15" FontStyle="Normal" FontWeight="Black" Foreground="White" Background="CadetBlue" Width="105">
             <Button.Effect>
