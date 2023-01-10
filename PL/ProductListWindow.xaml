@@ -40,7 +40,7 @@
                 </ListView.View>
             </ListView>
 
-            <Button Content="Add" HorizontalAlignment="Left" Margin="10,242,0,0" Grid.Row="1" VerticalAlignment="Top" Height="67" Width="278" FontSize="48" FontFamily="Cascadia Code SemiBold" Background="#FFF2F800" Click="Button_Click"/>
+            <Button Content="Add" HorizontalAlignment="Left" Margin="10,166,0,0" Grid.Row="1" VerticalAlignment="Top" Height="67" Width="117" FontSize="24" FontFamily="Arial" Background="#FFDF00F8" Click="Button_Click"/>
         </Grid>
 
     </Grid>

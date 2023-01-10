@@ -33,5 +33,44 @@ namespace PL
         {
 
         }
+
+        private void AddProduct_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UpdateProduct_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void name1_PreviewMouseDown(object sender, RoutedEventArgs e)
+        {
+            name1.Clear();
+        }
+        private void instock1_PreviewMouseDown(object sender, RoutedEventArgs e)
+        {
+            instock1.Clear();
+        }
+        private void price_PreviewMouseDown(object sender, RoutedEventArgs e)
+        {
+            price.Clear();
+        }
+        private void name1_TextChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void name1_previewtextinput(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void instock1_previewtextinput(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SelectCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
