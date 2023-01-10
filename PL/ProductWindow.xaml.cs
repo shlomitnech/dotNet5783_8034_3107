@@ -1,8 +1,10 @@
-﻿using System;
+﻿using BlApi;
+using BO;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,9 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BlApi;
 using BlImplementation;
-using BO;
 
 
 namespace PL
@@ -27,14 +27,25 @@ namespace PL
         private IBl bl = new Bl();
         private BO.Product product = new BO.Product();
 
-        public ProductWindow()
+        public ProductWindow() //if adding a new product
         {
             InitializeComponent();
-          //  CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+            bl = new Bl();
+            CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+            updateProduct.Visibility = Visibility.Collapsed;//update invisible 
 
-            ProductsListView.ItemsSource = bl.Product.GetProductForList();
         }
+        public ProductWindow(ProductForList prodForList) //if updating an existing product
+        {
+            InitializeComponent();
+            bl = new Bl();
+            CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
+            addProduct.Visibility = Visibility.Collapsed;//make the add invisible
+            updateProduct.Visibility = Visibility.Visible;//show update button
+            ID.Text = prodForList.ID.ToString();
+            ID.IsReadOnly = true;//cant change id in update 
 
+        }
         private void AddProduct_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -65,10 +76,11 @@ namespace PL
         }
         private void name1_previewtextinput(object sender, RoutedEventArgs e)
         {
-
+            e.Handled = new Regex("[^0-9]+").IsMatch(name1.Text);//maybe change this to e.Text
         }
         private void instock1_previewtextinput(object sender, RoutedEventArgs e)
         {
+            e.Handled = new Regex("[^0-9]+").IsMatch(instock1.Text);
 
         }
         private void name1_TextChanged(object sender, RoutedEventArgs e) //to add/update name
