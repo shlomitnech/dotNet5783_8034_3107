@@ -10,7 +10,6 @@ using Dal;
 using DO;
 using System.Net;
 using System.Xml.Linq;
-using BO;
 
 namespace BlImplementation;
 
@@ -97,9 +96,11 @@ internal class Cart : ICart
             foreach (BO.OrderItem? it in cart.Items!)
             {
                 int quant = it!.Amount;
-                DO.OrderItem item = new();
-                item.productID = it.ProductID;
-                item.orderID = ordID;
+                DO.OrderItem item = new()
+                {
+                    productID = it.ProductID,
+                    orderID = ordID
+                };
                 product = (DO.Product)Dos!.Product.Get(it.ProductID)!;
                 if (product.inStock < quant)
                 {
@@ -121,7 +122,7 @@ internal class Cart : ICart
         List<string> list = new();
         foreach (BO.OrderItem? item in cart.Items!) //find all the products in the cart
         {
-            prodId = (int)item!.ID;
+            prodId = (int)item.ID!;
             product = Dos!.Product.Get(prodId);
             list?.Add(product?.Name!);
         }
