@@ -35,7 +35,7 @@ namespace PL
             updateProduct.Visibility = Visibility.Collapsed;//update invisible 
 
         }
-        public ProductWindow(ProductForList prodForList) //if updating an existing product
+        public ProductWindow(Product prodForList) //if updating an existing product
         {
             InitializeComponent();
             bl = new Bl();

@@ -64,7 +64,7 @@ namespace PL
             if (ProductsListView.SelectedItem is BO.ProductForList productForList)
             {
                 BO.Product prod = new BO.Product();
-                prod = bl.Product.GetProductForList(productForList.ID);
+                prod = bl.Product.ManagerProduct(productForList.ID);
                 new ProductWindow(prod).ShowDialog();
             }
             ProductsListView.ItemsSource = bl?.Product.GetProductForList(); // update list view after add
@@ -74,15 +74,21 @@ namespace PL
 
         private void ProductsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            if (CategorySelector.SelectedItem is BO.Enums.Category.NoCategory)
-                IEnumerableToPL(bl.Product.GetProductForList()!);
-            else if (CategorySelector.SelectedItem is BO.Enums.Category)
-                IEnumerableToPL(bl.Product.FilterProductList(p => p.Category == (BO.Category.Enums)CategorySelector.SelectedItem));
-            else if (CategorySelector.SelectedItem is "")
-                IEnumerableToPL(bl!.Product.GetProductForList()!);
-      
-        
+            BO.Enums.Category productCategory = (BO.Enums.Category)CategorySelector.SelectedItem; // saves the selected category
+            if (productCategory == BO.Enums.Category.NoCategory) // Show all the products without a filter
+            {
+                ProductsListView.ItemsSource = bl.Product.GetProductForList();
+                CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+                return;
+            }
+            if (productCategory is BO.Enums.Category cat) //show the items in that category
+            {
+                ProductsListView.ItemsSource = bl?.Product.GetProductForList()?.Select(x => x!.Category == cat);
+            }
+            ProductsListView.ItemsSource = from product in bl?.Product.GetProductForList()
+                                           where product.Category == productCategory
+                                           select product;
+
         }
     }
 }
