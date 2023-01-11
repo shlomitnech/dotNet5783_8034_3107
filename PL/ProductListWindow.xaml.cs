@@ -64,8 +64,8 @@ namespace PL
             if (ProductsListView.SelectedItem is BO.ProductForList productForList)
             {
                 BO.Product prod = new BO.Product();
-                //   prod = bl.Product.GetProductForList(productForList.ID);
-                //     new ProductWindow(prod).ShowDialog();
+                prod = bl.Product.GetProductForList(productForList.ID);
+                new ProductWindow(prod).ShowDialog();
             }
             ProductsListView.ItemsSource = bl?.Product.GetProductForList(); // update list view after add
         }
@@ -74,15 +74,15 @@ namespace PL
 
         private void ProductsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            /*
-            if (CategorySelector.SelectedItem is BO.Enums.Category.all)
-                IEnumerableToPL(bl!.Product.GetProductForList());
+            
+            if (CategorySelector.SelectedItem is BO.Enums.Category.NoCategory)
+                IEnumerableToPL(bl.Product.GetProductForList()!);
             else if (CategorySelector.SelectedItem is BO.Enums.Category)
-                IEnumerableToPL(bl!.Product.FilterProductList(p => p.Category == (BO.Category.Enums)CategorySelector.SelectedItem));
+                IEnumerableToPL(bl.Product.FilterProductList(p => p.Category == (BO.Category.Enums)CategorySelector.SelectedItem));
             else if (CategorySelector.SelectedItem is "")
-                IEnumerableToPL(bl!.Product.GetProductForList());
-        }
-        */
+                IEnumerableToPL(bl!.Product.GetProductForList()!);
+      
+        
         }
     }
 }

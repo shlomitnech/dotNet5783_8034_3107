@@ -20,7 +20,7 @@ internal class Product : BlApi.IProduct
     public IEnumerable<ProductForList?> GetProductForList() //returns the product list (for the manager to see)
     {
         return from DO.Product? food in Dos!.Product.GetAll()
-               where food != null
+              // where food != null
                select new ProductForList
                {
                    ID = food.Value.ID,
@@ -30,7 +30,7 @@ internal class Product : BlApi.IProduct
                };
         throw new BO.Exceptions("List is empty");
     }
-         //returns the product list (for the manager to see)
+    //returns the product list (for the manager to see)
     public BO.Product ManagerProduct(int id) //returns a BO product of DO product with id
     {
         BO.Product prod1 = new BO.Product();
