@@ -78,7 +78,7 @@ namespace PL
             if (CategorySelector.SelectedItem is BO.Enums.Category.all)
                 IEnumerableToPL(bl!.Product.GetProductForList());
             else if (CategorySelector.SelectedItem is BO.Enums.Category)
-                IEnumerableToPL(bl!.Product.FilterProductList(p => p.Category == (BO.Category)CategorySelector.SelectedItem));
+                IEnumerableToPL(bl!.Product.FilterProductList(p => p.Category == (BO.Category.Enums)CategorySelector.SelectedItem));
             else if (CategorySelector.SelectedItem is "")
                 IEnumerableToPL(bl!.Product.GetProductForList());
         }
