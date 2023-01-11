@@ -53,7 +53,9 @@ namespace PL
                 bl.Product.AddProduct(product);
             }
             catch(BO.Exceptions ex) 
-            { }
+            { 
+                Console.WriteLine(ex.Message);
+            }
             Close();
         }
 

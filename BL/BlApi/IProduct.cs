@@ -17,7 +17,7 @@ public interface IProduct
     public void DeleteProduct(int id); //check in every order that DO product is deleted 
     public void UpdateProduct(Product prod); //Get BO product, and update the DO product
 
-    public Product FilterProductList(object value);
+    //public Product FilterProductList(object value);
 
     //The Customer Functions
     public IEnumerable<ProductItem?> GetCatalog(); //Get the product list of DO and return the ProductItem list of BO
