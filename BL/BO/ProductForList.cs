@@ -14,10 +14,10 @@ public class ProductForList
     public double? Price { get; set; }
     public Enums.Category? Category { get; set; }
 
-    public override string ToString() => $@"
-	The product's ID is: {ID}
-    The product's name is: {Name}
-    The product's price is: {Price}
-    The product's category is: {Category}
+    public override string ToString() =>
+        $@"    Product's ID: {ID}
+    Product's name: {Name}
+    Product's price: {Price}
+    Product's category: {Category}
 ";
 }
