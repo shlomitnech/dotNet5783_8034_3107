@@ -122,5 +122,9 @@ internal class Product : BlApi.IProduct
         throw new Exception();
     }
 
+    public int NewID()
+    {
+        return DO.Product.productCounter++;
 
+    }
 }

@@ -33,6 +33,8 @@ namespace PL
             bl = new Bl();
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
             updateProduct.Visibility = Visibility.Collapsed;//update invisible 
+            ID.Text = bl.Product?.NewID().ToString();
+            
 
         }
         public ProductWindow(Product prodForList) //if updating an existing product
@@ -85,7 +87,7 @@ namespace PL
             e.Handled = new Regex("[^0-9]+").IsMatch(instock1.Text);
 
         }
-        private void name1_TextChanged(object sender, RoutedEventArgs e) //to add/update name
+        private void name1_TextChanged(object sender, TextChangedEventArgs e) //to add/update name
         {
             if (name1 != null && name1.Text !="")
             {
@@ -123,5 +125,10 @@ namespace PL
         {
 
         }
+
+       /* private void name1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            product.Name = name1.Text;
+        }*/
     }
 }

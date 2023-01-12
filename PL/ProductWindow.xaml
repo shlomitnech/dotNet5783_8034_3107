@@ -36,8 +36,8 @@
 
         <TextBox Name="ID" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="0,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="294" Height="40" IsReadOnly="True"
                  />
-        <TextBox Name="name1" FontSize="20" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Enter Name" VerticalAlignment="Center" Width="294" Height="40"
-                 PreviewTextInput="name1_previewtextinput" TextChanged="name1_TextChanged" PreviewMouseDown="name1_PreviewMouseDown" Grid.Row="1" Grid.Column="1"/>
+        <TextBox Name="name1" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Enter Name" VerticalAlignment="Center" Width="294" Height="40"
+                 PreviewTextInput="name1_previewtextinput" PreviewMouseDown="name1_PreviewMouseDown" TextChanged="name1_TextChanged"/>
         <TextBox Name="price" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Grid.Row="2" TextWrapping="Wrap" Text="Enter Price" VerticalAlignment="Center" Width="294" Height="40"
                  PreviewMouseDown="price_PreviewMouseDown" TextChanged="price_TextChanged"/>
         <TextBox Name="instock1" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Grid.Row="4" TextWrapping="Wrap" Text="Enter Amount" VerticalAlignment="Top" Width="294" Height="40"
