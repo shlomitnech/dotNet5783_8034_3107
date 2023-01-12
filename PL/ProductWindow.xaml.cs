@@ -33,7 +33,7 @@ namespace PL
             bl = new Bl();
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
             updateProduct.Visibility = Visibility.Collapsed;//update invisible 
-            ID.Text = bl.Product?.NewID().ToString();
+            ID.Text = bl.Product?.NextID().ToString();
             
 
         }
@@ -55,8 +55,8 @@ namespace PL
                 bl.Product.AddProduct(product);
             }
             catch(BO.Exceptions ex) 
-            { 
-                Console.WriteLine(ex.Message);
+            {
+               new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
             }
             Close();
         }
@@ -64,7 +64,7 @@ namespace PL
         private void UpdateProduct_Click(object sender, RoutedEventArgs e)
         {
             bl.Product.UpdateProduct(product);
-            Close();
+          //  Close();
         }
         private void name1_PreviewMouseDown(object sender, RoutedEventArgs e) //clear the text that is written
         {

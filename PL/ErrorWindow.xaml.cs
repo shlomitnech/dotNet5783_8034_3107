@@ -27,5 +27,17 @@ namespace PL
         {
             InitializeComponent();
         }
+
+        public ErrorWindow(string title, string message)
+        {
+            InitializeComponent();
+            ErrorProblem.Text = title;
+            ErrorText.Text = message;
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

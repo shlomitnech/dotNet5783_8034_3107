@@ -129,13 +129,17 @@ internal class DalTest
                 case (Enums.Type.Product, Enums.Action.Update):
                     try
                     {
-                        Console.WriteLine("What is the products name?: ");
-                        _product.Name = Console.ReadLine() ?? "";
-
+                        int id;
                         Console.WriteLine("What is the products ID?: ");
-                        _product.ID = Convert.ToInt32(Console.ReadLine());
+                        id = Convert.ToInt32(Console.ReadLine());
+                        Product prod = new Product(id);
+                        Console.WriteLine("What is the products name?: ");
+                        prod.Name = Console.ReadLine() ?? "";
+
+                
+          
                         Console.WriteLine("What is the products price?: ");
-                        _product.Price = Convert.ToDouble(Console.ReadLine());
+                        prod.Price = Convert.ToDouble(Console.ReadLine());
                         Console.WriteLine("Write the product's category number? \n" +
                            "1 = Bread \n" +
                            "2 = Dips \n" +
@@ -148,10 +152,10 @@ internal class DalTest
                             Console.WriteLine("Please only choose a number 1-5");
                             cat = Convert.ToInt32(Console.ReadLine());
                         }
-                        _product.Category = (Enums.Category)(cat - 1);
+                        prod.Category = (Enums.Category)(cat - 1);
                         Console.WriteLine("How many items are in stock?");
-                        _product.inStock = Convert.ToInt32(Console.ReadLine());
-                        dalprod.Update(_product);
+                        prod.inStock = Convert.ToInt32(Console.ReadLine());
+                        dalprod.Update(prod);
                     }
                     catch (Exception ex)
                     {

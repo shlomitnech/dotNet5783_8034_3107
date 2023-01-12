@@ -14,8 +14,16 @@ public struct Product
         inStock = 0;
         Category = Enums.Category.other;
     }
+    public Product(int id)
+    {
+        ID = id;
+        Name = "";
+        Price = 0;
+        inStock = 0;
+        Category = Enums.Category.other;
+    }
 
-    public int ID { get; set; } = productCounter++;
+    public int ID { get; init; } = productCounter++;
     public string? Name { get; set; }
     public double? Price { get; set; }
     public Enums.Category? Category { get; set; }

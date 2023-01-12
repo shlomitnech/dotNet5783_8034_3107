@@ -55,15 +55,12 @@ internal class Product : BlApi.IProduct
         }
         DO.Product p = new DO.Product
         {
-            ID = 0,
             Name = prod.Name,
             Price = prod.Price,
             inStock = prod.InStock,
             Category = (DO.Enums.Category?)prod.Category
         };
-
-        p.ID = Dos!.Product.Add(p);
-        return p.ID;
+        return Dos!.Product.Add(p);
 
     }
     public void DeleteProduct(int id) //check in every order that DO product is deleted 
@@ -122,9 +119,9 @@ internal class Product : BlApi.IProduct
         throw new Exception();
     }
 
-    public int NewID()
+    public int NextID()
     {
-        return DO.Product.productCounter++;
+        return DO.Product.productCounter + 1;
 
     }
 }

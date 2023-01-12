@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="ErrorWindow" Height="450" Width="800">
     <Grid>
-        
+        <Button x:Name="Close" Content="OK" HorizontalAlignment="Center" Margin="0,289,0,0" VerticalAlignment="Top" Click="Close_Click" Height="73" Width="250" FontSize="22"/>
+        <TextBox x:Name ="ErrorProblem" HorizontalAlignment="Center" Margin="0,102,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="356" Height="47" FontSize="36" Foreground="#FFC50101"/>
+        <TextBox x:Name ="ErrorText" HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="338" Height="81"/>
+
     </Grid>
 </Window>
