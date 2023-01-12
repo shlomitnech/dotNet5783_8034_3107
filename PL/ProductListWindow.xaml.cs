@@ -23,22 +23,12 @@ namespace PL
     /// </summary>
     public partial class ProductListWindow : Window
     {
-        private static IBl bl = new Bl();
-        ObservableCollection<ProductForList> productList = new();
+        private IBl bl = new Bl();
         public ProductListWindow()
         {
             InitializeComponent();
-            IEnumerableToPL(bl!.Product?.GetProductForList());
-            ProductsListView.DataContext = productList;
             ProductsListView.ItemsSource = bl.Product.GetProductForList();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
-        }
-
-        private void IEnumerableToPL(IEnumerable<ProductForList> list)
-        {
-            productList.Clear();
-            foreach (var temp in list)
-                productList.Add(temp);
         }
 
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -74,6 +64,7 @@ namespace PL
 
         private void ProductsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            /*
             BO.Enums.Category productCategory = (BO.Enums.Category)CategorySelector.SelectedItem; // saves the selected category
             if (productCategory == BO.Enums.Category.NoCategory) // Show all the products without a filter
             {
@@ -88,7 +79,7 @@ namespace PL
             ProductsListView.ItemsSource = from product in bl?.Product.GetProductForList()
                                            where product.Category == productCategory
                                            select product;
-
+            */
         }
     }
 }

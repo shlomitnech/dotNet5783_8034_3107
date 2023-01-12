@@ -6,39 +6,30 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ProductListWindow" Height="450" Width="800">
-    <Grid>
-        <Grid Name="MainGrid" Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="391*"/>
-                <ColumnDefinition Width="398*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="28*"/>
-                <RowDefinition Height="Auto"/>
-
-            </Grid.RowDefinitions>
-            <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,19" Grid.ColumnSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="229*"/>
-                    <ColumnDefinition Width="560*"/>
-                </Grid.ColumnDefinitions >
-
-                <Label Name="Description" Content="Select Category:" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Arial Black" FontWeight="Bold" FontSize="20" Width="203"
-                   Background="#FFCECECE" FontStyle="Italic" Height="52" HorizontalContentAlignment="Center"/>
-            </Grid>
-            <ListView x:Name="ProductsListView" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ProductsListView_SelectionChanged" Margin="0,3,396,0" MouseDoubleClick="DoubleClickEvent" SelectedItem="" Grid.Row="1">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <ComboBox x:Name ="CategorySelector" SelectionChanged="CategorySelector_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a category" SelectedItem="" Grid.ColumnSpan="2"/>
-            <Button Content="Add" HorizontalAlignment="Left" Margin="81,198,0,0" Grid.Row="1" VerticalAlignment="Top" Height="67" Width="117" FontSize="24" FontFamily="Arial" Background="#FFDF00F8" Click="Button_Click"/>
-        </Grid>
+    <Grid Name = "ProductsGrid" Background="LightGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="787*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="500*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListView x:Name="ProductsListView" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ProductsListView_SelectionChanged" Margin="0,3,197,0" MouseDoubleClick="DoubleClickEvent" SelectedItem="" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ComboBox x:Name ="CategorySelector" SelectionChanged="CategorySelector_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a category" SelectedItem="" Grid.ColumnSpan="3"/>
+        <Button Content="Add" Grid.Row="1" HorizontalAlignment="Left" Margin="640,90,0,90" Padding="5" Click="Button_Click" FontSize="15" FontStyle="Normal" FontWeight="Bold" Foreground="White" Background="BlueViolet" Width="137">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
 
     </Grid>
 </Window>
-
-    

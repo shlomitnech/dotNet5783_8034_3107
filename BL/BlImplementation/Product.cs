@@ -16,17 +16,17 @@ namespace BlImplementation;
 
 internal class Product : BlApi.IProduct
 {
-    readonly static IDal? Dos = new DalList();
-    public IEnumerable<ProductForList?> GetProductForList() //returns the product list (for the manager to see)
+    static IDal? Dos = new DalList();
+    public IEnumerable<BO.ProductForList?> GetProductForList() //returns the product list (for the manager to see)
     {
         return from DO.Product? food in Dos!.Product.GetAll()
-              // where food != null
+                   // where food != null
                select new ProductForList
                {
                    ID = food.Value.ID,
                    Name = food?.Name,
                    Price = (double?)food?.Price,
-                   Category = (Enums.Category?)food?.Category
+                   Category = (BO.Enums.Category?)food?.Category
                };
         throw new BO.Exceptions("List is empty");
     }

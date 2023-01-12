@@ -10,7 +10,7 @@ using Dal;
 internal class Program
 {
     static IBl bl = new Bl();
-    static void Main(string[] args)
+    static void Main()
     {
         DataSource ds = new(); //to enable DataSource to call its constructors
         Cart? cart = new Cart() { Items = new List<BO.OrderItem?>() }; //create a new cart

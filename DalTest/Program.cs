@@ -4,16 +4,22 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using static DO.Enums;
+using DO;
 namespace DalAPI;
 
+using DalApi;
 using DO;
+using System.Diagnostics;
 
 internal class DalTest
 {
+
     /// <summary>
     /// The main menu
     /// </summary>
     /// <param name="args"></param>
+    public static IDal DoList { get; set; } = new DalList();
+
     static void Main(string[] args)
     {
 
@@ -169,9 +175,9 @@ internal class DalTest
                 case (Enums.Type.Product, Enums.Action.GetList):
                     try
                     {
-                        IEnumerable<Product> productlist = (IEnumerable<Product>)DalList.Instance.Product.GetAll(); // call function to read all the products 
-
-                        foreach (Product pizza in productlist)
+                        IEnumerable<Product?> list = new List<Product?>();
+                        list = dalprod.GetAll();
+                        foreach (Product? pizza in list)
                         {
                             Console.WriteLine(pizza);
                         }
@@ -250,9 +256,10 @@ internal class DalTest
                 case (Enums.Type.Order, Enums.Action.GetList):
                     try
                     {
-                        IEnumerable<Order> Orderlist = (IEnumerable<Order>)DalList.Instance.Order.GetAll(); // call function to read all the products
 
-                        foreach (Order shoes in Orderlist) { Console.WriteLine(shoes); }
+                        IEnumerable<Order?> list = new List<Order?>();
+                        list = dalord.GetAll();
+                        foreach (Order? shoes in list) { Console.WriteLine(shoes); }
 
                     }
                     catch (Exception ex)
@@ -331,13 +338,11 @@ internal class DalTest
                 case (Enums.Type.OrderItem, Enums.Action.GetList):
                     try
                     {
-                        IEnumerable<OrderItem> OrderItemList = (IEnumerable<OrderItem>)DalList.Instance.OrderItem.GetAll(); // call function to read all the products 
 
+                        IEnumerable<OrderItem?> list = new List<OrderItem?>();
+                        list = dalOrdItem.GetAll();
+                        foreach (OrderItem? shoes in list) { Console.WriteLine(shoes); }
 
-                        foreach (OrderItem pizza in OrderItemList)
-                        {
-                            Console.WriteLine(pizza);
-                        }
                     }
                     catch (Exception ex)
                     {

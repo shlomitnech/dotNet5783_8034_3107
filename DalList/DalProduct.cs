@@ -29,7 +29,7 @@ public class DalProduct : IProduct
     /// </summary>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter)
+    public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter = null)
     {
         if (filter == null)//select whole list
         {
@@ -38,19 +38,26 @@ public class DalProduct : IProduct
                    select prod;
         }
         return from myProd in DataSource.products//select with filter
-               let v = myProd != null
-               where v && filter(myProd)
+               where myProd != null && filter(myProd)
                select myProd;
 
-        // return DataSource.productList.ToList(); //-- this was the entire function!!!
     }
 
-    public Product GetByFilter(Func<Product?, bool>? filter = null)
+    public Product GetByFilter(Func<Product?, bool>? filter)
     {
-      
-        throw new Exception("Does not exist\n");
+        if (filter == null)
+        {
+            throw new ArgumentNullException(nameof(filter));//filter is null
+        }
+        foreach (Product? product in DataSource.products)
+        {
+            if (product != null && filter(product))
+            {
+                return (Product)product;
+            }
+        }
+        throw new EntityNotFound();
     }
-    
 
     /// <summary>
     /// returns the instance based on the identifier provided by the user so it can be printed
