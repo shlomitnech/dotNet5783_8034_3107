@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Dal;
 
 namespace PL
 {
@@ -23,6 +24,7 @@ namespace PL
     /// </summary>
     public partial class ProductListWindow : Window
     {
+        DataSource ds = new(); //to enable DataSource to call its constructors
         private IBl bl = new Bl();
         public ProductListWindow()
         {
