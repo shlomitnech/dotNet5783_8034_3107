@@ -45,7 +45,7 @@ public class DalOrderItem : IOrderItem //change to be internal?
         {
             throw new Exception();
         }
-        else
+        
         // Order item is initialized but it's not in the list yet
         {
             DataSource.orderItems.Add(item);
@@ -80,17 +80,17 @@ public class DalOrderItem : IOrderItem //change to be internal?
     /// </summary>
     /// <param name="item"></param>
     /// <exception cref="Exception"></exception>
-    public void Update(OrderItem? item)
+    public void Update(OrderItem item)
     {
-        int indexItem = DataSource.orderItems!.FindIndex(x => x?.ID == item?.ID);
+        int indexItem = DataSource.orderItems!.FindIndex(x => x?.ID == item.ID);
         if (indexItem < 0) { throw new EntityNotFound("Order Item does not exist!"); }
-        bool isOrder = DataSource.orders.Exists(x => x?.ID == item?.orderID); //see if the order exists
+        bool isOrder = DataSource.orders.Exists(x => x?.ID == item.orderID); //see if the order exists
         if (!isOrder) throw new Exception("order does not exist");
-        int productIndex = DataSource.products.FindIndex(x => x?.ID == item?.productID);//see if the product exists
+        int productIndex = DataSource.products.FindIndex(x => x?.ID == item.productID);//see if the product exists
         if (productIndex < 0) throw new EntityNotFound("Product does not exist");
 
         //Check the Product Stock Count
-        if (DataSource.products[productIndex]?.inStock - item?.amount < 0)
+        if (DataSource.products[productIndex]?.inStock - item.amount < 0)
             throw new EntityNotFound("There are not enough in stock");
        // else
       //      DataSource.products[productIndex].inStock = (DataSource.products[productIndex].inStock - item.amount); //update the stock

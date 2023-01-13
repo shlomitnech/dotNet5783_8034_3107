@@ -80,12 +80,17 @@ public class DalProduct : IProduct
     /// </summary>
     /// <param name="prod"></param>
     /// <exception cref="Exception"></exception>
-    public void Update(Product? prod)
+    public void Update(Product prod)
     {
-        int index = DataSource.products.FindIndex(x => x?.ID == prod?.ID);
-        if (index == -1) //item doesn't exist
-            throw new EntityNotFound("The product does not exist");
-        DataSource.products[index] = prod;
+        int _ID = prod.ID;
+        DO.Product? prevProd = DataSource.products.Find(x => x?.ID == _ID); // find a product with a matching ID
+        if (prevProd == null)
+        { 
+            throw new EntityNotFound();
+        }
+        int index = DataSource.products.IndexOf(prevProd); // save the index of the product with matching ID
+        DataSource.products[index] = prod; // add the updated product to the found location of the old product
+
     }
 
     /// <summary>

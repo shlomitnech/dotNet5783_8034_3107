@@ -97,9 +97,9 @@ public class DalOrder : IOrder //change to be internal?
     /// </summary>
     /// <param name="current"></param>
     /// <exception cref="Exception"></exception>
-    public void Update(Order? current)
+    public void Update(Order current)
     {
-        int index = DataSource.orders.FindIndex(x => x?.ID == current?.ID);
+        int index = DataSource.orders.FindIndex(x => x?.ID == current.ID);
         if (index == -1) //item doesn't exist
             throw new EntityNotFound("Order does not exist!");
         DataSource.orders[index] = current;

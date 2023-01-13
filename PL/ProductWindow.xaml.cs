@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BlImplementation;
+using System.Diagnostics;
 
 
 namespace PL
@@ -44,8 +45,10 @@ namespace PL
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             addProduct.Visibility = Visibility.Collapsed;//make the add invisible
             updateProduct.Visibility = Visibility.Visible;//show update button
+            instock1.Text = prodForList.InStock.ToString();
+            CategoryBox.SelectedItem = prodForList.Category;
+            name1.Text = prodForList.Name;
             ID.Text = prodForList.ID.ToString();
-            ID.IsReadOnly = true;//cant change id in update 
 
         }
         private void AddProduct_Click(object sender, RoutedEventArgs e)
@@ -110,6 +113,16 @@ namespace PL
                 if (int.TryParse(price.Text, out int val))
                 {
                     product.Price = val;
+                }
+            }
+        }
+        private void id_TextChanged(object sender, RoutedEventArgs e) //to add/update price
+        {
+            if (price != null && price.Text != "")
+            {
+                if (int.TryParse(ID.Text, out int val))
+                {
+                    product.ID = val;
                 }
             }
         }

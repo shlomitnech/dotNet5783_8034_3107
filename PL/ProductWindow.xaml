@@ -34,7 +34,8 @@
         <ComboBox Name ="CategoryBox" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" Width="294" Height="40" SelectionChanged="SelectCategory_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Please select a category" SelectedItem="" FontSize="21" RenderTransformOrigin="0.414,-0.137" >
         </ComboBox>
 
-        <TextBox Name="ID" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="0,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="294" Height="40" IsReadOnly="True"
+        <TextBox Name="ID" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="0,30,0,0" TextWrapping="Wrap" Text="" 
+                 TextChanged="id_TextChanged" VerticalAlignment="Top" Width="294" Height="40" IsReadOnly="True"
                  />
         <TextBox Name="name1" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Enter Name" VerticalAlignment="Center" Width="294" Height="40"
                  PreviewTextInput="name1_previewtextinput" PreviewMouseDown="name1_PreviewMouseDown" TextChanged="name1_TextChanged"/>

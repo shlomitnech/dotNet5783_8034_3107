@@ -73,9 +73,9 @@ internal class Product : BlApi.IProduct
         {
             throw new IncorrectInput("Invalid input");
         }
-        DO.Product p = new DO.Product
+        DO.Product p = new DO.Product(prod.ID)
         {
-            ID = prod.ID,
+           // ID = prod.ID,
             Name = prod.Name,
             Price = prod.Price,
             inStock = prod.InStock,
