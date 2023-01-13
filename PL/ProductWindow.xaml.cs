@@ -47,6 +47,7 @@ namespace PL
             updateProduct.Visibility = Visibility.Visible;//show update button
             instock1.Text = prodForList.InStock.ToString();
             CategoryBox.SelectedItem = prodForList.Category;
+            price.Text = prodForList.Price.ToString();
             name1.Text = prodForList.Name;
             ID.Text = prodForList.ID.ToString();
 
