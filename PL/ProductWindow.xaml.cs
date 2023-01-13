@@ -64,7 +64,7 @@ namespace PL
         private void UpdateProduct_Click(object sender, RoutedEventArgs e)
         {
             bl.Product.UpdateProduct(product);
-          //  Close();
+            Close();
         }
         private void name1_PreviewMouseDown(object sender, RoutedEventArgs e) //clear the text that is written
         {
@@ -78,9 +78,18 @@ namespace PL
         {
             price.Clear();
         }
+
+ 
         private void name1_previewtextinput(object sender, RoutedEventArgs e)
         {
-            e.Handled = new Regex("[^0-9]+").IsMatch(name1.Text);//maybe change this to e.Text
+            try
+            {
+                e.Handled = new Regex("[^a-z]+[^A-Z]+").IsMatch(name1.Text);
+            }
+            catch (BO.EntityNotFound exc)
+            {
+                new ErrorWindow("Product List View Window\n", exc.Message).ShowDialog();
+            }
         }
         private void instock1_previewtextinput(object sender, RoutedEventArgs e)
         {

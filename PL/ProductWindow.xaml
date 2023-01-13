@@ -22,7 +22,7 @@
 
         <Label Name="lable1" Content="ID:" FontSize="27"
                Height="40" Width="116" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0" Margin="10,34,0,0" FontFamily="Arial"  />
-        <Label Name="lable2" Content="Name:" FontSize="27"
+        <Label Name="label2" Content="Name:" FontSize="27"
                Height="40" Width="116" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0" Margin="0,79,0,0" Grid.RowSpan="2" FontFamily="Arial" />
         <Label Name="lable3" Content="Price:" FontSize="27"
                Height="40" Width="116" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" FontFamily="Arial" />
@@ -42,7 +42,6 @@
                  PreviewMouseDown="price_PreviewMouseDown" TextChanged="price_TextChanged"/>
         <TextBox Name="instock1" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Grid.Row="4" TextWrapping="Wrap" Text="Enter Amount" VerticalAlignment="Top" Width="294" Height="40"
                  PreviewTextInput="instock1_previewtextinput" PreviewMouseDown="instock1_PreviewMouseDown" TextChanged="instock1_TextChanged"/>
-
         <Button Name="addProduct" Content="Add Product" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Margin="10,25,0,-53" Padding="5" Click="AddProduct_Click" FontSize="15" FontStyle="Normal" FontWeight="Black" Foreground="White" Background="CadetBlue" Width="140">
             <Button.Effect>
                 <DropShadowEffect/>
