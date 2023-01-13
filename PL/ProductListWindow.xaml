@@ -8,7 +8,8 @@
         Title="ProductListWindow" Height="450" Width="800">
     <Grid Name = "ProductsGrid" Background="LightGray">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="787*"/>
+            <ColumnDefinition Width="505*"/>
+            <ColumnDefinition Width="282*"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
@@ -17,15 +18,21 @@
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="ProductsListView" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ProductsListView_SelectionChanged" Margin="0,3,197,0" MouseDoubleClick="DoubleClickEvent" SelectedItem="" Grid.Row="1">
+        <ListView x:Name="ProductsListView" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ProductsListView_SelectionChanged" Margin="0,3,197,0" MouseDoubleClick="DoubleClickEvent" SelectedItem="" Grid.Row="1" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ComboBox x:Name ="CategorySelector" SelectionChanged="CategorySelector_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a category" SelectedItem="" Grid.ColumnSpan="3"/>
-        <Button Content="Add" Grid.Row="1" HorizontalAlignment="Left" Margin="640,90,0,90" Padding="5" Click="Button_Click" FontSize="15" FontStyle="Normal" FontWeight="Bold" Foreground="White" Background="BlueViolet" Width="137">
+        <ComboBox x:Name ="CategorySelector" SelectionChanged="CategorySelector_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a category" SelectedItem="" Grid.ColumnSpan="4"/>
+        <Button Content="Add a new product" Grid.Row="1" HorizontalAlignment="Left" Margin="105,107,0,186" Padding="5" Click="Button_Click" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="White" Width="137" Grid.Column="1">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FFD986EC" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
