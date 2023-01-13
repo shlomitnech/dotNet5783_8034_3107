@@ -58,17 +58,19 @@ namespace PL
             {
                 bl.Product.AddProduct(product);
             }
-            catch(BO.Exceptions ex) 
-            {
-               new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();
-            }
+            catch(BO.IncorrectInput ex) { new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog();}
+            catch (BO.IdExistException ex){ new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog(); }
             Close();
         }
 
         private void UpdateProduct_Click(object sender, RoutedEventArgs e)
         {
-            bl.Product.UpdateProduct(product);
-            Close();
+            try
+            {
+                bl.Product.UpdateProduct(product);
+                Close();
+            }
+            catch(BO.IncorrectInput ex) { new ErrorWindow("Add Product Window\n", ex.Message).ShowDialog(); }
         }
         private void name1_PreviewMouseDown(object sender, RoutedEventArgs e) //clear the text that is written
         {

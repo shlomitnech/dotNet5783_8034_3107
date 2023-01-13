@@ -60,8 +60,14 @@ internal class Product : BlApi.IProduct
             inStock = prod.InStock,
             Category = (DO.Enums.Category?)prod.Category
         };
-        return Dos!.Product.Add(p);
-
+        try
+        {
+            return Dos!.Product.Add(p);
+        }
+        catch (DalApi.Duplicates)
+        {
+            throw new BO.IdExistException("Product ID already exists");
+        }
     }
     public void DeleteProduct(int id) //check in every order that DO product is deleted 
     {
@@ -73,6 +79,7 @@ internal class Product : BlApi.IProduct
         {
             throw new IncorrectInput("Invalid input");
         }
+
         DO.Product p = new DO.Product(prod.ID)
         {
            // ID = prod.ID,

@@ -27,7 +27,7 @@
         <Label Name="lable3" Content="Price:" FontSize="27"
                Height="40" Width="116" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" FontFamily="Arial Black" />
         <Label Name="lable4" Content="Category:" FontSize="27"
-               Height="60" Width="166" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" FontFamily="Arial Black"/>
+               Height="40" Width="170" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" FontFamily="Arial Black"/>
         <Label Name="lable5" Content="Stock:" FontSize="27"
                Height="40" Width="116" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" RenderTransformOrigin="0.534,0.993" FontFamily="Arial Black" />
 
@@ -35,13 +35,13 @@
         </ComboBox>
 
         <TextBox Name="ID" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="0,30,0,0" TextWrapping="Wrap" Text="" 
-                 TextChanged="id_TextChanged" VerticalAlignment="Top" Width="294" Height="40" IsReadOnly="True"
+                 TextChanged="id_TextChanged" VerticalAlignment="Top" Width="280" Height="38" IsReadOnly="True"
                  />
-        <TextBox Name="name1" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Enter Name" VerticalAlignment="Center" Width="294" Height="40"
+        <TextBox Name="name1" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Enter Name" VerticalAlignment="Center" Width="280" Height="38"
                  PreviewTextInput="name1_previewtextinput" PreviewMouseDown="name1_PreviewMouseDown" TextChanged="name1_TextChanged"/>
-        <TextBox Name="price" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Grid.Row="2" TextWrapping="Wrap" Text="Enter Price" VerticalAlignment="Center" Width="294" Height="40"
+        <TextBox Name="price" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Grid.Row="2" TextWrapping="Wrap" Text="Enter Price" VerticalAlignment="Center" Width="280" Height="38"
                  PreviewMouseDown="price_PreviewMouseDown" TextChanged="price_TextChanged"/>
-        <TextBox Name="instock1" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Grid.Row="4" TextWrapping="Wrap" Text="Enter Amount" VerticalAlignment="Top" Width="294" Height="40"
+        <TextBox Name="instock1" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Grid.Row="4" TextWrapping="Wrap" Text="Enter Amount" VerticalAlignment="Top" Width="280" Height="38"
                  PreviewTextInput="instock1_previewtextinput" PreviewMouseDown="instock1_PreviewMouseDown" TextChanged="instock1_TextChanged"/>
         <Button Name="addProduct" Content="Add Product" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Margin="10,25,0,-79" Padding="5" Click="AddProduct_Click" FontSize="20" FontStyle="Normal" FontWeight="Black" Foreground="White" Width="180" FontFamily="Bahnschrift">
             <Button.Background>

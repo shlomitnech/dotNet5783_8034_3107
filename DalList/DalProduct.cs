@@ -20,7 +20,12 @@ public class DalProduct : IProduct
         {
             throw new EntityNotFound("Can't take more orders");
         }
-
+        int _ID = current.ID;
+        DO.Product? prevProd = DataSource.products.Find(x => x?.ID == _ID); // find a product with a matching ID
+        if (prevProd != null) //no ID already exists
+        {
+            throw new Duplicates();
+        }
         DataSource.products.Add(current);
         return current.ID;
     }
