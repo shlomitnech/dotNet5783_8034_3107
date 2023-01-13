@@ -88,7 +88,7 @@ namespace PL
         {
             try
             {
-                e.Handled = new Regex("[^a-z]+[^A-Z]+").IsMatch(name1.Text);
+                e.Handled = new Regex("[^A-Z]+[^a-z]+[^A-Z]+[^a-z]+").IsMatch(name1.Text);
             }
             catch (BO.EntityNotFound exc)
             {
@@ -149,9 +149,5 @@ namespace PL
 
         }
 
-       /* private void name1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            product.Name = name1.Text;
-        }*/
     }
 }
