@@ -49,7 +49,7 @@ internal class Product : BlApi.IProduct
     }
     public int AddProduct(BO.Product prod) //gets a BO product, and adds it to DO product
     {
-        if (prod.Name == "" || prod.Price <= 0 || prod.InStock < 0 || prod.Category < 0 || prod.Category > Enums.Category.Other )
+        if (prod.Name == "" || prod.Price <= 0 || prod.InStock < 0 || prod.Category < 0 || prod.Category > Enums.Category.Other || prod.Name == "Enter Name")
         {
             throw new BO.IncorrectInput("Invalid Input");
         }

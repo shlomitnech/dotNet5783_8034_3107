@@ -32,7 +32,7 @@ namespace PL
             try { ProductsListView.ItemsSource = bl.Product.GetProductForList(); }
             catch (BO.Exceptions ex)//List is empty
             {
-                new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
+                new ErrorWindow("ERROR in List View Window\n", ex.Message).ShowDialog();
             }
 
                 CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
@@ -60,7 +60,7 @@ namespace PL
             }
             catch (BO.Exceptions ex)
             {
-                new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
+                new ErrorWindow("ERROR in List View Window\n", ex.Message).ShowDialog();
             }
             }
 
@@ -85,7 +85,7 @@ namespace PL
             }
             catch (BO.Exceptions ex) //if list is empty
             {
-                new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
+                new ErrorWindow("ERROR in List View Window\n", ex.Message).ShowDialog();
 
             }
         }

@@ -39,5 +39,15 @@ namespace PL
         {
             Close();
         }
+
+        private void ErrorProblem_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void ErrorText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
