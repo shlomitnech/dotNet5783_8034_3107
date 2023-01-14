@@ -7,11 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Dal;
 
-public class DalList : IDal //make sealed internal
+sealed internal class DalList : IDal 
 {
     public IProduct Product => new DalProduct();
     public IOrder Order => new DalOrder();
     public IOrderItem OrderItem => new DalOrderItem();
-   // public DalList() { } //make private
-  //  public static IDal Instance { get; } = new DalList();
+    private DalList() { } 
+    public static IDal Instance { get; } = new DalList();
 }
+ 

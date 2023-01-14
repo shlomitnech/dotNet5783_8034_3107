@@ -16,10 +16,10 @@ namespace BlImplementation;
 
 internal class Product : BlApi.IProduct
 {
-    static IDal? Dos = new DalList();
+    DalApi.IDal? dal = DalApi.Factory.Get();
     public IEnumerable<BO.ProductForList?> GetProductForList() //returns the product list (for the manager to see)
     {
-        return from DO.Product? food in Dos!.Product.GetAll()
+        return from DO.Product? food in dal!.Product.GetAll()
                    // where food != null
                select new ProductForList
                {
@@ -35,7 +35,7 @@ internal class Product : BlApi.IProduct
     {
         BO.Product prod1 = new BO.Product();
         DO.Product prod2 = new DO.Product();
-        prod2 = (DO.Product)Dos?.Product.Get(id)!; // put the product with this ID into prod2
+        prod2 = (DO.Product)dal?.Product.Get(id)!; // put the product with this ID into prod2
         if (true) 
         {
             prod1.ID = id;
@@ -62,7 +62,7 @@ internal class Product : BlApi.IProduct
         };
         try
         {
-            return Dos!.Product.Add(p);
+            return dal!.Product.Add(p);
         }
         catch (DalApi.Duplicates)
         {
@@ -71,7 +71,7 @@ internal class Product : BlApi.IProduct
     }
     public void DeleteProduct(int id) //check in every order that DO product is deleted 
     {
-        Dos!.Product.Delete(id);//delete product
+        dal!.Product.Delete(id);//delete product
     }
     public void UpdateProduct(BO.Product prod) //Get BO product, and update the DO product
     {
@@ -89,7 +89,7 @@ internal class Product : BlApi.IProduct
             Category = (DO.Enums.Category?)prod.Category
         };
 
-        Dos?.Product.Update(p);
+        dal?.Product.Update(p);
 
     }
 
