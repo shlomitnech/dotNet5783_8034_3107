@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DO;
-namespace DalApi
+namespace DalApi;
+
+public interface IDal
 {
-    public interface IDal
-    {
-        IProduct Product { get; }
-        IOrder Order { get; }
-        IOrderItem OrderItem { get; }
-    }
+    IProduct Product { get; }
+    IOrder Order { get; }
+    IOrderItem OrderItem { get; }
 }

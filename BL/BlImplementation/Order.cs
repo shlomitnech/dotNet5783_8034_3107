@@ -18,13 +18,13 @@ internal class Order : BlApi.IOrder
     public IEnumerable<OrderForList?> GetAllOrderForList() //calls get of DO order list, gets items for each order, and build BO orderItem list
     {
         IEnumerable<DO.Order?> ords = dal!.Order.GetAll();
-            IEnumerable<DO.OrderItem?> ordItems = dal.OrderItem.GetAll();
+        IEnumerable<DO.OrderItem?> ordItems = dal.OrderItem.GetAll();
             return from DO.Order? food in ords
                    select new BO.OrderForList
                    {
                        ID = food?.ID ?? throw new BO.EntityNotFound(),
-                       CustomerName = food?.CustomerName,
-                       Status = GetStatus(food.Value),
+                       CustomerName = food?.CustomerName?? throw new BO.IncorrectInput("The Name does not exist!"),
+                       Status = GetStatus(food),
                        AmountOfItems = ordItems.Select(ordItems => ordItems?.ID == food?.ID).Count(), //go through the orderItems and see the count
                        TotalPrice = (double)ordItems.Sum(ordItems => ordItems?.Price)!
                    };
@@ -43,11 +43,11 @@ internal class Order : BlApi.IOrder
         }
        DO.Order? ord = dal!.Order.Get(id);
        double? tot = 0;//add up the total price
-       foreach(DO.OrderItem? apple in dal!.OrderItem.GetAll())
+       foreach(DO.OrderItem? prod in dal!.OrderItem.GetAll())
         {
-            if (apple?.ID == id) 
+            if (prod?.ID == id) 
             {
-                tot += apple?.Price;
+                tot += prod?.Price;
             }
         }
         
@@ -145,30 +145,24 @@ internal class Order : BlApi.IOrder
     }
     public OrderTracking GetOrderTracking(int ord) //get order number, check it and print the string of dates and status in DO order
     {
-        OrderTracking ordtrack = new();
-        ordtrack.Tracking = new();
-        foreach (DO.Order? list in dal!.Order.GetAll().Select(v => (DO.Order?)v)) //iterate through all the orders in DO
+        DO.Order order = new();
+        try
         {
-            if (list?.ID == ord) // if the item has the same id 
-            {
-                ordtrack.ID = ord; //save the ID 
-                if (list?.DeliveryDate != null)
-                {
-                    ordtrack.Status = BO.Enums.OrderStatus.Shipped;
-                  //  ordtrack.Tracking.Add(Tuple.Create)
-                }
-                if (list?.OrderDate!= null)
-                {
-
-                }
-                if (list?.ShippingDate!= null)
-                {
-
-                }
-                return ordtrack;
-            }
+            order = (DO.Order)dal?.Order.Get(ord)!;//get the requested order from dal
         }
-        throw new BO.EntityNotFound("Order doesn't exist\n");
+        catch
+        {
+            throw new BO.EntityNotFound("The order requested does not exist\n");//order does not exist
+        }
+        return new OrderTracking()
+        {
+            ID = ord,
+            Status = GetStatus(order),
+            Tracking = new List<Tuple<DateTime?, string>> { new Tuple<DateTime?, string>(order.OrderDate, "Approved"), new Tuple<DateTime?, string>(order.ShippingDate, "sent"),
+            new Tuple<DateTime?, string>(order.DeliveryDate, "Approved")}
+        };
+
+
 
     }
 

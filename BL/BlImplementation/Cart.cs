@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using BlApi;
 using BO;
 using DalApi;
 using DO;
@@ -67,52 +68,51 @@ internal class Cart : BlApi.ICart
         {
             throw new BO.UnfoundException("Incorrect Input");
         }
-        cart.CustomerName = n;
-        cart.CustomerEmail = em;
-        cart.CustomerAddress = add;
-        DO.Product product;
-        DO.Order order = new(); // create an instance of order
-        BO.Order orderBO = new();
-        int ordID = dal!.Order.Add(order); // adding a new order to the list (this is the new order)
-        order.OrderDate = DateTime.Now;
-        orderBO.ID = ordID;
-        orderBO.CustomerName = order.CustomerName;
-        orderBO.CustomerEmail = order.CustomerEmail;
-        orderBO.CustomerAddress = order.ShippingAddress;
-        orderBO.PaymentDate = order.OrderDate;
-        orderBO.ShipDate = order.ShippingDate;
-        orderBO.DeliveryDate = order.DeliveryDate;
-        orderBO.Status = blay!.Order.GetStatus(order); 
-        orderBO.TotalPrice = (double?)cart!.TotalPrice;
-        int quantity = 0;
-        foreach (BO.OrderItem? item in cart.Items!)
+        IEnumerable<DO.Product?> productList = dal?.Product.GetAll()!;//get all products from dal
+        IEnumerable<string> checkOrderItem = from BO.OrderItem item in cart.Items!
+                                             let product = productList.FirstOrDefault(x => x?.ID == item.ID)
+                                             where item.Amount < 1 || product?.inStock < item.Amount
+                                             select item.ProductName + " is not in stock\n";//check if all of the products in cart are in stock
+        if (checkOrderItem.Any())
+            throw new BO.EntityNotFound("That product doesn't exist");
+
+        int? orderId = dal?.Order.Add(new DO.Order()
         {
-            orderBO.Items?.Add(item);
-            quantity++;
-        }
+            ShippingAddress = cart.CustomerAddress!,
+            CustomerEmail = cart.CustomerEmail!,
+            CustomerName = cart.CustomerName!,
+            OrderDate = DateTime.Now
+        });//add a new order for the cart and get order ID
         try
         {
-            foreach (BO.OrderItem? it in cart.Items!)
+            cart.Items!.ForEach(x => dal.OrderItem.Add(new DO.OrderItem()
             {
-                int quant = it!.Amount;
-                DO.OrderItem item = new()
-                {
-                    productID = it.ProductID,
-                    orderID = ordID
-                };
-                product = (DO.Product)dal!.Product.Get(it.ProductID)!;
-                if (product.inStock < quant)
-                {
-                    throw new BO.Exceptions("Not enough are in stock! ");
-                }
-                product.inStock -= quant;
-                dal.Product.Update(product);
-            }
+                amount = (int)x?.Amount!,
+                ID = (int)x.ID!,
+                orderID = (int)orderId!,
+                Price = x.Price,
+                productID = x.ProductID
+            }));//go over cart order items and add each to dal
         }
-        catch
+        catch (DalApi.Exceptions ex)
         {
-            throw new Exception("ERROR! ");
+            throw new BO.Exceptions(ex.Message);
         }
+        catch (DalApi.Duplicates ex)
+        {
+            throw new BO.IdExistException(ex.Message);
+        }
+        IEnumerable<DO.Product?> products;
+        try
+        {
+            products = from item in cart.Items
+                       select dal?.Product.Get(item.ProductID);//list of products in cart
+        }
+        catch (DalApi.EntityNotFound)
+        {
+            throw new BO.EntityNotFound("The product does not exist");
+        }
+
     }
     public List<string> GetItemNames(BO.Cart cart)
     {

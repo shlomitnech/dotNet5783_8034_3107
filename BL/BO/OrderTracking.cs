@@ -10,7 +10,7 @@ public class OrderTracking
 {
     public int ID { get; set; }
     public Enums.OrderStatus Status { get; set; }
-    public List<Tuple<DateTime, string>>? Tracking { set; get; }
+    public List<Tuple<DateTime?, string>>? Tracking { set; get; }
 
 
     public override string ToString() => $@"
