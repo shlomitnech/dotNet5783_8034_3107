@@ -25,23 +25,21 @@ namespace PL
     /// </summary>
     public partial class ProductWindow : Window
     {
-        private IBl bl = new Bl();
+        BlApi.IBl? bl = BlApi.Factory.Get();
         private BO.Product product = new BO.Product();
 
         public ProductWindow() //if adding a new product
         {
             InitializeComponent();
-            bl = new Bl();
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
             updateProduct.Visibility = Visibility.Collapsed;//update invisible 
-            ID.Text = bl.Product?.NextID().ToString();
+            ID.Text = bl!.Product?.NextID().ToString();
             
 
         }
         public ProductWindow(Product prodForList) //if updating an existing product
         {
             InitializeComponent();
-            bl = new Bl();
             CategoryBox.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
             addProduct.Visibility = Visibility.Collapsed;//make the add invisible
             updateProduct.Visibility = Visibility.Visible;//show update button

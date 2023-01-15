@@ -25,7 +25,7 @@ namespace PL
     public partial class ProductListWindow : Window
     {
         DataSource ds = new(); //to enable DataSource to call its constructors
-        private IBl bl = new Bl();
+        BlApi.IBl? bl = BlApi.Factory.Get();
         public ProductListWindow()
         {
             InitializeComponent();

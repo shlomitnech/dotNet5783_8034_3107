@@ -16,11 +16,11 @@ namespace BlImplementation;
 
 internal class Order : BlApi.IOrder
 {
-    static IDal? Dos = new DalList();
+    DalApi.IDal? dal = DalApi.Factory.Get();
     public IEnumerable<OrderForList?> GetAllOrderForList() //calls get of DO order list, gets items for each order, and build BO orderItem list
     {
-        IEnumerable<DO.Order?> ords = Dos!.Order.GetAll();
-            IEnumerable<DO.OrderItem?> ordItems = Dos.OrderItem.GetAll();
+        IEnumerable<DO.Order?> ords = dal!.Order.GetAll();
+            IEnumerable<DO.OrderItem?> ordItems = dal.OrderItem.GetAll();
             return from DO.Order? food in ords
                    select new BO.OrderForList
                    {
@@ -43,9 +43,9 @@ internal class Order : BlApi.IOrder
         {
             throw new BO.EntityNotFound();
         }
-       DO.Order? ord = Dos!.Order.Get(id);
+       DO.Order? ord = dal!.Order.Get(id);
        double? tot = 0;//add up the total price
-       foreach(DO.OrderItem? apple in Dos!.OrderItem.GetAll())
+       foreach(DO.OrderItem? apple in dal!.OrderItem.GetAll())
         {
             if (apple?.ID == id) 
             {
@@ -73,7 +73,7 @@ internal class Order : BlApi.IOrder
     }
     public BO.Order ShipUpdate(int id, DateTime date) //gets an order number, check if it exists and update the date in Do order, return the BO order that was shipped
     {
-        DO.Order? order1 = Dos!.Order.Get(id); //get the order ID from the DO folder
+        DO.Order? order1 = dal!.Order.Get(id); //get the order ID from the DO folder
         BO.Order order2 = GetBOOrder(id); //get the order from BO
 
         if (order1?.ID == id)
@@ -88,7 +88,7 @@ internal class Order : BlApi.IOrder
                 ShippingDate = date,
                 DeliveryDate = null
             };
-            Dos.Order.Update(order3);
+            dal.Order.Update(order3);
             order2.ShipDate = date;
             order2.Status = GetStatus(order1);
             return order2;
@@ -100,7 +100,7 @@ internal class Order : BlApi.IOrder
 
     public BO.Order DeliveryUpdate(int id, DateTime date) //get the order number, update the delivery status in DO order, and return BO order that was delivered
     {
-        DO.Order? order1 = Dos!.Order.Get(id); //get the order ID from the DO folder
+        DO.Order? order1 = dal!.Order.Get(id); //get the order ID from the DO folder
         BO.Order order2 = GetBOOrder(id); //get the order from BO
 
         if (order1?.ID == id)
@@ -115,7 +115,7 @@ internal class Order : BlApi.IOrder
                 ShippingDate = order1?.ShippingDate,
                 DeliveryDate = date
             };
-            Dos.Order.Update(temporder);
+            dal.Order.Update(temporder);
             order2.DeliveryDate = date;
             order2.Status = GetStatus(order1);
             return order2;
@@ -149,7 +149,7 @@ internal class Order : BlApi.IOrder
     {
         OrderTracking ordtrack = new();
         ordtrack.Tracking = new();
-        foreach (DO.Order? list in Dos!.Order.GetAll().Select(v => (DO.Order?)v)) //iterate through all the orders in DO
+        foreach (DO.Order? list in dal!.Order.GetAll().Select(v => (DO.Order?)v)) //iterate through all the orders in DO
         {
             if (list?.ID == ord) // if the item has the same id 
             {
