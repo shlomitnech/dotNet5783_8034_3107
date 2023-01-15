@@ -21,8 +21,6 @@ namespace PL
     /// </summary>
     public partial class ErrorWindow : Window
     {
-        private IBl bl = new Bl();
-
         public ErrorWindow()
         {
             InitializeComponent();

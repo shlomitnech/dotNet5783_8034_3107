@@ -18,11 +18,11 @@ internal class DalTest
     /// The main menu
     /// </summary>
     /// <param name="args"></param>
-    public static IDal DoList { get; set; } = new DalList();
+ //   public static IDal DoList { get; set; } = new DalList();
 
     static void Main(string[] args)
     {
-
+        /*
         Product _product = new();
         DalProduct dalprod = new();
         Order _order = new();
@@ -389,5 +389,6 @@ internal class DalTest
 
             }
         }
+        */
     }
 }

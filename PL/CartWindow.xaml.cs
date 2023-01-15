@@ -21,8 +21,6 @@ namespace PL
     /// </summary>
     public partial class CartWindow : Window
     {
-        private IBl bl = new Bl();
-
         public CartWindow()
         {
             InitializeComponent();

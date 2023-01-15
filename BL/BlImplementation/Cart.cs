@@ -1,19 +1,18 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using BO;
-using BlApi;
 using DalApi;
-using Dal;
 using DO;
-using System.Net;
-using System.Xml.Linq;
 
 namespace BlImplementation;
 
-internal class Cart : ICart
+internal class Cart : BlApi.ICart
 {
     DalApi.IDal? dal = DalApi.Factory.Get();
     BlApi.IBl? blay = BlApi.Factory.Get();

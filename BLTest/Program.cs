@@ -9,9 +9,10 @@ using Dal;
 
 internal class Program
 {
-    static IBl bl = new Bl();
+  //  static IBl bl = new Bl();
     static void Main()
     {
+        /*
         DataSource ds = new(); //to enable DataSource to call its constructors
         Cart? cart = new Cart() { Items = new List<BO.OrderItem?>() }; //create a new cart
         BO.Product? product = new();
@@ -346,11 +347,12 @@ internal class Program
                         break;
                     }
             }
-        }
+        */
+        
     }
-    static int ReadFromUser()
+       /*  static int ReadFromUser()
     {
-        int num;
+         int num;
         while (!System.Int32.TryParse(Console.ReadLine(), out num))
         {
             Console.WriteLine("Please put an integer value in \n");
@@ -358,4 +360,5 @@ internal class Program
         return num;
     }
 
+      */
 }
