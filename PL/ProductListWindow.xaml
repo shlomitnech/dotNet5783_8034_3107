@@ -80,7 +80,7 @@
 
 
             </TabItem>
-            <DataGrid Name="OrderItemGrid" Grid.Row="1" Margin="5,45,2,30" Grid.Column="1"
+            <DataGrid Name="OrderItemGrid" Grid.Row="1" Margin="5,45,2,45" Grid.Column="1"
                 CanUserAddRows="False"
                   IsTextSearchEnabled="True" 
                   AutoGenerateColumns="False" 

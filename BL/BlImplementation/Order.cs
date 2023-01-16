@@ -69,10 +69,10 @@ internal class Order : BlApi.IOrder
        throw new BO.EntityNotFound();
 
     }
-    public BO.Order ShipUpdate(int id, DateTime date) //gets an order number, check if it exists and update the date in Do order, return the BO order that was shipped
+    public BO.Order ShipUpdate(int id)
     {
-        DO.Order? order1 = dal!.Order.Get(id); //get the order ID from the DO folder
-        BO.Order order2 = GetBOOrder(id); //get the order from BO
+        DO.Order? order1 = dal!.Order.Get(id); 
+        BO.Order order2 = GetBOOrder(id); 
 
         if (order1?.ID == id)
         {
@@ -83,11 +83,11 @@ internal class Order : BlApi.IOrder
                 CustomerEmail = order1?.CustomerEmail,
                 ShippingAddress = order1?.ShippingAddress,
                 OrderDate = order1?.OrderDate,
-                ShippingDate = date,
+                ShippingDate = DateTime.Now,
                 DeliveryDate = null
             };
             dal.Order.Update(order3);
-            order2.ShipDate = date;
+            order2.ShipDate = DateTime.Now;
             order2.Status = GetStatus(order1);
             return order2;
    
@@ -96,7 +96,7 @@ internal class Order : BlApi.IOrder
 
     }
 
-    public BO.Order DeliveryUpdate(int id, DateTime date) //get the order number, update the delivery status in DO order, and return BO order that was delivered
+    public BO.Order DeliveryUpdate(int id) //get the order number, update the delivery status in DO order, and return BO order that was delivered
     {
         DO.Order? order1 = dal!.Order.Get(id); //get the order ID from the DO folder
         BO.Order order2 = GetBOOrder(id); //get the order from BO
@@ -111,10 +111,10 @@ internal class Order : BlApi.IOrder
                 ShippingAddress = order1?.ShippingAddress,
                 OrderDate = order1?.OrderDate,
                 ShippingDate = order1?.ShippingDate,
-                DeliveryDate = date
+                DeliveryDate = DateTime.Now
             };
             dal.Order.Update(temporder);
-            order2.DeliveryDate = date;
+            order2.DeliveryDate = DateTime.Now;
             order2.Status = GetStatus(order1);
             return order2;
             /*

@@ -28,7 +28,7 @@ namespace PL
         BO.OrderForList ords = new();
         ObservableCollection<BO.ProductForList> productsForList = new();
         ObservableCollection<BO.OrderForList> ordersForList = new();
-        public ProductListWindow()
+        public ProductListWindow(BlApi.IBl? Mainbl)
         {
             InitializeComponent();
             try { ProductItemGrid.ItemsSource = bl?.Product.GetProductForList(); }
@@ -121,6 +121,7 @@ namespace PL
         }
         private void Orders_updates(object sender, MouseButtonEventArgs e)
         {
+            new OrderUpdate(ords, bl).ShowDialog(); //call the update Order button
 
         }
     }
