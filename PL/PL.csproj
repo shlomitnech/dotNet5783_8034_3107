@@ -9,6 +9,7 @@
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 		<UseCommonOutputDirectory>true</UseCommonOutputDirectory>
+		<UseWindowsForms>true</UseWindowsForms>
 	</PropertyGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\BL\BL.csproj" />
