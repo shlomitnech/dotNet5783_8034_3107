@@ -31,13 +31,18 @@ namespace PL
         public ProductListWindow()
         {
             InitializeComponent();
-            try { ProductItemGrid.ItemsSource = bl.Product.GetProductForList(); }
+            try { ProductItemGrid.ItemsSource = bl?.Product.GetProductForList(); }
+
             catch (BO.Exceptions ex)//List is empty
             {
                 new ErrorWindow("ERROR in List View Window\n", ex.Message).ShowDialog();
             }
-
-                CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+            try { OrderItemGrid.ItemsSource = bl?.Order.GetAllOrderForList(); }
+            catch (BO.Exceptions ex)//List is empty
+            {
+                new ErrorWindow("ERROR in List View Window\n", ex.Message).ShowDialog();
+            }
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
         }
 
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -41,7 +41,7 @@
                   Foreground="Black"
                   IsReadOnly="True"
                   FontSize="12"
-                  ItemsSource= "{Binding}" Margin="5,40,20,50" Grid.Row="1" MouseDoubleClick="Product_updates" >
+                  ItemsSource= "{Binding}" Margin="10,50,15,40" Grid.Row="1" MouseDoubleClick="Product_updates" >
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Header="ID" Binding="{Binding ID}"
@@ -73,9 +73,15 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions >
 
+                </Grid>
 
-               <DataGrid Name="OrderItemGrid" Grid.Column="0"
-                  CanUserAddRows="False"
+            </TabItem>
+            <TabItem Header="Products" Height="34" VerticalAlignment="Center" HorizontalAlignment="Left" Width="370" Margin="5,0,0,0">
+
+
+            </TabItem>
+            <DataGrid Name="OrderItemGrid" Grid.Row="1" Margin="5,45,2,30" Grid.Column="1"
+                CanUserAddRows="False"
                   IsTextSearchEnabled="True" 
                   AutoGenerateColumns="False" 
                   GridLinesVisibility="Vertical" 
@@ -91,32 +97,25 @@
                   SelectionUnit="FullRow"
                   Foreground="Black"
                   IsReadOnly="True"
-                  FontSize="16"
-                  ItemsSource="{Binding}" Grid.ColumnSpan="2" Margin="0,0,198,0">
-                        <DataGrid.Columns>
+                  FontSize="12"
+                  ItemsSource="{Binding}" Grid.ColumnSpan="2" MouseDoubleClick="Orders_updates">
+                <DataGrid.Columns>
 
-                            <DataGridTextColumn Header="  ID" Binding="{Binding ID}"
+                    <DataGridTextColumn Header="  ID" Binding="{Binding ID}"
                                     MinWidth="10" Width="*"/>
-                            <DataGridTextColumn Header="Product" Binding="{Binding Name}"
+                    <DataGridTextColumn Header="Name" Binding="{Binding CustomerName}"
                                     MinWidth="10" Width="*"/>
-                            <DataGridTextColumn Header="Status" Binding="{Binding Status}"
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}"
                                     MinWidth="10" Width="*"/>
-                            <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"
+                    <DataGridTextColumn Header="Amount" Binding="{Binding AmountOfItems}"
                                     MinWidth="10" Width="*"/>
-                            <DataGridTextColumn Header="Total Price" Binding="{Binding TotalPrice}"
+                    <DataGridTextColumn Header="Total Price" Binding="{Binding TotalPrice}"
                                     MinWidth="10" Width="*"/>
 
 
-                        </DataGrid.Columns>
-                    </DataGrid>
+                </DataGrid.Columns>
 
-                </Grid>
-
-            </TabItem>
-            <TabItem Header="Products" Height="34" VerticalAlignment="Center" HorizontalAlignment="Left" Width="370" Margin="5,0,0,0">
-              
-            
-            </TabItem>
+            </DataGrid>
 
         </Grid>
     </Grid>
