@@ -13,12 +13,43 @@
 
 
     </Window.Resources>
-    
-    <Grid>
+
+    <Grid Name="NewOrder" Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="300*"/>
+        </Grid.RowDefinitions>
+
+
+        <ComboBox x:Name="CategorySelecter" SelectionChanged="CategorySelecter_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a category" 
+                  Grid.Row="0" Grid.Column="2" SelectedItem="" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" Width="179"/>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
         </Grid.ColumnDefinitions>
+
+        <DataGrid Name="ProductItemGrid" Grid.Row="2"
+                  CanUserAddRows="False"
+                  IsTextSearchEnabled="True" 
+                  AutoGenerateColumns="False" 
+                  GridLinesVisibility="Vertical" 
+                  Cursor="Arrow"
+                  AreRowDetailsFrozen="True"
+                  HorizontalGridLinesBrush="Transparent"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  ScrollViewer.CanContentScroll="True"
+                  CanUserDeleteRows="False" 
+                  CanUserResizeRows="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  Foreground="Black"
+                  IsReadOnly="True"
+                  FontSize="12" />
+
 
     </Grid>
 </Window>
