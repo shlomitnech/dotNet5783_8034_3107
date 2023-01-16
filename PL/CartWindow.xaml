@@ -21,7 +21,7 @@
 
         <!--Top of Website Title!-->
 
-        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Background="Beige" Panel.ZIndex="1" FlowDirection="RightToLeft" MouseDown="SPanel_MouseDown">
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Background="Beige" Panel.ZIndex="1" FlowDirection="RightToLeft">
             <Button Content="Button"/>
             <Button Content="Button"/>
 
@@ -37,7 +37,7 @@
             <!--Title for shopping cart-->
             <StackPanel Orientation="Horizontal" Margin="0,40,0,30">
                 <Rectangle VerticalAlignment="Stretch" Fill="#808080" Width="0.7" Margin="20 5 20 5"/>
-                <TextBlock Text="Your Shopping Cart" FontSize="25" FontWeight="DemiBold" VerticalAlignment="Center"/>
+                <TextBlock Text="My Shopping Cart" FontSize="25" FontWeight="DemiBold" VerticalAlignment="Center"/>
             </StackPanel>
 
             <!--Products-->

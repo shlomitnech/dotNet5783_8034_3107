@@ -44,5 +44,9 @@ namespace PL
             }
             // Subtotal.DataContext = cart;//set subtotal data context to our cart
         }
+        private void SPanel_MouseDown()
+        {
+
+        }
     }
 }

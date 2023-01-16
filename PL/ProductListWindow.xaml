@@ -6,37 +6,169 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ProductListWindow" Height="450" Width="800">
-    <Grid Name = "ProductsGrid" Background="LightGray">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="505*"/>
-            <ColumnDefinition Width="282*"/>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="10*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="500*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <ListView x:Name="ProductsListView" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ProductsListView_SelectionChanged" Margin="0,3,197,0" MouseDoubleClick="DoubleClickEvent" SelectedItem="" Grid.Row="1" Grid.ColumnSpan="2">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <ComboBox x:Name ="CategorySelector" SelectionChanged="CategorySelector_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a category" SelectedItem="" Grid.ColumnSpan="4"/>
-        <Button Content="Add a new product" Grid.Row="1" HorizontalAlignment="Left" Margin="110,92,0,201" Padding="5" Click="Button_Click" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="White" Width="137" Grid.Column="1">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black"/>
-                    <GradientStop Color="#FFD986EC" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-            <Button.Effect>
-                <DropShadowEffect/>
-            </Button.Effect>
-        </Button>
+    <Grid x:Name="MainGrid">
+        <TabItem Header="Product}" Height="20" VerticalAlignment="Top" Margin="0,0,375,0" Grid.Column="0"/>
 
+        <Grid Name = "ProductsGrid" Background="LightGray">
+            <!--<Product List-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="375*"/>
+                <ColumnDefinition Width="412*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="310"/>
+                <RowDefinition Height="Auto" MinHeight="50.04"/>
+            </Grid.RowDefinitions>
+            <ComboBox x:Name ="CategorySelector" SelectionChanged="CategorySelector_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a category" SelectedItem="" Margin="5,5,20,275" Grid.Row="1"/>
+            <DataGrid Name="ProductItemGrid" Grid.Column="0"
+                  CanUserAddRows="False"
+                  IsTextSearchEnabled="True" 
+                  AutoGenerateColumns="False" 
+                  GridLinesVisibility="Vertical" 
+                  Cursor="Arrow"
+                  AreRowDetailsFrozen="True"
+                  HorizontalGridLinesBrush="Transparent"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  ScrollViewer.CanContentScroll="True"
+                  CanUserDeleteRows="False" 
+                  CanUserResizeRows="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  Foreground="Black"
+                  IsReadOnly="True"
+                  FontSize="12"
+                  ItemsSource= "{Binding}" Margin="5,40,20,50" Grid.Row="1" >
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="ID" Binding="{Binding ID}"
+                                    MinWidth="10" Width="*"/>
+                    <DataGridTextColumn Header="Product" Binding="{Binding Name}"
+                                    MinWidth="10" Width="*"/>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price}"
+                                    MinWidth="10" Width="*"/>
+                    <DataGridTextColumn Header="Category" Binding="{Binding Category}"
+                                    MinWidth="10" Width="*"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+            <Button Content="Add a new product" Grid.Row="2" HorizontalAlignment="Left" Margin="-5,7,0,0" Padding="5" Click="Button_Click" FontSize="11" FontStyle="Normal" FontWeight="Bold" Foreground="White" Width="370" Height="29" VerticalAlignment="Top" Background="#FFEFD0B0">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+
+            <!--<Order List-->
+            <TabItem Header="Orders" Height="34" VerticalAlignment="Center" Margin="0,0,7,0" Grid.Column="1">
+                <Grid Name="OrderGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" Grid.Column="1"
+             VerticalAlignment="Stretch" Width="auto">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions >
+
+
+
+
+                    <DataGrid Name="OrderItemGrid" Grid.Column="0"
+                  CanUserAddRows="False"
+                  IsTextSearchEnabled="True" 
+                  AutoGenerateColumns="False" 
+                  GridLinesVisibility="Vertical" 
+                  Cursor="Arrow"
+                  AreRowDetailsFrozen="True"
+                  HorizontalGridLinesBrush="Transparent"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  ScrollViewer.CanContentScroll="True"
+                  CanUserDeleteRows="False" 
+                  CanUserResizeRows="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  Foreground="Black"
+                  IsReadOnly="True"
+                  FontSize="16"
+                  ItemsSource="{Binding}" Grid.ColumnSpan="2" Margin="0,0,198,0">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="   ID" Binding="{Binding ID}"
+                                    MinWidth="10" Width="*"/>
+                            <DataGridTextColumn Header="Product" Binding="{Binding Name}"
+                                    MinWidth="10" Width="*"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}"
+                                    MinWidth="10" Width="*"/>
+                            <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"
+                                    MinWidth="10" Width="*"/>
+                            <DataGridTextColumn Header="Total Price" Binding="{Binding TotalPrice}"
+                                    MinWidth="10" Width="*"/>
+
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Products" Height="34" VerticalAlignment="Center" HorizontalAlignment="Left" Width="370" Margin="5,0,0,0">
+                <Grid x:Name="OrderGrid1" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" Grid.Column="1"
+                    VerticalAlignment="Stretch" Width="auto">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+
+
+
+                    <DataGrid x:Name="ItemGrid1" Grid.Column="0"
+                        CanUserAddRows="False"
+                        IsTextSearchEnabled="True" 
+                        AutoGenerateColumns="False" 
+                        GridLinesVisibility="Vertical" 
+                        Cursor="Arrow"
+                        AreRowDetailsFrozen="True"
+                        HorizontalGridLinesBrush="Transparent"
+                        ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                        ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                        ScrollViewer.CanContentScroll="True"
+                        CanUserDeleteRows="False" 
+                        CanUserResizeRows="False"
+                        SelectionMode="Single"
+                        SelectionUnit="FullRow"
+                        Foreground="Black"
+                        IsReadOnly="True"
+                        FontSize="16"
+                        ItemsSource="{Binding}" Grid.ColumnSpan="2" Margin="0,0,198,0">
+                        <!--MouseDoubleClick="ProductItemView_click" >-->
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="   ID" Binding="{Binding ID}"
+                                MinWidth="10" Width="*"/>
+                            <DataGridTextColumn Header="Product" Binding="{Binding Name}"
+                                MinWidth="10" Width="*"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}"
+                                MinWidth="10" Width="*"/>
+                            <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"
+                                MinWidth="10" Width="*"/>
+                            <DataGridTextColumn Header="Total Price" Binding="{Binding TotalPrice}"
+                                MinWidth="10" Width="*"/>
+
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+
+            </TabItem>
+
+        </Grid>
     </Grid>
+
 </Window>

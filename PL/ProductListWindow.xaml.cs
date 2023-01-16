@@ -24,10 +24,13 @@ namespace PL
     {
         DataSource ds = new(); //to enable DataSource to call its constructors
         BlApi.IBl? bl = BlApi.Factory.Get();
+        BO.OrderForList ords = new();
+        ObservableCollection<BO.ProductForList> productsForList = new();
+        ObservableCollection<BO.OrderForList> ordersForList = new();
         public ProductListWindow()
         {
             InitializeComponent();
-            try { ProductsListView.ItemsSource = bl.Product.GetProductForList(); }
+            try { ProductItemGrid.ItemsSource = bl.Product.GetProductForList(); }
             catch (BO.Exceptions ex)//List is empty
             {
                 new ErrorWindow("ERROR in List View Window\n", ex.Message).ShowDialog();
@@ -43,34 +46,39 @@ namespace PL
             {
                 if (productCategory == BO.Enums.Category.NoCategory) // Show all the products without a filter
                 {
-                    ProductsListView.ItemsSource = bl.Product.GetProductForList();
-                    CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+                    ProductItemGrid.ItemsSource = bl?.Product.GetProductForList();//original list with no filter
+                    CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//show all of combobox options
+                    ProductItemGrid.DataContext = productsForList;
+
                     return;
                 }
+
+
                 if (productCategory is BO.Enums.Category cat) //show the items in that category
                 {
-                    ProductsListView.ItemsSource = bl?.Product.GetProductForList()?.Select(x => x!.Category == cat);
+                    ProductItemGrid.ItemsSource = bl?.Product.GetProductForList()?.Select(x => x!.Category == cat);
                 }
 
-                ProductsListView.ItemsSource = from product in bl?.Product.GetProductForList()
-                                               where product.Category == productCategory
-                                               select product;
+                ProductItemGrid.ItemsSource = from product in bl?.Product.GetProductForList()
+                                              where product.Category == productCategory
+                                              select product;
             }
             catch (BO.Exceptions ex)
             {
                 new ErrorWindow("ERROR in List View Window\n", ex.Message).ShowDialog();
             }
-            }
+            ProductItemGrid.DataContext = productsForList;
+        }
 
         private void DoubleClickEvent(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (ProductsListView.SelectedItem is BO.ProductForList productForList)
+            if (ProductItemGrid.SelectedItem is BO.ProductForList productForList)
             {
                 BO.Product prod = new BO.Product();
                 prod = bl.Product.ManagerProduct(productForList.ID);
                 new ProductWindow(prod).ShowDialog();
             }
-            ProductsListView.ItemsSource = bl?.Product.GetProductForList(); // update list view after add
+            ProductItemGrid.ItemsSource = bl?.Product.GetProductForList(); // update list view after add
         }
 
 
@@ -79,7 +87,7 @@ namespace PL
             new ProductWindow().ShowDialog();
             try
             {
-                ProductsListView.ItemsSource = bl.Product.GetProductForList();
+                ProductItemGrid.ItemsSource = bl.Product.GetProductForList();
             }
             catch (BO.Exceptions ex) //if list is empty
             {
@@ -106,6 +114,14 @@ namespace PL
                                            where product.Category == productCategory
                                            select product;
             */
+        }
+        private void Product_updates()
+        {
+
+        }
+        private void Orders_updates()
+        {
+
         }
     }
 }

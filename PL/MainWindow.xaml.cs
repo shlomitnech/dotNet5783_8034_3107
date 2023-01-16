@@ -26,11 +26,20 @@ namespace PL
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e) //Admin View
         {
             new ProductListWindow().Show();
             Close();
         }
-     
+
+        private void NewOrderButton_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OrderTrackingButton_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
