@@ -20,18 +20,18 @@
             <ColumnDefinition x:Name="Col1" Width="175"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions >
-        <Label Name="l1" Content="Order ID:" FontSize="30"
+        <Label Name="_ID" Content="Order ID:" FontSize="30"
               HorizontalAlignment="Left" Margin="5,2,0,71" Width="150" Grid.RowSpan="2"/>
-        <Label Name="l2" Content="Name:" FontSize="30"
+        <Label Name="_Name" Content="Name:" FontSize="30"
                HorizontalAlignment="Left" Margin="0,2,0,70" Grid.RowSpan="2" Width="125" Grid.Row="1"/>
-        <Label Name="l3" Content="Status:" FontSize="30" Grid.Row="1"
+        <Label Name="_Status" Content="Status:" FontSize="30" Grid.Row="1"
               HorizontalAlignment="Left" Width="100" Margin="5,72,0,1" Grid.RowSpan="2"/>
-        <Label Name="l4" Content="Amount:" FontSize="30" Grid.Row="2"
+        <Label Name="_Amount" Content="Amount:" FontSize="30" Grid.Row="2"
               HorizontalAlignment="Left" Margin="0,71,0,0" Grid.RowSpan="2" Width="150"/>
-        <Label Name="l5" Content="Total Price:" FontSize="30" Grid.Row="4"
+        <Label Name="_TotalPrice" Content="Total Price:" FontSize="30" Grid.Row="4"
               HorizontalAlignment="Left" Margin="0,7,0,60" Grid.RowSpan="2" Width="165"/>
 
-        <TextBox Name="ord_ID" Text="{Binding ID,Mode=TwoWay}" Grid.Column="1" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="260" Margin="8,12,0,23" />
+        <TextBox Name="ord_ID" Text="{Binding ID}" Grid.Column="1" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="260" Margin="8,12,0,23" />
         <TextBox Name="ord_Name" Text="{Binding Name,Mode=TwoWay}" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" TextWrapping="Wrap" Width="260" Margin="5,17,0,16" Grid.Row="1"/>
         <ComboBox Name="ord_Status" Text="{Binding Status,Mode=TwoWay}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="8,20,0,23" Width="260" SelectionChanged="ord_Status_SelectionChanged"/>
         <TextBox Name="ord_amount" Text="{Binding Amount,Mode=TwoWay}" Grid.Column="1" Grid.Row="3" FontSize="20" MaxLength="2" HorizontalAlignment="Left" TextWrapping="Wrap" Width="260" Margin="10,7,0,20" />

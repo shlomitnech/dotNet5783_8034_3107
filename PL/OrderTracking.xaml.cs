@@ -26,7 +26,7 @@ namespace PL
 
         private void backButtonClick(object sender, RoutedEventArgs e)
         {
-            MainWindow.Show();
+            new MainWindow().ShowDialog();
         }
     }
 }

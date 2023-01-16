@@ -121,7 +121,20 @@ namespace PL
         }
         private void Orders_updates(object sender, MouseButtonEventArgs e)
         {
-            new OrderUpdate(ords, bl).ShowDialog(); //call the update Order button
+            if (OrderItemGrid.SelectedItem is BO.OrderForList orderForList)
+            {
+                new OrderUpdate(orderForList, bl!).ShowDialog();
+            }
+            try
+            {
+              //  ordersForList = PL.Tools.IEnumerableToObservable(bl?.Order.GetAllOrderForList()!);
+            }
+            catch (BO.Exceptions ex)
+            {
+                new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
+                //id is null error on screen
+            }
+            OrderItemGrid.DataContext = ordersForList;
 
         }
     }
