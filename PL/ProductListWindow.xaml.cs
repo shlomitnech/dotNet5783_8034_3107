@@ -14,13 +14,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Dal;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PL
 {
     /// <summary>
     /// Interaction logic for ProductListWindow.xaml
     /// </summary>
-    public partial class ProductListWindow : Window
+    public partial class ProductListWindow : System.Windows.Window
     {
         DataSource ds = new(); //to enable DataSource to call its constructors
         BlApi.IBl? bl = BlApi.Factory.Get();
@@ -70,18 +71,6 @@ namespace PL
             ProductItemGrid.DataContext = productsForList;
         }
 
-        private void DoubleClickEvent(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (ProductItemGrid.SelectedItem is BO.ProductForList productForList)
-            {
-                BO.Product prod = new BO.Product();
-                prod = bl.Product.ManagerProduct(productForList.ID);
-                new ProductWindow(prod).ShowDialog();
-            }
-            ProductItemGrid.ItemsSource = bl?.Product.GetProductForList(); // update list view after add
-        }
-
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             new ProductWindow().ShowDialog();
@@ -115,11 +104,17 @@ namespace PL
                                            select product;
             */
         }
-        private void Product_updates()
+        private void Product_updates(object sender, MouseButtonEventArgs e)
         {
-
+            if (ProductItemGrid.SelectedItem is BO.ProductForList productForList)
+            {
+                BO.Product prod = new BO.Product();
+                prod = bl.Product.ManagerProduct(productForList.ID);
+                new ProductWindow(prod).ShowDialog();
+            }
+            ProductItemGrid.ItemsSource = bl?.Product.GetProductForList(); // update list view after add
         }
-        private void Orders_updates()
+        private void Orders_updates(object sender, MouseButtonEventArgs e)
         {
 
         }

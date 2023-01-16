@@ -41,7 +41,7 @@
                   Foreground="Black"
                   IsReadOnly="True"
                   FontSize="12"
-                  ItemsSource= "{Binding}" Margin="5,40,20,50" Grid.Row="1" >
+                  ItemsSource= "{Binding}" Margin="5,40,20,50" Grid.Row="1" MouseDoubleClick="Product_updates" >
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Header="ID" Binding="{Binding ID}"
@@ -74,9 +74,7 @@
                     </Grid.ColumnDefinitions >
 
 
-
-
-                    <DataGrid Name="OrderItemGrid" Grid.Column="0"
+               <DataGrid Name="OrderItemGrid" Grid.Column="0"
                   CanUserAddRows="False"
                   IsTextSearchEnabled="True" 
                   AutoGenerateColumns="False" 
@@ -97,7 +95,7 @@
                   ItemsSource="{Binding}" Grid.ColumnSpan="2" Margin="0,0,198,0">
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Header="   ID" Binding="{Binding ID}"
+                            <DataGridTextColumn Header="  ID" Binding="{Binding ID}"
                                     MinWidth="10" Width="*"/>
                             <DataGridTextColumn Header="Product" Binding="{Binding Name}"
                                     MinWidth="10" Width="*"/>
@@ -116,56 +114,8 @@
 
             </TabItem>
             <TabItem Header="Products" Height="34" VerticalAlignment="Center" HorizontalAlignment="Left" Width="370" Margin="5,0,0,0">
-                <Grid x:Name="OrderGrid1" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" Grid.Column="1"
-                    VerticalAlignment="Stretch" Width="auto">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-
-
-
-                    <DataGrid x:Name="ItemGrid1" Grid.Column="0"
-                        CanUserAddRows="False"
-                        IsTextSearchEnabled="True" 
-                        AutoGenerateColumns="False" 
-                        GridLinesVisibility="Vertical" 
-                        Cursor="Arrow"
-                        AreRowDetailsFrozen="True"
-                        HorizontalGridLinesBrush="Transparent"
-                        ScrollViewer.VerticalScrollBarVisibility="Visible" 
-                        ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                        ScrollViewer.CanContentScroll="True"
-                        CanUserDeleteRows="False" 
-                        CanUserResizeRows="False"
-                        SelectionMode="Single"
-                        SelectionUnit="FullRow"
-                        Foreground="Black"
-                        IsReadOnly="True"
-                        FontSize="16"
-                        ItemsSource="{Binding}" Grid.ColumnSpan="2" Margin="0,0,198,0">
-                        <!--MouseDoubleClick="ProductItemView_click" >-->
-                        <DataGrid.Columns>
-
-                            <DataGridTextColumn Header="   ID" Binding="{Binding ID}"
-                                MinWidth="10" Width="*"/>
-                            <DataGridTextColumn Header="Product" Binding="{Binding Name}"
-                                MinWidth="10" Width="*"/>
-                            <DataGridTextColumn Header="Status" Binding="{Binding Status}"
-                                MinWidth="10" Width="*"/>
-                            <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"
-                                MinWidth="10" Width="*"/>
-                            <DataGridTextColumn Header="Total Price" Binding="{Binding TotalPrice}"
-                                MinWidth="10" Width="*"/>
-
-
-                        </DataGrid.Columns>
-                    </DataGrid>
-
-                </Grid>
-
+              
+            
             </TabItem>
 
         </Grid>
