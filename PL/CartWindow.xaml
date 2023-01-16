@@ -6,7 +6,53 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="CartWindow" Height="450" Width="800">
+    
+    
     <Grid>
-   
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Top of Website Title!-->
+
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Background="Beige" Panel.ZIndex="1" FlowDirection="RightToLeft" MouseDown="SPanel_MouseDown">
+            <Button Content="Button"/>
+            <Button Content="Button"/>
+
+        </StackPanel>
+        <!--Products Section-->
+
+        <Grid Background="WhiteSmoke"  Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition />
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <!--Title for shopping cart-->
+            <StackPanel Orientation="Horizontal" Margin="0,40,0,30">
+                <Rectangle VerticalAlignment="Stretch" Fill="#808080" Width="0.7" Margin="20 5 20 5"/>
+                <TextBlock Text="Your Shopping Cart" FontSize="25" FontWeight="DemiBold" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <!--Products-->
+            <StackPanel Margin="0,103,0,40" Grid.RowSpan="3">
+                <ListView x:Name ="PList" ItemsSource="{Binding}" SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" ScrollViewer.IsDeferredScrollingEnabled="True" >
+
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+            </StackPanel>
+
+        </Grid>
     </Grid>
 </Window>
