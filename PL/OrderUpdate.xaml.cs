@@ -54,6 +54,7 @@ namespace PL
             try
             {
                 bl!.Order.ShipUpdate(ord.ID);
+                Close();
             }
             catch (DalApi.EntityNotFound ex)
             {
@@ -66,6 +67,7 @@ namespace PL
             try
             {
                 bl!.Order.DeliveryUpdate(ord.ID);
+                Close();
             }
             catch (DalApi.EntityNotFound ex)
             {
