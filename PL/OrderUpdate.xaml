@@ -8,13 +8,13 @@
         Title="OrderUpdate" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="72*"/>
-            <RowDefinition Height="72*"/>
-            <RowDefinition Height="72*"/>
-            <RowDefinition Height="72*"/>
-            <RowDefinition Height="72*"/>
-            <RowDefinition Height="67*"/>
-            <RowDefinition Height="5*"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="85.031"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="Col1" Width="175"/>
@@ -27,15 +27,15 @@
         <Label Name="_Status" Content="Status:" FontSize="30" Grid.Row="1"
               HorizontalAlignment="Left" Width="100" Margin="5,72,0,1" Grid.RowSpan="2"/>
         <Label Name="_Amount" Content="Amount:" FontSize="30" Grid.Row="2"
-              HorizontalAlignment="Left" Margin="0,71,0,0" Grid.RowSpan="2" Width="150"/>
-        <Label Name="_TotalPrice" Content="Total Price:" FontSize="30" Grid.Row="4"
-              HorizontalAlignment="Left" Margin="0,7,0,60" Grid.RowSpan="2" Width="165"/>
+              HorizontalAlignment="Left" Margin="0,71,0,72" Grid.RowSpan="3" Width="150"/>
+        <Label Name="_TotalPrice" Content="Total Price:" FontSize="30" Grid.Row="3"
+              HorizontalAlignment="Left" Margin="0,66,0,69" Grid.RowSpan="3" Width="165"/>
 
-        <TextBox Name="ord_ID" Text="{Binding ID}" Grid.Column="1" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="260" Margin="8,12,0,23" />
-        <TextBox Name="ord_Name" Text="{Binding Name,Mode=TwoWay}" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" TextWrapping="Wrap" Width="260" Margin="5,17,0,16" Grid.Row="1"/>
-        <ComboBox Name="ord_Status" Text="{Binding Status,Mode=TwoWay}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="8,20,0,23" Width="260" SelectionChanged="ord_Status_SelectionChanged"/>
-        <TextBox Name="ord_amount" Text="{Binding Amount,Mode=TwoWay}" Grid.Column="1" Grid.Row="3" FontSize="20" MaxLength="2" HorizontalAlignment="Left" TextWrapping="Wrap" Width="260" Margin="10,7,0,20" />
-        <TextBox Name="ord_price" Text="{Binding TotalPrice,Mode=TwoWay}" Grid.Column="1" Grid.Row="4" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="260" Margin="10,20,0,8" />
+        <TextBox Name="ord_ID" Text="{Binding ID}" Grid.Column="1" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="260" Margin="15,12,0,0" Height="42" VerticalAlignment="Top" />
+        <TextBox Name="ord_Name" Text="{Binding CustomerName, Mode=TwoWay}" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" TextWrapping="Wrap" Width="260" Margin="15,12,0,13" Grid.Row="1"/>
+        <ComboBox Name="ord_Status" Text="{Binding Status,Mode=TwoWay}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="15,20,0,23" Width="260" SelectionChanged="ord_Status_SelectionChanged"/>
+        <TextBox Name="ord_amount" Text="{Binding AmountOfItems, Mode=TwoWay}" Grid.Column="1" Grid.Row="3" FontSize="20" MaxLength="2" HorizontalAlignment="Left" TextWrapping="Wrap" Width="260" Margin="15,12,0,20" />
+        <TextBox Name="ord_price" Text="{Binding TotalPrice,Mode=TwoWay}" Grid.Column="1" Grid.Row="4" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="260" Margin="15,12,0,23" />
 
 
         <Button Name="updateDelivery" Content="Press to update the&#xD;&#xA; delivery date to now" FontSize="16" FontStyle="Italic"
@@ -45,7 +45,7 @@
             </Button.BorderBrush>
         </Button>
         <Button Name="updateShip" Content="Press to update the&#xD;&#xA; shipping date to now" FontStyle="Italic"
-                HorizontalAlignment="Left" Grid.Row="4"  Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Width="250" Click="updateShip_Click" Margin="50,70,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2" FontSize="16" Height="67" VerticalAlignment="Top" >
+                HorizontalAlignment="Left" Grid.Row="5"  Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Width="250" Click="updateShip_Click" Margin="50,6,0,0" Grid.ColumnSpan="2" FontSize="16" Height="67" VerticalAlignment="Top" >
             <Button.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
             </Button.BorderBrush>
