@@ -16,6 +16,7 @@ using BO;
 using Dal;
 using System.Collections.ObjectModel;
 using Microsoft.Win32;
+using System.Windows.Automation;
 
 namespace PL
 {
@@ -37,7 +38,23 @@ namespace PL
             myCart = cart;
             try
             {
-        //        ProductCatalog = (bl!.Product.GetCatalog()!);//put catalog
+                /*
+                ObservableCollection<BO.ProductItem> newList = new();
+                foreach (var item in productList)
+                    newList.Add(
+                        new BO.ProductItem
+                        {
+                            Amount = item.Amount,
+                            Name = item.Name,
+                            Price= item.Price,
+                            ID = item.ID,
+                            InStock= item.InStock,
+                            Category = item.Category,
+                        });
+                 
+                ProductCatalog = newList;//put catalog
+                */
+              //  ProductGrid.ItemsSource = bl?.Product.GetCatalog();
             }
             catch (BO.EntityNotFound ex)
             {
@@ -89,32 +106,6 @@ namespace PL
             {
                 //new ProductItemView(productItem, myCart, bl!).ShowDialog();
             }
-        }
-        private void AddToCart_Click(object sender, RoutedEventArgs e)
-        {
-            if (/*catalogGrid.SelectedItem is  BO.ProductItem productItem*/ true)
-            {
-                try
-                {
-                    //myCart = PL.Tools.CastBoCToPo(bl!.Cart.AddToCart(PL.Tools.CastPoCToBo(myCart), productItem.ID));//add the selected product to cart
-                }
-                catch (BO.EntityNotFound ex)
-                {
-                    new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
-                }
-                catch (BO.UnfoundException ex)
-                {
-                    new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
-                }
-                catch (BO.Exceptions ex)
-                {
-                    new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
-                }
-                catch (BO.IdExistException ex)
-                {
-                    new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
-                }
-            }//add the product to cart
         }
         private void HomeBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -175,6 +166,35 @@ namespace PL
         {
             //new CartWindow(myCart!, bl!).ShowDialog();//go to cart window 
             Close();//close this window
+        }
+
+        private void AddToCart_Click(object sender, MouseButtonEventArgs e) //Add a product that was clicked to the shopping cart
+        {
+            if (ProductGrid.SelectedItem is  BO.ProductItem productItem)
+            {
+                try
+                {
+                 //   bl!.Cart.AddToCart(myCart);
+
+                 //  myCart = PL.Tools.CastBoCToPo(bl!.Cart.AddToCart(PL.Tools.CastPoCToBo(myCart), productItem.ID));//add the selected product to cart
+                }
+                catch (BO.EntityNotFound ex)
+                {
+                    new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
+                }
+                catch (BO.UnfoundException ex)
+                {
+                    new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
+                }
+                catch (BO.Exceptions ex)
+                {
+                    new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
+                }
+                catch (BO.IdExistException ex)
+                {
+                    new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
+                }
+            }//add the product to cart
         }
     }
 }
