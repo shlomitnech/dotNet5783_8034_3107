@@ -43,7 +43,7 @@
                  PreviewMouseDown="price_PreviewMouseDown" TextChanged="price_TextChanged"/>
         <TextBox Name="instock1" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Grid.Row="4" TextWrapping="Wrap" Text="Enter Amount" VerticalAlignment="Top" Width="280" Height="38"
                  PreviewTextInput="instock1_previewtextinput" PreviewMouseDown="instock1_PreviewMouseDown" TextChanged="instock1_TextChanged"/>
-        <Button Name="addProduct" Content="Add Product" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Margin="10,25,0,-79" Padding="5" Click="AddProduct_Click" FontSize="20" FontStyle="Normal" FontWeight="Black" Foreground="White" Width="180" FontFamily="Bahnschrift">
+        <Button Name="addProduct" Content="Add Product" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Margin="10,89,0,-79" Padding="5" Click="AddProduct_Click" FontSize="20" FontStyle="Normal" FontWeight="Black" Foreground="White" Width="180" FontFamily="Bahnschrift">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>
@@ -55,7 +55,7 @@
             </Button.Effect>
         </Button>
 
-        <Button Name="updateProduct" Content="Update Product" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Margin="195,25,0,-79" Padding="5" Click="UpdateProduct_Click" FontSize="20" FontStyle="Normal" FontWeight="Black" Foreground="White" Width="185" FontFamily="Bahnschrift">
+        <Button Name="updateProduct" Content="Update Product" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Margin="195,89,0,-79" Padding="5" Click="UpdateProduct_Click" FontSize="20" FontStyle="Normal" FontWeight="Black" Foreground="White" Width="185" FontFamily="Bahnschrift">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>

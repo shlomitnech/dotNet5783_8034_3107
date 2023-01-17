@@ -135,6 +135,7 @@ namespace PL
                 //id is null error on screen
             }
             OrderItemGrid.DataContext = ordersForList;
+            
 
         }
     }

@@ -43,44 +43,45 @@ namespace PL
             {
                 new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
             }
-        //    catalogGrid.DataContext = productList;//set data context of catalog as the product list
-        //    CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
-          //  AddProductToCart.Visibility = Visibility.Visible;
+            //    catalogGrid.DataContext = productList;//set data context of catalog as the product list
+            //    CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
+            //  AddProductToCart.Visibility = Visibility.Visible;
 
 
         }
+
         private void CategorySelecter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            BO.Enums.Category c = (BO.Enums.Category)CategorySelecter.SelectedItem;
 
-            if (c == BO.Enums.Category.NoCategory || CategorySelecter.SelectedItem == null)//if selected to view all products 
+            BO.Enums.Category productCategory = (BO.Enums.Category)CategorySelecter.SelectedItem; // saves the selected category
+            try
             {
-                try
+                if (productCategory == BO.Enums.Category.NoCategory) // Show all the catalog
                 {
-                 //   productList = PL.Tools.IEnumerableToObservable(bl?.Product.GetCatalog()!);//get catalog products from BO
+                    CatalogGrid.ItemsSource = bl?.Product.GetCatalog();//original list with no filter
+                    CategorySelecter.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+                    CatalogGrid.DataContext = productList;
+
+                    return;
                 }
-                catch (BO.EntityNotFound ex)
+
+
+                if (productCategory is BO.Enums.Category cat) //show the items in that category
                 {
-                    new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
+                    CatalogGrid.ItemsSource = bl?.Product.GetCatalog()?.Select(x => x!.Category == cat);
                 }
-               //CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//show all of combobox options
-              //  catalogGrid.DataContext = productList;//set data context of catalog as the product list
-                return;
+
+                CatalogGrid.ItemsSource = from product in bl?.Product.GetCatalog()
+                                              where product.Category == productCategory
+                                              select product;
             }
-            if (c is BO.Enums.Category ca)//if selected a category
-            {
-                try
-                {
-                  //  productList = PL.Tools.IEnumerableToObservable(from p in bl?.Product.GetCatalog()//get all products
-                                  //                                 where p.Category == c
-                      //                                             select p);//show filtered list
-                }
-                catch (BO.EntityNotFound ex)
-                {
-                    new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
-                }
-            }
-          //  catalogGrid.DataContext = productList;//set data context of catalog as the product list
+ 
+            catch (BO.EntityNotFound ex)
+             {
+              new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
+             }
+               CatalogGrid.DataContext = productList;
+
         }
         private void ProductItemView_click(object sender, MouseButtonEventArgs e)
         {

@@ -18,7 +18,7 @@ namespace PL
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : System.Windows.Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         BO.Cart myCart = new();
