@@ -15,7 +15,7 @@ using DO;
 using BO;
 using Dal;
 using System.Collections.ObjectModel;
-
+using Microsoft.Win32;
 
 namespace PL
 {
@@ -35,19 +35,17 @@ namespace PL
             InitializeComponent();
             bl = b;//new bl
             myCart = cart;
-            //productList.Clear();
             try
             {
-              //  productList = PL.Tools.IEnumerableToObservable(bl!.Product.GetCatalog());//save the catalog collection from BO in PO obsv collec
+        //        ProductCatalog = (bl!.Product.GetCatalog()!);//put catalog
             }
             catch (BO.EntityNotFound ex)
             {
                 new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
             }
-            //    catalogGrid.DataContext = productList;//set data context of catalog as the product list
-            //    CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
-            //  AddProductToCart.Visibility = Visibility.Visible;
-
+            MainScreenCatalog.DataContext = productList;//set data context of catalog as the product list
+            CategorySelecter.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
+           // AddProductToCart.Visibility = Visibility.Visible;
 
         }
 
@@ -59,9 +57,9 @@ namespace PL
             {
                 if (productCategory == BO.Enums.Category.NoCategory) // Show all the catalog
                 {
-                    CatalogGrid.ItemsSource = bl?.Product.GetCatalog();//original list with no filter
-                    CategorySelecter.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
-                    CatalogGrid.DataContext = productList;
+                  //  CatalogGrid.ItemsSource = bl?.Product.GetCatalog();//original list with no filter
+                 //   CategorySelecter.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+                 //   CatalogGrid.DataContext = productList;
 
                     return;
                 }
@@ -69,19 +67,20 @@ namespace PL
 
                 if (productCategory is BO.Enums.Category cat) //show the items in that category
                 {
-                    CatalogGrid.ItemsSource = bl?.Product.GetCatalog()?.Select(x => x!.Category == cat);
+                 //   CatalogGrid.ItemsSource = bl?.Product.GetCatalog()?.Select(x => x!.Category == cat);
                 }
-
+                /*
                 CatalogGrid.ItemsSource = from product in bl?.Product.GetCatalog()
                                               where product.Category == productCategory
                                               select product;
+                */
             }
  
             catch (BO.EntityNotFound ex)
              {
               new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
              }
-               CatalogGrid.DataContext = productList;
+               //CatalogGrid.DataContext = productList;
 
         }
         private void ProductItemView_click(object sender, MouseButtonEventArgs e)
@@ -121,14 +120,6 @@ namespace PL
         {
             new MainWindow().ShowDialog();//go to home window 
             Close();//close this window
-        }
-        private void CartBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-            new CartWindow(myCart!, bl!).ShowDialog();//go to cart window 
-            Close();//close this window
-
-
         }
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -180,7 +171,11 @@ namespace PL
             */
         }
 
-      
+        private void ShoppingCart_Click(object sender, RoutedEventArgs e)
+        {
+            //new CartWindow(myCart!, bl!).ShowDialog();//go to cart window 
+            Close();//close this window
+        }
     }
 }
 

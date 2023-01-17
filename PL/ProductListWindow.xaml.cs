@@ -32,7 +32,7 @@ namespace PL
         {
             InitializeComponent();
             try { ProductItemGrid.ItemsSource = bl?.Product.GetProductForList(); }
-
+            
             catch (BO.Exceptions ex)//List is empty
             {
                 new ErrorWindow("ERROR in List View Window\n", ex.Message).ShowDialog();
@@ -134,7 +134,7 @@ namespace PL
                 new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
                 //id is null error on screen
             }
-            OrderItemGrid.DataContext = ordersForList;
+            //OrderItemGrid.DataContext = ordersForList;
             
 
         }
