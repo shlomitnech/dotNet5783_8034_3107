@@ -146,10 +146,35 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <Button Width="150" Height="77" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0" Grid.Column="1" Grid.Row="1">
+            <Image Source="bigchallah.jpeg"></Image>
+        </Button>
+        <Button Width="150" Height="77" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,145,0,0" Grid.Column="1" Grid.Row="1">
+            <Image Source="rolls.jpg" RenderTransformOrigin="0.5,0.5" Height="73" Width="87">
+            </Image>
+        </Button>
+        <Button Width="150" Height="77" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0" Grid.Column="2" Grid.Row="1">
+            <Image Source="cccookies.jpeg"></Image>
+        </Button>
+        <Button Width="150" Height="77" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0" Grid.Column="3" Grid.Row="1">
+            <Image Source="potatokugel.jpeg"></Image>
+        </Button>
+        <Button Width="150" Height="77" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,145,0,0" Grid.Column="3" Grid.Row="1">
+            <Image Source="potatoes.jpeg"></Image>
+        </Button>
+        <Button Width="150" Height="77" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,245,0,0" Grid.Column="3" Grid.Row="1">
+            <Image Source="greenbeans.jpeg"></Image>
+        </Button>
+        <Button Width="150" Height="77" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,145,0,0" Grid.Column="2" Grid.Row="1">
+            <Image Source="sugarcookies.jpeg"></Image>
+        </Button>
+        <Button Width="150" Height="77" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,245,0,0" Grid.Column="2" Grid.Row="1">
+            <Image Source="brownies.jpeg"></Image>
+        </Button>
 
         <ComboBox x:Name="CategorySelecter" SelectionChanged="CategorySelecter_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a Category" 
                   Grid.Row="0" Grid.Column="2" SelectedItem="" Margin="0,0,0,385" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20" Width="179" Height="39" Grid.RowSpan="2"/>
-        <Button Grid.Column="1" Content="Button" HorizontalAlignment="Left" Margin="20,22,0,0" Grid.Row="1" VerticalAlignment="Top" Height="55" Width="145"/>
+        <!--<Button Grid.Column="1" Content="Button" HorizontalAlignment="Left" Margin="20,22,0,0" Grid.Row="1" VerticalAlignment="Top" Height="55" Width="145"/> -->
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -157,6 +182,8 @@
             <ColumnDefinition Width="50*"/>
             <ColumnDefinition Width="50*"/>
         </Grid.ColumnDefinitions>
+
+
 
     </Grid>
 
