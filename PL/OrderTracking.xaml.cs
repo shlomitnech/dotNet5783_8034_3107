@@ -41,9 +41,13 @@ namespace PL
             {
                 ordtrack = bl?.Order.GetOrderTracking(id)!;
             }
-            catch (BO.UnfoundException ex)
+            catch (BO.EntityNotFound ex)
             {
                 new ErrorWindow("Order Tracking Window\n", ex.Message).ShowDialog();
+                Close();
+                new OrderTracking();
+               
+
             }
             DataContext = ordtrack;
             id_enter.Text = ordtrack.ID.ToString();
@@ -92,7 +96,7 @@ namespace PL
             }
             Close();//close current window
             new OrderTracking(id, myCart, bl!).ShowDialog();//open order tracking window with entered id
-       
+   
 
         }
     }
