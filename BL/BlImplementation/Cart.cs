@@ -15,8 +15,21 @@ namespace BlImplementation;
 
 internal class Cart : BlApi.ICart
 {
+    /// <summary>
+    /// creating instances of dl and bl
+    /// </summary>
     DalApi.IDal? dal = DalApi.Factory.Get();
     BlApi.IBl? blay = BlApi.Factory.Get();
+    
+    /// <summary>
+    /// adding order items to the customer's cart
+    /// </summary>
+    /// <param name="cart"></param>
+    /// <param name="id"></param>
+    /// <param name="amount"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.IncorrectInput"></exception>
+    /// <exception cref="BO.Exceptions"></exception>
     public BO.Cart AddToCart(BO.Cart cart, int id, int amount) //check if the product is in the cart, if not add it from DO product if it is in stock
     {
         int index = cart.Items!.FindIndex(x => x != null && x.ID == id);
@@ -44,6 +57,16 @@ internal class Cart : BlApi.ICart
         cart.TotalPrice = CalculateTotalPrice(cart);
         return cart;
     }
+
+    /// <summary>
+    /// updated the desired attributes of the cart
+    /// </summary>
+    /// <param name="cart"></param>
+    /// <param name="id"></param>
+    /// <param name="newAmount"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
+    /// <exception cref="BO.EntityNotFound"></exception>
     public BO.Cart UpdateCart(BO.Cart cart, int id, int newAmount) //update the cart to have more or less products and the total price
     {
         int index = cart.Items!.FindIndex(x => x != null && x.ID == id);
@@ -62,6 +85,17 @@ internal class Cart : BlApi.ICart
 
     }
 
+    /// <summary>
+    /// makes a new instance of a order using the cart
+    /// </summary>
+    /// <param name="cart"></param>
+    /// <param name="n"></param>
+    /// <param name="em"></param>
+    /// <param name="add"></param>
+    /// <exception cref="BO.UnfoundException"></exception>
+    /// <exception cref="BO.EntityNotFound"></exception>
+    /// <exception cref="BO.Exceptions"></exception>
+    /// <exception cref="BO.IdExistException"></exception>
     public void MakeOrder(BO.Cart cart, string n, string em, string add) //approve the items in the cart and make the real order
     {
         if (n == "" || em == "" || add == "")//check input
@@ -114,6 +148,12 @@ internal class Cart : BlApi.ICart
         }
 
     }
+
+    /// <summary>
+    /// returns the instances of order items in the cart
+    /// </summary>
+    /// <param name="cart"></param>
+    /// <returns></returns>
     public List<string> GetItemNames(BO.Cart cart)
     {
         int prodId;
@@ -128,6 +168,11 @@ internal class Cart : BlApi.ICart
         return list;
 
     }
+
+    /// <summary>
+    /// deletes the entire cart
+    /// </summary>
+    /// <param name="mycart"></param>
     public void DeleteCart(BO.Cart mycart)
     {
         mycart.CustomerName = "";
@@ -138,7 +183,11 @@ internal class Cart : BlApi.ICart
 
     }
 
-
+    /// <summary>
+    /// helper function to calculate the total price of the cart
+    /// </summary>
+    /// <param name="cart"></param>
+    /// <returns></returns>
     static public double? CalculateTotalPrice(BO.Cart cart)
     {
         double? totalPrice = 0;

@@ -13,8 +13,18 @@ namespace BlImplementation;
 
 internal class Product : BlApi.IProduct
 {
+    /// <summary>
+    /// creates an instance of DO
+    /// </summary>
     readonly private static DalApi.IDal? dal = DalApi.Factory.Get() ?? throw new BO.Exceptions("Factory does not exist\n");
-    public IEnumerable<BO.ProductForList?> GetProductForList() //returns the product list (for the manager to see)
+
+    /// <summary>
+    /// returns the product list (for the manager to see)
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="BO.EntityNotFound"></exception>
+    /// <exception cref="BO.Exceptions"></exception>
+    public IEnumerable<BO.ProductForList?> GetProductForList()
     {
         var v = from prods in dal?.Product.GetAll()
                 where prods != null
@@ -28,8 +38,14 @@ internal class Product : BlApi.IProduct
         return v;
         throw new BO.Exceptions("List is empty");
     }
-    //returns the product list (for the manager to see)
-    public BO.Product ManagerProduct(int id) //returns a BO product of DO product with id
+
+    /// <summary>
+    /// returns a BO product of DO product with id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.EntityNotFound"></exception>
+    public BO.Product ManagerProduct(int id)
     {
         BO.Product prod1 = new();
         DO.Product prod2 = new();
@@ -52,7 +68,15 @@ internal class Product : BlApi.IProduct
         }
         throw new BO.EntityNotFound("The product doesn't exist");
     }
-    public int AddProduct(BO.Product prod) //gets a BO product, and adds it to DO product
+
+    /// <summary>
+    /// gets a BO product, and adds it to DO product
+    /// </summary>
+    /// <param name="prod"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.IncorrectInput"></exception>
+    /// <exception cref="BO.IdExistException"></exception>
+    public int AddProduct(BO.Product prod) 
     {
         if (prod.Name == "" || prod.Price <= 0 || prod.InStock < 0 || prod.Category < 0 || prod.Category > Enums.Category.Other || prod.Name == "Enter Name")
         {
@@ -74,7 +98,12 @@ internal class Product : BlApi.IProduct
             throw new BO.IdExistException("Product ID already exists");
         }
     }
-    public void DeleteProduct(int id) //check in every order that DO product is deleted 
+
+    /// <summary>
+    /// check in every order that DO product is deleted
+    /// </summary>
+    /// <param name="id"></param>
+    public void DeleteProduct(int id)  
     {
         dal!.Product.Delete(id);//delete product
         /*
@@ -97,7 +126,14 @@ internal class Product : BlApi.IProduct
         }
          */
     }
-    public void UpdateProduct(BO.Product prod) //Get BO product, and update the DO product
+
+    /// <summary>
+    /// Get BO product, and update the DO product
+    /// </summary>
+    /// <param name="prod"></param>
+    /// <exception cref="IncorrectInput"></exception>
+    /// <exception cref="BO.EntityNotFound"></exception>
+    public void UpdateProduct(BO.Product prod) 
     {
         if (prod.Name == "" || prod.Price <= 0 || prod.InStock < 0 || prod.Category < 0 || prod.Category > Enums.Category.Other)
         {
@@ -123,7 +159,11 @@ internal class Product : BlApi.IProduct
 
     }
 
-    //The Customer Functions
+    /// <summary>
+    /// returns a list of products for the customer
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="BO.EntityNotFound"></exception>
     public IEnumerable<ProductItem?> GetCatalog()
     {
         var v = from prods in dal?.Product.GetAll()

@@ -14,7 +14,17 @@ namespace BlImplementation;
 
 internal class Order : BlApi.IOrder
 {
+    /// <summary>
+    /// creating an instance of DO
+    /// </summary>
     DalApi.IDal? dal = DalApi.Factory.Get();
+
+    /// <summary>
+    /// returns all the orders items for a BO list
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="BO.EntityNotFound"></exception>
+    /// <exception cref="BO.IncorrectInput"></exception>
     public IEnumerable<OrderForList?> GetAllOrderForList() //calls get of DO order list, gets items for each order, and build BO orderItem list
     {
         IEnumerable<DO.Order?> ords = dal!.Order.GetAll();
@@ -30,11 +40,24 @@ internal class Order : BlApi.IOrder
                    };
 
     }
+
+    /// <summary>
+    /// returns the status of the order
+    /// </summary>
+    /// <param name="order"></param>
+    /// <returns></returns>
     public BO.Enums.OrderStatus GetStatus (DO.Order? order)
     {
         return order?.DeliveryDate != null? BO.Enums.OrderStatus.Recieved : order?.ShippingDate != null ?
             BO.Enums.OrderStatus.Shipped : BO.Enums.OrderStatus.JustPlaced;
     }
+
+    /// <summary>
+    /// returns a specific instance of an order
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.EntityNotFound"></exception>
     public BO.Order GetBOOrder(int id) //get the Order ID, check it and return the order using the DO order, orderItem and product
     {
         if (id < 0)
@@ -69,6 +92,13 @@ internal class Order : BlApi.IOrder
        throw new BO.EntityNotFound();
 
     }
+
+    /// <summary>
+    /// updates the shipping date
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.EntityNotFound"></exception>
     public BO.Order ShipUpdate(int id)
     {
         DO.Order? order1 = dal!.Order.Get(id); 
@@ -96,6 +126,13 @@ internal class Order : BlApi.IOrder
 
     }
 
+
+    /// <summary>
+    /// updates the delivery date
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.EntityNotFound"></exception>
     public BO.Order DeliveryUpdate(int id) //get the order number, update the delivery status in DO order, and return BO order that was delivered
     {
         DO.Order? order1 = dal!.Order.Get(id); //get the order ID from the DO folder
@@ -143,6 +180,13 @@ internal class Order : BlApi.IOrder
         }
         throw new BO.EntityNotFound();
     }
+
+    /// <summary>
+    /// tracks the order
+    /// </summary>
+    /// <param name="ord"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.EntityNotFound"></exception>
     public OrderTracking GetOrderTracking(int ord) //get order number, check it and print the string of dates and status in DO order
     {
         DO.Order order = new();
