@@ -23,7 +23,7 @@ namespace PL
     /// </summary>
     public partial class ProductListWindow : System.Windows.Window
     {
-        DataSource ds = new(); //to enable DataSource to call its constructors
+       // DataSource ds = new(); //to enable DataSource to call its constructors
         BlApi.IBl? bl = BlApi.Factory.Get();
         BO.OrderForList ords = new();
         ObservableCollection<BO.ProductForList> productsForList = new();
@@ -137,6 +137,12 @@ namespace PL
             //OrderItemGrid.DataContext = ordersForList;
             
 
+        }
+
+        private void MainMenu_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().ShowDialog();
+            Close();
         }
     }
 }

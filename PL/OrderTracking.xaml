@@ -21,31 +21,20 @@
         </Grid.ColumnDefinitions>
 
         <Button x:Name="BackButton" Content="Go Back To Main Window" Height="40" Width="150" BorderBrush="Transparent" Background="Aqua" Padding="2" 
-                Click="backButtonClick" HorizontalAlignment="Right" Grid.Row="4" Grid.Column="2" VerticalAlignment="Bottom" Margin="0,0,-405,-257" RenderTransformOrigin="-0.295,0.829"></Button>
+                Click="backButtonClick" HorizontalAlignment="Right" Grid.Row="4" Grid.Column="2" VerticalAlignment="Bottom" Margin="0,0,-359,-192" RenderTransformOrigin="-0.295,0.829"></Button>
 
         <TextBlock Text="Order ID: " FontSize="20" Grid.Row="1" Grid.Column="1"/>
         <TextBlock Name="_id" Grid.Row="1" Grid.Column="2"/>
 
         <TextBlock Text="Status: " FontSize="20" Grid.Row="2" Grid.Column="1"/>
-        <TextBlock Name="_status" Grid.Row="2" Grid.Column="2"/>
 
-        <TextBlock Text="Location: " FontSize="20" Grid.Row="3" Grid.Column="1"/>
-        <TextBlock Name="_tracking" Grid.Row="3" Grid.Column="2"/>
-
-        <TextBox Name="id" Grid.Row="1" Grid.Column="2" FontSize="15" Height="20" Width="150" Margin="18,1,107,6" Text="Enter ID" TextWrapping="Wrap" TextChanged="id_TextChanged"
+        <TextBox Name="id_enter" Grid.Row="1" Grid.Column="2" FontSize="15" Height="20" Width="150" Margin="13,2,112,5" Text="Enter ID" TextWrapping="Wrap" TextChanged="id_TextChanged"
                  PreviewMouseDown="id_previewmousedown" PreviewTextInput="id_PreviewTextInput" />
-        <Button x:Name="id_searchButton" Content="Search" Grid.Row="1" Grid.Column="2" FontSize="15" Margin="200,0,0,0" Click="searchClick" Height="24" VerticalAlignment="Top"/>
+        <Button x:Name="id_searchButton" Content="Search" Grid.Row="1" Grid.Column="2" FontSize="15" Margin="170,0,30,0" Click="searchClick" Height="24" VerticalAlignment="Center"/>
 
-        <TextBox Name="r_status" Grid.Row="2" Grid.Column="2"  Height="26" TextWrapping="Wrap" Text="{Binding id_searchButton}" Margin="0,0,77,1"/>
-        <TextBox Name="r_tracking" Grid.Row="3" Grid.Column="2" Height="26" TextWrapping="Wrap" Text="{Binding id_searchButton}" Margin="0,0,76,0"/>
-        <Label Grid.Column="1" Content="Order ID" HorizontalAlignment="Center" Margin="0,41,0,0" Grid.Row="4" VerticalAlignment="Top"/>
-        <Grid  x:Name="GridOrderTracking"
-               Grid.Column="2" Grid.Row="4" Margin="15,25,-15,-108">
-            <Label Content="Status" HorizontalAlignment="Left" Margin="20,42,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.043,0.614"/>
-            <Label Content="Ship" HorizontalAlignment="Left" Margin="18,82,0,0" VerticalAlignment="Top"/>
-
-        </Grid>
+        <TextBox Name="r_status" Grid.Row="2" Grid.Column="2"  Height="26" TextWrapping="Wrap" Text="{Binding Status, Mode=TwoWay}" Margin="13,0,108,1" FontSize="15"/>
 
 
-        </Grid>
+
+    </Grid>
 </Window>

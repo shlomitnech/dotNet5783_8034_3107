@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,24 +31,38 @@ namespace PL
         BO.OrderTracking orderTracking = new();
         BO.Cart myCart = new();
 
-        public OrderTracking(BO.Cart cart, BlApi.IBl? b)
+        public OrderTracking(int id, BO.Cart cart, BlApi.IBl? b)
         {
             InitializeComponent();
-            bl = b;
+            bl = Factory.Get();
             myCart = cart;
-            DataContext = orderTracking;
+            BO.OrderTracking ordtrack = new();
+            try
+            {
+                ordtrack = bl?.Order.GetOrderTracking(id)!;
+            }
+            catch (BO.UnfoundException ex)
+            {
+                new ErrorWindow("Order Tracking Window\n", ex.Message).ShowDialog();
+            }
+            DataContext = ordtrack;
+            id_enter.Text = ordtrack.ID.ToString();
+            r_status.Text = ordtrack.Status.ToString();
+       //     r_tracking.Text = ordtrack.Tracking?.ToString();
         }
 
-        public OrderTracking()
+        public OrderTracking() //to open up the screen
         {
             InitializeComponent();
             bl = BlApi.Factory.Get();
             DataContext = orderTracking;
+            r_status.Visibility = Visibility.Collapsed;
         }
 
         private void backButtonClick(object sender, RoutedEventArgs e)
         {
             new MainWindow().ShowDialog();
+            Close();
         }
 
         private void id_TextChanged(object sender, TextChangedEventArgs e)
@@ -56,25 +72,28 @@ namespace PL
 
         private void id_previewmousedown(object sender, RoutedEventArgs e)
         {
-            id.Clear();
+            id_enter.Clear();
         }
-
         private void id_PreviewTextInput(object sender, RoutedEventArgs e)
         {
-            if (id != null && id.Text != "")
-            {
-                if (int.TryParse(id.Text, out int val))
-                {
-                    order.ID = val;
-                }
-            }
+            e.Handled = new Regex("[^0-9]+").IsMatch(id_enter.Text);//only gets numbers for id
         }
 
         private void searchClick(object sender, RoutedEventArgs e)
         {
-            BO.OrderTracking order = bl!.Order.GetOrderTracking(id);
-            r_status.Text = order.Status.ToString();
-            r_tracking.Text = order.Tracking?.ToString();
+            int id = 0;
+            try
+            {
+                id = int.Parse(id_enter.Text);//save the entered id
+            }
+            catch (System.FormatException)
+            {
+                new ErrorWindow("Enter Order ID Window", "Wrong id number entered").ShowDialog();
+            }
+            Close();//close current window
+            new OrderTracking(id, myCart, bl!).ShowDialog();//open order tracking window with entered id
+       
+
         }
     }
 }

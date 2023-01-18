@@ -116,6 +116,7 @@
                 </DataGrid.Columns>
 
             </DataGrid>
+            <Button x:Name="MainMenu" Grid.Column="1" Content="Click to return &#xD;&#xA;to main menu" HorizontalAlignment="Left" Margin="189,290,0,0" Grid.Row="1" VerticalAlignment="Top" Height="55" Width="165" Background="#FFE9EFCF" Grid.RowSpan="2" Click="MainMenu_Click"/>
 
         </Grid>
     </Grid>
