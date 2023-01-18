@@ -196,6 +196,11 @@ namespace PL
                 }
             }//add the product to cart
         }
+
+        private void ProductGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
 
