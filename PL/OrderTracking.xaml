@@ -32,12 +32,13 @@
         <TextBlock Text="Location: " FontSize="20" Grid.Row="3" Grid.Column="1"/>
         <TextBlock Name="_tracking" Grid.Row="3" Grid.Column="2"/>
 
-        <TextBox Name="id" Grid.Row="1" Grid.Column="3" FontSize="15" Height="20" Width="150" Margin="10,0,0,0" Text="Enter ID" TextWrapping="Wrap" TextChanged="id_TextChanged"
+        <TextBox Name="id" Grid.Row="1" Grid.Column="2" FontSize="15" Height="20" Width="150" Margin="18,1,107,6" Text="Enter ID" TextWrapping="Wrap" TextChanged="id_TextChanged"
                  PreviewMouseDown="id_previewmousedown" PreviewTextInput="id_PreviewTextInput" />
         <Button x:Name="id_searchButton" Content="Search" Grid.Row="1" Grid.Column="2" FontSize="15" Margin="200,0,0,0" Click="searchClick" Height="24" VerticalAlignment="Top"/>
 
-        <TextBlock Name="r_status" Grid.Row="2" Grid.Column="2"  Height="26" TextWrapping="Wrap" Text="{Binding id_searchButton}"/>
-        <TextBlock Name="r_tracking" Grid.Row="3" Grid.Column="2" Height="26" TextWrapping="Wrap" Text="{Binding id_searchButton}"/>
+        <TextBox Name="r_status" Grid.Row="2" Grid.Column="2"  Height="26" TextWrapping="Wrap" ItemSource="{Binding id_searchButton}" Margin="0,0,77,1"/>
+        <TextBox Name="r_tracking" Grid.Row="3" Grid.Column="2" Height="26" TextWrapping="Wrap" Text="{Binding id_searchButton}" Margin="0,0,76,0"/>
+        <Label Grid.Column="1" Content="Order ID" HorizontalAlignment="Center" Margin="0,41,0,0" Grid.Row="4" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

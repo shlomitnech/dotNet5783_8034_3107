@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BlApi;
 using BO;
+using DO;
 
 namespace PL
 {
@@ -21,11 +23,18 @@ namespace PL
     /// </summary>
     public partial class OrderTracking : Window
     {
+
         BlApi.IBl? bl = BlApi.Factory.Get();
         BO.Order order = new BO.Order();
-        public OrderTracking()
+        BO.OrderTracking orderTracking = new();
+        BO.Cart myCart = new();
+
+        public OrderTracking(BO.Cart cart, BlApi.IBl? b)//empty ctor
         {
             InitializeComponent();
+            bl = b;//new bl
+            myCart = cart;
+            DataContext = orderTracking;
         }
 
         private void backButtonClick(object sender, RoutedEventArgs e)
@@ -40,22 +49,25 @@ namespace PL
 
         private void id_previewmousedown(object sender, RoutedEventArgs e)
         {
-            id.clear();
+            id.Clear();
         }
 
         private void id_PreviewTextInput(object sender, RoutedEventArgs e)
         {
-            if(id != null && id.Text != "")
+            if (id != null && id.Text != "")
             {
-                order.ID = id;
+                if (int.TryParse(id.Text, out int val))
+                {
+                    order.ID = val;
+                }
             }
         }
 
         private void searchClick(object sender, RoutedEventArgs e)
         {
-            BO.OrderTracking order = BO.Order.GetOrderTracking(id);
-            r_status.Text = order.Status;
-            r_tracking.Text = order.Tracking;
+            BO.OrderTracking order = bl!.Order.GetOrderTracking(id);
+            r_status.Text = order.Status.ToString();
+            r_tracking.Text = order.Tracking?.ToString();
         }
     }
 }
