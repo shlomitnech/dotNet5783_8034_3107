@@ -29,11 +29,18 @@ namespace PL
         BO.OrderTracking orderTracking = new();
         BO.Cart myCart = new();
 
-        public OrderTracking(BO.Cart cart, BlApi.IBl? b)//empty ctor
+        public OrderTracking(BO.Cart cart, BlApi.IBl? b)
         {
             InitializeComponent();
-            bl = b;//new bl
+            bl = b;
             myCart = cart;
+            DataContext = orderTracking;
+        }
+
+        public OrderTracking()
+        {
+            InitializeComponent();
+            bl = BlApi.Factory.Get();
             DataContext = orderTracking;
         }
 
