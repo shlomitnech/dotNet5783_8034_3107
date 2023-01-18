@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions>
 
         <Button x:Name="BackButton" Content="Go Back To Main Window" Height="40" Width="150" BorderBrush="Transparent" Background="Aqua" Padding="2" 
-                Click="backButtonClick" HorizontalAlignment="Right" Grid.Row="4" Grid.Column="2" VerticalAlignment="Bottom" Margin="0,0,-635,-257"></Button>
+                Click="backButtonClick" HorizontalAlignment="Right" Grid.Row="4" Grid.Column="2" VerticalAlignment="Bottom" Margin="0,0,-635,-257" RenderTransformOrigin="-0.295,0.829"></Button>
 
         <TextBlock Text="Order ID: " FontSize="20" Grid.Row="1" Grid.Column="1"/>
         <TextBlock Name="_id" Grid.Row="1" Grid.Column="2"/>
@@ -31,6 +31,13 @@
 
         <TextBlock Text="Location: " FontSize="20" Grid.Row="3" Grid.Column="1"/>
         <TextBlock Name="_location" Grid.Row="3" Grid.Column="2"/>
+
+        <TextBox Name="id" Grid.Row="1" Grid.Column="3" FontSize="15" Height="20" Width="150" Margin="10,0,0,0" Text="Enter ID" TextWrapping="Wrap" TextChanged="id_TextChanged"
+                 PreviewMouseDown="id_previewmousedown" PreviewTextInput="id_PreviewTextInput" />
+        <Button Name="id_searchButton" Content="Search" Grid.Row="1" Grid.Column="2" FontSize="15" Margin="200,0,0,4" Click="searchClick" Height="24" VerticalAlignment="Bottom"/>
+
+        <TextBlock Name="r_status" Grid.Row="2" Grid.Column="2"  Height="26" Text="{Binding}"/>
+        <TextBlock Name="r_location" Grid.Row="3" Grid.Column="2" Height="26" Text="{Binding}"/>
 
     </Grid>
 </Window>
