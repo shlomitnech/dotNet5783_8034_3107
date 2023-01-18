@@ -50,5 +50,12 @@ namespace PL
                 order.ID = id;
             }
         }
+
+        private void searchClick(object sender, RoutedEventArgs e)
+        {
+            BO.OrderTracking order = BO.Order.GetOrderTracking(id);
+            r_status.Text = order.Status;
+            r_tracking.Text = order.Tracking;
+        }
     }
 }
