@@ -146,6 +146,7 @@
 
             <!--//The main back screen background Image //-->
             <Grid x:Name="Background" >
+                <Button x:Name="MainMenu" Content="Click to return to &#xD;&#xA;Main Menu" HorizontalAlignment="Left" Margin="618,351,0,0" VerticalAlignment="Top" Height="59" Width="176" Click="Button_Click" Background="#FFD6FFDF" FontSize="16"/>
 
                 <!--// Put background Image //-->
 
@@ -153,33 +154,7 @@
             </Grid>
 
 
-            <ComboBox x:Name ="CategorySelecter" SelectionChanged="CategorySelecter_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a category" SelectedItem="" Margin="3,1,0,6" HorizontalAlignment="Left" Width="217"/>
-            <Button Width="90" Height="77" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="574,3,0,0" Grid.Row="2">
-                <Image Source="Images/bigchallah.jpeg" Width="70"/>
-            </Button>
-            <Button Width="95" Height="69" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="536,170,0,0" Grid.Row="2">
-                <Image Source="Images/rolls.jpg" RenderTransformOrigin="0.5,0.5" Height="73" Width="74">
-                </Image>
-            </Button>
-            <Button Width="121" Height="77" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="670,85,0,0" Grid.Row="2">
-                <Image Source="Images/cccookies.jpeg"></Image>
-            </Button>
-            <Button Width="110" Height="73" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="555,19,0,0" Grid.Row="1">
-                <Image Source="Images/potatokugel.jpeg" Height="72" Width="83"></Image>
-            </Button>
-            <Button Width="101" Height="77" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="675,112,0,0" Grid.Row="1" Grid.RowSpan="2">
-                <Image Source="Images/potatoes.jpeg" Height="53" Width="71"></Image>
-            </Button>
-            <Button Width="112" Height="77" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="543,77,0,0" Grid.Row="2">
-                <Image Source="Images/greenbeans.jpeg" Width="75"></Image>
-            </Button>
-            <Button Width="96" Height="77" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="701,12,0,0" Grid.Row="1">
-                <Image Source="Images/sugarcookies.jpeg"></Image>
-            </Button>
-            <Button Width="116" Height="77" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="668,177,0,0" Grid.Row="2">
-                <Image Source="Images/brownies.jpeg" Width="90"></Image>
-            </Button>
-
+            <ComboBox x:Name ="CategorySelecter" SelectionChanged="CategorySelecter_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a category" SelectedItem="" Margin="505,17,0,375" HorizontalAlignment="Left" Width="217"/>
             <DataGrid Name="ProductGrid" Width="474" HorizontalAlignment="Left"
                   CanUserAddRows="False"
                   IsTextSearchEnabled="True" 
@@ -198,7 +173,7 @@
                   Foreground="Black"
                   IsReadOnly="True"
                   FontSize="16"
-                  ItemsSource="{Binding}" MouseDoubleClick="ProductItemView_click" Margin="0,0,0,-9" Grid.RowSpan="4" SelectionChanged="ProductGrid_SelectionChanged_1">
+                  ItemsSource="{Binding}" MouseDoubleClick="ProductItemView_click" Margin="8,0,0,-9" SelectionChanged="ProductGrid_SelectionChanged_1">
                 <DataGrid.GroupStyle>
                     <GroupStyle ContainerStyle="{StaticResource ResourceKey=GroupHeaderStyle}">
                         <GroupStyle.Panel>
@@ -235,7 +210,7 @@
 
             </DataGrid>
 
-            <Button x:Name="ShoppingCart" Content="View Shopping Cart" HorizontalAlignment="Left" Margin="502,9,0,0" VerticalAlignment="Top" Click="ShoppingCart_Click" Height="20" Width="149"/>
+            <Button x:Name="ShoppingCart" Content="View Shopping Cart" HorizontalAlignment="Left" Margin="587,146,0,0" VerticalAlignment="Top" Click="ShoppingCart_Click" Height="92" Width="149" Background="#FFF4D7D7" FontFamily="Bahnschrift Condensed" FontSize="18"/>
 
         </Grid>
 

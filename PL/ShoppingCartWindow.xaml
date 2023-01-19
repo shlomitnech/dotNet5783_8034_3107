@@ -26,13 +26,70 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="755*"/>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="27*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid Margin="0,0,27,0">
+            <DataGrid Name="ShoppingCartGrid" Width="466" HorizontalAlignment="Left"
+                  CanUserAddRows="False"
+                  IsTextSearchEnabled="True" 
+                  AutoGenerateColumns="False" 
+                  GridLinesVisibility="Vertical" 
+                  Cursor="Arrow"
+                  AreRowDetailsFrozen="True"
+                  HorizontalGridLinesBrush="Transparent"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  ScrollViewer.CanContentScroll="True"
+                  CanUserDeleteRows="False" 
+                  CanUserResizeRows="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  Foreground="Black"
+                  IsReadOnly="True"
+                  FontSize="16"
+                  ItemsSource="{Binding}" Margin="6,31,0,-261" >
+                <DataGrid.GroupStyle>
+                    <GroupStyle ContainerStyle="{StaticResource ResourceKey=GroupHeaderStyle}">
+                        <GroupStyle.Panel>
+                            <ItemsPanelTemplate>
+                                <DataGridRowsPresenter/>
+                            </ItemsPanelTemplate>
+                        </GroupStyle.Panel>
+                    </GroupStyle>
+                </DataGrid.GroupStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn x:Name="AddProductToCart" MinWidth="10" Width="30">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ProductID}"
+                                    MinWidth="10" Width="*"/>
+                    <DataGridTextColumn Header="Product" Binding="{Binding ProductName}"
+                                    MinWidth="10" Width="*"/>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price}"
+                                    MinWidth="10" Width="*"/>
+                    <DataGridTextColumn Header="Amount in Cart" Binding="{Binding Amount}"
+                                    MinWidth="10" Width="*"/>
+                </DataGrid.Columns>
+
+
+            </DataGrid>
+        </Grid>
+        <TextBox x:Name="TotalPrice" HorizontalAlignment="Left" Margin="322,288,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Height="42" FontSize="16"/>
+        <Label x:Name="TotalPriceLabel" Content="TotalPrice:" HorizontalAlignment="Left" Margin="235,286,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="16" Height="31" Width="81"/>
+        <Button x:Name="CheckoutButton" Content="Click to Check Out" HorizontalAlignment="Left" Margin="541,41,0,0" Grid.Row="1" VerticalAlignment="Top" Height="70" Width="160" FontSize="16" Background="#FFE8FFE8" Click="CheckoutButton_Click"/>
+        <Button x:Name="ReturnToCatalog" Content="Click to continue&#xD;&#xA; shopping" HorizontalAlignment="Left" Margin="525,137,0,0" Grid.Row="1" VerticalAlignment="Top" Height="118" Width="222" FontSize="24" BorderBrush="#FFE8B5B5" Background="#FFFFDDDD" Click="ReturnToCatalog_Click"/>
+        <Button x:Name="MainMenu" Content="Click to return to&#xD;&#xA; main menu" HorizontalAlignment="Left" Margin="533,287,0,0" Grid.Row="1" VerticalAlignment="Top" Height="76" Width="188" Background="#FFFCFFBF" FontSize="16" Click="MainMenu_Click"/>
+
     </Grid>
 </Window>

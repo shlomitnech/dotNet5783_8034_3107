@@ -38,23 +38,6 @@ namespace PL
             myCart = cart;
             try
             {
-
-                /*
-                ObservableCollection<BO.ProductItem> newList = new();
-                foreach (var item in productList)
-                    newList.Add(
-                        new BO.ProductItem
-                        {
-                            Amount = item.Amount,
-                            Name = item.Name,
-                            Price= item.Price,
-                            ID = item.ID,
-                            InStock= item.InStock,
-                            Category = item.Category,
-                        });
-                 
-                ProductCatalog = newList;//put catalog
-                */
               ProductGrid.ItemsSource = bl?.Product.GetCatalog();
             }
             catch (BO.EntityNotFound ex)
@@ -75,23 +58,21 @@ namespace PL
             {
                 if (productCategory == BO.Enums.Category.NoCategory) // Show all the catalog
                 {
-                  //  CatalogGrid.ItemsSource = bl?.Product.GetCatalog();//original list with no filter
-                 //   CategorySelecter.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
-                 //   CatalogGrid.DataContext = productList;
-
+                  ProductGrid.ItemsSource = bl?.Product.GetCatalog();//original list with no filter
+                  CategorySelecter.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+                  ProductGrid.DataContext = productList;
                     return;
                 }
 
-
                 if (productCategory is BO.Enums.Category cat) //show the items in that category
                 {
-                 //   CatalogGrid.ItemsSource = bl?.Product.GetCatalog()?.Select(x => x!.Category == cat);
+                  ProductGrid.ItemsSource = bl?.Product.GetCatalog()?.Select(x => x!.Category == cat);
                 }
-                /*
-                CatalogGrid.ItemsSource = from product in bl?.Product.GetCatalog()
+                
+                ProductGrid.ItemsSource = from product in bl?.Product.GetCatalog()
                                               where product.Category == productCategory
                                               select product;
-                */
+               
             }
  
             catch (BO.EntityNotFound ex)
@@ -123,7 +104,7 @@ namespace PL
 
         private void ShoppingCart_Click(object sender, RoutedEventArgs e)
         {
-            new ShoppingCartWindow().ShowDialog();//go to cart window 
+            new ShoppingCartWindow(myCart).ShowDialog();//go to cart window 
             Close();//close this window
         }
 
@@ -165,6 +146,12 @@ namespace PL
                 }
             }
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().ShowDialog();
+            Close();
         }
     }
 }

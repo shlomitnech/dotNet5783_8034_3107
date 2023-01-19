@@ -243,7 +243,16 @@ internal class Cart : BlApi.ICart
             {
                 totalPrice += (gogo!.Amount * gogo.Price);
             }
-
             return totalPrice;
         }
+       public IEnumerable<BO.OrderItem> getCart(BO.Cart cart)
+       {
+        var v = from items in cart.Items
+                where items != null
+                select items;
+        return v;
+
+        throw new BO.Exceptions("List is empty");
+
+       }
 }

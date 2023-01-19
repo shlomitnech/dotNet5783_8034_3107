@@ -13,5 +13,6 @@ public interface ICart
     public void MakeOrder(Cart cart, string CustomerName, string Customeremail, string customerAddress); //approve the items in the cart and make the real order
     public List<string> GetItemNames(Cart cart);
     public void DeleteCart(Cart cart);
+    public IEnumerable<BO.OrderItem> getCart(BO.Cart cart);
 
 }
