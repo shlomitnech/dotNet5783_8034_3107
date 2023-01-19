@@ -63,9 +63,9 @@ public class DalProduct : IProduct
             }
         }*/
 
-        return from prod in DataSource.products
+       /* return from prod in DataSource.products
                where prod != null 
-               select prod;
+               select prod;*/
 
 
         throw new EntityNotFound();
@@ -134,9 +134,11 @@ public class DalProduct : IProduct
        */
         DO.Product? deleprod = DataSource.products.Single(x => x?.ID == currentID);
         DataSource.products.Remove(deleprod); // remove the product
-  
 
+        
     }
+
+   
 
 }
 

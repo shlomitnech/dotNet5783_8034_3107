@@ -17,5 +17,6 @@ public interface ICrud<T> where T : struct
     T GetByFilter(Func<T?, bool>? filter);
 
 
+
 }
 

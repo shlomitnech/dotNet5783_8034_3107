@@ -23,9 +23,9 @@ public class DalOrderItem : IOrderItem //change to be internal?
             OrderItem myItem = new OrderItem();
             item.ID = OrderItem.itemCounter++;
             myItem.productID = item.productID;
-            myItem.productID = item.productID;
-            myItem.productID = item.productID;
-            myItem.productID = item.productID;
+            myItem.Price = item.Price;
+            myItem.amount = item.amount;
+            myItem.orderID = item.orderID;
             DataSource.orderItems.Add(item);
             return item.ID;
         }
