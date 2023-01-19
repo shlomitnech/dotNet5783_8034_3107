@@ -84,9 +84,9 @@ namespace PL
         }
         private void ProductItemView_click(object sender, MouseButtonEventArgs e)
         {
-         //   if (catalogGrid.SelectedItem is BO.ProductItem productItem)
+           if (ProductGrid.SelectedItem is BO.ProductItem prod)
             {
-                //new ProductItemView(productItem, myCart, bl!).ShowDialog();
+                new ProductItem(prod!, myCart, bl!).ShowDialog();
             }
         }
         private void HomeBtn_Click(object sender, RoutedEventArgs e)
@@ -119,11 +119,6 @@ namespace PL
             { 
                 try
                 {
-
-                  //  PL.Tools.CastPoCToBo(cart)
-
-                //    myCart = PL.Tools.CastBoCToPo(bl!.Cart.AddToCart(PL.Tools.CastPoCToBo(cart), productItem.ID, 1))
-
                     myCart = bl!.Cart.AddToCart(myCart, productItem.ID, 1);                   
                     
                     MessageBox.Show("Product successfully added to your cart.");

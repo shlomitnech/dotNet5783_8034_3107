@@ -46,6 +46,7 @@ namespace PL
                 {
                     id = bl!.Order.AddOrder(order);
 
+
                 }
                 catch (BO.IncorrectInput ex) { new ErrorWindow("ERROR in Add Product Window\n", ex.Message).ShowDialog(); }
                 catch (BO.IdExistException ex) { new ErrorWindow("ERROR in Add Product Window\n", ex.Message).ShowDialog(); }

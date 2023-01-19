@@ -24,15 +24,15 @@ namespace PL
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         ObservableCollection<BO.OrderItem> orderList = new();
-
         BO.Cart myCart = new();
 
-        public ShoppingCartWindow(Cart myCart)
+        public ShoppingCartWindow(Cart cart)
         {
             InitializeComponent();
-            ShoppingCartGrid.ItemsSource = bl!.Cart.getCart(myCart);
+            ShoppingCartGrid.ItemsSource = bl!.Cart.getCart(cart);
             ShoppingCartGrid.DataContext = orderList;//set data context of catalog as the product list
-            TotalPrice.Text = myCart.TotalPrice.ToString();
+            TotalPrice.Text = cart.TotalPrice.ToString();
+            myCart = cart;
         }
         private void ShoppingCartGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

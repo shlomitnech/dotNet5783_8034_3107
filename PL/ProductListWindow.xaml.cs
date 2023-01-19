@@ -133,10 +133,7 @@ namespace PL
             {
                 new ErrorWindow("List View Window\n", ex.Message).ShowDialog();
                 //id is null error on screen
-            }
-            //OrderItemGrid.DataContext = ordersForList;
-            
-
+            }            
         }
 
         private void MainMenu_Click(object sender, RoutedEventArgs e)

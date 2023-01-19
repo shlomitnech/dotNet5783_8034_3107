@@ -18,8 +18,10 @@ public struct Order
         OrderDate = DateTime.MinValue;
         ShippingDate = DateTime.MinValue;
         DeliveryDate = DateTime.MinValue;
-    }
+		TotalPrice = 0;
+		Amount = 0;
 
+    }
 
     public int ID { get; set; } = orderCounter++;
     public string? CustomerName { get; set; } 
@@ -28,6 +30,8 @@ public struct Order
 	public DateTime? OrderDate { get; set; }
     public DateTime? ShippingDate { get; set; }
 	public DateTime? DeliveryDate { get; set; }
+	public double TotalPrice { get; set; }
+	public int Amount { get; set; }
 
 	public override string ToString() => $@"
 	Item's ID : {ID},

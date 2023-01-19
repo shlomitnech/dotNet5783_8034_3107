@@ -146,7 +146,7 @@
 
             <!--//The main back screen background Image //-->
             <Grid x:Name="Background" >
-                <Button x:Name="MainMenu" Content="Click to return to &#xD;&#xA;Main Menu" HorizontalAlignment="Left" Margin="618,351,0,0" VerticalAlignment="Top" Height="59" Width="176" Click="Button_Click" Background="#FFD6FFDF" FontSize="16"/>
+                <Button x:Name="MainMenu" Content="Click to return to &#xD;&#xA;Main Menu" HorizontalAlignment="Left" Margin="583,328,0,0" VerticalAlignment="Top" Height="59" Width="176" Click="Button_Click" Background="#FFD6FFDF" FontSize="16"/>
 
                 <!--// Put background Image //-->
 
@@ -154,7 +154,7 @@
             </Grid>
 
 
-            <ComboBox x:Name ="CategorySelecter" SelectionChanged="CategorySelecter_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a category" SelectedItem="" Margin="505,17,0,375" HorizontalAlignment="Left" Width="217"/>
+            <ComboBox x:Name ="CategorySelecter" SelectionChanged="CategorySelecter_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a category" SelectedItem="" Margin="512,60,0,332" HorizontalAlignment="Left" Width="217"/>
             <DataGrid Name="ProductGrid" Width="474" HorizontalAlignment="Left"
                   CanUserAddRows="False"
                   IsTextSearchEnabled="True" 
@@ -173,7 +173,7 @@
                   Foreground="Black"
                   IsReadOnly="True"
                   FontSize="16"
-                  ItemsSource="{Binding}" MouseDoubleClick="ProductItemView_click" Margin="8,0,0,-9" SelectionChanged="ProductGrid_SelectionChanged_1">
+                  ItemsSource="{Binding}" MouseDoubleClick="ProductItemView_click" Margin="8,0,0,-9">
                 <DataGrid.GroupStyle>
                     <GroupStyle ContainerStyle="{StaticResource ResourceKey=GroupHeaderStyle}">
                         <GroupStyle.Panel>

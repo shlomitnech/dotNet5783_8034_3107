@@ -31,7 +31,7 @@ internal class Cart : BlApi.ICart
     /// <returns></returns>
     /// <exception cref="BO.IncorrectInput"></exception>
     /// <exception cref="BO.Exceptions"></exception>
-    public BO.Cart AddToCart(BO.Cart cart, int id, int amount) //check if the product is in the cart, if not add it from DO product if it is in stock
+    public BO.Cart AddToCart(BO.Cart cart, int id, int amt) //check if the product is in the cart, if not add it from DO product if it is in stock
     {
         if (cart.Items == null)
         {
@@ -44,11 +44,11 @@ internal class Cart : BlApi.ICart
             {
                 throw new BO.EntityNotFound();
             }
-            if (amount < 0)
+            if (amt < 0)
             {
                 throw new BO.IncorrectInput();
             }
-            if (prod?.inStock < amount || prod?.inStock < 1) //not enough items in stock
+            if (prod?.inStock < amt || prod?.inStock < 1) //not enough items in stock
             {
                 throw new BO.Exceptions("Not enough items in stock");
             }
@@ -57,12 +57,20 @@ internal class Cart : BlApi.ICart
                 ID = id,
                 ProductID = (int)prod?.ID!,
                 ProductName = prod?.Name!,
-                Amount = amount,
+                Amount = amt,
                 Price = prod?.Price!,
             };
             cart.Items = new List<BO.OrderItem?>(); //add the new updated list
             cart.Items!.Add(myItem);//add it to my cart
             cart.TotalPrice = (double)prod?.Price!;
+
+            DO.OrderItem doItem = new DO.OrderItem //Create a new orderitem
+            {
+                productID = (int)myItem?.ProductID!,
+                amount = amt,
+                Price = myItem?.Price!,
+            };
+            dal!.OrderItem.Add(doItem);
             return cart;
 
         }
