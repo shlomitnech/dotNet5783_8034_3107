@@ -119,6 +119,7 @@ internal class Cart : BlApi.ICart
         });//add a new order for the cart and get order ID
         try
         {
+  
             cart.Items!.ForEach(x => dal.OrderItem.Add(new DO.OrderItem()
             {
                 amount = (int)x?.Amount!,
@@ -150,22 +151,30 @@ internal class Cart : BlApi.ICart
     }
 
     /// <summary>
-    /// returns the instances of order items in the cart
+    /// returns the instances of the names of order items in the cart
     /// </summary>
     /// <param name="cart"></param>
     /// <returns></returns>
     public List<string> GetItemNames(BO.Cart cart)
     {
-        int prodId;
-        DO.Product? product = new(); 
-        List<string> list = new();
-        foreach (BO.OrderItem? item in cart.Items!) //find all the products in the cart
+        //int prodId;
+        //DO.Product? product = new(); 
+        IEnumerable<string> list;
+        /*foreach (BO.OrderItem? item in cart.Items!) //find all the products in the cart
         {
             prodId = (int)item.ID!;
             product = dal!.Product.Get(prodId);
             list?.Add(product?.Name!);
-        }
-        return list;
+        }*/
+        /*var v = from item in cart.Items!
+                where item != null
+                //let prodId = (int)item.ID!
+                let product = dal!.Product.Get((int)item!.ID)
+                select product?.Name;
+                list!.Add(v);
+
+        return list;*/
+        throw new NotImplementedException();
 
     }
 

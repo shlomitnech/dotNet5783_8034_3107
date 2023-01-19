@@ -2,6 +2,7 @@
 using System.Security.Cryptography;
 using System.Threading;
 using DalApi;
+using System.Linq;
 namespace Dal;
 
 public class DalProduct : IProduct
@@ -54,13 +55,19 @@ public class DalProduct : IProduct
         {
             throw new ArgumentNullException(nameof(filter));//filter is null
         }
-        foreach (Product? product in DataSource.products)
+        /*foreach (Product? product in DataSource.products)
         {
             if (product != null && filter(product))
             {
                 return (Product)product;
             }
-        }
+        }*/
+
+        /*return from prod in DataSource.products
+               where prod!= null
+               select prod;*/
+
+
         throw new EntityNotFound();
     }
 
@@ -105,8 +112,8 @@ public class DalProduct : IProduct
     /// <exception cref="Exception"></exception>
     public void Delete(int currentID)
     {
-        int index = -1;
-        foreach (DO.Product? prod in DataSource.products)
+        //int index = -1;
+        /*foreach (DO.Product? prod in DataSource.products)
         {
             if (prod?.ID == currentID)
             {
@@ -114,8 +121,19 @@ public class DalProduct : IProduct
                 break;
             }
         }
-        DO.Product DelProd = (Product)DataSource.products[index]!; // save the product in the found index
-        DataSource.products.Remove(DelProd); // remove the product
+
+       var delProd = from prod in DataSource.products
+                     where prod != null && prod.Value.ID == currentID
+                     let index = DataSource.products.IndexOf(prod)
+                     select (Product)DataSource.products[index]!;
+
+        //{
+        //   DelProd = (Product)DataSource.products[index]!
+        //}).Remove(DelProd);
+        //DO.Product DelProd = (Product)DataSource.products[index]!; // save the product in the found index
+       */
+        DO.Product? deleprod = DataSource.products.Single(x => x?.ID == currentID);
+        DataSource.products.Remove(deleprod); // remove the product
   
 
     }
