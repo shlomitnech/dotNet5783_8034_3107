@@ -63,9 +63,9 @@ public class DalProduct : IProduct
             }
         }*/
 
-        /*return from prod in DataSource.products
-               where prod!= null
-               select prod;*/
+        return from prod in DataSource.products
+               where prod != null 
+               select prod;
 
 
         throw new EntityNotFound();
