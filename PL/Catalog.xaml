@@ -142,12 +142,7 @@
 
         <Grid x:Name="ProductCatalog" Margin="0,0,0,12">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="32*"/>
-                <RowDefinition Height="135*"/>
-                <RowDefinition Height="267*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+
 
             <!--//The main back screen background Image //-->
             <Grid x:Name="Background" >
@@ -157,54 +152,35 @@
 
             </Grid>
 
-            <Grid>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="30"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-
-            </Grid>
-
-
-            <ComboBox x:Name ="CategorySelecter" SelectionChanged="CategorySelecter_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a category" SelectedItem="" Margin="3,1,0,134" HorizontalAlignment="Left" Width="217" Grid.RowSpan="2"/>
-            <Button Width="90" Height="77" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="166,170,0,0" Grid.Row="2">
-                <Image Source="Images/bigchallah.jpeg"/>
+            <ComboBox x:Name ="CategorySelecter" SelectionChanged="CategorySelecter_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a category" SelectedItem="" Margin="3,1,0,6" HorizontalAlignment="Left" Width="217"/>
+            <Button Width="90" Height="77" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="574,3,0,0" Grid.Row="2">
+                <Image Source="Images/bigchallah.jpeg" Width="70"/>
             </Button>
-            <Button Width="95" Height="69" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,155,0,0" Grid.Row="2">
-                <Image Source="Images/rolls.jpg" RenderTransformOrigin="0.5,0.5" Height="73" Width="87">
+            <Button Width="95" Height="69" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="536,170,0,0" Grid.Row="2">
+                <Image Source="Images/rolls.jpg" RenderTransformOrigin="0.5,0.5" Height="73" Width="74">
                 </Image>
             </Button>
-            <Button Width="77" Height="77" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="502,19,0,0" Grid.Row="2">
+            <Button Width="121" Height="77" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="670,85,0,0" Grid.Row="2">
                 <Image Source="Images/cccookies.jpeg"></Image>
             </Button>
-            <Button Width="110" Height="73" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="48,44,0,0" Grid.Row="2">
-                <Image Source="Images/potatokugel.jpeg"></Image>
+            <Button Width="110" Height="73" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="555,19,0,0" Grid.Row="1">
+                <Image Source="Images/potatokugel.jpeg" Height="72" Width="83"></Image>
             </Button>
-            <Button Width="101" Height="77" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="181,11,0,0" Grid.Row="2">
-                <Image Source="Images/potatoes.jpeg"></Image>
+            <Button Width="101" Height="77" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="675,112,0,0" Grid.Row="1" Grid.RowSpan="2">
+                <Image Source="Images/potatoes.jpeg" Height="53" Width="71"></Image>
             </Button>
-            <Button Width="112" Height="77" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="297,167,0,0" Grid.Row="2">
-                <Image Source="Images/greenbeans.jpeg"></Image>
+            <Button Width="112" Height="77" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="543,77,0,0" Grid.Row="2">
+                <Image Source="Images/greenbeans.jpeg" Width="75"></Image>
             </Button>
-            <Button Width="96" Height="77" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" Grid.Row="2">
+            <Button Width="96" Height="77" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="701,12,0,0" Grid.Row="1">
                 <Image Source="Images/sugarcookies.jpeg"></Image>
             </Button>
-            <Button Width="116" Height="77" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="517,142,0,0" Grid.Row="2">
-                <Image Source="Images/brownies.jpeg"></Image>
+            <Button Width="116" Height="77" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="668,177,0,0" Grid.Row="2">
+                <Image Source="Images/brownies.jpeg" Width="90"></Image>
             </Button>
 
-            <Button x:Name="ShoppingCart" Content="View Shopping Cart" HorizontalAlignment="Center" Margin="0,8,0,0" VerticalAlignment="Top" Click="ShoppingCart_Click" Height="20" Width="52"/>
-
-            <DataGrid Name="ProductGrid" Width="435" HorizontalAlignment="Left"
+            <DataGrid Name="ProductGrid" Width="474" HorizontalAlignment="Left"
                   CanUserAddRows="False"
                   IsTextSearchEnabled="True" 
                   AutoGenerateColumns="False" 
@@ -222,7 +198,7 @@
                   Foreground="Black"
                   IsReadOnly="True"
                   FontSize="16"
-                  ItemsSource="{Binding}" MouseDoubleClick="ProductItemView_click">
+                  ItemsSource="{Binding}" MouseDoubleClick="ProductItemView_click" Margin="0,0,0,-9" Grid.RowSpan="4" SelectionChanged="ProductGrid_SelectionChanged_1">
                 <DataGrid.GroupStyle>
                     <GroupStyle ContainerStyle="{StaticResource ResourceKey=GroupHeaderStyle}">
                         <GroupStyle.Panel>
@@ -237,27 +213,29 @@
                     <DataGridTemplateColumn x:Name="AddProductToCart" MinWidth="10" Width="30">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Background="Teal" BorderBrush="Transparent"
+                                <Button Click="AddToCart" Background="Black" BorderBrush="Transparent"
                                     Height="30" Width="30"
                                     HorizontalAlignment="Center" >
-                                    <Image Source="images/57563.png" IsEnabled="True"/>
                                 </Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="ID" Binding="{Binding ID}"
-                                    MinWidth="10" Width="*"/>
-                    <DataGridTextColumn Header="Product" Binding="{Binding ProductName}"
-                                    MinWidth="10" Width="*"/>
+                                    MinWidth="5" Width="*"/>
+                    <DataGridTextColumn Header="Product" Binding="{Binding Name}"
+                                    MinWidth="5" Width="*"/>
                     <DataGridTextColumn Header="Price" Binding="{Binding Price}"
                                     MinWidth="10" Width="*"/>
                     <DataGridTextColumn Header="Category" Binding="{Binding Category}"
+                                    MinWidth="10" Width="*"/>
+                    <DataGridTextColumn Header="In Stock" Binding="{Binding InStock}"
                                     MinWidth="10" Width="*"/>
                 </DataGrid.Columns>
 
 
             </DataGrid>
-            <StackPanel Margin="-237,-451,237,81"/>
+
+            <Button x:Name="ShoppingCart" Content="View Shopping Cart" HorizontalAlignment="Left" Margin="502,9,0,0" VerticalAlignment="Top" Click="ShoppingCart_Click" Height="20" Width="149"/>
 
         </Grid>
 

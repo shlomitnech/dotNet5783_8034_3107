@@ -38,6 +38,7 @@ namespace PL
             myCart = cart;
             try
             {
+
                 /*
                 ObservableCollection<BO.ProductItem> newList = new();
                 foreach (var item in productList)
@@ -54,7 +55,7 @@ namespace PL
                  
                 ProductCatalog = newList;//put catalog
                 */
-              //  ProductGrid.ItemsSource = bl?.Product.GetCatalog();
+              ProductGrid.ItemsSource = bl?.Product.GetCatalog();
             }
             catch (BO.EntityNotFound ex)
             {
@@ -119,64 +120,32 @@ namespace PL
             Close();//close this window
         }
 
-        private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
-        {
-            // Set tooltip visibility
-
-            /*
-            if (Tg_Btn.IsChecked == true)
-            {
-                tt_home.Visibility = Visibility.Collapsed;
-                tt_back.Visibility = Visibility.Collapsed;
-                tt_cart.Visibility = Visibility.Collapsed;
-
-            }
-            else
-            {
-                tt_home.Visibility = Visibility.Visible;
-                tt_cart.Visibility = Visibility.Visible;
-                tt_back.Visibility = Visibility.Visible;
-
-            }
-        }
-
-        private void Tg_Btn_Unchecked(object sender, RoutedEventArgs e)
-        {
-            //img_bg.Opacity = 1;
-        }
-
-        private void Tg_Btn_Checked(object sender, RoutedEventArgs e)
-        {
-        //    img_bg.Opacity = 0.3;
-        }
-
-        private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-         //   Tg_Btn.IsChecked = false;
-        }
-
-        private void CloseBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-            */
-        }
 
         private void ShoppingCart_Click(object sender, RoutedEventArgs e)
         {
-            //new CartWindow(myCart!, bl!).ShowDialog();//go to cart window 
+            new ShoppingCartWindow().ShowDialog();//go to cart window 
             Close();//close this window
         }
 
-        private void AddToCart_Click(object sender, MouseButtonEventArgs e) //Add a product that was clicked to the shopping cart
+        private void ProductGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            if (ProductGrid.SelectedItem is  BO.ProductItem productItem)
-            {
+
+        }
+
+        private void AddToCart(object sender, RoutedEventArgs e)
+        {
+            if (ProductGrid.SelectedItem is BO.ProductItem productItem)
+            { 
                 try
                 {
-                 //   bl!.Cart.AddToCart(myCart);
 
-                 //  myCart = PL.Tools.CastBoCToPo(bl!.Cart.AddToCart(PL.Tools.CastPoCToBo(myCart), productItem.ID));//add the selected product to cart
+                  //  PL.Tools.CastPoCToBo(cart)
+
+                //    myCart = PL.Tools.CastBoCToPo(bl!.Cart.AddToCart(PL.Tools.CastPoCToBo(cart), productItem.ID, 1))
+
+                    myCart = bl!.Cart.AddToCart(myCart, productItem.ID, 1);                   
+                    
+                    MessageBox.Show("Product successfully added to your cart.");
                 }
                 catch (BO.EntityNotFound ex)
                 {
@@ -194,11 +163,7 @@ namespace PL
                 {
                     new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
                 }
-            }//add the product to cart
-        }
-
-        private void ProductGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+            }
 
         }
     }
