@@ -17,10 +17,11 @@ public class DalOrderItem : IOrderItem //change to be internal?
     /// <exception cref="Exception"></exception>
     public int Add(OrderItem item ) 
     {
-        if (item.ID == 0)
+
+        if (item.ID == 0) //Order item doesn't exist
         {
             OrderItem myItem = new OrderItem();
-            //item.ID = OrderItem.itemCounter++;
+            item.ID = OrderItem.itemCounter++;
             myItem.productID = item.productID;
             myItem.productID = item.productID;
             myItem.productID = item.productID;
@@ -29,14 +30,13 @@ public class DalOrderItem : IOrderItem //change to be internal?
             return item.ID;
         }
 
-        // case 2: Order item already exists, throw an exception
-        int index = DataSource.orderItems.IndexOf(item);
+        int index = DataSource.orderItems.IndexOf(item); //orderItem already exists
         if (index != -1)
         {
             throw new EntityNotFound();
         }
         int counter = 0;
-        foreach (DO.OrderItem? item2 in DataSource.orderItems)
+        foreach (DO.OrderItem? item2 in DataSource.orderItems) 
         {
             if (item2?.orderID == item.orderID)
                 counter++;

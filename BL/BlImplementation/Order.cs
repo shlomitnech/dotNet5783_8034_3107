@@ -29,18 +29,32 @@ internal class Order : BlApi.IOrder
     {
         IEnumerable<DO.Order?> ords = dal!.Order.GetAll();
         IEnumerable<DO.OrderItem?> ordItems = dal.OrderItem.GetAll();
-            return from DO.Order? food in ords
-                   select new BO.OrderForList
-                   {
-                       ID = food?.ID ?? throw new BO.EntityNotFound(),
-                       CustomerName = food?.CustomerName?? throw new BO.IncorrectInput("The Name does not exist!"),
-                       Status = GetStatus(food),
-                       AmountOfItems = ordItems.Select(ordItems => ordItems?.ID == food?.ID).Count(), //go through the orderItems and see the count
-                       TotalPrice = (double)ordItems.Sum(ordItems => ordItems?.Price)!
-                   };
+        List<BO.OrderForList?>? list = new List<BO.OrderForList?>(); // create a list of BO orders
 
+        foreach (DO.Order order in ords)
+        {
+            int quantity = 0;
+            double? total = 0;
+
+            foreach (DO.OrderItem item in ordItems) // for each order item in DO
+            {
+                if (item.orderID == order.ID) // if the OrderID of that order item matches with an order ID (meaning it's part of that order)
+                {
+                    quantity++; // increase the amount of items inside of an order
+                    total += item.Price; // increase the total by the price of that item
+                }
+            }
+            list.Add(new BO.OrderForList // add a new BO order to the list created above
+            {
+                ID = order.ID,
+                CustomerName = order.CustomerName ?? throw new BO.IncorrectInput("The Name does not exist!"),
+                Status = GetStatus(order),
+                AmountOfItems = quantity,
+                TotalPrice = (double)total // set the total price equal to the variable total
+            });
+        }
+        return list;
     }
-
     /// <summary>
     /// returns the status of the order
     /// </summary>
