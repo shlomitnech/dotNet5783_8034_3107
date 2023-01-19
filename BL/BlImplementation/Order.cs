@@ -139,6 +139,24 @@ internal class Order : BlApi.IOrder
         throw new BO.EntityNotFound();
 
     }
+    public int AddOrder(BO.Order ord)
+    {
+        DO.Order o = new DO.Order
+        {
+            CustomerName = ord.CustomerName,
+            CustomerEmail = ord.CustomerEmail,
+            ShippingAddress = ord.CustomerAddress,
+        };
+        try
+        {
+            return dal!.Order.Add(o); //the the product to the list and return the ID
+        }
+        catch (DalApi.Duplicates)
+        {
+            throw new BO.IdExistException("Product ID already exists");
+        }
+
+    }
 
 
     /// <summary>

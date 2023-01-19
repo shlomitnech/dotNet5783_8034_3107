@@ -41,11 +41,14 @@ namespace PL
 
         private void CheckoutButton_Click(object sender, RoutedEventArgs e)
         {
-
+            new CheckoutWindow(myCart).Show();
+            Close();
+         
         }
         private void ReturnToCatalog_Click(object sender, RoutedEventArgs e)
         {
             new Catalog(myCart,bl!).Show();
+            Close();
         }
 
         private void MainMenu_Click(object sender, RoutedEventArgs e)

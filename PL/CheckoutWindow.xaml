@@ -1,0 +1,50 @@
+﻿<Window x:Class="PL.CheckoutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="CheckoutWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="31*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Name="label2" Content="Name:" FontSize="27"
+               Height="40" Width="116" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0" Margin="0,79,0,0" Grid.RowSpan="2" FontFamily="Arial Black" />
+        <Label Name="lable3" Content="Email:" FontSize="27"
+               Height="40" Width="116" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" FontFamily="Arial Black" />
+        <Label Name="lable5" Content="Address:" FontSize="27"
+               Height="40" Width="168" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="3" RenderTransformOrigin="0.534,0.993" FontFamily="Arial Black" />
+
+        <TextBox Name="name1" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Enter Your Name" VerticalAlignment="Center" Width="280" Height="38"
+                 PreviewTextInput="name1_previewtextinput" PreviewMouseDown="name1_PreviewMouseDown" TextChanged="name1_TextChanged"/>
+        <TextBox Name="email1" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Grid.Row="2" TextWrapping="Wrap" Text="Enter Your Email Address" VerticalAlignment="Center" Width="280" Height="38"
+                 PreviewMouseDown="email1_PreviewMouseDown" TextChanged="email1_TextChanged"/>
+        <TextBox Name="address1" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Grid.Row="4" TextWrapping="Wrap" Text="Enter Your Address" VerticalAlignment="Top" Width="280" Height="38"
+                 PreviewTextInput="address1_previewtextinput" PreviewMouseDown="address1_PreviewMouseDown" TextChanged="address1_TextChanged"/>
+
+        <Button Name="placeOrder" Content="Place Order" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="22,149,0,-165" Padding="5" Click="placeOrder_Click" FontSize="20" FontStyle="Normal" FontWeight="Black" Foreground="White" Width="185" FontFamily="Bahnschrift">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF3E8B74" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+
+
+    </Grid>
+</Window>
