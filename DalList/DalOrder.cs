@@ -27,12 +27,15 @@ public class DalOrder : IOrder //change to be internal?
         if (current.ID == 0)
         {
             Order order = new Order();
+            order.ID = Order.orderCounter++;
             order.CustomerName = current.CustomerName;
             order.CustomerEmail = current.CustomerEmail;
             order.ShippingAddress = current.ShippingAddress;
             order.OrderDate = current.OrderDate;
             order.ShippingDate = current.ShippingDate;
             order.DeliveryDate = current.DeliveryDate;
+            order.Amount = current.Amount;
+            order.TotalPrice = current.TotalPrice;
             DataSource.orders.Add(order);
             return order.ID;         
         }

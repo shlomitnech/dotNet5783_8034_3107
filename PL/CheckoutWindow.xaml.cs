@@ -16,7 +16,8 @@ using System.Windows.Shapes;
 using BlImplementation;
 using System.Diagnostics;
 using DO;
-
+using System.Security.AccessControl;
+using System.Collections.ObjectModel;
 
 namespace PL
 {
@@ -27,26 +28,26 @@ namespace PL
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         private BO.Order order = new BO.Order();
-
+        private BO.Cart thisCart = new BO.Cart();
 
         public CheckoutWindow(Cart myCart) //if updating an existing product
         {
             InitializeComponent();
+            thisCart = myCart;
             order.TotalPrice = myCart.TotalPrice;
             order.Items = myCart.Items;
             placeOrder.Visibility = Visibility.Visible;//show update button
+
         }
 
         private void placeOrder_Click(object sender, RoutedEventArgs e)
         {
-            int id = 0;
+            int? id = 0;
             try
             {
                 try
                 {
-                    id = bl!.Order.AddOrder(order);
-
-
+                    id = bl!.Cart.MakeOrder(thisCart, order.CustomerName!, order.CustomerEmail!, order.CustomerAddress!);
                 }
                 catch (BO.IncorrectInput ex) { new ErrorWindow("ERROR in Add Product Window\n", ex.Message).ShowDialog(); }
                 catch (BO.IdExistException ex) { new ErrorWindow("ERROR in Add Product Window\n", ex.Message).ShowDialog(); }

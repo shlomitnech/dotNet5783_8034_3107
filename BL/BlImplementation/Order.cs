@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Security.Cryptography;
@@ -40,8 +41,8 @@ internal class Order : BlApi.IOrder
             {
                 if (item.orderID == order.ID) // if the OrderID of that order item matches with an order ID (meaning it's part of that order)
                 {
-                    quantity++; // increase the amount of items inside of an order
-                    total += item.Price; // increase the total by the price of that item
+                    quantity = item.amount + quantity; // increase the amount of items inside of an order
+                    total += item.Price*item.amount; // increase the total by the price of that item
                 }
             }
             list.Add(new BO.OrderForList // add a new BO order to the list created above
@@ -139,19 +140,24 @@ internal class Order : BlApi.IOrder
         throw new BO.EntityNotFound();
 
     }
-    public int AddOrder(BO.Order ord)
+    public int AddOrder(BO.Order ord, BO.Cart myCart)
     {
         DO.Order o = new DO.Order
         {
             CustomerName = ord.CustomerName,
             CustomerEmail = ord.CustomerEmail,
             ShippingAddress = ord.CustomerAddress,
-            TotalPrice = (double)ord.TotalPrice!,
-            Amount = ord.Items!.Sum(x => x.Amount)
+            TotalPrice = (double)ord.TotalPrice!, 
+            Amount = ord.Items!.Sum(x => x.Amount) //amount of items in the order
         };
+
+        int Orderid = dal!.Order.Add(o);
+
+     //   dal!.OrderItem.Add(newItem);
+        
         try
         {
-            return dal!.Order.Add(o); //the the product to the list and return the ID
+            return Orderid; //the the product to the list and return the ID
         }
         catch (DalApi.Duplicates)
         {

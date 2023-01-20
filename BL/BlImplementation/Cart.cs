@@ -64,6 +64,7 @@ internal class Cart : BlApi.ICart
             cart.Items!.Add(myItem);//add it to my cart
             cart.TotalPrice = (double)prod?.Price!;
 
+            /*
             int numOfOrds = 0;
             if (dal!.Order.GetAll().Count() > 0)
             {
@@ -77,16 +78,17 @@ internal class Cart : BlApi.ICart
                  amount = amt,
                  Price = myItem?.Price!,
             };
+           
             dal!.OrderItem.Add(doItem);
-            
+            */
             return cart;
 
         }
-        int index = cart.Items.FindIndex(x => /*x != null &&*/ x.ID == id); // find the index of where the product is sitting in the Items list
+        int index = cart.Items.FindIndex(x =>  x.ID == id); // find the index of where the product is sitting in the Items list
         DO.Product? product = new DO.Product(-1); // create a DO product
         product = dal!.Product.Get(id); // get the DO product with the matching ID.
         if (amt < 0) // if the amount is negative
-        {
+        { 
             throw new BO.IncorrectInput();
         }
         if (product?.inStock < amt || product?.inStock < 1) // if there is not enough products in stock
@@ -150,7 +152,7 @@ internal class Cart : BlApi.ICart
         /// <exception cref="BO.EntityNotFound"></exception>
         /// <exception cref="BO.Exceptions"></exception>
         /// <exception cref="BO.IdExistException"></exception>
-        public void MakeOrder(BO.Cart cart, string n, string em, string add) //approve the items in the cart and make the real order
+        public int? MakeOrder(BO.Cart cart, string n, string em, string add) //approve the items in the cart and make the real order
         {
             if (n == "" || em == "" || add == "")//check input
             {
@@ -166,9 +168,9 @@ internal class Cart : BlApi.ICart
 
             int? orderId = dal?.Order.Add(new DO.Order()
             {
-                ShippingAddress = cart.CustomerAddress!,
-                CustomerEmail = cart.CustomerEmail!,
-                CustomerName = cart.CustomerName!,
+                ShippingAddress = add,
+                CustomerEmail = em!,
+                CustomerName = n,
                 OrderDate = DateTime.Now
             });//add a new order for the cart and get order ID
             try
@@ -196,12 +198,14 @@ internal class Cart : BlApi.ICart
             {
                 products = from item in cart.Items
                            select dal?.Product.Get(item.ProductID);//list of products in cart
+
+
             }
             catch (DalApi.EntityNotFound)
             {
                 throw new BO.EntityNotFound("The product does not exist");
             }
-
+           return orderId;
         }
 
         /// <summary>
