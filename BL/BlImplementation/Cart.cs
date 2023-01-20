@@ -64,31 +64,55 @@ internal class Cart : BlApi.ICart
             cart.Items!.Add(myItem);//add it to my cart
             cart.TotalPrice = (double)prod?.Price!;
 
-            DO.OrderItem doItem = new DO.OrderItem //Create a new orderitem
+            int numOfOrds = 0;
+            if (dal!.Order.GetAll().Count() > 0)
             {
-                productID = (int)myItem?.ProductID!,
-                amount = amt,
-                Price = myItem?.Price!,
+                numOfOrds = dal!.Order.GetAll().Count();
+            }
+
+            /*DO.OrderItem doItem = new DO.OrderItem //Create a new orderitem
+            {
+                 productID = (int)myItem?.ProductID!,
+                 orderID = (numOfOrds+1000),
+                 amount = amt,
+                 Price = myItem?.Price!,
             };
-            dal!.OrderItem.Add(doItem);
+            dal!.OrderItem.Add(doItem);*/
+
+            var va = from itm in cart.Items!
+                    where itm != null
+                    select new DO.OrderItem {
+                        productID = (int)myItem?.ProductID!,
+                        orderID = (numOfOrds + 1000),
+                        amount = amt,
+                        Price = myItem?.Price!,
+                     };
+            
+            foreach(DO.OrderItem itm in va)
+            {
+                dal!.OrderItem.Add(itm);
+            }
+
+
+
             return cart;
 
         }
         int index = cart.Items.FindIndex(x => /*x != null &&*/ x.ID == id); // find the index of where the product is sitting in the Items list
         DO.Product? product = new DO.Product(-1); // create a DO product
         product = dal!.Product.Get(id); // get the DO product with the matching ID.
-        if (amount < 0) // if the amount is negative
+        if (amt < 0) // if the amount is negative
         {
             throw new BO.IncorrectInput();
         }
-        if (product?.inStock < amount || product?.inStock < 1) // if there is not enough products in stock
+        if (product?.inStock < amt || product?.inStock < 1) // if there is not enough products in stock
         {
             throw new BO.Exceptions("This product is out of stock");
         }
         if (index != -1) 
         {
-            cart.Items[index]!.Amount += amount;
-            cart.TotalPrice += cart.Items[index]!.Price * amount; // adjust the total price accordingly
+            cart.Items[index]!.Amount += amt;
+            cart.TotalPrice += cart.Items[index]!.Price * amt; // adjust the total price accordingly
             return cart;
         }
         BO.OrderItem item = new BO.OrderItem // create new orderitem that is being added to the list
@@ -96,11 +120,32 @@ internal class Cart : BlApi.ICart
             ID = id,
             ProductName = product?.Name!,
             Price = (double)product?.Price!,
-            Amount = amount,
+            Amount = amt,
             ProductID = (int)product?.ID!
         };
+
+        int _numOfOrds = 0;
+        if (dal!.Order.GetAll().Count() > 0)
+        {
+            _numOfOrds = dal!.Order.GetAll().Count();
+        }
+
+        var v = from itm in cart.Items!
+                where itm != null
+                select new DO.OrderItem
+                {
+                    productID = (int)item?.ProductID!,
+                    orderID = (_numOfOrds + 1000),
+                    amount = amt,
+                    Price = item?.Price!,
+                };
+
+        foreach (DO.OrderItem itm in v)
+        {
+            dal!.OrderItem.Add(itm);
+        }
         cart.Items.Add(item); // add the orderitem to the item list in the cart
-        cart.TotalPrice += item.Price * amount; // update price of the cart accordingly
+        cart.TotalPrice += item.Price * amt; // update price of the cart accordingly
         return cart;
     }
 
