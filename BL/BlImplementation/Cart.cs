@@ -70,15 +70,31 @@ internal class Cart : BlApi.ICart
                 numOfOrds = dal!.Order.GetAll().Count();
             }
 
-            DO.OrderItem doItem = new DO.OrderItem //Create a new orderitem
+            /*DO.OrderItem doItem = new DO.OrderItem //Create a new orderitem
             {
                  productID = (int)myItem?.ProductID!,
                  orderID = (numOfOrds+1000),
                  amount = amt,
                  Price = myItem?.Price!,
             };
-            dal!.OrderItem.Add(doItem);
+            dal!.OrderItem.Add(doItem);*/
+
+            var va = from itm in cart.Items!
+                    where itm != null
+                    select new DO.OrderItem {
+                        productID = (int)myItem?.ProductID!,
+                        orderID = (numOfOrds + 1000),
+                        amount = amt,
+                        Price = myItem?.Price!,
+                     };
             
+            foreach(DO.OrderItem itm in va)
+            {
+                dal!.OrderItem.Add(itm);
+            }
+
+
+
             return cart;
 
         }
@@ -107,6 +123,27 @@ internal class Cart : BlApi.ICart
             Amount = amt,
             ProductID = (int)product?.ID!
         };
+
+        int _numOfOrds = 0;
+        if (dal!.Order.GetAll().Count() > 0)
+        {
+            _numOfOrds = dal!.Order.GetAll().Count();
+        }
+
+        var v = from itm in cart.Items!
+                where itm != null
+                select new DO.OrderItem
+                {
+                    productID = (int)item?.ProductID!,
+                    orderID = (_numOfOrds + 1000),
+                    amount = amt,
+                    Price = item?.Price!,
+                };
+
+        foreach (DO.OrderItem itm in v)
+        {
+            dal!.OrderItem.Add(itm);
+        }
         cart.Items.Add(item); // add the orderitem to the item list in the cart
         cart.TotalPrice += item.Price * amt; // update price of the cart accordingly
         return cart;

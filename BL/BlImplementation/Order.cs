@@ -147,7 +147,7 @@ internal class Order : BlApi.IOrder
             CustomerEmail = ord.CustomerEmail,
             ShippingAddress = ord.CustomerAddress,
             TotalPrice = (double)ord.TotalPrice!,
-            Amount = ord.Items!.Sum(x => x.Amount)
+            Amount = ord.Items!.Sum(x => x!.Amount)
         };
         try
         {
