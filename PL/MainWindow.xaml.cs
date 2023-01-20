@@ -21,7 +21,7 @@ namespace PL
     /// </summary>
     public partial class MainWindow : System.Windows.Window
     {
-      //  DataSource ds = new(); //to enable DataSource to call its constructors
+        DataSource ds = new(); //to enable DataSource to call its constructors
         BlApi.IBl? bl = BlApi.Factory.Get();
         BO.Cart myCart = new();
         public MainWindow()
