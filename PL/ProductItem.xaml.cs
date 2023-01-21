@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PL;
 
@@ -28,35 +16,45 @@ public partial class ProductItem : Window
 
 
     public ProductItem(BO.ProductItem prod, BO.Cart myCart, BlApi.IBl b)
-    { 
-        InitializeComponent();
-    //    product.ID = prod.ID;
-
-    }
-
-    private void AddToCart_Click(object sender, RoutedEventArgs e)
     {
-          try
-            {
-                myCart = bl!.Cart.AddToCart(myCart, product.ID, 1);
 
-                MessageBox.Show("Product successfully added to your cart.");
-            }
-            catch (BO.EntityNotFound ex)
-            {
-                new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
-            }
-            catch (BO.UnfoundException ex)
-            {
-                new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
-            }
-            catch (BO.Exceptions ex)
-            {
-                new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
-            }
-            catch (BO.IdExistException ex)
-            {
-                new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
-           }
+        InitializeComponent();
+        product.Name = prod.Name; //send the name to the chosen product
+ 
+
     }
+
+    private void AddToCart_Click(object sender, RoutedEventArgs e) //add this item to cart
+    {
+        try
+        {
+            myCart = bl!.Cart.AddToCart(myCart, product.ID, 1);
+
+            MessageBox.Show("Product successfully added to your cart.");
+        }
+        catch (BO.EntityNotFound ex)
+        {
+            new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
+        }
+        catch (BO.UnfoundException ex)
+        {
+            new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
+        }
+        catch (BO.Exceptions ex)
+        {
+            new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
+        }
+        catch (BO.IdExistException ex)
+        {
+            new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
+        }
+    }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        new Catalog(myCart, bl!).ShowDialog();//go to catalog window
+        Close();//close this window
+
+    }
+
 }

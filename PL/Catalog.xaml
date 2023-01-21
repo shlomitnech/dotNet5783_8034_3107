@@ -154,7 +154,6 @@
             </Grid>
 
 
-            <ComboBox x:Name ="CategorySelecter" SelectionChanged="CategorySelecter_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a category" SelectedItem="" Margin="512,60,0,332" HorizontalAlignment="Left" Width="217"/>
             <DataGrid Name="ProductGrid" Width="474" HorizontalAlignment="Left"
                   CanUserAddRows="False"
                   IsTextSearchEnabled="True" 
@@ -173,7 +172,7 @@
                   Foreground="Black"
                   IsReadOnly="True"
                   FontSize="16"
-                  ItemsSource="{Binding}" MouseDoubleClick="ProductItemView_click" Margin="8,0,0,-9">
+                  ItemsSource="{Binding}" MouseDoubleClick="ProductItemView_click" Margin="8,96,0,-9">
                 <DataGrid.GroupStyle>
                     <GroupStyle ContainerStyle="{StaticResource ResourceKey=GroupHeaderStyle}">
                         <GroupStyle.Panel>
@@ -209,6 +208,14 @@
 
 
             </DataGrid>
+            <ComboBox x:Name ="CategorySelecter" SelectionChanged="CategorySelecter_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a category" SelectedItem="" HorizontalAlignment="Left" Width="454" Margin="23,30,0,340">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#FFF0F0F0"/>
+                        <GradientStop Color="#FFFCB3FF" Offset="1"/>
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+            </ComboBox>
 
             <Button x:Name="ShoppingCart" Content="View Shopping Cart" HorizontalAlignment="Left" Margin="587,146,0,0" VerticalAlignment="Top" Click="ShoppingCart_Click" Height="92" Width="149" Background="#FFF4D7D7" FontFamily="Bahnschrift Condensed" FontSize="18"/>
 

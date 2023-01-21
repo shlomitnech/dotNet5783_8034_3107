@@ -18,7 +18,7 @@ public class DalOrderItem : IOrderItem //change to be internal?
     public int Add(OrderItem item ) 
     {
 
-        if (item.ID == 0) //Order item doesn't exist
+        if (item.ID == 0) //Order item doesn't 
         {
             OrderItem myItem = new OrderItem();
             item.ID = OrderItem.itemCounter++;
@@ -129,8 +129,18 @@ public class DalOrderItem : IOrderItem //change to be internal?
   
     public OrderItem GetByFilter(Func<OrderItem?, bool>? filter = null)
     {
-        
-        throw new Exception("Does not exist\n");
+        if (filter == null)
+        {
+            throw new ArgumentNullException(nameof(filter));//filter is null
+        }
+        foreach (OrderItem? item in DataSource.orderItems)
+        {
+            if (item != null && filter(item))
+            {
+                return (OrderItem)item;
+            }
+        }
+        throw new EntityNotFound("OrderItem does not exist");
     }
 
    

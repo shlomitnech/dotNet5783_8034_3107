@@ -7,7 +7,23 @@
         mc:Ignorable="d"
         Title="ProductItem" Height="450" Width="800">
     <Grid>
-        <Button x:Name="AddToCart" Content="Add Product Cart" HorizontalAlignment="Left" Margin="559,79,0,0" VerticalAlignment="Top" Height="108" Width="193" MouseDoubleClick="AddToCart_Click"/>
+        <Button x:Name="AddToCart" Content="Add Product To Cart" HorizontalAlignment="Left" Margin="532,174,0,0" VerticalAlignment="Top" Height="108" Width="193" MouseDoubleClick="AddToCart_Click" Background="#FFFFACAC" FontSize="18"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="66,49,0,0" VerticalAlignment="Top" Width="188"/>
+        <Button x:Name="returntocatalog" Content="Return to Catalog" HorizontalAlignment="Left" Margin="14,17,0,0" VerticalAlignment="Top" Height="101" Width="180" Click="Button_Click" Background="#FFC3FFCC" FontSize="18"/>
 
-    </Grid>
+        <Grid x:Name="ImageGrid">
+            <Image x:Name ="Challah1" Margin="75,134,340,40" Source="/Images/bigchallah.jpeg" Stretch="Fill"/>
+               <Image x:Name ="Brownies" Margin="75,134,340,40" Source="/Images/brownies.jpeg" Stretch="Fill"/>
+              <Image x:Name ="Cookies" Margin="75,134,340,40"  Source="/Images/cccookies.jpeg" Stretch="Fill"/>
+              <Image x:Name="Beans" Margin="75,134,340,40" Source="/Images/greenbeans.jpeg" Stretch="Fill"/>
+              <Image x:Name="Potatoes"  Margin="75,134,340,40" Source="/Images/potatoes.jpeg" Stretch="Fill"/>
+              <Image x:Name="Kugel" Margin="75,134,340,40" Source="/Images/potatokugel.jpeg" Stretch="Fill"/>
+              <Image x:Name="Rolls" Margin="75,134,340,40" Source="/Images/rolls.jpg" Stretch="Fill"/>
+       </Grid>
+
+
+
+
+
+        </Grid>
 </Window>

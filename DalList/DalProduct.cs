@@ -55,20 +55,14 @@ public class DalProduct : IProduct
         {
             throw new ArgumentNullException(nameof(filter));//filter is null
         }
-        /*foreach (Product? product in DataSource.products)
+        foreach (Product? prod in DataSource.products)
         {
-            if (product != null && filter(product))
+            if (prod != null && filter(prod))
             {
-                return (Product)product;
+                return (Product)prod;
             }
-        }*/
-
-       /* return from prod in DataSource.products
-               where prod != null 
-               select prod;*/
-
-
-        throw new EntityNotFound();
+        }
+        throw new EntityNotFound("Product does not exist");
     }
 
     /// <summary>

@@ -60,27 +60,10 @@ internal class Cart : BlApi.ICart
                 Amount = amt,
                 Price = prod?.Price!,
             };
-            cart.Items = new List<BO.OrderItem?>(); //add the new updated list
+            cart.Items = new List<BO.OrderItem?>(); 
             cart.Items!.Add(myItem);//add it to my cart
             cart.TotalPrice = (double)prod?.Price!;
 
-            /*
-            int numOfOrds = 0;
-            if (dal!.Order.GetAll().Count() > 0)
-            {
-                numOfOrds = dal!.Order.GetAll().Count();
-            }
-
-            DO.OrderItem doItem = new DO.OrderItem //Create a new orderitem
-            {
-                 productID = (int)myItem?.ProductID!,
-                 orderID = (numOfOrds+1000),
-                 amount = amt,
-                 Price = myItem?.Price!,
-            };
-           
-            dal!.OrderItem.Add(doItem);
-            */
             return cart;
 
         }
@@ -109,8 +92,8 @@ internal class Cart : BlApi.ICart
             Amount = amt,
             ProductID = (int)product?.ID!
         };
-        cart.Items.Add(item); // add the orderitem to the item list in the cart
-        cart.TotalPrice += item.Price * amt; // update price of the cart accordingly
+        cart.Items.Add(item); 
+        cart.TotalPrice += item.Price * amt; //update the price according to the amount
         return cart;
     }
 

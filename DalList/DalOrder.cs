@@ -117,8 +117,18 @@ public class DalOrder : IOrder //change to be internal?
     /// <exception cref="Exception"></exception>
     Order ICrud<Order>.GetByFilter(Func<Order?, bool>? filter)
     {
-        
-        throw new Exception("Does not exist\n");
+        if (filter == null)
+        {
+            throw new ArgumentNullException(nameof(filter));//filter is null
+        }
+        foreach (Order? ord in DataSource.orders)
+        {
+            if (ord != null && filter(ord))
+            {
+                return (Order)ord;
+            }
+        }
+        throw new EntityNotFound("Order does not exist");  
 
     }
 

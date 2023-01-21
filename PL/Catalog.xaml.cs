@@ -79,14 +79,15 @@ namespace PL
              {
               new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
              }
-               //CatalogGrid.DataContext = productList;
 
         }
         private void ProductItemView_click(object sender, MouseButtonEventArgs e)
         {
-           if (ProductGrid.SelectedItem is BO.ProductItem prod)
+          // if (ProductGrid.SelectedItem is BO.ProductItem prod)
             {
-                new ProductItem(prod!, myCart, bl!).ShowDialog();
+             //   new ProductItem(prod!, myCart, bl!).ShowDialog();
+             //   MessageBox.Show("Product successfully added to your cart.");
+
             }
         }
         private void HomeBtn_Click(object sender, RoutedEventArgs e)
