@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Dal;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.ComponentModel;
 
 namespace PL
 {
@@ -141,6 +142,7 @@ namespace PL
             new MainWindow().ShowDialog();
             Close();
         }
+
     }
 }
 

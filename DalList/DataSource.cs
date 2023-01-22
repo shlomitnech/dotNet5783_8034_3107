@@ -5,6 +5,8 @@ using System.ComponentModel.DataAnnotations;
 
 public class DataSource
 {
+    internal static DataSource s_instance { get; }//property that returns a copy of data
+    static DataSource() => s_instance = new DataSource();
     readonly static Random random = new Random(); //random number generater
     internal static List<Product?> products { get; set; } = new List<Product?> { }; // creating a list of Products
     internal static List<Order?> orders { get; set; } = new List<Order?> { }; // creating a list of Orders
@@ -105,7 +107,7 @@ public class DataSource
                     productID = prod.ID,
                     orderID = ord.ID,
                     Price = prod.Price,
-                    amount = random.Next(5)
+                    amount = random.Next(1,5)
                 });
         }
     }

@@ -21,7 +21,7 @@ namespace PL
     /// </summary>
     public partial class MainWindow : System.Windows.Window
     {
-        DataSource ds = new();
+       // DataSource ds = new();
         BlApi.IBl? bl = BlApi.Factory.Get();
         BO.Cart myCart = new();
        

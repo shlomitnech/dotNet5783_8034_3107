@@ -62,6 +62,7 @@ namespace PL
             bl = BlApi.Factory.Get();
             DataContext = orderTracking;
             r_status.Visibility = Visibility.Collapsed;
+            OrderDetails.Visibility = Visibility.Collapsed;
         }
 
         private void backButtonClick(object sender, RoutedEventArgs e)
