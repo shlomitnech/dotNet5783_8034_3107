@@ -20,6 +20,9 @@
             <ColumnDefinition x:Name="Col1" Width="175"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions >
+        
+        <!-- Order Info -->
+        
         <Label Name="_ID" Content="Order ID:" FontSize="30"
               HorizontalAlignment="Left" Margin="5,2,0,71" Width="150" Grid.RowSpan="2"/>
         <Label Name="_Name" Content="Name:" FontSize="30"
@@ -31,6 +34,8 @@
         <Label Name="_TotalPrice" Content="Total Price:" FontSize="30" Grid.Row="3"
               HorizontalAlignment="Left" Margin="0,66,0,69" Grid.RowSpan="3" Width="165"/>
 
+        <!-- Order Details -->
+        
         <TextBox Name="ord_ID" Text="{Binding ID}" Grid.Column="1" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="260" Margin="15,12,0,0" Height="42" VerticalAlignment="Top" />
         <TextBox Name="ord_Name" Text="{Binding CustomerName, Mode=TwoWay}" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" TextWrapping="Wrap" Width="260" Margin="15,12,0,13" Grid.Row="1" PreviewMouseDown="ord_Name_PreviewMouseDown_1" TextChanged="ord_Name_TextChanged_1" PreviewTextInput="ord_Name_PreviewTextInput_1"/>
         <ComboBox Name="ord_Status" Text="{Binding Status,Mode=TwoWay}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="15,20,0,23" Width="260" SelectionChanged="ord_Status_SelectionChanged"/>
@@ -38,6 +43,8 @@
         <TextBox Name="ord_price" Text="{Binding TotalPrice,Mode=TwoWay}" Grid.Column="1" Grid.Row="4" FontSize="20" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="260" Margin="15,12,0,23" PreviewMouseDown="ord_price_PreviewMouseDown_1"  TextChanged="ord_price_TextChanged_1" PreviewTextInput="ord_price_PreviewTextInput_1"/>
 
 
+        <!-- Update Buttons -->
+        
         <Button Name="updateDelivery" Content="Press to update the&#xD;&#xA; delivery date to now" FontSize="16" FontStyle="Italic"
                 HorizontalAlignment="Left" Grid.Row="5"  Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Width="250" Click="updateDelivery_Click" Grid.Column="1" Margin="215,0,0,0">
             <Button.BorderBrush>

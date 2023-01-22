@@ -26,6 +26,8 @@
             <RowDefinition Height="6*"/>
 
         </Grid.RowDefinitions>
+        
+        <!-- Order Info -->
 
         <Label Name="label1" Content="Order ID:" FontSize="20" FontWeight="DemiBold"
               HorizontalAlignment="Center" Width="92"/>
@@ -45,6 +47,8 @@
               HorizontalAlignment="Center" Margin="0,0,0,48" Grid.RowSpan="2" Width="70"/>
         <Label Name="label9" Content="TotalPrice:" FontSize="20" FontWeight="DemiBold" Grid.Row="8"
               HorizontalAlignment="Center" Width="104"/>
+        
+        <!-- Order Details -->
 
         <TextBox Name="tid" IsEnabled="False" Text="{Binding ID}" Grid.Column="1" FontSize="16" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Margin="0,0,0,10" />
         <TextBox Name="tname" TextChanged ="tname_TextChanged" PreviewTextInput="tname_PreviewTextInput" IsReadOnly="False" Text="{Binding CustomerName}" Grid.Column="1" FontSize="16" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Margin="0,43,0,10" Grid.RowSpan="2" />
@@ -56,6 +60,8 @@
         <TextBox Name="statusBox" Text="{Binding Status}" Grid.Column="1" Grid.Row="7" FontSize="16" HorizontalAlignment="Center" Width="200" Margin="0,0,0,10"/>
         <TextBox Name="totalprice" IsReadOnly="True" Text="{Binding TotalPrice}" Grid.Column="1" Grid.Row="8" FontSize="16" MaxLength="6" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Margin="0,3,0,10" />
 
+        <!-- Order Item Details -->
+        
         <Label Name="label11" Content="Order Items:" FontSize="25" FontWeight="DemiBold" Grid.Row="0" Grid.Column="2"
               HorizontalAlignment="Center" Width="148"/>
         <DataGrid Name="OrderItemGrid" Grid.Column="2" Grid.RowSpan="9"
@@ -91,6 +97,9 @@
                                     MinWidth="10" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
+        
+        <!-- Update Order Button -->
+        
         <Button x:Name="updateorder" Grid.Column="1" Content="Confirm Changes" HorizontalAlignment="Left" Margin="61,13,0,10" Grid.Row="9" Width="102" Click="updateorder_Click"/>
 
     </Grid>

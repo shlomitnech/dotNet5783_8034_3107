@@ -36,6 +36,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Margin="0,0,27,0">
+            
+            <!-- Cart Details -->
+            
             <DataGrid Name="ShoppingCartGrid" Width="609" HorizontalAlignment="Left"
                   CanUserAddRows="False"
                   IsTextSearchEnabled="True" 
@@ -120,6 +123,9 @@
         </Grid>
         <TextBox x:Name="TotalPrice" HorizontalAlignment="Left" Margin="322,288,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Height="42" FontSize="16"/>
         <Label x:Name="TotalPriceLabel" Content="TotalPrice:" HorizontalAlignment="Left" Margin="235,286,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="16" Height="31" Width="81"/>
+        
+        <!-- Buttons -->
+        
         <Button x:Name="CheckoutButton" Content="Click to Check Out" HorizontalAlignment="Left" Margin="41,284,0,0" Grid.Row="1" VerticalAlignment="Top" Height="70" Width="160" FontSize="16" Background="#FFE8FFE8" Click="CheckoutButton_Click"/>
         <Button x:Name="ReturnToCatalog" Content="Click to continue&#xD;&#xA; shopping" HorizontalAlignment="Left" Margin="550,266,0,0" Grid.Row="1" VerticalAlignment="Top" Height="72" Width="175" FontSize="22" BorderBrush="#FFE8B5B5" Background="#FFFFDDDD" Click="ReturnToCatalog_Click" RenderTransformOrigin="1.774,-1.124"/>
         <Button x:Name="MainMenu" Content="Click to return to&#xD;&#xA; main menu" HorizontalAlignment="Left" Margin="632,75,0,0" Grid.Row="1" VerticalAlignment="Top" Height="76" Width="127" Background="#FFFCFFBF" FontSize="16" Click="MainMenu_Click" Grid.ColumnSpan="2"/>

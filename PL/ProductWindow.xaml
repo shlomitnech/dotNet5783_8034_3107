@@ -19,6 +19,8 @@
             <ColumnDefinition Width="9*"/>
             <ColumnDefinition Width="31*"/>
         </Grid.ColumnDefinitions>
+        
+        <!-- Product Info -->
 
         <Label Name="lable1" Content="ID:" FontSize="27"
                Height="40" Width="116" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0" Margin="0,34,0,0" FontFamily="Arial Black"  />
@@ -31,6 +33,8 @@
         <Label Name="lable5" Content="Stock:" FontSize="27"
                Height="40" Width="116" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" RenderTransformOrigin="0.534,0.993" FontFamily="Arial Black" />
 
+       <!-- Product Details-->
+        
         <ComboBox Name ="CategoryBox" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" Width="294" Height="40" SelectionChanged="SelectCategory_SelectionChanged" IsEditable="True" IsReadOnly="True" Text="Select a category" SelectedItem="" FontSize="21" RenderTransformOrigin="0.414,-0.137" >
         </ComboBox>
 
@@ -43,6 +47,9 @@
                  PreviewMouseDown="price_PreviewMouseDown" TextChanged="price_TextChanged"/>
         <TextBox Name="instock1" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Grid.Row="4" TextWrapping="Wrap" Text="Enter Amount" VerticalAlignment="Top" Width="280" Height="38"
                  PreviewTextInput="instock1_previewtextinput" PreviewMouseDown="instock1_PreviewMouseDown" TextChanged="instock1_TextChanged"/>
+        
+        <!-- Buttons -->
+        
         <Button Name="addProduct" Content="Add Product" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Margin="10,89,0,-79" Padding="5" Click="AddProduct_Click" FontSize="20" FontStyle="Normal" FontWeight="Black" Foreground="White" Width="180" FontFamily="Bahnschrift">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
