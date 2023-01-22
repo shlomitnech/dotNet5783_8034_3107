@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace PL
 {
@@ -43,9 +45,6 @@ namespace PL
             updateShip.Visibility = Visibility.Visible;
             updateDelivery.Visibility = Visibility.Visible;
             ord_ID.IsReadOnly = true;
-            ord_Name.IsReadOnly = true;
-            ord_amount.IsReadOnly = true;
-            ord_price.IsReadOnly = true;
         }
   
 
@@ -82,10 +81,88 @@ namespace PL
             ord.Status = orderStat;
         }
 
+
+
+
+
+
         private void ___GoBack__Click(object sender, RoutedEventArgs e)
         {
             new ProductListWindow(bl!).ShowDialog();
             Close();
+        }
+
+        private void ord_Name_PreviewMouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            ord_Name.Clear();
+        }
+
+        private void ord_Name_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            if (ord_Name != null && ord_Name.Text != "")
+            {
+                ord.CustomerName = ord_Name.Text;
+            }
+        }
+
+        private void ord_Name_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                e.Handled = new Regex("[^A-Z]+[^a-z]+[^A-Z]+[^a-z]+").IsMatch(ord_Name.Text);
+            }
+            catch (BO.EntityNotFound exc)
+            {
+                new ErrorWindow("ERROR in Product List View Window\n", exc.Message).ShowDialog();
+            }
+        }
+
+        private void ord_amount_PreviewMouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            ord_amount.Clear();
+
+
+        }
+
+        private void ord_amount_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9]+").IsMatch(ord_price.Text);
+
+        }
+
+
+
+        private void ord_price_PreviewMouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            ord_price.Clear();
+        }
+
+        private void ord_amount_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            if (ord_amount != null && ord_amount.Text != "")
+            {
+                if (int.TryParse(ord_amount.Text, out int val))
+                {
+                    ord.AmountOfItems = val;
+                }
+            }
+        }
+
+        private void ord_price_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            if (ord_price != null && ord_price.Text != "")
+            {
+                if (int.TryParse(ord_price.Text, out int val))
+                {
+                    ord.TotalPrice = val;
+                }
+            }
+        }
+
+        private void ord_price_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9]+").IsMatch(ord_price.Text);
+
         }
     }
 

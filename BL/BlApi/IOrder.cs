@@ -18,6 +18,7 @@ public interface IOrder
     public Enums.OrderStatus GetStatus(DO.Order? order);
     public int AddOrder(BO.Order ord, BO.Cart myCart);
     public IEnumerable<BO.OrderItem> GetItemsForOrder(int orderId); //calls get of DO order list, gets items for each order, and build BO orderItem list
+    public BO.Order UpdateOrder(BO.Order ord);
 
 
 }

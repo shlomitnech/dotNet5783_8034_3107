@@ -229,32 +229,33 @@ internal class Order : BlApi.IOrder
             order2.DeliveryDate = DateTime.Now;
             order2.Status = GetStatus(order1);
             return order2;
-            /*
-            double tot = 0;//add up the total price
-            foreach (DO.OrderItem apple in Dos.OrderItem.GetAll())
-            {
-                if (apple.ID == id)
-                {
-                    tot += apple.Price;
-                }
-            }
-            return new BO.Order
-            {
-                ID = id,
-                CustomerName = order1.CustomerName,
-                CustomerEmail = order1.CustomerEmail,
-                CustomerAddress = order1.ShippingAddress,
-                ShipDate = order1.OrderDate,
-                OrderDate = order1.OrderDate,
-                DeliveryDate = order1.DeliveryDate,
-                Status = GetStatus(order1),
-                TotalPrice = tot,
-            };
-            */
 
         }
         throw new BO.EntityNotFound();
     }
+    public BO.Order UpdateOrder(BO.Order ord)
+    {
+        DO.Order? order1 = dal!.Order.Get(ord.ID); //get the order ID from the DO folder
+        BO.Order order2 = GetBOOrder(ord.ID); //get the order from BO
+
+        if (order1?.ID == ord.ID)
+        {
+            DO.Order temporder = new()
+            {
+                ID = ord.ID,
+                CustomerName = ord?.CustomerName,
+                CustomerEmail = ord?.CustomerEmail,
+                ShippingAddress = ord?.CustomerAddress,
+                OrderDate = order1?.OrderDate,
+                ShippingDate = order1?.ShippingDate,
+                DeliveryDate = ord.DeliveryDate
+            };
+            dal.Order.Update(temporder);
+            return order2;
+        }
+        throw new BO.EntityNotFound();
+    }
+
 
     /// <summary>
     /// tracks the order

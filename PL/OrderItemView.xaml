@@ -14,15 +14,17 @@
             <ColumnDefinition Width="400*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="6*"/>
+
         </Grid.RowDefinitions>
 
         <Label Name="label1" Content="Order ID:" FontSize="20" FontWeight="DemiBold"
@@ -38,21 +40,21 @@
         <Label Name="label6" Content="ShipDate:" FontSize="20" FontWeight="DemiBold"
                HorizontalAlignment="Center" Grid.Row="4" Margin="0,48,0,0" Grid.RowSpan="2" Width="98"/>
         <Label Name="label7" Content="DeliveryDate:" FontSize="20" FontWeight="DemiBold"
-               HorizontalAlignment="Center" Grid.Row="5" Margin="0,48,0,48" Grid.RowSpan="3" Width="132"/>
+               HorizontalAlignment="Center" Grid.Row="5" Margin="0,48,0,8" Grid.RowSpan="2" Width="132"/>
         <Label Name="label8" Content="Status:" FontSize="20" FontWeight="DemiBold" Grid.Row="7"
               HorizontalAlignment="Center" Margin="0,0,0,48" Grid.RowSpan="2" Width="70"/>
         <Label Name="label9" Content="TotalPrice:" FontSize="20" FontWeight="DemiBold" Grid.Row="8"
               HorizontalAlignment="Center" Width="104"/>
 
         <TextBox Name="tid" IsEnabled="False" Text="{Binding ID}" Grid.Column="1" FontSize="16" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Margin="0,0,0,10" />
-        <TextBox Name="tname" IsReadOnly="False" Text="{Binding CustomerName}" Grid.Column="1" FontSize="16" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Margin="0,43,0,10" Grid.RowSpan="2" />
-        <TextBox Name="temail" IsReadOnly="False" Text="{Binding CustomerEmail}" Grid.Column="1" Grid.Row="1" FontSize="16" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Height="39" Margin="0,48,0,0" Grid.RowSpan="2" VerticalAlignment="Top" />
-        <TextBox Name="taddress" IsReadOnly="False" Text="{Binding CustomerAddress}" Grid.Column="1" Grid.Row="2" FontSize="16" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="195" Margin="13,48,0,5" Grid.RowSpan="2" />
+        <TextBox Name="tname" TextChanged ="tname_TextChanged" PreviewTextInput="tname_PreviewTextInput" IsReadOnly="False" Text="{Binding CustomerName}" Grid.Column="1" FontSize="16" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Margin="0,43,0,10" Grid.RowSpan="2" />
+        <TextBox Name="temail" TextChanged ="temail_TextChanged" PreviewTextInput="temail_PreviewTextInput" IsReadOnly="False" Text="{Binding CustomerEmail}" Grid.Column="1" Grid.Row="1" FontSize="16" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Height="39" Margin="0,48,0,0" Grid.RowSpan="2" VerticalAlignment="Top" />
+        <TextBox Name="taddress" TextChanged="taddress_TextChanged" PreviewTextInput="taddress_PreviewTextInput" IsReadOnly="False" Text="{Binding CustomerAddress}" Grid.Column="1" Grid.Row="2" FontSize="16" MaxLength="6" HorizontalAlignment="Left" TextWrapping="Wrap" Width="195" Margin="13,48,0,5" Grid.RowSpan="2" />
         <Calendar x:Name="orderdate" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" DisplayDate="{Binding OrderDate,Mode=TwoWay}" Width="200"/>
         <Calendar x:Name="shipdate" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" Margin="0,48,0,0" DisplayDate="{Binding ShipDate,Mode=TwoWay}" Grid.RowSpan="2" Width="200"/>
         <Calendar x:Name="deliverydate" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" Margin="0,43,0,5" DisplayDate="{Binding DeliveryDate,Mode=TwoWay}" Width="200" Grid.RowSpan="2"/>
         <TextBox Name="statusBox" Text="{Binding Status}" Grid.Column="1" Grid.Row="7" FontSize="16" HorizontalAlignment="Center" Width="200" Margin="0,0,0,10"/>
-        <TextBox Name="totalprice" IsReadOnly="True" Text="{Binding TotalPrice}" Grid.Column="1" Grid.Row="7" FontSize="16" MaxLength="6" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Margin="0,43,0,10" Grid.RowSpan="2" />
+        <TextBox Name="totalprice" IsReadOnly="True" Text="{Binding TotalPrice}" Grid.Column="1" Grid.Row="8" FontSize="16" MaxLength="6" HorizontalAlignment="Center" TextWrapping="Wrap" Width="200" Margin="0,3,0,10" />
 
         <Label Name="label11" Content="Order Items:" FontSize="25" FontWeight="DemiBold" Grid.Row="0" Grid.Column="2"
               HorizontalAlignment="Center" Width="148"/>
@@ -85,9 +87,11 @@
                                     MinWidth="10" Width="*"/>
                 <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"
                                     MinWidth="10" Width="*"/>
-
+                <DataGridTextColumn x:Name ="ProdTotal" Header="Total Price for product"
+                                    MinWidth="10" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="updateorder" Grid.Column="1" Content="Confirm Changes" HorizontalAlignment="Left" Margin="61,13,0,10" Grid.Row="9" Width="102" Click="updateorder_Click"/>
 
     </Grid>
 </Window>
