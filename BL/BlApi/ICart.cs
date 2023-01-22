@@ -14,5 +14,6 @@ public interface ICart
     public List<string> GetItemNames(Cart cart);
     public void DeleteCart(Cart cart);
     public IEnumerable<BO.OrderItem> getCart(BO.Cart cart);
+    public BO.Cart RemoveFromCart(BO.Cart cart, int id, int amt);
 
 }

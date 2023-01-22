@@ -63,8 +63,16 @@ internal class Order : BlApi.IOrder
     /// <returns></returns>
     public BO.Enums.OrderStatus GetStatus (DO.Order? order)
     {
-        return order?.DeliveryDate != null? BO.Enums.OrderStatus.Recieved : order?.ShippingDate != null ?
-            BO.Enums.OrderStatus.Shipped : BO.Enums.OrderStatus.JustPlaced;
+
+        if (order?.OrderDate == null)
+            return BO.Enums.OrderStatus.JustPlaced;
+        if (order?.OrderDate < DateTime.Now && (order?.ShippingDate > DateTime.Now || order?.ShippingDate == null)) // if the order has been placed but not shipped yet
+            return BO.Enums.OrderStatus.Processing;
+        if ((order?.ShippingDate < DateTime.Now && order?.ShippingDate != null) && (order?.DeliveryDate > DateTime.Now || order?.DeliveryDate == null))  // if the order has been shipped but not been delivered yet
+            return BO.Enums.OrderStatus.Shipped;
+        if (order?.DeliveryDate < DateTime.Now && order?.DeliveryDate != null) // if the order has been delivered
+            return BO.Enums.OrderStatus.Arrived;
+        else return BO.Enums.OrderStatus.JustPlaced;
     }
 
     /// <summary>

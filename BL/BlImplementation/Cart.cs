@@ -96,17 +96,44 @@ internal class Cart : BlApi.ICart
         cart.TotalPrice += item.Price * amt; //update the price according to the amount
         return cart;
     }
+    public BO.Cart RemoveFromCart(BO.Cart cart, int id, int amt) //remove an item from a cart
+    {
+        if (cart.Items == null)
+        {
+            
+        }
+        int index = cart.Items.FindIndex(x => x.ID == id); // find the index of where the product is sitting in the Items list
+        DO.Product? product = new DO.Product(-1); // create a DO product
+        product = dal!.Product.Get(id); // get the DO product with the matching ID.
+        if (index != -1)
+        {
+            cart.Items[index]!.Amount -= amt;
+            cart.TotalPrice -= cart.Items[index]!.Price * amt; // adjust the total price accordingly
+            return cart;
+        }
+        BO.OrderItem item = new BO.OrderItem // create new orderitem that is being added to the list
+        {
+            ID = id,
+            ProductName = product?.Name!,
+            Price = (double)product?.Price!,
+            Amount = amt,
+            ProductID = (int)product?.ID!
+        };
+        cart.Items.Remove(item);
+        cart.TotalPrice -= item.Price * amt; //update the price according to the amount
+        return cart;
+    }
 
-        /// <summary>
-        /// updated the desired attributes of the cart
-        /// </summary>
-        /// <param name="cart"></param>
-        /// <param name="id"></param>
-        /// <param name="newAmount"></param>
-        /// <returns></returns>
-        /// <exception cref="Exception"></exception>
-        /// <exception cref="BO.EntityNotFound"></exception>
-        public BO.Cart UpdateCart(BO.Cart cart, int id, int newAmount) //update the cart to have more or less products and the total price
+    /// <summary>
+    /// updated the desired attributes of the cart
+    /// </summary>
+    /// <param name="cart"></param>
+    /// <param name="id"></param>
+    /// <param name="newAmount"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
+    /// <exception cref="BO.EntityNotFound"></exception>
+    public BO.Cart UpdateCart(BO.Cart cart, int id, int newAmount) //update the cart to have more or less products and the total price
         {
             int index = cart.Items!.FindIndex(x => x != null && x.ID == id);
 

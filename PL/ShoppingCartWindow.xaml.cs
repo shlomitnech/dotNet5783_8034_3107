@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BO;
+using BlApi;
 
 namespace PL
 {
@@ -56,5 +57,44 @@ namespace PL
             new MainWindow().Show();
             Close();
         }
+        private void Decrease_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (ShoppingCartGrid.SelectedItem is BO.OrderItem orderItem)
+                {
+                    myCart = bl.Cart.RemoveFromCart(myCart, orderItem.ProductID,1);
+                    new ShoppingCartWindow(myCart).Show();
+                    Close();
+                }
+
+            }
+            catch (BO.EntityNotFound exc)
+            {
+                MessageBox.Show(exc.Message, "Cart Window", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+        private void Increase_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (ShoppingCartGrid.SelectedItem is BO.OrderItem orderItem)
+                {
+                    myCart = bl!.Cart.AddToCart(myCart, orderItem.ProductID, 1);
+                    new ShoppingCartWindow(myCart).Show();
+                    Close();
+                }
+            }
+            catch (BO.Exceptions exc)
+            {
+                MessageBox.Show(exc.Message, "Cart Window", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.EntityNotFound exc)
+            {
+                MessageBox.Show(exc.Message, "Cart Window", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
     }
 }
