@@ -49,7 +49,7 @@ namespace PL
             ID.Text = prodForList.ID.ToString();
 
         }
-        private void AddProduct_Click(object sender, RoutedEventArgs e)
+        private void AddProduct_Click(object sender, RoutedEventArgs e)   //adds the new product
         {
             try
             {
@@ -60,7 +60,7 @@ namespace PL
             Close();
         }
 
-        private void UpdateProduct_Click(object sender, RoutedEventArgs e)
+        private void UpdateProduct_Click(object sender, RoutedEventArgs e)   //updates the extisting product
         {
             try
             {
@@ -137,7 +137,7 @@ namespace PL
             }
         }
 
-        private void SelectCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SelectCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)    //combobox for the category
         {
             BO.Enums.Category category = (BO.Enums.Category)CategoryBox.SelectedItem;
             product.Category = category;

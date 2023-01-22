@@ -15,7 +15,7 @@ public partial class ProductItem : Window
     private BO.Product product = new BO.Product();
 
 
-    public ProductItem(BO.ProductItem prod, BO.Cart myCart, BlApi.IBl b)
+    public ProductItem(BO.ProductItem prod, BO.Cart myCart, BlApi.IBl b)    //constructor
     {
 
         InitializeComponent();
@@ -50,7 +50,7 @@ public partial class ProductItem : Window
         }
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e)
+    private void Button_Click(object sender, RoutedEventArgs e)   //opens catalog
     {
         new Catalog(myCart, bl!).ShowDialog();//go to catalog window
         Close();//close this window

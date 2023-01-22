@@ -27,7 +27,7 @@ namespace PL
         ObservableCollection<BO.OrderItem> orderList = new();
         BO.Cart myCart = new();
 
-        public ShoppingCartWindow(Cart cart)
+        public ShoppingCartWindow(Cart cart)    //constructor
         {
             InitializeComponent();
             ShoppingCartGrid.ItemsSource = bl!.Cart.getCart(cart);
@@ -57,6 +57,12 @@ namespace PL
             new MainWindow().Show();
             Close();
         }
+
+        /// <summary>
+        /// removes the amount of items in cart
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Decrease_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -75,6 +81,12 @@ namespace PL
             }
 
         }
+
+        /// <summary>
+        /// adds an item to cart
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Increase_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -96,6 +108,11 @@ namespace PL
             }
         }
 
+        /// <summary>
+        /// deletes the whole cart
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clear_cart_Click(object sender, RoutedEventArgs e)
         {
             bl.Cart.DeleteCart(myCart!);
@@ -103,6 +120,12 @@ namespace PL
             Close();
             
         }
+
+        /// <summary>
+        /// deleted product from cart
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Delete_Product(object sender, RoutedEventArgs e)
         {
             try

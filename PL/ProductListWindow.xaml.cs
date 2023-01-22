@@ -29,7 +29,7 @@ namespace PL
         BO.OrderForList ords = new();
         ObservableCollection<BO.ProductForList> productsForList = new();
         ObservableCollection<BO.OrderForList> ordersForList = new();
-        public ProductListWindow(BlApi.IBl? Mainbl)
+        public ProductListWindow(BlApi.IBl? Mainbl)      //constructor
         {
             InitializeComponent();
             try { ProductItemGrid.ItemsSource = bl?.Product.GetProductForList(); }
@@ -46,6 +46,11 @@ namespace PL
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
         }
 
+        /// <summary>
+        /// combobox for the categories
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BO.Enums.Category productCategory = (BO.Enums.Category)CategorySelector.SelectedItem; // saves the selected category
@@ -77,7 +82,7 @@ namespace PL
             ProductItemGrid.DataContext = productsForList;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)    //opens the product window
         {
             new ProductWindow().ShowDialog();
             try
@@ -110,6 +115,12 @@ namespace PL
                                            select product;
             */
         }
+
+        /// <summary>
+        /// for the manager to update the product
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Product_updates(object sender, MouseButtonEventArgs e)
         {
             if (ProductItemGrid.SelectedItem is BO.ProductForList productForList)
@@ -120,6 +131,12 @@ namespace PL
             }
             ProductItemGrid.ItemsSource = bl?.Product.GetProductForList(); // update list view after add
         }
+
+        /// <summary>
+        /// for the manager to update the orders
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Orders_updates(object sender, MouseButtonEventArgs e)
         {
             if (OrderItemGrid.SelectedItem is BO.OrderForList orderForList)
@@ -137,7 +154,7 @@ namespace PL
             }            
         }
 
-        private void MainMenu_Click(object sender, RoutedEventArgs e)
+        private void MainMenu_Click(object sender, RoutedEventArgs e)    //goes back to main window
         {
             new MainWindow().ShowDialog();
             Close();

@@ -31,7 +31,7 @@ namespace PL
         BO.Cart myCart = new();
 
 
-        public Catalog(BO.Cart cart, BlApi.IBl b)
+        public Catalog(BO.Cart cart, BlApi.IBl b) //constructor
         {
             InitializeComponent();
             bl = b;//new bl
@@ -50,6 +50,11 @@ namespace PL
 
         }
 
+        /// <summary>
+        /// combobox for the categories
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CategorySelecter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -90,12 +95,12 @@ namespace PL
 
             }
         }
-        private void HomeBtn_Click(object sender, RoutedEventArgs e)
+        private void HomeBtn_Click(object sender, RoutedEventArgs e)  //goes back to main window
         {
             new MainWindow().ShowDialog();//go to home window 
             Close();//close this window
         }
-        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        private void BackBtn_Click(object sender, RoutedEventArgs e)  //goes back to main window
         {
 
             new MainWindow().ShowDialog();//go to home window 
@@ -103,7 +108,7 @@ namespace PL
         }
 
 
-        private void ShoppingCart_Click(object sender, RoutedEventArgs e)
+        private void ShoppingCart_Click(object sender, RoutedEventArgs e)  //goes to shopping cart
         {
             new ShoppingCartWindow(myCart).ShowDialog();//go to cart window 
             Close();//close this window
@@ -114,6 +119,11 @@ namespace PL
 
         }
 
+        /// <summary>
+        /// adds the selected item to the cart
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddToCart(object sender, RoutedEventArgs e)
         {
             if (ProductGrid.SelectedItem is BO.ProductItem productItem)
@@ -144,7 +154,7 @@ namespace PL
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)  //goes back to main window
         {
             new MainWindow().ShowDialog();
             Close();

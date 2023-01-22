@@ -25,7 +25,7 @@ namespace PL
         BlApi.IBl? bl = BlApi.Factory.Get();
         BO.Cart myCart = new();
        
-        public MainWindow()
+        public MainWindow()  //constructor
         {
             InitializeComponent();
         }
@@ -36,13 +36,13 @@ namespace PL
             Close();
         }
 
-        private void NewOrderButton_Click_1(object sender, RoutedEventArgs e)
+        private void NewOrderButton_Click_1(object sender, RoutedEventArgs e)   //opens catalog
         {
             new Catalog(myCart, bl!).Show();
             Close();
         }
 
-        private void OrderTrackingButton_Click_2(object sender, RoutedEventArgs e)
+        private void OrderTrackingButton_Click_2(object sender, RoutedEventArgs e)   //goes to order tracking window
         {
             new OrderTracking().Show();
         }

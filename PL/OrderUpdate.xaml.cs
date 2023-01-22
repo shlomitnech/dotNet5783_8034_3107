@@ -26,7 +26,7 @@ namespace PL
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         private BO.OrderForList ord = new();
-        public OrderUpdate(BlApi.IBl? blay)
+        public OrderUpdate(BlApi.IBl? blay)    //constructor
         {
             InitializeComponent();
             bl = blay; //create a new BL
@@ -35,7 +35,7 @@ namespace PL
             updateShip.Visibility = Visibility.Collapsed;
             updateDelivery.Visibility = Visibility.Collapsed;
         }
-        public OrderUpdate(BO.OrderForList orderForList, BlApi.IBl? b)
+        public OrderUpdate(BO.OrderForList orderForList, BlApi.IBl? b)  //constructor
         {
             InitializeComponent();
             bl = b;//new bl
@@ -48,7 +48,7 @@ namespace PL
         }
   
 
-        private void updateShip_Click(object sender, RoutedEventArgs e)
+        private void updateShip_Click(object sender, RoutedEventArgs e)   //updates the ship date
         {
             try
             {
@@ -61,7 +61,7 @@ namespace PL
 
             }
         }
-        private void updateDelivery_Click(object sender, RoutedEventArgs e)
+        private void updateDelivery_Click(object sender, RoutedEventArgs e)   //updates the delivery date
         {
             try
             {
@@ -75,16 +75,11 @@ namespace PL
 
         }
 
-        private void ord_Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ord_Status_SelectionChanged(object sender, SelectionChangedEventArgs e)    //updates the order status
         {
             BO.Enums.OrderStatus orderStat = (BO.Enums.OrderStatus)ord_Status.SelectedItem;
             ord.Status = orderStat;
         }
-
-
-
-
-
 
         private void ___GoBack__Click(object sender, RoutedEventArgs e)
         {

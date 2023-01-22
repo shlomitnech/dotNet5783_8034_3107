@@ -31,7 +31,7 @@ namespace PL
         BO.OrderTracking orderTracking = new();
         BO.Cart myCart = new();
 
-        public OrderTracking(int id, BO.Cart cart, BlApi.IBl? b)
+        public OrderTracking(int id, BO.Cart cart, BlApi.IBl? b)   //constructor
         {
             InitializeComponent();
             bl = Factory.Get();
@@ -65,7 +65,7 @@ namespace PL
             OrderDetails.Visibility = Visibility.Collapsed;
         }
 
-        private void backButtonClick(object sender, RoutedEventArgs e)
+        private void backButtonClick(object sender, RoutedEventArgs e)  //goes back to main window
         {
             new MainWindow().ShowDialog();
             Close();
@@ -85,6 +85,11 @@ namespace PL
             e.Handled = new Regex("[^0-9]+").IsMatch(id_enter.Text);//only gets numbers for id
         }
 
+        /// <summary>
+        /// searches for the order
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void searchClick(object sender, RoutedEventArgs e)
         {
             int id = 0;
