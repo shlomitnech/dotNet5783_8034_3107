@@ -26,7 +26,7 @@ namespace PL
             InitializeComponent();
         }
 
-        public ErrorWindow(string title, string message)
+        public ErrorWindow(string title, string message)   //constructor
         {
             InitializeComponent();
             ErrorProblem.Text = title;

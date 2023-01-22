@@ -40,7 +40,12 @@ namespace PL
 
         }
 
-        private void placeOrder_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// adds al info to cart and makes an order
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void placeOrder_Click(object sender, RoutedEventArgs e)  
         {
             int? id = 0;
             try
