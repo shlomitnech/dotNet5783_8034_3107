@@ -190,6 +190,7 @@
                                 <Button Click="AddToCart" Background="Black" BorderBrush="Transparent"
                                     Height="30" Width="30"
                                     HorizontalAlignment="Center" >
+                                    <Image Source="/Images/plussign.jpeg"></Image>
                                 </Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

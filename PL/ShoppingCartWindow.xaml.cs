@@ -96,5 +96,32 @@ namespace PL
             }
         }
 
+        private void clear_cart_Click(object sender, RoutedEventArgs e)
+        {
+            bl.Cart.DeleteCart(myCart!);
+            new ShoppingCartWindow(myCart).Show();
+            Close();
+            
+        }
+        private void Delete_Product(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (ShoppingCartGrid.SelectedItem is BO.OrderItem orderItem)
+                {
+                    int amount = orderItem.Amount; //how many products of this kind exist
+                    myCart = bl.Cart.RemoveFromCart(myCart, orderItem.ProductID, amount);
+                    new ShoppingCartWindow(myCart).Show();
+                    Close();
+                }
+
+            }
+            catch (BO.EntityNotFound exc)
+            {
+                MessageBox.Show(exc.Message, "Cart Window", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+
+        }
     }
 }

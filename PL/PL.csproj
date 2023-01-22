@@ -16,10 +16,15 @@
 	  <None Remove="Images\brownies.jpeg" />
 	  <None Remove="Images\cccookies.jpeg" />
 	  <None Remove="Images\greenbeans.jpeg" />
+	  <None Remove="Images\minussign.png" />
+	  <None Remove="Images\plussign.jpeg" />
 	  <None Remove="Images\potatoes.jpeg" />
 	  <None Remove="Images\potatokugel.jpeg" />
 	  <None Remove="Images\rolls.jpg" />
 	  <None Remove="Images\sugarcookies.jpeg" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Resource Include="Images\minussign.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\BL\BL.csproj" />
@@ -29,6 +34,7 @@
 	  <Resource Include="Images\brownies.jpeg" />
 	  <Resource Include="Images\cccookies.jpeg" />
 	  <Resource Include="Images\greenbeans.jpeg" />
+	  <Resource Include="Images\plussign.jpeg" />
 	  <Resource Include="Images\potatoes.jpeg" />
 	  <Resource Include="Images\potatokugel.jpeg" />
 	  <Resource Include="Images\rolls.jpg" />

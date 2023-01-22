@@ -11,8 +11,8 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" MinHeight="0"/>
+            <RowDefinition Height="auto" MinHeight="0"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
@@ -23,16 +23,16 @@
         <Button x:Name="BackButton" Content="Go Back To Main Window" Height="40" Width="150" BorderBrush="Transparent" Background="Aqua" Padding="2" 
                 Click="backButtonClick" HorizontalAlignment="Right" Grid.Row="4" Grid.Column="2" VerticalAlignment="Bottom" Margin="0,0,-359,-192" RenderTransformOrigin="-0.295,0.829"></Button>
 
-        <TextBlock Text="Order ID: " FontSize="20" Grid.Row="1" Grid.Column="1"/>
+        <TextBlock Text="Order ID: " FontSize="20" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,275,0"/>
         <TextBlock Name="_id" Grid.Row="1" Grid.Column="2"/>
 
-        <TextBlock Text="Status: " FontSize="20" Grid.Row="2" Grid.Column="1"/>
+        <TextBlock Text="Status: " FontSize="20" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,275,0"/>
 
-        <TextBox Name="id_enter" Grid.Row="1" Grid.Column="2" FontSize="15" Height="20" Width="150" Margin="13,2,112,5" Text="Enter ID" TextWrapping="Wrap" TextChanged="id_TextChanged"
+        <TextBox Name="id_enter" Grid.Row="1" Grid.Column="2" FontSize="15" Margin="13,2,112,5" Text="Enter ID" TextWrapping="Wrap" TextChanged="id_TextChanged"
                  PreviewMouseDown="id_previewmousedown" PreviewTextInput="id_PreviewTextInput" />
         <Button x:Name="id_searchButton" Content="Search" Grid.Row="1" Grid.Column="2" FontSize="15" Margin="170,0,30,0" Click="searchClick" Height="24" VerticalAlignment="Center"/>
 
-        <TextBox Name="r_status" Grid.Row="2" Grid.Column="2"  Height="26" TextWrapping="Wrap" Text="{Binding Status, Mode=TwoWay}" Margin="13,0,108,1" FontSize="15"/>
+        <TextBox Name="r_status" Grid.Row="2" Grid.Column="2" TextWrapping="Wrap" Text="{Binding Status, Mode=TwoWay}" Margin="13,0,108,1" FontSize="15"/>
 
 
 

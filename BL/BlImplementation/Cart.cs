@@ -65,8 +65,8 @@ internal class Cart : BlApi.ICart
             cart.TotalPrice = (double)prod?.Price!;
 
             return cart;
-
         }
+
         int index = cart.Items.FindIndex(x =>  x.ID == id); // find the index of where the product is sitting in the Items list
         DO.Product? product = new DO.Product(-1); // create a DO product
         product = dal!.Product.Get(id); // get the DO product with the matching ID.
@@ -100,18 +100,23 @@ internal class Cart : BlApi.ICart
     {
         if (cart.Items == null)
         {
-            
+            throw new Exception();
         }
         int index = cart.Items.FindIndex(x => x.ID == id); // find the index of where the product is sitting in the Items list
         DO.Product? product = new DO.Product(-1); // create a DO product
         product = dal!.Product.Get(id); // get the DO product with the matching ID.
-        if (index != -1)
+        if (index != -1) //product existed
         {
             cart.Items[index]!.Amount -= amt;
             cart.TotalPrice -= cart.Items[index]!.Price * amt; // adjust the total price accordingly
+            if(cart.Items[index]!.Amount == 0) //product amount in cart is empty/0
+            {
+                cart.Items.RemoveAt(index);
+            }
             return cart;
         }
-        BO.OrderItem item = new BO.OrderItem // create new orderitem that is being added to the list
+
+        BO.OrderItem item = new BO.OrderItem // create new orderitem that is being deleted from the list
         {
             ID = id,
             ProductName = product?.Name!,
@@ -135,6 +140,7 @@ internal class Cart : BlApi.ICart
     /// <exception cref="BO.EntityNotFound"></exception>
     public BO.Cart UpdateCart(BO.Cart cart, int id, int newAmount) //update the cart to have more or less products and the total price
         {
+        
             int index = cart.Items!.FindIndex(x => x != null && x.ID == id);
 
             DO.Product? p = new DO.Product();
@@ -143,6 +149,8 @@ internal class Cart : BlApi.ICart
             if (p?.inStock < 1) throw new Exception("Product in unavailable");
             if (index == -1) throw new BO.EntityNotFound("Order does not exist");
             if (newAmount > p?.inStock) throw new Exception("Product in unavailable");
+
+
 
             cart.Items[index]!.Amount = newAmount;
             cart.TotalPrice = CalculateTotalPrice(cart);
@@ -259,6 +267,7 @@ internal class Cart : BlApi.ICart
             mycart.TotalPrice = 0;
 
         }
+
 
         /// <summary>
         /// helper function to calculate the total price of the cart
