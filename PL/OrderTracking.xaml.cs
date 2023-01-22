@@ -45,8 +45,8 @@ namespace PL
             catch (BO.EntityNotFound ex)
             {
                 new ErrorWindow("Order Tracking Window\n", ex.Message).ShowDialog();
+                new OrderTracking().ShowDialog();
                 Close();
-                new OrderTracking();
 
             }
             DataContext = ordtrack;
