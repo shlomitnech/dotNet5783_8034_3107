@@ -36,6 +36,7 @@ namespace PL
             InitializeComponent();
             bl = Factory.Get();
             myCart = cart;
+            orderTracking.ID = id;
             BO.OrderTracking ordtrack = new();
             try
             {
@@ -46,12 +47,12 @@ namespace PL
                 new ErrorWindow("Order Tracking Window\n", ex.Message).ShowDialog();
                 Close();
                 new OrderTracking();
-               
 
             }
             DataContext = ordtrack;
             id_enter.Text = ordtrack.ID.ToString();
             r_status.Text = ordtrack.Status.ToString();
+            orderTracking.ID = ordtrack.ID;
        //     r_tracking.Text = ordtrack.Tracking?.ToString();
         }
 
@@ -98,6 +99,12 @@ namespace PL
             new OrderTracking(id, myCart, bl!).ShowDialog();//open order tracking window with entered id
    
 
+        }
+
+        private void OrderDetails_Click(object sender, RoutedEventArgs e)
+        {
+            new OrderItemView(orderTracking.ID, myCart, bl!).ShowDialog();
+            Close();//close this window
         }
     }
 }

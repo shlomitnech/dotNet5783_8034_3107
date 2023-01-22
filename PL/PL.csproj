@@ -22,6 +22,7 @@
 	  <None Remove="Images\potatokugel.jpeg" />
 	  <None Remove="Images\rolls.jpg" />
 	  <None Remove="Images\sugarcookies.jpeg" />
+	  <None Remove="Images\x.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Resource Include="Images\minussign.png" />
@@ -39,5 +40,6 @@
 	  <Resource Include="Images\potatokugel.jpeg" />
 	  <Resource Include="Images\rolls.jpg" />
 	  <Resource Include="Images\sugarcookies.jpeg" />
+	  <Resource Include="Images\x.png" />
 	</ItemGroup>
 </Project>

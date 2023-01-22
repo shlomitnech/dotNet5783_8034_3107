@@ -46,18 +46,24 @@ public class DataSource
             ShippingDate = DateTime.MinValue ,
             DeliveryDate = DateTime.MinValue,
             };
-            if (i<4) orders.Add(myOrder); ;   //the first 4 orders won't have ship dates
 
-            myOrder.ShippingDate = myOrder.OrderDate?.AddDays(random.Next(3, 7));    //order will ship 3-7 days after ordered
+            if (i < 4)
+            {
+                orders.Add(myOrder); ;   //the first 4 orders won't have ship dates
+            }
+            else if (i >= 4 && i < 10)
+            {   //the first 10 orders won't have delivery dates
+                myOrder.ShippingDate = myOrder.OrderDate?.AddDays(random.Next(3, 7));    //order will ship 3-7 days after ordered
+                orders.Add(myOrder);
+            }
 
-            if(i>=4 && i < 10) orders.Add(myOrder); ;    //the first 10 orders won't have delivery dates
+            else if (i >= 10 && i < 20)
+            {
+                myOrder.ShippingDate = myOrder.OrderDate?.AddDays(random.Next(3, 7));    //order will ship 3-7 days after ordered
+                myOrder.DeliveryDate = myOrder.ShippingDate?.AddDays(random.Next(7, 21));   //order will be delivered 7-21 days after shipped because this is Israel we're talking about
+                orders.Add(myOrder);   //all other orders will have everything initialized
 
-            myOrder.DeliveryDate = myOrder.ShippingDate?.AddDays(random.Next(7, 21));   //order will be delivered 7-21 days after shipped because this is Israel we're talking about
-
-            if(i>=5 && i < 20) orders.Add(myOrder);   //all other orders will have everything initialized
-
-
-
+            }
 
         }
     }

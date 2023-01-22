@@ -108,7 +108,7 @@
                                 <Button Click="Delete_Product"
                                     Height="30" Width="30"
                                     HorizontalAlignment="Center" >
-                                    <Image Source="/Images/minussign.png"></Image>
+                                    <Image Source="/Images/x.png"></Image>
                                 </Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using BlApi;
 using BO;
 using DalApi;
 using DO;
@@ -41,7 +42,7 @@ internal class Order : BlApi.IOrder
             {
                 if (item.orderID == order.ID) // if the OrderID of that order item matches with an order ID (meaning it's part of that order)
                 {
-                    quantity = item.amount + quantity; // increase the amount of items inside of an order
+                    quantity += item.amount; // increase the amount of items inside of an order
                     total += item.Price*item.amount; // increase the total by the price of that item
                 }
             }
@@ -56,6 +57,32 @@ internal class Order : BlApi.IOrder
         }
         return list;
     }
+    public IEnumerable<BO.OrderItem> GetItemsForOrder(int orderId) //calls get of DO order list, gets items for each order, and build BO orderItem list
+    {
+        IEnumerable<DO.Order?> ords = dal!.Order.GetAll();
+        IEnumerable<DO.OrderItem?> ordItems = dal.OrderItem.GetAll();
+        List<BO.OrderItem?>? list = new(); // create a list of BO orders
+
+        foreach (DO.OrderItem item in ordItems) // for each order item in DO if the id matches this orderId
+        {
+            if (item.orderID == orderId) 
+            {
+                DO.Product? newProd = dal!.Product.Get(item.productID);
+                list.Add(new BO.OrderItem // add a new BO order to the list created above
+                {
+                    ID = orderId,
+                    ProductID = item.productID,
+                    Amount = item.amount,
+                    ProductName = newProd?.Name,
+                    Price = item.Price // set the total price equal to the variable total
+                });
+            }
+        }
+        return list!;
+
+
+    }
+
     /// <summary>
     /// returns the status of the order
     /// </summary>
@@ -89,11 +116,11 @@ internal class Order : BlApi.IOrder
         }
        DO.Order? ord = dal!.Order.Get(id);
        double? tot = 0;//add up the total price
-       foreach(DO.OrderItem? prod in dal!.OrderItem.GetAll())
+       foreach(DO.OrderItem? orderItem in dal!.OrderItem.GetAll())
         {
-            if (prod?.ID == id) 
+            if (orderItem?.orderID == id) 
             {
-                tot += prod?.Price;
+                tot += orderItem?.Price * orderItem?.amount ;
             }
         }
         
@@ -250,8 +277,8 @@ internal class Order : BlApi.IOrder
         {
             ID = ord,
             Status = GetStatus(order),
-            Tracking = new List<Tuple<DateTime?, string>> { new Tuple<DateTime?, string>(order.OrderDate, "Approved"), new Tuple<DateTime?, string>(order.ShippingDate, "sent"),
-            new Tuple<DateTime?, string>(order.DeliveryDate, "Approved")}
+            Tracking = new List<Tuple<DateTime?, string>> { new Tuple<DateTime?, string>(order.OrderDate, "Approved"), new Tuple<DateTime?, string>(order.ShippingDate, "Sent"),
+            new Tuple<DateTime?, string>(order.DeliveryDate, "Delivered")}
         };
 
 
