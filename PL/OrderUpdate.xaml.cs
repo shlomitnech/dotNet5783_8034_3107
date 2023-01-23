@@ -89,19 +89,20 @@ namespace PL
 
         private void ord_Name_PreviewMouseDown_1(object sender, MouseButtonEventArgs e)
         {
-            ord_Name.Clear();
+        //    ord_Name.Clear();
         }
 
         private void ord_Name_TextChanged_1(object sender, TextChangedEventArgs e)
         {
-            if (ord_Name != null && ord_Name.Text != "")
+          //  if (ord_Name != null && ord_Name.Text != "")
             {
-                ord.CustomerName = ord_Name.Text;
+            //    ord.CustomerName = ord_Name.Text;
             }
         }
 
         private void ord_Name_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
         {
+            /*
             try
             {
                 e.Handled = new Regex("[^A-Z]+[^a-z]+[^A-Z]+[^a-z]+").IsMatch(ord_Name.Text);
@@ -110,18 +111,19 @@ namespace PL
             {
                 new ErrorWindow("ERROR in Product List View Window\n", exc.Message).ShowDialog();
             }
+            */
         }
 
         private void ord_amount_PreviewMouseDown_1(object sender, MouseButtonEventArgs e)
         {
-            ord_amount.Clear();
+           // ord_amount.Clear();
 
 
         }
 
         private void ord_amount_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = new Regex("[^0-9]+").IsMatch(ord_price.Text);
+           // e.Handled = new Regex("[^0-9]+").IsMatch(ord_price.Text);
 
         }
 
@@ -129,34 +131,34 @@ namespace PL
 
         private void ord_price_PreviewMouseDown_1(object sender, MouseButtonEventArgs e)
         {
-            ord_price.Clear();
+           // ord_price.Clear();
         }
 
         private void ord_amount_TextChanged_1(object sender, TextChangedEventArgs e)
         {
-            if (ord_amount != null && ord_amount.Text != "")
+          //  if (ord_amount != null && ord_amount.Text != "")
             {
-                if (int.TryParse(ord_amount.Text, out int val))
+              //  if (int.TryParse(ord_amount.Text, out int val))
                 {
-                    ord.AmountOfItems = val;
+                 //   ord.AmountOfItems = val;
                 }
             }
         }
 
         private void ord_price_TextChanged_1(object sender, TextChangedEventArgs e)
         {
-            if (ord_price != null && ord_price.Text != "")
+          //  if (ord_price != null && ord_price.Text != "")
             {
-                if (int.TryParse(ord_price.Text, out int val))
+             //   if (int.TryParse(ord_price.Text, out int val))
                 {
-                    ord.TotalPrice = val;
+                 //   ord.TotalPrice = val;
                 }
             }
         }
 
         private void ord_price_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = new Regex("[^0-9]+").IsMatch(ord_price.Text);
+          //  e.Handled = new Regex("[^0-9]+").IsMatch(ord_price.Text);
 
         }
     }
