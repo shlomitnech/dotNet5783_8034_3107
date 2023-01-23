@@ -166,6 +166,7 @@ internal class Product : BlApi.IProduct
     /// <exception cref="BO.EntityNotFound"></exception>
     public IEnumerable<ProductItem?> GetCatalog()
     {
+        
         var v = from prods in dal?.Product.GetAll()
                 where prods != null
                 select new ProductItem()
@@ -177,7 +178,10 @@ internal class Product : BlApi.IProduct
                     Category = (BO.Enums.Category)prods?.Category,
                     InStock = prods?.inStock == 0 ? false : true
                 };
+        if (v == null)
+            throw new BO.EntityNotFound("there was nothing in the list)"); 
         return v;
+
 
     }
 

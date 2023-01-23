@@ -218,7 +218,7 @@
                 </ComboBox.Background>
             </ComboBox>
 
-            <Button x:Name="ShoppingCart" Content="View Shopping Cart" HorizontalAlignment="Left" Margin="587,146,0,0" VerticalAlignment="Top" Click="ShoppingCart_Click" Height="92" Width="149" Background="#FFF4D7D7" FontFamily="Bahnschrift Condensed" FontSize="18"/>
+            <Button x:Name="ShoppingCart" Content="View Shopping Cart" HorizontalAlignment="Left" Margin="590,206,0,0" VerticalAlignment="Top" Click="ShoppingCart_Click" Height="92" Width="149" Background="#FFF4D7D7" FontFamily="Bahnschrift Condensed" FontSize="18"/>
 
         </Grid>
 

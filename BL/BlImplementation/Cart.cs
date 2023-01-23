@@ -42,11 +42,11 @@ internal class Cart : BlApi.ICart
             }
             catch
             {
-                throw new BO.EntityNotFound();
+                throw new BO.EntityNotFound("The product does not exist");
             }
             if (amt < 0)
             {
-                throw new BO.IncorrectInput();
+                throw new BO.IncorrectInput("value is less than 0");
             }
             if (prod?.inStock < amt || prod?.inStock < 1) //not enough items in stock
             {
@@ -100,7 +100,7 @@ internal class Cart : BlApi.ICart
     {
         if (cart.Items == null)
         {
-            throw new Exception();
+            throw new BO.EntityNotFound("The cart is empty");
         }
         int index = cart.Items.FindIndex(x => x.ID == id); // find the index of where the product is sitting in the Items list
         DO.Product? product = new DO.Product(-1); // create a DO product

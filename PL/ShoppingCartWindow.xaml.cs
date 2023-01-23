@@ -106,6 +106,10 @@ namespace PL
             {
                 MessageBox.Show(exc.Message, "Cart Window", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            catch (BO.IncorrectInput exc)
+            {
+                MessageBox.Show(exc.Message, "Cart Window", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         /// <summary>

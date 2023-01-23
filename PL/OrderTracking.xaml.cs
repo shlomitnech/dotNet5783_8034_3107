@@ -42,12 +42,12 @@ namespace PL
             {
                 ordtrack = bl?.Order.GetOrderTracking(id)!;
             }
-            catch (BO.EntityNotFound ex)
+            catch (BO.EntityNotFound)
             {
-                new ErrorWindow("Order Tracking Window\n", ex.Message).ShowDialog();
+                MessageBox.Show("That is not a valid order ID");
+               Close();
                 new OrderTracking().ShowDialog();
-                Close();
-
+   
             }
             DataContext = ordtrack;
             id_enter.Text = ordtrack.ID.ToString();
@@ -102,7 +102,15 @@ namespace PL
                 new ErrorWindow("Enter Order ID Window", "Wrong id number entered").ShowDialog();
             }
             Close();//close current window
-            new OrderTracking(id, myCart, bl!).ShowDialog();//open order tracking window with entered id
+            try
+            {
+                new OrderTracking(id, myCart, bl!).ShowDialog();//open order tracking window with entered id
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Invalid Click");
+                Close();
+            }
    
 
         }

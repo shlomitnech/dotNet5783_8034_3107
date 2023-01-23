@@ -44,9 +44,12 @@ namespace PL
             {
                 new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
             }
+            catch (BO.IncorrectInput ex)
+            {
+                new ErrorWindow("Catalog Window\n", ex.Message).ShowDialog();
+            }
             MainScreenCatalog.DataContext = productList;//set data context of catalog as the product list
             CategorySelecter.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));//set combobox values to enums
-           // AddProductToCart.Visibility = Visibility.Visible;
 
         }
 
@@ -136,19 +139,19 @@ namespace PL
                 }
                 catch (BO.EntityNotFound ex)
                 {
-                    new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
+                    new ErrorWindow("Cart Window ", ex.Message).ShowDialog();
                 }
                 catch (BO.UnfoundException ex)
                 {
-                    new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
+                    new ErrorWindow("Cart Window ", ex.Message).ShowDialog();
                 }
                 catch (BO.Exceptions ex)
                 {
-                    new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
+                    new ErrorWindow("Cart Window ", ex.Message).ShowDialog();
                 }
                 catch (BO.IdExistException ex)
                 {
-                    new ErrorWindow("Cart Window Window", ex.Message).ShowDialog();
+                    new ErrorWindow("Cart Window ", ex.Message).ShowDialog();
                 }
             }
 
