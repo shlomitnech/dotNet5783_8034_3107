@@ -24,7 +24,7 @@ namespace DalApi
     }
     public class Duplicates : Exception
     {
-        public Duplicates()
+        public Duplicates(string v)
         { }
 
     }

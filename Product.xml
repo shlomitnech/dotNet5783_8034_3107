@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfProducts>
+
+
+
+	<Product>
+		<ID>100001</ID>
+		<Name>Challah</Name>
+		<Price>35</Price>
+		<Category>0</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+
+	<Product>
+		<ID>100002</ID>
+		<Name>Rolls</Name>
+		<Price>15</Price>
+		<Category>0</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+	<Product>
+		<ID>100003</ID>
+		<Name>Onion Dip</Name>
+		<Price>20</Price>
+		<Category>1</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+
+
+	<Product>
+		<ID>100004</ID>
+		<Name>Garlic Dip</Name>
+		<Price>20</Price>
+		<Category>1</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+
+	<Product>
+		<ID>100005</ID>
+		<Name>Chummus</Name>
+		<Price>25</Price>
+		<Category>1</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+
+	<Product>
+		<ID>100006</ID>
+		<Name>Matbucha</Name>
+		<Price>20</Price>
+		<Category>1</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+
+	<Product>
+		<ID>100007</ID>
+		<Name>Schug</Name>
+		<Price>10</Price>
+		<Category>1</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+
+	<Product>
+		<ID>100008</ID>
+		<Name>Table</Name>
+		<Price>500</Price>
+		<Category>5</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+	<Product>
+		<ID>100009</ID>
+		<Name>Poppers</Name>
+		<Price>105</Price>
+		<Category>2</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+
+
+	<Product>
+		<ID>100010</ID>
+		<Name>Steak</Name>
+		<Price>145</Price>
+		<Category>2</Category>
+		<InStock>5</InStock>
+
+	</Product>
+	
+	
+	<Product>
+		<ID>100011</ID>
+		<Name>Lamb</Name>
+		<Price>184</Price>
+		<Category>2</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+
+
+	<Product>
+		<ID>100012</ID>
+		<Name>Chicken</Name>
+		<Price>80</Price>
+		<Category>2</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+	<Product>
+		<ID>100013</ID>
+		<Name>Eggplant</Name>
+		<Price>86</Price>
+		<Category>2</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+
+
+	<Product>
+		<ID>100014</ID>
+		<Name>Tofu</Name>
+		<Price>65</Price>
+		<Category>2</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+	<Product>
+		<ID>100015</ID>
+		<Name>Rice</Name>
+		<Price>45</Price>
+		<Category>3</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+
+
+	<Product>
+		<ID>100016</ID>
+		<Name>Kugel</Name>
+		<Price>55</Price>
+		<Category>3</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+
+	<Product>
+		<ID>100017</ID>
+		<Name>Beans</Name>
+		<Price>45</Price>
+		<Category>3</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+
+
+	<Product>
+		<ID>100018</ID>
+		<Name>Broccoli</Name>
+		<Price>90</Price>
+		<Category>3</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+	<Product>
+		<ID>100019</ID>
+		<Name>Zuchini</Name>
+		<Price>68</Price>
+		<Category>3</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+
+
+	<Product>
+		<ID>100020</ID>
+		<Name>Cauliflower</Name>
+		<Price>85</Price>
+		<Category>3</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+	<Product>
+		<ID>100021</ID>
+		<Name>Brownies</Name>
+		<Price>45</Price>
+		<Category>4</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+
+
+	<Product>
+		<ID>100022</ID>
+		<Name>Cookies</Name>
+		<Price>35</Price>
+		<Category>4</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+	<Product>
+		<ID>100023</ID>
+		<Name>Rice Krispy Treats</Name>
+		<Price>40</Price>
+		<Category>4</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+
+
+	<Product>
+		<ID>100024</ID>
+		<Name>Rugelach</Name>
+		<Price>55</Price>
+		<Category>4</Category>
+		<InStock>5</InStock>
+
+	</Product>
+
+</ArrayOfProducts>

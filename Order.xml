@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfOrders>
+
+
+<Order>
+		<ID>1001</ID>
+		<CostumerName>Hudi</CostumerName>
+		<CostumerEmail>hudi@jct.ac.il.com</CostumerEmail>
+		<CostumerAddress>1 apple</CostumerAddress>
+		<OrderDate>2023-01-14 0:21:16</OrderDate>
+		<ShipDate>2023-02-27 4:34:16</ShipDate>
+		<DeliveryDate>2023-03-17 15:36:16</DeliveryDate>
+
+
+
+	</Order>
+
+
+	<Order>
+		<ID>1002</ID>
+		<CostumerName>Maeven</CostumerName>
+		<CostumerEmail>maeven@jct.ac.il</CostumerEmail>
+		<CostumerAddress>2 banana</CostumerAddress>
+		<OrderDate>2023-01-13 17:35:40</OrderDate>
+		<ShipDate>2023-02-12 19:50:40</ShipDate>
+		<DeliveryDate>2023-03-20 21:53:40</DeliveryDate>
+
+	</Order>
+
+
+	<Order>
+		<ID>1003</ID>
+		<CostumerName>Shana</CostumerName>
+		<CostumerEmail>Shana@jct.ac.il</CostumerEmail>
+		<CostumerAddress>3 carrot</CostumerAddress>
+		<OrderDate>2023-01-14 7:26:41</OrderDate>
+		<ShipDate>2023-02-06 7:28:43</ShipDate>
+		<DeliveryDate>2023-03-09 0:45:45</DeliveryDate>
+
+	</Order>
+
+
+	<Order>
+		<ID>1004</ID>
+		<CostumerName>Michal</CostumerName>
+		<CostumerEmail>michal@jct.ac.il</CostumerEmail>
+		<CostumerAddress>4 dumpling</CostumerAddress>
+		<OrderDate>2023-01-15 3:50:24</OrderDate>
+		<ShipDate>2023-02-21 12:13:26</ShipDate>
+		<DeliveryDate>2023-02-21 18:13:27</DeliveryDate>
+
+	</Order>
+
+	<Order>
+		<ID>1005</ID>
+		<CostumerName>Adina</CostumerName>
+		<CostumerEmail>adina@jct.ac.il</CostumerEmail>
+		<CostumerAddress>5 eel</CostumerAddress>
+		<OrderDate>2023-01-15 11:58:46</OrderDate>
+		<ShipDate>2023-03-02 2:07:46</ShipDate>
+		<DeliveryDate>2023-04-18 13:20:48</DeliveryDate>
+
+	</Order>
+
+
+	<Order>
+		<ID>1006</ID>
+		<CostumerName>Jessica</CostumerName>
+		<CostumerEmail>jessica@jct.ac.il</CostumerEmail>
+		<CostumerAddress>6 fox</CostumerAddress>
+		<OrderDate>2023-01-14 14:36:38</OrderDate>
+		<ShipDate>2023-01-26 13:43:40</ShipDate>
+		<DeliveryDate>2023-02-01 22:53:41</DeliveryDate>
+
+	</Order>
+
+
+	<Order>
+		<ID>1007</ID>
+		<CostumerName>Avigayil</CostumerName>
+		<CostumerEmail>avigayil@jct.ac.il</CostumerEmail>
+		<CostumerAddress>7 guava</CostumerAddress>
+		<OrderDate>2023-01-15 6:01:31</OrderDate>
+		<ShipDate>2023-03-04 19:06:33</ShipDate>
+		<DeliveryDate>2023-04-25 21:26:34</DeliveryDate>
+
+	</Order>
+
+
+	<Order>
+		<ID>1008</ID>
+		<CostumerName>Binny</CostumerName>
+		<CostumerEmail>Binny@jct.ac.il</CostumerEmail>
+		<CostumerAddress>8 haloumi</CostumerAddress>
+		<OrderDate>2023-01-14 23:50:35</OrderDate>
+		<ShipDate>2023-02-06 5:54:36</ShipDate>
+		<DeliveryDate>2023-02-09 12:08:38</DeliveryDate>
+
+	</Order>
+
+	<Order>
+		<ID>1009</ID>
+		<CostumerName>Shlomit</CostumerName>
+		<CostumerEmail>volpin@jct.ac.il</CostumerEmail>
+		<CostumerAddress>"9 ice cream</CostumerAddress>
+		<OrderDate>2023-01-15 6:01:31</OrderDate>
+		<ShipDate>2023-03-04 19:06:33</ShipDate>
+		<DeliveryDate>2023-04-25 21:26:34</DeliveryDate>
+
+	</Order>
+
+
+
+	<Order>
+		<ID>1010</ID>
+		<CostumerName>Mordechai</CostumerName>
+		<CostumerEmail>mordechai@jct.ac.il</CostumerEmail>
+		<CostumerAddress>10 juice</CostumerAddress>
+		<OrderDate>2023-03-14 3:33:40</OrderDate>
+		<ShipDate>2023-03-18 2:42:41</ShipDate>
+		<DeliveryDate>2023-03-18 8:46:43</DeliveryDate>
+
+	</Order>
+
+
+	<Order>
+		<ID>1011</ID>
+		<CostumerName>Nava</CostumerName>
+		<CostumerEmail>nava@jct.ac.il</CostumerEmail>
+		<CostumerAddress>11 krispy kreme</CostumerAddress>
+		<OrderDate>2023-03-14 3:33:40</OrderDate>
+		<ShipDate>2023-03-18 2:42:41</ShipDate>
+		<DeliveryDate>2023-03-18 8:46:43</DeliveryDate>
+
+	</Order>
+
+	<Order>
+		<ID>1012</ID>
+		<CostumerName>Avigail</CostumerName>
+		<CostumerEmail>avigail@business.com</CostumerEmail>
+		<CostumerAddress>12 licorice</CostumerAddress>
+		<OrderDate>2023-01-15 6:01:31</OrderDate>
+		<ShipDate>2023-03-04 19:06:33</ShipDate>
+		<DeliveryDate>2023-04-25 21:26:34</DeliveryDate>
+
+	</Order>
+
+
+	<Order>
+		<ID>1013</ID>
+		<CostumerName>Avigayil</CostumerName>
+		<CostumerEmail>avigayil@nursing.com</CostumerEmail>
+		<CostumerAddress>13 meatball</CostumerAddress>
+		<OrderDate>2023-01-14 23:50:35</OrderDate>
+		<ShipDate>2023-02-06 5:54:36</ShipDate>
+		<DeliveryDate>2023-02-09 12:08:38</DeliveryDate>
+
+	</Order>
+
+
+	<Order>
+		<ID>1014</ID>
+		<CostumerName>Refael</CostumerName>
+		<CostumerEmail>HudiHusband@gamil.com</CostumerEmail>
+		<CostumerAddress>22 nezer david</CostumerAddress>
+		<OrderDate>2023-01-15 6:01:31</OrderDate>
+		<ShipDate>2023-03-04 19:06:33</ShipDate>
+		<DeliveryDate>2023-04-25 21:26:34</DeliveryDate>
+
+	</Order>
+	
+	
+	<Order>
+		<ID>1015</ID>
+		<CostumerName>Yona</CostumerName>
+		<CostumerEmail>yona@jct.ac.il</CostumerEmail>
+		<CostumerAddress>14 noodles</CostumerAddress>
+		<OrderDate>2023-01-14 14:36:38</OrderDate>
+		<ShipDate>2023-01-26 13:43:40</ShipDate>
+		<DeliveryDate>2023-02-01 22:53:41</DeliveryDate>
+
+	</Order>
+
+
+	<Order>
+		<ID>1016</ID>
+		<CostumerName>Guy</CostumerName>
+		<CostumerEmail>guy@jct.ac.il</CostumerEmail>
+		<CostumerAddress>16 papaya</CostumerAddress>
+		<OrderDate>2023-01-15 11:58:46</OrderDate>
+		<ShipDate>2023-03-02 2:07:46</ShipDate>
+		<DeliveryDate>2023-04-18 13:20:48</DeliveryDate>
+
+	</Order>
+
+
+	<Order>
+		<ID>1017</ID>
+		<CostumerName>Joyce</CostumerName>
+		<CostumerEmail>Joyce@jct.ac.il</CostumerEmail>
+		<CostumerAddress>17 quince</CostumerAddress>
+		<OrderDate>1985-03-12T00:00:00</OrderDate>
+		<ShipDate>1985-03-12T00:00:00</ShipDate>
+		<DeliveryDate>1985-03-12T00:00:00</DeliveryDate>
+
+	</Order>
+
+
+	<Order>
+		<ID>1018</ID>
+		<CostumerName>Meir</CostumerName>
+		<CostumerEmail>meir@jct.ac.il</CostumerEmail>
+		<CostumerAddress>42 Beit Hadfus</CostumerAddress>
+		<OrderDate>1985-03-12T00:00:00</OrderDate>
+		<ShipDate>1985-03-12T00:00:00</ShipDate>
+		<DeliveryDate>1985-03-12T00:00:00</DeliveryDate>
+
+	</Order>
+
+	<Order>
+		<ID>1019</ID>
+		<CostumerName>Daniella</CostumerName>
+		<CostumerEmail>daniella@jct.ac.il</CostumerEmail>
+		<CostumerAddress>1 aleph</CostumerAddress>
+		<OrderDate>1985-03-12T00:00:00</OrderDate>
+		<ShipDate>1985-03-12T00:00:00</ShipDate>
+		<DeliveryDate>1985-03-12T00:00:00</DeliveryDate>
+
+	</Order>
+
+
+	<Order>
+		<ID>1020</ID>
+		<CostumerName>Yaakovah</CostumerName>
+		<CostumerEmail>yaakovah@jct.ac.il</CostumerEmail>
+		<CostumerAddress>33 kfar saba</CostumerAddress>
+		<OrderDate>1985-03-12T00:00:00</OrderDate>
+		<ShipDate>1985-03-12T00:00:00</ShipDate>
+		<DeliveryDate>1985-03-12T00:00:00</DeliveryDate>
+
+	</Order>
+
+
+</ArrayOfOrders>

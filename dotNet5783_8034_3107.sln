@@ -12,10 +12,14 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalTest", "DalTest\DalTest.csproj", "{C353B207-0943-4720-9EAC-53A2BC5C9A66}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8D9C9F89-3918-445B-8863-125C7D6579A0} = {8D9C9F89-3918-445B-8863-125C7D6579A0}
+		{DE3FBF8D-786E-428A-BE9C-CE36E4679965} = {DE3FBF8D-786E-428A-BE9C-CE36E4679965}
 		{EAC898AD-48A0-4FC2-93B2-35953943FA6B} = {EAC898AD-48A0-4FC2-93B2-35953943FA6B}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{D44741E0-DF64-4EBC-AD00-F5E0145256B5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DE3FBF8D-786E-428A-BE9C-CE36E4679965} = {DE3FBF8D-786E-428A-BE9C-CE36E4679965}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLTest", "BLTest\BLTest.csproj", "{4525D924-FA1B-4CCA-970A-E6057D4CB267}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -27,7 +31,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{0C9E238D-21A2-4517-8D97-B8840BD25B2B}"
 	ProjectSection(SolutionItems) = preProject
 		xml\dal-config.xml = xml\dal-config.xml
+		Order.xml = Order.xml
+		OrderItem.xml = OrderItem.xml
+		Product.xml = Product.xml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalXml", "DalXml\DalXml.csproj", "{DE3FBF8D-786E-428A-BE9C-CE36E4679965}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +72,10 @@ Global
 		{6DED0445-0C60-4057-B4A1-B2856D973E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DED0445-0C60-4057-B4A1-B2856D973E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DED0445-0C60-4057-B4A1-B2856D973E69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE3FBF8D-786E-428A-BE9C-CE36E4679965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE3FBF8D-786E-428A-BE9C-CE36E4679965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE3FBF8D-786E-428A-BE9C-CE36E4679965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE3FBF8D-786E-428A-BE9C-CE36E4679965}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
