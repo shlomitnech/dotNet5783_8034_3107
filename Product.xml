@@ -75,9 +75,9 @@
 
 	<Product>
 		<ID>100008</ID>
-		<Name>Table</Name>
-		<Price>500</Price>
-		<Category>5</Category>
+		<Name>Veal</Name>
+		<Price>180</Price>
+		<Category>2</Category>
 		<InStock>5</InStock>
 
 	</Product>
