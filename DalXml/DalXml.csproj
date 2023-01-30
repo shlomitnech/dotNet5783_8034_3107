@@ -13,4 +13,8 @@
 
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DelFacade\DalFacade.csproj" />
+  </ItemGroup>
+
 </Project>

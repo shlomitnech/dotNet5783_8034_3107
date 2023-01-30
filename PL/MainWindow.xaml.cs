@@ -1,4 +1,5 @@
-﻿using Dal;
+﻿using BlApi;
+using Dal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,7 @@ namespace PL
     /// </summary>
     public partial class MainWindow : System.Windows.Window
     {
-       // DataSource ds = new();
-        BlApi.IBl? bl = BlApi.Factory.Get();
+       static IBl bl = BlApi.Factory.Get()!; 
         BO.Cart myCart = new();
        
         public MainWindow()  //constructor

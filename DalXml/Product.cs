@@ -45,7 +45,7 @@ internal class Product : IProduct
             new XElement("Name", item.Name),
             new XElement("Price", item.Price),
             new XElement("Category", item.Category),
-            new XElement("InStock", item.InStock)));
+            new XElement("InStock", item.inStock)));
 
         //save the root in the file
         XmlTools.SaveListToXMLElement(productRoot, productPath);
@@ -61,7 +61,7 @@ internal class Product : IProduct
                            select (DO.Product)item).FirstOrDefault();
 
         if (temp.ID.Equals(default(Order)))
-            throw new DalApi.IdNotExistException("the product does not exist");
+            throw new DalApi.EntityNotFound("the product does not exist");
 
         productList.Remove(temp);
 

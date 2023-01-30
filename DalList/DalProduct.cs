@@ -25,7 +25,7 @@ public class DalProduct : IProduct
         DO.Product? prevProd = DataSource.products.Find(x => x?.ID == _ID); // find a product with a matching ID
         if (prevProd != null) //no ID already exists
         {
-            throw new Duplicates();
+            throw new Duplicates("Product already exists");
         }
         DataSource.products.Add(current);
         return current.ID;

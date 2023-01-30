@@ -43,10 +43,10 @@ internal class OrderItem : IOrderItem
         orderItemRoot.Add(
             new XElement("OrderItem",
             new XElement("ID", temp),
-            new XElement("ProductID", item.ProductID),
-            new XElement("OrderID", item.OrderID),
+            new XElement("ProductID", item.productID),
+            new XElement("OrderID", item.orderID),
             new XElement("Price", item.Price),
-            new XElement("Amount", item.Amount)));
+            new XElement("Amount", item.amount)));
 
         //save the root in the file
         XmlTools.SaveListToXMLElement(orderItemRoot, orderItemPath);
@@ -102,7 +102,7 @@ internal class OrderItem : IOrderItem
         List<DO.OrderItem?> orderItemList = GetAll().ToList();
 
         return (from item in orderItemList
-                where item != null && item?.ProductID == productId && item?.OrderID == id
+                where item != null && item?.productID == productId && item?.orderID == id
                 select (DO.OrderItem)item).FirstOrDefault();
         throw new DalApi.EntityNotFound("the Order Item requested does not exist");
     }
@@ -112,13 +112,13 @@ internal class OrderItem : IOrderItem
         List<DO.OrderItem?> orderItemList = GetAll().ToList();
 
         return (from item in orderItemList
-                where item?.OrderID == id
+                where item?.orderID == id
                 select item).ToList();
     }
 
     public void Update(DO.OrderItem item)
     {
-        DO.OrderItem? temp = GetById(item.ID);//get the order item requested to update 
+        DO.OrderItem? temp = Get(item.ID);//get the order item requested to update 
         List<DO.OrderItem?> orderItemList = GetAll().ToList();//get all order items from ile
         orderItemList.Remove(temp);//remove the existing order item
         orderItemList.Add(item);//add the updated order item
